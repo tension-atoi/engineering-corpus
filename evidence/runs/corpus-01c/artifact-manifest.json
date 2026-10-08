@@ -1,12 +1,12 @@
 {
   "format": "engineering-corpus-dist-manifest-v1",
   "target": "docs.gnu6.live",
-  "source_commit": "afbf37e43174e4aeaea371fc5da8ee1b3a022273",
+  "source_commit": "dccafb4e3555af28970774952cdf8377ffcdf6a0",
   "source_branch": "corpus-01c-public-release-hygiene",
   "baseline_commit": "22d5ebc43016588462a72e395afcc1d647d5150b",
   "directory": "dist/",
   "file_count": 54,
-  "bytes": 391534,
+  "bytes": 391695,
   "sha256": {
     "404.html": "30ac6d0c77a665d58975ae588e961eac436af3463f15eee0bca41bf499fb9c20",
     "app.js": "cc5dedb7020747ff616162ef2b25bcd8b5b25ee0e0d2488f51791b367f2ca5d6",
@@ -49,7 +49,7 @@
     "fr/labs/01-change.html": "c91e31677bd9f69037d8731a00387b1f9d0e2984db9fe57ae2bdea09196c898e",
     "fr/labs/02-api.html": "e4b0797e61be95427983bb55384fd843e164f1e7346e0edd8d12ef5415e0180f",
     "fr/labs/03-workspace.html": "58dbd66bc4ad177c2d04c44e2c8f184da630a314357c56fe09ca8340defe55ff",
-    "fr/references.html": "51e7d782442c1eb497ae0430a051275273f20cafa3c28837a33ffeb770f556d4",
+    "fr/references.html": "b0bbbe09ca21467d47bab0958eadaed4b8f835e7efd2af5a0476b96bd92c12cd",
     "fr/templates.html": "e7ca3f3bd685505345e27a3ae80d8fea50e7f7f2ba98bc001983d29b8b8f767c",
     "fr/topologies.html": "50bd2fead49f2ad47845384878100a6b4d07fcddee6863318aea42d60d7f6db9",
     "index.html": "bac91aa4a8e25f49c952896fdbfa1f51399c0da0039318ba5ea12895a9613041",

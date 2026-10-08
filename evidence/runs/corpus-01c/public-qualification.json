@@ -2,15 +2,15 @@
   "mission": "CORPUS-01C-Public-Release-Hygiene",
   "status": "PUBLIC_SOURCE_QUALIFIED / RELEASE_ARTIFACT_PINNED / DEPLOYMENT_APPROVAL_PENDING",
   "base_commit": "22d5ebc43016588462a72e395afcc1d647d5150b",
-  "artifact_commit": "afbf37e43174e4aeaea371fc5da8ee1b3a022273",
+  "artifact_commit": "dccafb4e3555af28970774952cdf8377ffcdf6a0",
   "branch": "corpus-01c-public-release-hygiene",
   "target": "docs.gnu6.live",
   "artifact_manifest": "evidence/runs/corpus-01c/artifact-manifest.json",
-  "artifact_manifest_sha256": "fb044668c4dd1ef377483b0bd484f873117cdc38df518f538547725386d1a67f",
+  "artifact_manifest_sha256": "cc22fd11971ec289afdf6afc7f0ef134f705ef4944ea4e8127d02ebbd1f62e6b",
   "artifact": {
     "directory": "dist/",
     "file_count": 54,
-    "bytes": 391534,
+    "bytes": 391695,
     "sha256_list_matches_candidate_commit": true
   },
   "build_qualification": {
@@ -23,20 +23,45 @@
     "two_builds_byte_identical": true,
     "committed_dist_matches_build": true,
     "checker_negative_fixtures": 6,
-    "fictional_labs": {"positive": 2, "expected_negative": 2, "workspace_topology": "PASS"},
+    "fictional_labs": {
+      "positive": 2,
+      "expected_negative": 2,
+      "workspace_topology": "PASS"
+    },
     "public_safe_step_summary": [
-      {"name": "clone-and-check-out-exact-commit", "result": "PASS"},
-      {"name": "clean-working-tree", "result": "PASS"},
-      {"name": "isolated-environment-and-offline-locked-dependencies", "result": "PASS"},
-      {"name": "document-coherence-check", "result": "PASS"},
-      {"name": "two-deterministic-builds", "result": "PASS"},
-      {"name": "negative-checker-and-fictional-lab-tests", "result": "PASS"},
-      {"name": "documentation-to-dist-drift-check", "result": "PASS"}
+      {
+        "name": "clone-and-check-out-exact-commit",
+        "result": "PASS at dccafb4e3555af28970774952cdf8377ffcdf6a0"
+      },
+      {
+        "name": "clean-working-tree",
+        "result": "PASS"
+      },
+      {
+        "name": "isolated-environment-and-offline-locked-dependencies",
+        "result": "PASS"
+      },
+      {
+        "name": "document-coherence-check",
+        "result": "PASS"
+      },
+      {
+        "name": "two-deterministic-builds",
+        "result": "PASS"
+      },
+      {
+        "name": "negative-checker-and-fictional-lab-tests",
+        "result": "PASS"
+      },
+      {
+        "name": "documentation-to-dist-drift-check",
+        "result": "PASS"
+      }
     ],
     "limits": [
       "Same-host Linux x86_64 and CPython 3.14 qualification; other platforms are not covered.",
       "Raw logs, temporary paths, local browser profiles, infrastructure captures and operator configuration are excluded from this public record.",
-      "No browser review was rerun after token-name sanitization; the color values and rendered content were preserved apart from removing organization-specific labels.",
+      "Browser review was not rerun after the final French references translation and documentation changes; exact-HEAD browser evidence remains pending.",
       "This is not a public HTTPS, TLS, deployment-image, Nginx syntax, WCAG, or production certification."
     ]
   },
