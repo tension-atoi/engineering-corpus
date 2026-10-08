@@ -1,12 +1,18 @@
-# gnu.in.labs — Engineering Corpus
+# gnu.in.labs — Corpus Méthodologique & Hygiène Mental
 
-**Open engineering methodology · Local-first · Evidence-driven · FR/EN**
+**Méthodologie ouverte · Hygiène de la pensée · Local-first · Preuves reproductibles · FR/EN**
 
 > Status: `DRAFT / ADOPTION_PENDING`. This public educational corpus is not a certification of any API or an adopted standard.
 
-Engineering Corpus is a *public, executable study surface* for collaborative software engineering: mandates, authority boundaries, architecture, implementation slices, verification, reproducible evidence, documentation and release discipline.
+**Corpus Méthodologique & Hygiène Mental** is a public, inspectable study project. Its first curriculum covers collaborative software engineering: mandates, authority boundaries, architecture, implementation slices, verification, reproducible evidence, documentation and release discipline. The name defines an editorial direction, **not** a claim that mental-health coursework already exists.
 
 **Read it, challenge it, fork it, improve it.** The examples use fictional components.
+
+## Product direction (not yet implemented)
+
+The corpus is intended to expand beyond engineering methods. Future editions may explore ways to understand, challenge, practice and retain knowledge, with narrative or game-like learning paths where they genuinely improve comprehension. This is an intention, not a promise of XP systems, certifications, medical advice or new published chapters.
+
+**Compatibility:** The GitHub repository remains `engineering-corpus` for now, and existing paths, chapter identifiers and the browser-local study-progress key are intentionally preserved. A future docs portal can place this independently versioned corpus under a dedicated route.
 
 ## Explore
 
@@ -54,14 +60,14 @@ No database, no SaaS, no external fonts, no analytics, no remote scripts, no use
 
 MIT for the original content and software in this repository (see [LICENSE](LICENSE)). External tools and references retain their respective licenses. Attribution to external projects does not imply endorsement.
 
-**Publication state:** standalone repository scaffold and build artefact, not a live deployment.
+**Publication state:** first edition live at [docs.gnu6.live](https://docs.gnu6.live/fr/index.html). The content remains draft; infrastructure operation is not normative adoption.
 
 ## CORPUS-01 study edition
 
 Eight proposed methods (EC-M01–08), three executable fictional labs (EC-L01–03),
 FR/EN governance and source references. All methods remain draft; see the
 [editorial review](reviews/CORPUS-01-editorial.md) and [publication handoff](reviews/CORPUS-01-publication.md).
-Future official publication: **docs.gnu6.live**. No public deployment has occurred.
+The current edition is available at **docs.gnu6.live**; the domain is expected to grow into a documentation hub for corpus, SDKs, APIs and guides.
 
 ### Local checks
 

@@ -22,6 +22,7 @@ DOCS=ROOT/'docs'
 SITE=ROOT/'site'
 ASSETS=ROOT/'assets'
 CATALOG=json.loads((DOCS/'catalog.json').read_text('utf-8'))
+CORPUS_NAME=CATALOG['product']['name']
 M=MarkdownIt('commonmark',{'html':True,'linkify':False,'typographer':False}).enable('table')
 
 
@@ -91,12 +92,12 @@ def shell(locale, title, inner, path, page_id='',mins=None,status='draft'):
     page=f'''<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
-    <meta name="description" content="{escape(subtitle)}"/><title>{escape(title)} · Engineering Corpus</title>
+    <meta name="description" content="{escape(subtitle)}"/><title>{escape(title)} · {escape(CORPUS_NAME)}</title>
     <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
     <link rel="alternate" hreflang="{opposite}" href="{en}"><link rel="alternate" hreflang="{locale}" href="{path}">
     </head><body data-locale="{locale}" data-study-ids="{escape(json.dumps(study_ids()),quote=True)}">
     <a class="skip" href="#content">{'Aller au contenu' if locale=='fr' else 'Skip to content'}</a>
-    <header class="topbar"><a class="brand" href="/{locale}/index.html" aria-label="Engineering Corpus, {home}"><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <header class="topbar"><a class="brand" href="/{locale}/index.html" aria-label="{escape(CORPUS_NAME)}, {home}"><span>gnu.in.labs <em>/</em> <strong>{escape(CORPUS_NAME)}</strong></span></a>
     <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="{en}" lang="{opposite}">{langname} ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
     <div class="layout"><aside id="sidebar" class="sidebar">{nav(locale,path)}</aside><main id="content" class="main" tabindex="-1">
     <div class="chapter-meta"><span class="eyebrow">gnu.in.labs / {'MÉTHODOLOGIE' if locale=='fr' else 'METHODOLOGY'}</span><span class="meta-right"><span class="status">{escape(status.upper())}</span>{minsblock}</span></div>
@@ -145,20 +146,20 @@ def home_cards(locale):
 def home_hero(locale):
     if locale=='fr':
         label='CORPUS OUVERT · BILINGUE · LOCAL-FIRST'
-        title='Une méthode qui se démontre.'
-        sub='Étudier, appliquer, contester et reproduire les pratiques d’ingénierie : contrats, frontières d’autorité, preuves, documentation et livraison.'
+        title=CORPUS_NAME
+        sub='Une méthode qui se démontre. Le premier parcours explore les pratiques d’ingénierie : contrats, frontières d’autorité, preuves, documentation et livraison. D’autres domaines et formats d’apprentissage pourront s’y ajouter.'
         start='Commencer le parcours'
         topology_lbl='Explorer les topologies'
         cards=['8 chapitres',f"{len(CATALOG['labs'])} ateliers",'5 modèles','0 service distant requis']
     else:
         label='OPEN CORPUS · BILINGUAL · LOCAL-FIRST'
-        title='A methodology you can prove.'
-        sub='Study, apply, challenge and reproduce engineering practices: contracts, authority boundaries, evidence, documentation and delivery.'
+        title=CORPUS_NAME
+        sub='A methodology you can prove. The first learning path covers engineering practice: contracts, authority boundaries, evidence, documentation and delivery. Future editions may welcome other fields and learning formats.'
         start='Start the curriculum'
         topology_lbl='Explore topologies'
         cards=['8 chapters',f"{len(CATALOG['labs'])} labs",'5 templates','0 required remote services']
     stat=''.join(f'<div><strong>{escape(a.split(" ")[0])}</strong><span>{escape(" ".join(a.split(" ")[1:]))}</span></div>' for a in cards)
-    return f'''<div class="hero"><span class="eyebrow">{label}</span><h1>{title}</h1><p>{sub}</p><div class="hero-actions"><a class="primary" href="/{locale}/chapters/01-mandate.html">{start} →</a><a class="outline" href="/{locale}/topologies.html">{topology_lbl} ↗</a></div><div class="stats">{stat}</div></div>'''
+    return f'''<div class="hero"><span class="eyebrow">{label}</span><h1>{escape(title)}</h1><p>{escape(sub)}</p><div class="hero-actions"><a class="primary" href="/{locale}/chapters/01-mandate.html">{start} →</a><a class="outline" href="/{locale}/topologies.html">{topology_lbl} ↗</a></div><div class="stats">{stat}</div></div>'''
 
 
 def build():
@@ -186,14 +187,14 @@ def build():
                 inner=home_hero(locale)+home_cards(locale)+f'<section class="home-note">{inner.replace("<h1","<h2").replace("</h1>","</h2>")}</section>'
             section='' if path.name=='index.md' else path.parent.name+'/'
             htmlpath=f'/{locale}/{section}{path.stem}.html'
-            shell(locale,str(m.get('title','Engineering Corpus')),inner,htmlpath,page_id,m.get('duration'),m.get('status','draft'))
+            shell(locale,str(m.get('title',CORPUS_NAME)),inner,htmlpath,page_id,m.get('duration'),m.get('status','draft'))
         for slug in ('governance','references'):
             meta,body=unpack(DOCS/locale/f'{slug}.md')
             shell(locale,meta['title'],render_markdown(body),f'/{locale}/{slug}.html')
         shell(locale,'Topologies',topology(locale),f'/{locale}/topologies.html')
         shell(locale,'Modèles' if locale=='fr' else 'Templates',template_index(locale),f'/{locale}/templates.html')
-    (DIST/'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/fr/index.html"><title>Engineering Corpus</title></head><body><a href="/fr/index.html">Français →</a></body></html>',encoding='utf-8')
-    (DIST/'404.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>404 · Engineering Corpus</title><link rel="stylesheet" href="/style.css"></head><body><main class="main"><h1>404 — Page introuvable / Page not found</h1><p>Cette route n’existe pas. This route does not exist.</p><p><a href="/fr/index.html">Accueil français</a> · <a href="/en/index.html">English home</a></p></main></body></html>',encoding='utf-8')
+    (DIST/'index.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/fr/index.html"><title>{escape(CORPUS_NAME)}</title></head><body><a href="/fr/index.html">Français →</a></body></html>',encoding='utf-8')
+    (DIST/'404.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>404 · {escape(CORPUS_NAME)}</title><link rel="stylesheet" href="/style.css"></head><body><main class="main"><h1>404 — Page introuvable / Page not found</h1><p>Cette route n’existe pas. This route does not exist.</p><p><a href="/fr/index.html">Accueil français</a> · <a href="/en/index.html">English home</a></p></main></body></html>',encoding='utf-8')
     print(f'BUILD_OK pages={len(list(DIST.rglob("*.html")))} assets={len(list(DIST.rglob("*.svg")))}')
 
 if __name__=='__main__':

@@ -7,3 +7,8 @@
 body{font-synthesis:none}code,pre,kbd,samp,.nav-number,.nav-duration,.status,.time-tag{font-family:var(--corpus-font-primary);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}button,.hero-actions a{min-height:44px}.hero-actions .primary,.study-button{background:var(--corpus-accent-orange-500);color:var(--corpus-neutral-950);border-color:var(--corpus-accent-orange-500)}.study-button.done{background:transparent;color:var(--mint);border-color:var(--mint)}.topbar{background:var(--corpus-neutral-950)}.status::before,.top-status::before{content:"! ";font-weight:700}.brand{white-space:normal}.brand span{min-width:0}.meta-right{flex-wrap:wrap}
 
 .diagram-scroll{max-width:100%;overflow-x:auto}.diagram-scroll .topology{min-width:900px;max-height:none}pre,code{font-weight:500}h1,h2,h3,strong{font-weight:700}@media(max-width:800px){.brand{max-width:calc(100% - 120px)}.lang{min-height:24px;display:inline-flex;align-items:center}#toggleSidebar{min-width:44px}.top-status{display:none}}
+
+/* CORPUS brand: long canonical title across two locales and narrow viewports. */
+.hero h1{font-size:clamp(33px,4.5vw,67px);max-width:100%;overflow-wrap:break-word;letter-spacing:-.046em}
+.brand strong{max-width:60ch;line-height:1.25}
+@media(max-width:800px){.brand{font-size:10px;line-height:1.2}.brand strong{font-size:10px}.hero h1{font-size:clamp(31px,8vw,45px)}}
