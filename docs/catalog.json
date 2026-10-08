@@ -41,13 +41,15 @@
   ],
   "labs": [
     "01-change",
-    "02-api"
+    "02-api",
+    "03-workspace"
   ],
   "statuses": [
     "draft",
     "reviewed",
     "adopted",
     "deprecated",
-    "retired"
+    "retired",
+    "rejected"
   ]
 }

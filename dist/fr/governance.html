@@ -1,0 +1,67 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Méthodes, preuves et autonomie"/><title>Gouvernance · Engineering Corpus</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="en" href="/en/governance.html"><link rel="alternate" hreflang="fr" href="/fr/governance.html">
+    </head><body data-locale="fr" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
+    <a class="skip" href="#content">Aller au contenu</a>
+    <header class="topbar"><a class="brand" href="/fr/index.html" aria-label="Engineering Corpus, Accueil"><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/governance.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Fermer le menu">✕</button></div>
+    <label class="search-label" for="chapterSearch">Filtrer les chapitres</label><input id="chapterSearch" type="search" placeholder="Filtrer les chapitres…" autocomplete="off" />
+    <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/fr/chapters/01-mandate.html" data-search="mandat &amp; découpage" aria-current="false"><span class="nav-number">01</span>Mandat &amp; découpage <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/02-authority.html" data-search="autorité &amp; agents" aria-current="false"><span class="nav-number">02</span>Autorité &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/03-contract.html" data-search="architecture &amp; contrats" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contrats <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/04-delivery.html" data-search="tranches &amp; vérification" aria-current="false"><span class="nav-number">04</span>Tranches &amp; vérification <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/05-evidence.html" data-search="preuves &amp; vérité publique" aria-current="false"><span class="nav-number">05</span>Preuves &amp; vérité publique <span class="nav-duration">16m</span></a><a class="navlink " href="/fr/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/07-llm.html" data-search="llm local &amp; copilot" aria-current="false"><span class="nav-number">07</span>LLM local &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/fr/chapters/08-hygiene.html" data-search="hygiène, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiène, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Ateliers <span>03</span></h2><a class="navlink " href="/fr/labs/01-change.html" data-search="atelier a — modification qualifiée" aria-current="false"><span class="nav-number">↗</span>Atelier A — Modification qualifiée</a><a class="navlink " href="/fr/labs/02-api.html" data-search="atelier b — api vérifiable" aria-current="false"><span class="nav-number">↗</span>Atelier B — API vérifiable</a><a class="navlink " href="/fr/labs/03-workspace.html" data-search="atelier c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Atelier C — Workspace Hygiene &amp; Git Topology</a>
+    <a class="navlink" href="/fr/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/fr/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Modèles</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Étudié localement</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Progression d’étude"></progress><p data-storage-status role="status"></p><p>Sans compte, sans télémétrie.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">gnu.in.labs / MÉTHODOLOGIE</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
+    <article class="prose"><h1 id="section-1">Gouvernance et contestation</h1>
+<h2 id="section-2">Classifications et autorité</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Classe</th>
+<th>Sens</th>
+<th>Décision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposed-principle</td>
+<td>Proposition de méthode à tester</td>
+<td>Pas de ratification implicite</td>
+</tr>
+<tr>
+<td>external-standard</td>
+<td>Texte normatif externe identifié</td>
+<td>Citer organisme, version et portée ; pas de conformité automatique</td>
+</tr>
+<tr>
+<td>recommendation</td>
+<td>Conseil contextualisé</td>
+<td>Publier prérequis et exceptions</td>
+</tr>
+<tr>
+<td>ratified-decision</td>
+<td>Décision propre au corpus</td>
+<td>Requiert propriétaire, date, portée et ADR accepté</td>
+</tr>
+</tbody>
+</table>
+<p>Les huit méthodes et trois ateliers restent <code>draft</code>. CORPUS-01 est une revue d’auteur de leur qualité éditoriale, pas un passage automatique à <code>adopted</code>. Aucune décision méthodologique ratifiée n’est introduite dans cette édition.</p>
+<h2 id="section-3">Proposer ou contester</h2>
+<p>Ouvre une issue avec identité EC-M/EC-L, édition/commit, affirmation contestée, contre-exemple reproductible et conséquence. Une objection peut contester l’oracle lui-même. Fournis des données fictives et une proposition de correction FR/EN.</p>
+<p>Le mainteneur accuse réception, nomme un relecteur, consigne preuves et désaccords, puis répond : accepté, amendement requis, différé avec raison, ou rejeté avec raison. L’objection demeure consultable. Une PR acceptée enregistre la décision dans le dépôt ; elle ne ratifie aucune politique d’un autre projet.</p>
+<h2 id="section-4">États et éditions</h2>
+<p><code>draft → reviewed → adopted → deprecated → retired</code> ; <code>rejected</code> conserve une proposition refusée. <code>reviewed</code> nécessite un relecteur nommé et la portée de sa revue. <code>adopted</code> nécessite un propriétaire et un ADR ; son autorité se limite au corpus. Un projet consommateur ratifie séparément ses adaptations.</p>
+<p>Les éditions documentaires sont identifiées par catalogue, commit, notes de changement et manifeste. Une correction compatible incrémente le patch ; une nouvelle méthode incrémente la version mineure ; un changement incompatible de contrat impose une nouvelle édition majeure et un guide de migration. Cette convention est une proposition de gouvernance pour revue, pas une release déjà publiée.</p>
+<h2 id="section-5">Gate de publication</h2>
+<p>Build propre isolé, dérive nulle, vérification des liens/métadonnées, ateliers positifs et négatifs, revue FR/EN, matrice navigateur et limites explicites. Les preuves ciblent un HEAD exact. La fusion n’est pas le déploiement. Domaine officiel futur : <code>docs.gnu6.live</code>.</p>
+<h2 id="section-6">Vie privée et étude locale</h2>
+<p>La progression est une préférence locale au navigateur, partageable entre FR/EN et effaçable via les données du site. Elle n’est ni une attestation ni une preuve de compétence. En stockage bloqué, elle reste dans la page courante. Aucun compte ni service cloud n’est requis.</p>
+<h2 id="section-7">Contribution</h2>
+<p>Joindre problème, baseline, sources, exemple/contre-exemple, FR/EN, résultats et limites. Ne pas soumettre de code privé, secrets, poids de modèles ou traces personnelles. Un tutoriel guide l’apprentissage ; une référence décrit un contrat ; un guide donne une méthode ; un runbook encadre une opération autorisée.</p>
+</article>
+    <div class="lesson-foot"><span>Version d’étude · non ratifiée</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>Aucune autorité accordée aux agents.</span><a href="/fr/governance.html">Règles de contribution →</a></footer>
+    </main></div></body></html>

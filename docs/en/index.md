@@ -11,7 +11,7 @@ status: draft
 Read the eight chapters, attempt exercises, and compare answers against self-check criteria. Completion markers are stored in this browser only.
 
 ## What this does not claim
-It does not certify Gnosix, publish private sources, or grant authority in other repositories. The texts remain **draft**: educational publication ≠ organizational adoption.
+It does not certify a product, grant authority in other repositories, or establish an organizational policy. The texts remain **draft**: educational publication ≠ organizational adoption.
 
 ## Suggested route
 Mandate → Authority → Contract → Slices → Evidence → Documentation → LLM → Hygiene/release.

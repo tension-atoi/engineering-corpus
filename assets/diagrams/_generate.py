@@ -3,6 +3,7 @@ from html import escape
 P=Path(__file__).parent
 
 def svg(name,title,nodes,arrows,notes,width=1160,height=306):
+    width=max(width,max(x+w for x,y,w,h,*_ in nodes)+30)
     out=[f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc"><title id="title">{escape(title)}</title><desc id="desc">{escape(notes)}</desc>
 <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="none" stroke="#aaf184" stroke-width="1.3"/></marker></defs>
 <rect width="100%" height="100%" fill="#101714" rx="10"/><text x="30" y="41" fill="#b3f47c" font-family="monospace" font-weight="600" font-size="13" letter-spacing="2">{escape(title.upper())}</text>''']
@@ -14,7 +15,7 @@ def svg(name,title,nodes,arrows,notes,width=1160,height=306):
         for i,s in enumerate(label.split('|')):
             out.append(f'<text x="{x+w/2}" y="{y+35+i*21}" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">{escape(s)}</text>')
         out.append(f'<text x="{x+w/2}" y="{y+h-18}" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">{escape(sub)}</text>')
-    out.append(f'<text x="30" y="{height-15}" fill="#789383" font-family="monospace" font-size="11">gnu.in.labs / Engineering Corpus · diagram v0.1 · normative source: docs/diagrams/{name}.mmd</text></svg>')
+    out.append(f'<text x="30" y="{height-15}" fill="#789383" font-family="monospace" font-size="11">gnu.in.labs / Engineering Corpus · diagram v0.1 · editable source: docs/diagrams/{name}.mmd</text></svg>')
     (P/f'{name}.svg').write_text('\n'.join(out),encoding='utf-8')
 svg('lifecycle','01 / Engineering lifecycle',[(30+i*166,96,146,122,a,b,c) for i,(a,b,c) in enumerate([
 ('Mandate','scope','main'),('Contract','invariants','alt'),('Slice','isolated work','main'),('Verify','local gates','main'),('Evidence','provenance','alt'),('Review','decision','gate'),('Release','separate grant','gate')])],[(176+i*166,157,30+(i+1)*166-10,157) for i in range(6)],'intent, contract, local implementation, verification, evidence, approval and separate release')

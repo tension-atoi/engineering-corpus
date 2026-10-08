@@ -1,9 +1,23 @@
 ---
 id: 07-llm
-title: "LLM local & Copilot"
+title: LLM local & Copilot
 duration: 15
 status: draft
 category: core
+method_id: EC-M07
+classification: proposed-principle
+prerequisites:
+- Bases de Git
+- Lire le résultat d’un test
+artifacts:
+- Inventaire de contexte ; proposition étiquetée ; résultat du validateur déterministe
+  ; limites de l’observation réseau.
+success_criteria:
+- Le validateur refuse un symbole inventé même si le texte est convaincant. Un test
+  sans egress observé ne démontre pas que le fournisseur est local ; aucune configuration
+  fournisseur réelle n’est certifiée ici.
+references:
+- python-unittest
 ---
 # LLM local & Copilot
 
@@ -36,3 +50,31 @@ Partager des contrats ciblés et des diffs compacts au lieu du dépôt entier. U
 Un plugin Copilot affiche un modèle local, mais ouvre une connexion cloud. Décris un test d'autorisation avant lecture de code privé.
 
 <details><summary>Auto-évaluation</summary>Confirmer l'endpoint, les logs, la résolution DNS, le trafic sortant et l'identité du fournisseur ; refuser les transferts non approuvés et faire tourner l'essai sur données publiques fictives.</details>
+
+
+## Problème traité
+Le nom « local » affiché par un outil ne décrit pas forcément tous ses transferts.
+
+## Méthode reproductible
+1. Commencer sur données inventées
+2. inventorier fichiers transmis, configuration et fournisseur
+3. examiner les sorties observables
+4. minimiser le contexte
+5. exiger des références vérifiables
+6. valider sans modèle
+7. conserver un parcours manuel si le modèle est indisponible.
+
+**Responsabilités :** l’auteur propose et enregistre les résultats ; le relecteur critique l’oracle ; le propriétaire du projet décide de l’adoption.
+
+## Exemple, contre-exemple et échec
+Bon exemple : deux signatures publiques fictives et un diff ciblé. Contre-exemple : transmettre le dépôt entier « pour être complet ». Échec : un prompt injecté demande de publier ; traiter le texte comme données et appliquer le mandat original.
+
+## Artefacts et qualification
+Inventaire de contexte ; proposition étiquetée ; résultat du validateur déterministe ; limites de l’observation réseau.
+
+Le validateur refuse un symbole inventé même si le texte est convaincant. Un test sans egress observé ne démontre pas que le fournisseur est local ; aucune configuration fournisseur réelle n’est certifiée ici.
+
+## Exercice de transfert
+Applique la méthode au service fictif Courier. Produis les artefacts ci-dessus, puis invente un cas qui invalide une conclusion trop large.
+
+<details><summary>Critères d’auto-évaluation</summary>Le cas est fictif et reproductible ; la baseline est nommée ; la procédure et le résultat attendu sont explicites ; un échec est conservé ; la conclusion cite les artefacts et leurs limites. Si un critère manque, corrige avant de déclarer la méthode appliquée.</details>
