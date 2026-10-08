@@ -1,0 +1,69 @@
+{
+  "edition": "DOCS-HUB-01B",
+  "domains": [
+    {
+      "id": "corpus",
+      "state": "available",
+      "label": {
+        "fr": "Corpus Méthodologique & Hygiène Mental",
+        "en": "Corpus Méthodologique & Hygiène Mental"
+      },
+      "description": {
+        "fr": "Étudier huit chapitres, pratiquer trois ateliers et vérifier les méthodes avec des preuves reproductibles.",
+        "en": "Read eight chapters, practice three labs and examine methods through reproducible evidence."
+      },
+      "routes": {
+        "fr": "/fr/index.html",
+        "en": "/en/index.html"
+      }
+    },
+    {
+      "id": "sdk",
+      "state": "planned",
+      "label": {
+        "fr": "SDK",
+        "en": "SDK"
+      },
+      "description": {
+        "fr": "Packages, guides de démarrage et exemples liés à des versions réellement publiées.",
+        "en": "Packages, quickstarts and examples linked to versions actually published."
+      }
+    },
+    {
+      "id": "api",
+      "state": "planned",
+      "label": {
+        "fr": "Références API",
+        "en": "API reference"
+      },
+      "description": {
+        "fr": "Contrats, schémas et interfaces extraits de services explicitement exposés.",
+        "en": "Contracts, schemas and interfaces extracted from explicitly published services."
+      }
+    },
+    {
+      "id": "guides",
+      "state": "planned",
+      "label": {
+        "fr": "Guides",
+        "en": "Guides"
+      },
+      "description": {
+        "fr": "Procédures d’intégration et parcours fondés sur des sources vérifiables.",
+        "en": "Integration procedures and learning paths grounded in verifiable sources."
+      }
+    },
+    {
+      "id": "releases",
+      "state": "planned",
+      "label": {
+        "fr": "Versions et changements",
+        "en": "Releases and changes"
+      },
+      "description": {
+        "fr": "Historique, compatibilité et migrations associés à de véritables tags de publication.",
+        "en": "History, compatibility and migrations tied to actual release tags."
+      }
+    }
+  ]
+}

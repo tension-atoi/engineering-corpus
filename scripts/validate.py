@@ -75,6 +75,7 @@ def check(root):
             identities[identity]=slug
     expected={'index.html','404.html'}
     for lang in catalog['locales']:
+        expected.add(f'{lang}/hub.html')
         expected.update(f'{lang}/{directory}/{slug}.html' for directory,slug in units)
         expected.update(f'{lang}/{slug}.html' for slug in ('index','topologies','templates','governance','references'))
         for slug in ('index','governance','references'):

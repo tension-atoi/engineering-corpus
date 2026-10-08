@@ -14,9 +14,28 @@ The corpus is intended to expand beyond engineering methods. Future editions may
 
 **Compatibility:** The GitHub repository remains `engineering-corpus` for now, and existing paths, chapter identifiers and the browser-local study-progress key are intentionally preserved. A future docs portal can place this independently versioned corpus under a dedicated route.
 
+## Documentation hub (DOCS-HUB-01B)
+
+The actual root of **[docs.gnu6.live](https://docs.gnu6.live/)** opens the
+French documentation hub. English is available at `/en/hub.html`.
+**Corpus Méthodologique & Hygiène Mental** remains a separate study route:
+
+| Public route | Meaning |
+|---|---|
+| `/` | Redirects to `/fr/hub.html` |
+| `/fr/hub.html`, `/en/hub.html` | FR/EN federation entry point |
+| `/fr/index.html`, `/en/index.html` | Existing corpus home, unchanged |
+| `/fr/chapters/*`, `/en/chapters/*` | Existing stable chapter URLs |
+
+`docs/hub.json` is the versioned editorial index. Only the corpus currently
+has available routes. SDK, API, Guides and Releases are **planned, not published**:
+there are no placeholder endpoints, imaginary version numbers or dead links.
+Verified source manifests will be introduced in DOCS-HUB-01C. The corpus
+remains **DRAFT / ADOPTION_PENDING**.
+
 ## Explore
 
-- `dist/index.html` — prebuilt static study portal, served through loopback HTTP (generated from `docs/`).
+- `dist/index.html` — static redirect to the FR hub; the corpus remains under `dist/fr/index.html` and `dist/en/index.html`.
 - `docs/fr/` — French corpus, default reading experience.
 - `docs/en/` — English corpus, same chapters and labs.
 - `docs/templates/` — reusable contracts and checklists.
@@ -60,14 +79,14 @@ No database, no SaaS, no external fonts, no analytics, no remote scripts, no use
 
 MIT for the original content and software in this repository (see [LICENSE](LICENSE)). External tools and references retain their respective licenses. Attribution to external projects does not imply endorsement.
 
-**Publication state:** first edition live at [docs.gnu6.live](https://docs.gnu6.live/fr/index.html). The content remains draft; infrastructure operation is not normative adoption.
+**Publication state:** documentation hub live at [docs.gnu6.live](https://docs.gnu6.live/), corpus study edition under [FR](https://docs.gnu6.live/fr/index.html) and [EN](https://docs.gnu6.live/en/index.html). The curriculum remains draft; infrastructure operation is not normative adoption.
 
 ## CORPUS-01 study edition
 
 Eight proposed methods (EC-M01–08), three executable fictional labs (EC-L01–03),
 FR/EN governance and source references. All methods remain draft; see the
 [editorial review](reviews/CORPUS-01-editorial.md) and [publication handoff](reviews/CORPUS-01-publication.md).
-The current edition is available at **docs.gnu6.live**; the domain is expected to grow into a documentation hub for corpus, SDKs, APIs and guides.
+The current edition is available inside **docs.gnu6.live**. The hub indexes SDKs, APIs, Guides and Releases as future areas only until public, versioned sources are qualified.
 
 ### Local checks
 

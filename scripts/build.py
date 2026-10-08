@@ -22,6 +22,7 @@ DOCS=ROOT/'docs'
 SITE=ROOT/'site'
 ASSETS=ROOT/'assets'
 CATALOG=json.loads((DOCS/'catalog.json').read_text('utf-8'))
+HUB_CATALOG=json.loads((DOCS/'hub.json').read_text('utf-8'))
 CORPUS_NAME=CATALOG['product']['name']
 M=MarkdownIt('commonmark',{'html':True,'linkify':False,'typographer':False}).enable('table')
 
@@ -100,7 +101,7 @@ def shell(locale, title, inner, path, page_id='',mins=None,status='draft'):
     <header class="topbar"><a class="brand" href="/{locale}/index.html" aria-label="{escape(CORPUS_NAME)}, {home}"><span>gnu.in.labs <em>/</em> <strong>{escape(CORPUS_NAME)}</strong></span></a>
     <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="{en}" lang="{opposite}">{langname} ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
     <div class="layout"><aside id="sidebar" class="sidebar">{nav(locale,path)}</aside><main id="content" class="main" tabindex="-1">
-    <div class="chapter-meta"><span class="eyebrow">gnu.in.labs / {'MÉTHODOLOGIE' if locale=='fr' else 'METHODOLOGY'}</span><span class="meta-right"><span class="status">{escape(status.upper())}</span>{minsblock}</span></div>
+    <div class="chapter-meta"><span class="eyebrow"><a class="hub-return" href="/{locale}/hub.html">{'← Portail' if locale=='fr' else '← Portal'}</a><span class="hub-separator"> / </span>{'MÉTHODOLOGIE' if locale=='fr' else 'METHODOLOGY'}</span><span class="meta-right"><span class="status">{escape(status.upper())}</span>{minsblock}</span></div>
     <article class="prose">{inner}</article>
     <div class="lesson-foot">{complete}<span>{live}</span></div>
     <footer><span>© 2026 gnu.in.labs · MIT</span><span>{rights}</span><a href="/{locale}/governance.html">{'Règles de contribution' if locale=='fr' else 'Contribution rules'} →</a></footer>
@@ -162,6 +163,62 @@ def home_hero(locale):
     return f'''<div class="hero"><span class="eyebrow">{label}</span><h1>{escape(title)}</h1><p>{escape(sub)}</p><div class="hero-actions"><a class="primary" href="/{locale}/chapters/01-mandate.html">{start} →</a><a class="outline" href="/{locale}/topologies.html">{topology_lbl} ↗</a></div><div class="stats">{stat}</div></div>'''
 
 
+
+def hub_page(locale):
+    """Generate the real documentation entrypoint; no placeholder is a navigable dead end."""
+    opposite='en' if locale=='fr' else 'fr'
+    fr=locale=='fr'
+    name='Documentation · gnu.in.labs'
+    intro='Des sources. Des méthodes. Des preuves.' if fr else 'Sources. Methods. Evidence.'
+    kicker='PORTAIL DOCUMENTAIRE / GNU.IN.LABS' if fr else 'DOCUMENTATION PORTAL / GNU.IN.LABS'
+    subtitle=('Une porte d’entrée vers les connaissances publiées, les contrats techniques et leurs sources. Chaque domaine distingue ce qui est disponible de ce qui reste à documenter.'
+              if fr else 'An entry point to published knowledge, technical contracts and their sources. Every section distinguishes what is available from what is still being documented.')
+    primary='Explorer le corpus' if fr else 'Explore the corpus'
+    language='English' if fr else 'Français'
+    indexlabel='Index documentaire' if fr else 'Documentation index'
+    availability='Disponibilité vérifiée dans cette édition' if fr else 'Availability in this edition'
+    state_av='Disponible · édition de travail' if fr else 'Available · study edition'
+    state_pl='En préparation · aucune référence publiée' if fr else 'Planned · no published reference'
+    library='Domaines documentaires' if fr else 'Documentation domains'
+    section_sub='Un index explicite, pas un catalogue de promesses.' if fr else 'An explicit index, not a catalogue of promises.'
+    provenance=('Le corpus est le seul domaine actuellement publié. Les références SDK, API, guides et releases seront ajoutées depuis des sources publiques versionnées, après vérification de leur provenance.'
+                if fr else 'The corpus is the only currently published domain. SDK references, APIs, guides and releases will be added from versioned public sources after verifying provenance.')
+    rows=[]
+    for i,domain in enumerate(HUB_CATALOG['domains'],1):
+        published=domain['state']=='available'
+        title=domain['label'][locale]
+        desc=domain['description'][locale]
+        route=domain.get('routes',{}).get(locale)
+        if published:
+            if not route: raise ValueError(f'available domain {domain["id"]} lacks {locale} route')
+            label=f'<a class="hub-domain-name" href="{escape(route,quote=True)}">{escape(title)} <span aria-hidden="true">↗</span></a>'
+        else:
+            if route: raise ValueError(f'planned domain {domain["id"]} has unexpected public route')
+            label=f'<span class="hub-domain-name">{escape(title)}</span>'
+        state=state_av if published else state_pl
+        rows.append(f'<li class="hub-domain {"hub-domain-available" if published else "hub-domain-planned"}"><span class="hub-number">{i:02d}</span><div class="hub-domain-copy">{label}<p>{escape(desc)}</p></div><span class="hub-domain-status">{escape(state)}</span></li>')
+    cards=''.join(rows)
+    main=f'''<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="description" content="{escape(subtitle,quote=True)}"><title>{escape(name)}</title>
+<link rel="stylesheet" href="/style.css"><link rel="alternate" hreflang="{locale}" href="/{locale}/hub.html"><link rel="alternate" hreflang="{opposite}" href="/{opposite}/hub.html"></head>
+<body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a>
+<header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html" aria-label="gnu.in.labs — {escape(indexlabel)}"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
+<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a aria-current="page" href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a></nav>
+<a class="hub-language" href="/{opposite}/hub.html" lang="{opposite}">{language} ↗</a></header>
+<main class="hub-main" id="content" tabindex="-1">
+<div class="hub-hero"><div class="hub-intro"><span class="hub-kicker">{escape(kicker)}</span><h1>{escape(intro)}</h1><p class="hub-lede">{escape(subtitle)}</p>
+<a class="hub-primary" href="/{locale}/index.html">{primary}<span aria-hidden="true">↗</span></a></div>
+<aside class="hub-proof" aria-label="{escape(availability)}"><span class="hub-proof-label">01 / 05</span><strong>Corpus Méthodologique &amp; Hygiène Mental</strong><p>{'8 chapitres · 3 ateliers · FR/EN' if fr else '8 chapters · 3 labs · FR/EN'}</p><span class="hub-proof-state">{escape(state_av)}</span></aside></div>
+<section class="hub-index" aria-labelledby="hub-index-title"><div class="hub-section-head"><div><span class="hub-kicker">{escape(indexlabel)}</span><h2 id="hub-index-title">{escape(library)}</h2></div><p>{escape(section_sub)}</p></div><ol class="hub-domains">{cards}</ol></section>
+<section class="hub-policy" aria-label="{'Provenance des contenus' if fr else 'Content provenance'}"><span class="hub-kicker">{'PROVENANCE / PUBLICATION' if fr else 'PROVENANCE / PUBLICATION'}</span><p>{escape(provenance)}</p></section>
+<footer class="hub-footer"><span>© 2026 gnu.in.labs</span><span>{'Corpus : édition de travail non ratifiée' if fr else 'Corpus: draft study edition, not ratified'}</span><a href="/{locale}/governance.html">{'Règles du corpus' if fr else 'Corpus governance'} ↗</a></footer>
+</main></body></html>'''
+    file=DIST/locale/'hub.html'
+    file.parent.mkdir(parents=True,exist_ok=True)
+    file.write_text(main,encoding='utf-8')
+
 def build():
     if DIST.exists(): rmtree(DIST)
     DIST.mkdir(parents=True)
@@ -173,6 +230,7 @@ def build():
     copytree(DOCS/'diagrams',DIST/'mermaid')
     copytree(DOCS/'templates',DIST/'templates')
     for locale in CATALOG['locales']:
+        hub_page(locale)
         for path in [DOCS/locale/'index.md',*sorted((DOCS/locale/'chapters').glob('*.md')),*sorted((DOCS/locale/'labs').glob('*.md'))]:
             m,body=unpack(path)
             page_id=m['id']
@@ -193,8 +251,8 @@ def build():
             shell(locale,meta['title'],render_markdown(body),f'/{locale}/{slug}.html')
         shell(locale,'Topologies',topology(locale),f'/{locale}/topologies.html')
         shell(locale,'Modèles' if locale=='fr' else 'Templates',template_index(locale),f'/{locale}/templates.html')
-    (DIST/'index.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/fr/index.html"><title>{escape(CORPUS_NAME)}</title></head><body><a href="/fr/index.html">Français →</a></body></html>',encoding='utf-8')
-    (DIST/'404.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>404 · {escape(CORPUS_NAME)}</title><link rel="stylesheet" href="/style.css"></head><body><main class="main"><h1>404 — Page introuvable / Page not found</h1><p>Cette route n’existe pas. This route does not exist.</p><p><a href="/fr/index.html">Accueil français</a> · <a href="/en/index.html">English home</a></p></main></body></html>',encoding='utf-8')
+    (DIST/'index.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/fr/hub.html"><title>{escape(CORPUS_NAME)}</title></head><body><a href="/fr/hub.html">Portail français →</a></body></html>',encoding='utf-8')
+    (DIST/'404.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>404 · {escape(CORPUS_NAME)}</title><link rel="stylesheet" href="/style.css"></head><body><main class="main"><h1>404 — Page introuvable / Page not found</h1><p>Cette route n’existe pas. This route does not exist.</p><p><a href="/fr/hub.html">Portail français</a> · <a href="/en/hub.html">English portal</a></p></main></body></html>',encoding='utf-8')
     print(f'BUILD_OK pages={len(list(DIST.rglob("*.html")))} assets={len(list(DIST.rglob("*.svg")))}')
 
 if __name__=='__main__':
