@@ -1,0 +1,10 @@
+flowchart TD
+  O[Operator] -->|explicit grant| G[Scoped grant]
+  G -->|resource + operations + expiry| A[Agent / tooling]
+  A -->|read only| S[Sources]
+  A -->|proposal| B[Isolated working branch]
+  B --> C{Review}
+  C -->|approved| M[Merge authority]
+  M --> D{Independent release approval}
+  D -->|approved| P[Public deployment]
+  C -->|not approved| X[No publication]

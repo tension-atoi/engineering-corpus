@@ -1,0 +1,15 @@
+{
+  "claim_id": "EXAMPLE-001",
+  "summary": "example, not a production claim",
+  "class": "E2",
+  "project": "sample-project",
+  "source_commit": "REPLACE_WITH_40_HEX_COMMIT",
+  "observed_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "environment": "OS / kernel / toolchain / build flags / hardware",
+  "command": "cargo test --locked",
+  "exit_code": 0,
+  "artifact_path": "evidence/example.log",
+  "artifact_sha256": "REPLACE_WITH_SHA256",
+  "limitations": ["example only", "replace placeholders"],
+  "reviewer": "TBD"
+}

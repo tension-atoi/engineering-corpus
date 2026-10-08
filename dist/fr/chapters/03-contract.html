@@ -1,0 +1,80 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Méthodes, preuves et autonomie"/><title>Architecture &amp; contrats · Engineering Corpus</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="en" href="/en/chapters/03-contract.html"><link rel="alternate" hreflang="fr" href="/fr/chapters/03-contract.html">
+    </head><body data-locale="fr">
+    <a class="skip" href="#content">Aller au contenu</a>
+    <header class="topbar"><a class="brand" href="/fr/index.html" aria-label="Engineering Corpus, Accueil"><span class="brandmark">&gt;#</span><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/chapters/03-contract.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><a class="close-sidebar" href="#content">✕</a></div>
+    <label class="search-label" for="chapterSearch">Filtrer les chapitres</label><input id="chapterSearch" type="search" placeholder="Filtrer les chapitres…" autocomplete="off" />
+    <nav aria-label="Corpus"><h3>Corpus <span>08</span></h3><a class="navlink " href="/fr/chapters/01-mandate.html" data-search="mandat &amp; découpage" aria-current="false"><span class="nav-number">01</span>Mandat &amp; découpage <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/02-authority.html" data-search="autorité &amp; agents" aria-current="false"><span class="nav-number">02</span>Autorité &amp; agents <span class="nav-duration">14m</span></a><a class="navlink active" href="/fr/chapters/03-contract.html" data-search="architecture &amp; contrats" aria-current="page"><span class="nav-number">03</span>Architecture &amp; contrats <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/04-delivery.html" data-search="tranches &amp; vérification" aria-current="false"><span class="nav-number">04</span>Tranches &amp; vérification <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/05-evidence.html" data-search="preuves &amp; vérité publique" aria-current="false"><span class="nav-number">05</span>Preuves &amp; vérité publique <span class="nav-duration">16m</span></a><a class="navlink " href="/fr/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/07-llm.html" data-search="llm local &amp; copilot" aria-current="false"><span class="nav-number">07</span>LLM local &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/fr/chapters/08-hygiene.html" data-search="hygiène, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiène, release &amp; rollback <span class="nav-duration">15m</span></a><h3>Ateliers <span>02</span></h3><a class="navlink " href="/fr/labs/01-change.html" data-search="atelier a — modification qualifiée"><span class="nav-number">↗</span>Atelier A — Modification qualifiée</a><a class="navlink " href="/fr/labs/02-api.html" data-search="atelier b — api vérifiable"><span class="nav-number">↗</span>Atelier B — API vérifiable</a>
+    <a class="navlink" href="/fr/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/fr/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Modèles</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Étudié localement</span><strong data-progress-text>0 / 10</strong></div><div class="meter"><div data-progress-meter></div></div><p>Sans compte, sans télémétrie.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">GNU.IN.LABS / MÉTHODOLOGIE</span><span class="meta-right"><span class="status">DRAFT</span><span class="time-tag">14 min</span></span></div>
+    <article class="prose"><h1>Architecture &amp; contrats</h1>
+<blockquote>
+<p>Statut : brouillon méthodologique, à adapter — non ratifié dans les projets consommateurs.</p>
+</blockquote>
+<h2>Séparer les responsabilités</h2>
+<p>Une bibliothèque fournit des capacités ; un profil compose des politiques et des comportements ; une surface présente une vue ; l'autorité décide si une action peut s'exécuter. Ces catégories ne sont pas interchangeables.</p>
+<table>
+<thead>
+<tr>
+<th>Responsabilité</th>
+<th>Exemple de contrat</th>
+<th>Refus explicite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Géométrie</td>
+<td>rectangles et transformations typées</td>
+<td>ne décide pas du contenu</td>
+</tr>
+<tr>
+<td>Mouvement</td>
+<td>chronologie, interruption, continuité</td>
+<td>ne signe pas d'action système</td>
+</tr>
+<tr>
+<td>Rendu</td>
+<td>projection visible de l'état</td>
+<td>n'invente pas la source de données</td>
+</tr>
+<tr>
+<td>Contenu</td>
+<td>état et identité des éléments</td>
+<td>ne détermine pas une permission</td>
+</tr>
+<tr>
+<td>Événements</td>
+<td>ordre et causalité</td>
+<td>ne dépasse pas un grant</td>
+</tr>
+<tr>
+<td>Data providers</td>
+<td>provenance, cadence, erreur</td>
+<td>n'autorise pas une mutation</td>
+</tr>
+<tr>
+<td>Policy/actions</td>
+<td>vérification des capacités</td>
+<td>n'impose pas un thème UI</td>
+</tr>
+</tbody>
+</table>
+<h3>Contrat d'interface</h3>
+<p>Définir <code>inputs</code>, <code>outputs</code>, <code>errors</code>, <code>ownership</code>, <code>lifecycle</code>, <code>concurrency</code>, <code>cancellation</code>, <code>deprecation</code>, et la surface <code>public/internal/experimental</code>.</p>
+<h3>Exemple de transition</h3>
+<p>Lorsqu'une surface change d'ancrage pendant un mouvement, expliciter le point de départ observé, l'état cible, la règle d'interruption et les invariants géométriques. Une animation visuellement fluide n'est pas une preuve de correction des responsabilités.</p>
+<h3>Exercice</h3>
+<p>Un menu animé veut lancer un processus. Où placer la permission ? Que devient l'animation si l'action est refusée ?</p>
+<details><summary>Auto-évaluation</summary>La permission est vérifiée à la frontière d'exécution, non dans la courbe d'animation. Le refus est un état métier explicite que le rendu peut refléter sans attribuer d'autorité au composant visuel.</details>
+</article>
+    <div class="lesson-foot"><button type="button" class="study-button" data-progress-id="03-contract" data-default-label="Marquer comme étudié">Marquer comme étudié</button><span>Version d’étude · non ratifiée</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>Aucune autorité accordée aux agents.</span><a href="/fr/templates.html">Règles de contribution →</a></footer>
+    </main></div></body></html>

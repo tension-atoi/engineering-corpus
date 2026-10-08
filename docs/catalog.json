@@ -1,0 +1,53 @@
+{
+  "edition": "0.1-draft",
+  "default_locale": "fr",
+  "locales": [
+    "fr",
+    "en"
+  ],
+  "chapters": [
+    {
+      "id": "01-mandate",
+      "duration": 12
+    },
+    {
+      "id": "02-authority",
+      "duration": 14
+    },
+    {
+      "id": "03-contract",
+      "duration": 14
+    },
+    {
+      "id": "04-delivery",
+      "duration": 12
+    },
+    {
+      "id": "05-evidence",
+      "duration": 16
+    },
+    {
+      "id": "06-documentation",
+      "duration": 14
+    },
+    {
+      "id": "07-llm",
+      "duration": 15
+    },
+    {
+      "id": "08-hygiene",
+      "duration": 15
+    }
+  ],
+  "labs": [
+    "01-change",
+    "02-api"
+  ],
+  "statuses": [
+    "draft",
+    "reviewed",
+    "adopted",
+    "deprecated",
+    "retired"
+  ]
+}

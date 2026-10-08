@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Methods, evidence and autonomy"/><title>Documentation &amp; SDK · Engineering Corpus</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="fr" href="/fr/chapters/06-documentation.html"><link rel="alternate" hreflang="en" href="/en/chapters/06-documentation.html">
+    </head><body data-locale="en">
+    <a class="skip" href="#content">Skip to content</a>
+    <header class="topbar"><a class="brand" href="/en/index.html" aria-label="Engineering Corpus, Home"><span class="brandmark">&gt;#</span><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/chapters/06-documentation.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><a class="close-sidebar" href="#content">✕</a></div>
+    <label class="search-label" for="chapterSearch">Filter chapters</label><input id="chapterSearch" type="search" placeholder="Filter chapters…" autocomplete="off" />
+    <nav aria-label="Corpus"><h3>Corpus <span>08</span></h3><a class="navlink " href="/en/chapters/01-mandate.html" data-search="mandate &amp; slicing" aria-current="false"><span class="nav-number">01</span>Mandate &amp; slicing <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/02-authority.html" data-search="authority &amp; agents" aria-current="false"><span class="nav-number">02</span>Authority &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/03-contract.html" data-search="architecture &amp; contracts" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contracts <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/04-delivery.html" data-search="delivery &amp; verification" aria-current="false"><span class="nav-number">04</span>Delivery &amp; verification <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/05-evidence.html" data-search="evidence &amp; public truth" aria-current="false"><span class="nav-number">05</span>Evidence &amp; public truth <span class="nav-duration">16m</span></a><a class="navlink active" href="/en/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="page"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/07-llm.html" data-search="local llm &amp; copilot" aria-current="false"><span class="nav-number">07</span>Local LLM &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/en/chapters/08-hygiene.html" data-search="hygiene, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiene, release &amp; rollback <span class="nav-duration">15m</span></a><h3>Labs <span>02</span></h3><a class="navlink " href="/en/labs/01-change.html" data-search="lab a — qualified change"><span class="nav-number">↗</span>Lab A — Qualified change</a><a class="navlink " href="/en/labs/02-api.html" data-search="lab b — verified api"><span class="nav-number">↗</span>Lab B — Verified API</a>
+    <a class="navlink" href="/en/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/en/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Templates</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Locally studied</span><strong data-progress-text>0 / 10</strong></div><div class="meter"><div data-progress-meter></div></div><p>No account, no telemetry.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">GNU.IN.LABS / METHODOLOGY</span><span class="meta-right"><span class="status">DRAFT</span><span class="time-tag">14 min</span></span></div>
+    <article class="prose"><h1>Documentation &amp; SDK</h1>
+<blockquote>
+<p>Status: methodological draft, to be adapted — not ratified in consuming projects.</p>
+</blockquote>
+<h2>Documentation cannot create an API</h2>
+<p>A <strong>reference</strong> describes compiled exports; a <strong>guide</strong> explains composition; a <strong>tutorial</strong> exercises learning; a <strong>runbook</strong> governs operations. They carry different editorial authority.</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Source of truth</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rust API</td>
+<td>public signatures, rustdoc</td>
+<td>doctests, API diff</td>
+</tr>
+<tr>
+<td>Integration SDK</td>
+<td>guides + pinned examples</td>
+<td>compilation, contracts</td>
+</tr>
+<tr>
+<td>Network protocol</td>
+<td>exposed schema</td>
+<td>contract tests</td>
+</tr>
+<tr>
+<td>Architecture</td>
+<td>decisions + boundaries</td>
+<td>code and ADR links</td>
+</tr>
+<tr>
+<td>Runbook</td>
+<td>approved operations</td>
+<td>controlled rehearsal</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-mermaid">flowchart LR
+  SRC[Versioned code] --&gt; EXT[Deterministic extraction]
+  EXT --&gt; LLM[Local LLM proposal]
+  LLM --&gt; VAL[Tests + symbols + links]
+  VAL --&gt; HUM[Editorial review]
+  HUM --&gt; WEB[Static FR/EN site]
+</code></pre>
+<h3>Mandatory labels</h3>
+<p><code>public-stable</code>, <code>public-experimental</code>, <code>internal</code>, <code>deprecated</code>, <code>retired</code>. A public doc is not a compatibility promise.</p>
+<h3>Exercise</h3>
+<p>An agent fabricates <code>Surface::morph_to</code> in a guide. Design the gate that blocks publication.</p>
+<details><summary>Self-check</summary>Extract symbols from pinned HEAD, validate links and compile the example. Unknown symbols fail. The agent cannot promote API status.</details>
+</article>
+    <div class="lesson-foot"><button type="button" class="study-button" data-progress-id="06-documentation" data-default-label="Mark as studied">Mark as studied</button><span>Study edition · not ratified</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>No agent authority is granted.</span><a href="/en/templates.html">Contribution rules →</a></footer>
+    </main></div></body></html>

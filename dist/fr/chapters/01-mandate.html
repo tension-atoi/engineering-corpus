@@ -1,0 +1,70 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Méthodes, preuves et autonomie"/><title>Mandat &amp; découpage · Engineering Corpus</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="en" href="/en/chapters/01-mandate.html"><link rel="alternate" hreflang="fr" href="/fr/chapters/01-mandate.html">
+    </head><body data-locale="fr">
+    <a class="skip" href="#content">Aller au contenu</a>
+    <header class="topbar"><a class="brand" href="/fr/index.html" aria-label="Engineering Corpus, Accueil"><span class="brandmark">&gt;#</span><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/chapters/01-mandate.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><a class="close-sidebar" href="#content">✕</a></div>
+    <label class="search-label" for="chapterSearch">Filtrer les chapitres</label><input id="chapterSearch" type="search" placeholder="Filtrer les chapitres…" autocomplete="off" />
+    <nav aria-label="Corpus"><h3>Corpus <span>08</span></h3><a class="navlink active" href="/fr/chapters/01-mandate.html" data-search="mandat &amp; découpage" aria-current="page"><span class="nav-number">01</span>Mandat &amp; découpage <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/02-authority.html" data-search="autorité &amp; agents" aria-current="false"><span class="nav-number">02</span>Autorité &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/03-contract.html" data-search="architecture &amp; contrats" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contrats <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/04-delivery.html" data-search="tranches &amp; vérification" aria-current="false"><span class="nav-number">04</span>Tranches &amp; vérification <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/05-evidence.html" data-search="preuves &amp; vérité publique" aria-current="false"><span class="nav-number">05</span>Preuves &amp; vérité publique <span class="nav-duration">16m</span></a><a class="navlink " href="/fr/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/07-llm.html" data-search="llm local &amp; copilot" aria-current="false"><span class="nav-number">07</span>LLM local &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/fr/chapters/08-hygiene.html" data-search="hygiène, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiène, release &amp; rollback <span class="nav-duration">15m</span></a><h3>Ateliers <span>02</span></h3><a class="navlink " href="/fr/labs/01-change.html" data-search="atelier a — modification qualifiée"><span class="nav-number">↗</span>Atelier A — Modification qualifiée</a><a class="navlink " href="/fr/labs/02-api.html" data-search="atelier b — api vérifiable"><span class="nav-number">↗</span>Atelier B — API vérifiable</a>
+    <a class="navlink" href="/fr/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/fr/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Modèles</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Étudié localement</span><strong data-progress-text>0 / 10</strong></div><div class="meter"><div data-progress-meter></div></div><p>Sans compte, sans télémétrie.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">GNU.IN.LABS / MÉTHODOLOGIE</span><span class="meta-right"><span class="status">DRAFT</span><span class="time-tag">12 min</span></span></div>
+    <article class="prose"><h1>Mandat &amp; découpage</h1>
+<blockquote>
+<p>Statut : brouillon méthodologique, à adapter — non ratifié dans les projets consommateurs.</p>
+</blockquote>
+<h2>Pourquoi un mandat ?</h2>
+<p>Une demande n'est pas une capacité d'action. Le mandat lie un objectif à un état de référence, à des droits limités et à des critères de clôture observables.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Question à résoudre</th>
+<th>Pièce requise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baseline</td>
+<td>Quel dépôt, commit et worktree ?</td>
+<td>Empreinte + <code>git status</code></td>
+</tr>
+<tr>
+<td>Périmètre</td>
+<td>Quelles zones peut-on modifier ?</td>
+<td>Chemins autorisés et exclusions</td>
+</tr>
+<tr>
+<td>Autorité</td>
+<td>Qui peut lire, écrire, exécuter ou publier ?</td>
+<td>Octroi explicite, borné</td>
+</tr>
+<tr>
+<td>Gate</td>
+<td>Que signifie succès/échec ?</td>
+<td>Tests RED/GREEN, résultats attendus</td>
+</tr>
+<tr>
+<td>Sortie</td>
+<td>Quels livrables peuvent être produits ?</td>
+<td>Patch, preuve, doc, décision</td>
+</tr>
+</tbody>
+</table>
+<h3>Unités de travail</h3>
+<p>Un <strong>programme</strong> contient des chantiers ; un <strong>chantier</strong> contient des tranches causales ; une <strong>tranche</strong> possède un seul objectif vérifiable. Ne pas substituer une liste de tâches à une preuve de réalisation.</p>
+<h3>Gate d'entrée</h3>
+<p>Une tranche peut commencer seulement si les inconnues dangereuses sont identifiées. Les hypothèses sont permises, mais doivent rester marquées comme telles.</p>
+<h3>Exercice</h3>
+<p>Rédige un <code>MANDATE.md</code> pour un composant fictif de notification : implémenter une nouvelle méthode de tri sans toucher au service de stockage. Ajoute trois interdictions explicites.</p>
+<details><summary>Auto-évaluation</summary>Ton mandat doit nommer un commit, un périmètre de fichiers, les interdictions, un test déterministe, un critère d'arrêt et une sortie inspectable. Il ne doit pas autoriser tacitement le déploiement.</details>
+</article>
+    <div class="lesson-foot"><button type="button" class="study-button" data-progress-id="01-mandate" data-default-label="Marquer comme étudié">Marquer comme étudié</button><span>Version d’étude · non ratifiée</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>Aucune autorité accordée aux agents.</span><a href="/fr/templates.html">Règles de contribution →</a></footer>
+    </main></div></body></html>

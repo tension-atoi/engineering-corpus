@@ -1,0 +1,10 @@
+flowchart LR
+  I[Intent] --> M[Mandate]
+  M --> C[Contract]
+  C --> S[Implementation slice]
+  S --> V[Local verification]
+  V --> E[Evidence record]
+  E --> D[Documentation]
+  D --> R{Approval gate}
+  R -->|approved| P[Publish / release]
+  R -->|rejected| M

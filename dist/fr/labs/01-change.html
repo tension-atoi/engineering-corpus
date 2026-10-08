@@ -1,0 +1,60 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Méthodes, preuves et autonomie"/><title>Atelier A — Modification qualifiée · Engineering Corpus</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="en" href="/en/labs/01-change.html"><link rel="alternate" hreflang="fr" href="/fr/labs/01-change.html">
+    </head><body data-locale="fr">
+    <a class="skip" href="#content">Aller au contenu</a>
+    <header class="topbar"><a class="brand" href="/fr/index.html" aria-label="Engineering Corpus, Accueil"><span class="brandmark">&gt;#</span><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/labs/01-change.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><a class="close-sidebar" href="#content">✕</a></div>
+    <label class="search-label" for="chapterSearch">Filtrer les chapitres</label><input id="chapterSearch" type="search" placeholder="Filtrer les chapitres…" autocomplete="off" />
+    <nav aria-label="Corpus"><h3>Corpus <span>08</span></h3><a class="navlink " href="/fr/chapters/01-mandate.html" data-search="mandat &amp; découpage" aria-current="false"><span class="nav-number">01</span>Mandat &amp; découpage <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/02-authority.html" data-search="autorité &amp; agents" aria-current="false"><span class="nav-number">02</span>Autorité &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/03-contract.html" data-search="architecture &amp; contrats" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contrats <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/04-delivery.html" data-search="tranches &amp; vérification" aria-current="false"><span class="nav-number">04</span>Tranches &amp; vérification <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/05-evidence.html" data-search="preuves &amp; vérité publique" aria-current="false"><span class="nav-number">05</span>Preuves &amp; vérité publique <span class="nav-duration">16m</span></a><a class="navlink " href="/fr/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/07-llm.html" data-search="llm local &amp; copilot" aria-current="false"><span class="nav-number">07</span>LLM local &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/fr/chapters/08-hygiene.html" data-search="hygiène, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiène, release &amp; rollback <span class="nav-duration">15m</span></a><h3>Ateliers <span>02</span></h3><a class="navlink active" href="/fr/labs/01-change.html" data-search="atelier a — modification qualifiée"><span class="nav-number">↗</span>Atelier A — Modification qualifiée</a><a class="navlink " href="/fr/labs/02-api.html" data-search="atelier b — api vérifiable"><span class="nav-number">↗</span>Atelier B — API vérifiable</a>
+    <a class="navlink" href="/fr/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/fr/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Modèles</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Étudié localement</span><strong data-progress-text>0 / 10</strong></div><div class="meter"><div data-progress-meter></div></div><p>Sans compte, sans télémétrie.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">GNU.IN.LABS / MÉTHODOLOGIE</span><span class="meta-right"><span class="status">DRAFT</span><span class="time-tag">25 min</span></span></div>
+    <article class="prose"><h1>Atelier A — Qualifier une modification</h1>
+<p><strong>Scénario fictif :</strong> un composant d'interface doit changer d'ancrage pendant une transition, sans perdre son état ni exécuter une action privilégiée.</p>
+<table>
+<thead>
+<tr>
+<th>Étape</th>
+<th>Production attendue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Mandat</td>
+<td>Délimiter paths, HEAD, interdictions</td>
+</tr>
+<tr>
+<td>2. Contrat</td>
+<td>Définir cible, interruption, cycle de vie et autorité</td>
+</tr>
+<tr>
+<td>3. Oracle</td>
+<td>Faire échouer un test sur interruption/reprise</td>
+</tr>
+<tr>
+<td>4. Implémentation</td>
+<td>Réaliser une tranche minimale dans un worktree</td>
+</tr>
+<tr>
+<td>5. Vérification</td>
+<td>Tests unitaires, intégration, captures, diff</td>
+</tr>
+<tr>
+<td>6. Publication</td>
+<td>Séparer preuve comportementale et marketing</td>
+</tr>
+</tbody>
+</table>
+<h3>Piège à détecter</h3>
+<p>Une animation visuellement convaincante peut masquer une exécution d'action déclenchée deux fois. L'oracle doit isoler cette causalité.</p>
+<details><summary>Critères de réussite</summary>Aucun changement de production ; un contrat d'interruption explicite ; un test qui prouve l'unicité des actions ; un jeu de preuves horodatées ; un rollback démontrable.</details>
+</article>
+    <div class="lesson-foot"><button type="button" class="study-button" data-progress-id="lab-change" data-default-label="Marquer comme étudié">Marquer comme étudié</button><span>Version d’étude · non ratifiée</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>Aucune autorité accordée aux agents.</span><a href="/fr/templates.html">Règles de contribution →</a></footer>
+    </main></div></body></html>

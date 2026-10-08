@@ -1,0 +1,71 @@
+{
+  "status": "DRAFT / ADOPTION_PENDING",
+  "archive_sha256": "5acba602e3c30f3b0bbbb3bf62265160053e224559ec7eec8109ebc6f43a7a34",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "scripts/build.py"
+      ],
+      "exit_code": 0,
+      "output": "BUILD_OK pages=28 assets=3\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check.py"
+      ],
+      "exit_code": 0,
+      "output": "CORPUS_CHECK_OK locales=2 chapters=8 labs=2 html=28 no_external_site_requests=true\n"
+    }
+  ],
+  "files_sha256": {
+    "dist/404.html": "3a2b7fe78a7d59ba9f07c7dc3c20e28d4059ca437080ead778174dc2aad0ef9b",
+    "dist/app.js": "61a22417cd506f82ffea47d081e4e4212f78ab727c07077585ff4e8e1b6712f3",
+    "dist/diagrams/_generate.py": "57ad952d2c974fdb54b8b16383a26ad1441f711010e2bbab2f126be5a5092e20",
+    "dist/diagrams/authority.svg": "9a2bee44802f2305f780e7393073458ae65deb4ddb250fb658f5f1a3f898199f",
+    "dist/diagrams/knowledge.svg": "98da3b92bf2e2be6b48a2ab62b03801d9af193429e2b2be2af220fff8515c030",
+    "dist/diagrams/lifecycle.svg": "00759bebbdab0f259a65d4e88e5f4d7ccc846ad92b857ed989123c60d0afe7d3",
+    "dist/en/chapters/01-mandate.html": "51ccf279cb8b32e0c0b2bb5be986157373d9a7dca78c690202a7c3cc1be7edb1",
+    "dist/en/chapters/02-authority.html": "01266b0f37831704c50783857f6240e44be30d9a84679e91020a1a8bb0baee91",
+    "dist/en/chapters/03-contract.html": "4df4874f92f10b663bf9e32fe436b1782c04cd61a2c63b745e63c285280442ba",
+    "dist/en/chapters/04-delivery.html": "02f0a3625731ef411fd0f2d4075db5b80d5222cf1c80c1089b9c3706e1dd7256",
+    "dist/en/chapters/05-evidence.html": "f87bbdd4767c6f3b438515ce227f74c2a5f1c858643ce1ba9eca84753de8cae8",
+    "dist/en/chapters/06-documentation.html": "b24c0a732d41a0c888b8d35366b3feb461c06aeb67a23569759c08f9b2ccb13e",
+    "dist/en/chapters/07-llm.html": "6a8eaf5ea75e9b5d32736ecf38b236cead4ece1a38894596c0b98181b7ae1005",
+    "dist/en/chapters/08-hygiene.html": "fceee486f5917c971a19e6a358cf964864d7472f7c853ad41923f9c51dbb20b5",
+    "dist/en/index.html": "37342a2e3b9ef62fc28472de5de8b1a8fd2326d92f1a1565d19d8db5de699146",
+    "dist/en/labs/01-change.html": "3e9fb477c81c7dc2f30168b746f5506c2c3ef15593bf6259fed61e596df270ab",
+    "dist/en/labs/02-api.html": "a8681894209a9aba97b1b3736934d675d14702d6bf9c8177ab73f05c86aa657e",
+    "dist/en/templates.html": "6ed695d9ceaf266076e2c06435c680faa165d018eac1f9437a4d90a2e57e14d3",
+    "dist/en/topologies.html": "1c8da83ed1fc9f0c277802d1adaffe6a3e6ae5f9fa947f187b7e61efec3baee6",
+    "dist/fr/chapters/01-mandate.html": "ddb349b401f5fb7ff04f77a4841be4c9c9ab5f00b35f98c75ebd4f3e08468b79",
+    "dist/fr/chapters/02-authority.html": "1aa49a8d580febac1f3f3f96bb3b678496593c283b488c668cbdc2811b0af746",
+    "dist/fr/chapters/03-contract.html": "46f4ad832f0ffc30591899a7b475597bb88c75f8e59410a66967506a131f5be8",
+    "dist/fr/chapters/04-delivery.html": "e1fac2396a2a2238c4e21c3769433a71ee16cf01369f6e551d33518bcccfeef8",
+    "dist/fr/chapters/05-evidence.html": "b94dd193c5b8619e80b76b853633bbf76c1870f2608d7601d9352037c3c827c2",
+    "dist/fr/chapters/06-documentation.html": "4e1afab33d065f431a5a5ef1ce7d1d951dfbfde555a1abb94a19f69300a914eb",
+    "dist/fr/chapters/07-llm.html": "080efe4c34dbac6e23a1ec2391a6690aa357681b07f17638a63dba156e2732fd",
+    "dist/fr/chapters/08-hygiene.html": "43ac4223aa34a131d84c62d2a68cef6c481dcbf1b257545884364e3ecee89291",
+    "dist/fr/index.html": "4c28c391f47823cdffabd101c5ba7b37c484975b5d78161a0b0f85c1275b2e91",
+    "dist/fr/labs/01-change.html": "6cb111fa046e30e80ff742a8d3cc3fe1d5b21788f8723e49bc27dd3a240336a9",
+    "dist/fr/labs/02-api.html": "fa8a79038b534579bca6022df79ca90f3b40d5319f428bcef5bc2adc6ce0e49c",
+    "dist/fr/templates.html": "ea37db51cb6d68745c0484a0c06ed6392e79123f69fd973e9397ae3f6b9131c2",
+    "dist/fr/topologies.html": "731a2ff757a0ac6134ff1547100a2ef46a1313febffe2e7449c67b68b0d8e9e8",
+    "dist/index.html": "bac91aa4a8e25f49c952896fdbfa1f51399c0da0039318ba5ea12895a9613041",
+    "dist/mermaid/authority.mmd": "80e18bde535f74616bf75b4eaa1cf33bc2e5fa48d5c278aa39174e84b5b45404",
+    "dist/mermaid/knowledge.mmd": "fae71fea6e3748a5e13bcfafd653c8d7dccec29287c588b1fa3718919207c022",
+    "dist/mermaid/lifecycle.mmd": "88f85ee3424cdcff1fc33af7140f4c3ce4a69bddf2accfd1601ed564feddc38b",
+    "dist/style.css": "b058c0ff45ea1a40b6cfa0dc52154691d5dce9b8071ec303c41bd0d1be01da30",
+    "dist/templates/ADR.md": "5c032c015de91936dadd43a4ef4bb0dfbc9acba39304befc1a9a1b7583d10e9e",
+    "dist/templates/CONTRACT.md": "4ee8ddda9f51a40c2631cbeb7f410999f309137b60ce9a1bc03cc247d9f0b9a0",
+    "dist/templates/EVIDENCE.json": "3ce279278196dd4562b29984ccd00050160c6abcaec690b784b9741ecd2f0715",
+    "dist/templates/MANDATE.md": "f9b73dc95da434a50b21d1c60285e4685464bc99eea88b0b60737bf47df8df16",
+    "dist/templates/RELEASE.md": "2d1950e2f1ac8a37c88b77681544896c34e49080601b769557c91d31b59f2fc5"
+  },
+  "limitations": [
+    "Editorial review pending",
+    "Browser interaction not verified",
+    "Public domain not deployed"
+  ]
+}

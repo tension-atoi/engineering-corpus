@@ -1,0 +1,7 @@
+flowchart LR
+  CODE[Versioned sources] --> EXTRACT[Deterministic extraction]
+  EXTRACT --> MODEL[Local LLM proposals]
+  MODEL --> VALIDATE[Compile, link and provenance checks]
+  VALIDATE --> REVIEW[Human review]
+  REVIEW --> DOCS[Versioned public corpus]
+  EXTRACT --> VALIDATE
