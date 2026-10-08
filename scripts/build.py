@@ -22,7 +22,7 @@ DOCS=ROOT/'docs'
 SITE=ROOT/'site'
 ASSETS=ROOT/'assets'
 CATALOG=json.loads((DOCS/'catalog.json').read_text('utf-8'))
-M=MarkdownIt('commonmark',{'html':True,'linkify':False,'typographer':True}).enable('table')
+M=MarkdownIt('commonmark',{'html':True,'linkify':False,'typographer':False}).enable('table')
 
 
 def unpack(path):

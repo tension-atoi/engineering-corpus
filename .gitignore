@@ -9,6 +9,4 @@ node_modules/
 .tmp/
 .cache/
 vendor/
-
-vendor/
 evidence/runs/workspace-trial/

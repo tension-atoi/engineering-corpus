@@ -59,8 +59,8 @@ MIT for the original content and software in this repository (see [LICENSE](LICE
 ## CORPUS-01 study edition
 
 Eight proposed methods (EC-M01–08), three executable fictional labs (EC-L01–03),
-FR/EN governance and source references. All methods remain draft; see
-[editorial review](reviews/CORPUS-01-editorial.md) and [UX report](reviews/CORPUS-01-ux.md).
+FR/EN governance and source references. All methods remain draft; see the
+[editorial review](reviews/CORPUS-01-editorial.md) and [publication handoff](reviews/CORPUS-01-publication.md).
 Future official publication: **docs.gnu6.live**. No public deployment has occurred.
 
 ### Local checks
