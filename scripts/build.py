@@ -23,6 +23,7 @@ SITE=ROOT/'site'
 ASSETS=ROOT/'assets'
 CATALOG=json.loads((DOCS/'catalog.json').read_text('utf-8'))
 HUB_CATALOG=json.loads((DOCS/'hub.json').read_text('utf-8'))
+SOURCE_REGISTRY=json.loads((DOCS/'source-registry.json').read_text('utf-8'))
 CORPUS_NAME=CATALOG['product']['name']
 M=MarkdownIt('commonmark',{'html':True,'linkify':False,'typographer':False}).enable('table')
 
@@ -179,24 +180,31 @@ def hub_page(locale):
     availability='Disponibilité vérifiée dans cette édition' if fr else 'Availability in this edition'
     state_av='Disponible · édition de travail' if fr else 'Available · study edition'
     state_pl='En préparation · aucune référence publiée' if fr else 'Planned · no published reference'
+    statuses={
+        'available':state_av,
+        'inventory':'Inventaire consultable · aucun SDK distribué' if fr else 'Inventory available · no SDK distributed',
+        'experimental':'Référence expérimentale · non ratifiée' if fr else 'Experimental reference · not ratified',
+        'planned':state_pl,
+    }
     library='Domaines documentaires' if fr else 'Documentation domains'
     section_sub='Un index explicite, pas un catalogue de promesses.' if fr else 'An explicit index, not a catalogue of promises.'
-    provenance=('Le corpus est le seul domaine actuellement publié. Les références SDK, API, guides et releases seront ajoutées depuis des sources publiques versionnées, après vérification de leur provenance.'
-                if fr else 'The corpus is the only currently published domain. SDK references, APIs, guides and releases will be added from versioned public sources after verifying provenance.')
+    provenance=('Le corpus reste le seul parcours d’étude. Le registre SDK est vide ; la rubrique API documente un contrat Rust expérimental vérifié, sans endpoint HTTP. Les guides et versions nécessitent encore des sources qualifiées.'
+                if fr else 'The corpus remains the only study curriculum. The SDK registry is empty; the API section documents one verified experimental Rust contract, without an HTTP endpoint. Guides and releases still require qualified sources.')
     rows=[]
     for i,domain in enumerate(HUB_CATALOG['domains'],1):
-        published=domain['state']=='available'
+        state=domain['state']
+        if state not in statuses: raise ValueError(f'unsupported hub state {state}')
+        navigable=state!='planned'
         title=domain['label'][locale]
         desc=domain['description'][locale]
         route=domain.get('routes',{}).get(locale)
-        if published:
-            if not route: raise ValueError(f'available domain {domain["id"]} lacks {locale} route')
+        if navigable:
+            if not route: raise ValueError(f'navigable domain {domain["id"]} lacks {locale} route')
             label=f'<a class="hub-domain-name" href="{escape(route,quote=True)}">{escape(title)} <span aria-hidden="true">↗</span></a>'
         else:
             if route: raise ValueError(f'planned domain {domain["id"]} has unexpected public route')
             label=f'<span class="hub-domain-name">{escape(title)}</span>'
-        state=state_av if published else state_pl
-        rows.append(f'<li class="hub-domain {"hub-domain-available" if published else "hub-domain-planned"}"><span class="hub-number">{i:02d}</span><div class="hub-domain-copy">{label}<p>{escape(desc)}</p></div><span class="hub-domain-status">{escape(state)}</span></li>')
+        rows.append(f'<li class="hub-domain hub-domain-{state}"><span class="hub-number">{i:02d}</span><div class="hub-domain-copy">{label}<p>{escape(desc)}</p></div><span class="hub-domain-status">{escape(statuses[state])}</span></li>')
     cards=''.join(rows)
     main=f'''<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
@@ -219,9 +227,73 @@ def hub_page(locale):
     file.parent.mkdir(parents=True,exist_ok=True)
     file.write_text(main,encoding='utf-8')
 
+
+def source_inventory_page(locale, kind):
+    """Static, provenance-first index. A source-code contract is not an HTTP service."""
+    opposite='en' if locale=='fr' else 'fr'
+    fr=locale=='fr'
+    records=[x for x in SOURCE_REGISTRY['sources'] if x['kind']==kind and locale in x['locale']]
+    if kind not in ('sdk','api'):
+        raise ValueError(f'unsupported source kind {kind}')
+    title=('Inventaire SDK' if fr else 'SDK inventory') if kind=='sdk' else ('Références API' if fr else 'API references')
+    kicker=('INVENTAIRE / SDK' if kind=='sdk' else 'SOURCES / API') + (' · EXPÉRIMENTAL' if kind=='api' else '')
+    intro=('Aucun SDK public qualifié pour distribution dans cette édition. Aucun lien d’installation ni commande ne sera inventé.' if fr else
+           'No public SDK is qualified for distribution in this edition. No installation link or command will be invented.') if kind=='sdk' else (
+           'Une interface de référence Rust, épinglée à sa source. Aucun endpoint HTTP ni contrat de production annoncé.' if fr else
+           'One Rust reference interface pinned to its source. No HTTP endpoint or production service contract is announced.')
+    rows=[]
+    for record in records:
+        if record['kind']!='api' or record['lifecycle']!='experimental':
+            raise ValueError(f'unqualified source cannot be rendered: {record["id"]}')
+        source_url=f"{record['source_repository']}/blob/{record['source_ref']}/{record['source_path']}"
+        manifest_url=f"{record['source_repository']}/blob/{record['source_ref']}/{record['manifest_path']}"
+        label=('Source exacte' if fr else 'Pinned source')
+        manifest_label=('Manifeste du crate' if fr else 'Crate manifest')
+        row=f"""<article class="registry-entry" id="{escape(record['id'],quote=True)}">
+<div class="registry-entry-head"><span class="registry-kicker">RUST · {escape(record['lifecycle'].upper())}</span><span class="registry-version">v{escape(record['version'])} · publish=false</span></div>
+<h2>{escape(record['title'][locale])}</h2><p>{escape(record['description'][locale])}</p>
+<dl class="registry-facts">
+<dt>{'Responsable' if fr else 'Owner'}</dt><dd>{escape(record['owner'])}</dd>
+<dt>{'Révision exacte' if fr else 'Exact revision'}</dt><dd><code>{escape(record['source_ref'])}</code></dd>
+<dt>{'Empreinte du fichier' if fr else 'Source file SHA-256'}</dt><dd><code>{escape(record['source_sha256'])}</code></dd>
+<dt>{'Vérification' if fr else 'Verified'}</dt><dd>{escape(record['last_verified'])} · {'fichier public existant' if fr else 'public source file exists'}</dd>
+<dt>{'Transport' if fr else 'Transport'}</dt><dd>{escape(record['interface'])} · {escape(record['transport'])}</dd>
+<dt>{'Distribution' if fr else 'Distribution'}</dt><dd>{escape(record['distribution'])}</dd></dl>
+<div class="registry-links"><a href="{escape(source_url,quote=True)}" rel="noopener noreferrer">{label} ↗</a><a href="{escape(manifest_url,quote=True)}" rel="noopener noreferrer">{manifest_label} ↗</a></div></article>"""
+        rows.append(row)
+    empty=('<div class="registry-empty"><strong>Aucune référence SDK publique qualifiée</strong><p>Le registre est volontairement vide. Les packages candidats devront d’abord établir une version, un artefact distribuable et une provenance publique.</p></div>' if fr else
+           '<div class="registry-empty"><strong>No qualified public SDK reference</strong><p>The registry is deliberately empty. Candidate packages first need a verifiable version, distributable artifact and public provenance.</p></div>')
+    content=''.join(rows) if rows else empty
+    details=('État des références' if fr else 'Reference status')
+    source_file='Voir le registre machine' if fr else 'Machine-readable registry'
+    language='English' if fr else 'Français'
+    disclaimer=('Ce site référence du code public, il ne garantit ni stabilité, ni compatibilité, ni disponibilité de service. Les adaptateurs async et streaming restent hors du contrat montré.' if fr else
+                'This page references public source code; it does not guarantee stability, compatibility or service availability. Async and streaming adapters are outside this contract.')
+    page=f"""<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="description" content="{escape(intro,quote=True)}"><title>{escape(title)} · gnu.in.labs</title><link rel="stylesheet" href="/style.css">
+<link rel="alternate" hreflang="{locale}" href="/{locale}/{kind}.html"><link rel="alternate" hreflang="{opposite}" href="/{opposite}/{kind}.html"></head>
+<body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a>
+<header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html" aria-label="gnu.in.labs — docs"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
+<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a></nav>
+<a class="hub-language" href="/{opposite}/{kind}.html" lang="{opposite}">{language} ↗</a></header>
+<main class="hub-main registry-main" id="content" tabindex="-1">
+<a class="registry-back" href="/{locale}/hub.html">{'← Portail documentaire' if fr else '← Documentation portal'}</a>
+<header class="registry-hero"><span class="hub-kicker">{escape(kicker)}</span><h1>{escape(title)}</h1><p class="hub-lede">{escape(intro)}</p>
+<div class="registry-status"><span>{escape(details)}</span><strong>{len(records):02d} / {kind.upper()}</strong></div></header>
+<section class="registry-entries" aria-label="{escape(details)}">{content}</section>
+<section class="hub-policy"><span class="hub-kicker">SOURCE / PROVENANCE</span><p>{escape(disclaimer)} <a href="/registry/source-catalog.json">{source_file} ↗</a></p></section>
+<footer class="hub-footer"><span>© 2026 gnu.in.labs</span><span>DOCS-HUB-01C · {'Références expérimentales' if fr else 'Experimental references'}</span><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'} ↗</a></footer>
+</main></body></html>"""
+    (DIST/locale/f'{kind}.html').write_text(page,encoding='utf-8')
+
+
 def build():
     if DIST.exists(): rmtree(DIST)
     DIST.mkdir(parents=True)
+    (DIST/'registry').mkdir(parents=True,exist_ok=True)
+    copy2(DOCS/'source-registry.json', DIST/'registry'/'source-catalog.json')
     for file in ('style.css','app.js','favicon.svg','design-tokens.css'):
         copy2(SITE/file,DIST/file)
     copytree(ASSETS/'diagrams',DIST/'diagrams',ignore=shutil.ignore_patterns('*.py','__pycache__'))
@@ -231,6 +303,8 @@ def build():
     copytree(DOCS/'templates',DIST/'templates')
     for locale in CATALOG['locales']:
         hub_page(locale)
+        source_inventory_page(locale,'sdk')
+        source_inventory_page(locale,'api')
         for path in [DOCS/locale/'index.md',*sorted((DOCS/locale/'chapters').glob('*.md')),*sorted((DOCS/locale/'labs').glob('*.md'))]:
             m,body=unpack(path)
             page_id=m['id']

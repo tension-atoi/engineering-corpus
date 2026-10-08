@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "qualification": "public-source-code-verified; not an operational-service qualification",
+  "sources": [
+    {
+      "id": "gnostral-engine-provider-v0",
+      "kind": "api",
+      "title": {
+        "fr": "EngineProvider v0 — contrat Rust expérimental",
+        "en": "EngineProvider v0 — experimental Rust contract"
+      },
+      "description": {
+        "fr": "Interface de référence pour intégrer et observer un moteur d’inférence. Ce trait n’expose aucun endpoint HTTP et ne constitue pas un SDK distribué.",
+        "en": "Reference interface for integrating and observing an inference engine. This trait exposes no HTTP endpoint and is not a distributed SDK."
+      },
+      "owner": "gnostral.rs — tension-atoi",
+      "source_repository": "https://github.com/tension-atoi/gnostral.rs",
+      "source_ref": "59a892d3e4dc56bd574e7d062f69f96b7b8193f0",
+      "source_path": "harness/engine-provider-contract/src/lib.rs",
+      "source_sha256": "6e364db2676ce657f3ab986c1d0be2eca93cd389b426e7e5a26c3b27836f4cef",
+      "manifest_path": "harness/engine-provider-contract/Cargo.toml",
+      "manifest_sha256": "dfdb5bffcadec3f61ffd95c258e216193590360cf946922fec33cb39090197af",
+      "version": "0.0.1",
+      "lifecycle": "experimental",
+      "visibility": "public",
+      "interface": "in-process Rust trait",
+      "distribution": "unpublished (Cargo publish = false)",
+      "transport": "no HTTP endpoint",
+      "locale": [
+        "fr",
+        "en"
+      ],
+      "last_verified": "2026-10-08",
+      "route": {
+        "fr": "/fr/api.html",
+        "en": "/en/api.html"
+      }
+    }
+  ]
+}
