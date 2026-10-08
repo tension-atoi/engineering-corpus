@@ -1,9 +1,22 @@
 ---
 id: 02-authority
-title: "Autorité & agents"
+title: Autorité & agents
 duration: 14
 status: draft
 category: core
+method_id: EC-M02
+classification: proposed-principle
+prerequisites:
+- Bases de Git
+- Lire le résultat d’un test
+artifacts:
+- Table de capacités ; cas autorisé, refusé et expiré ; trace de zéro écriture pour
+  les refus.
+success_criteria:
+- Chaque cas refusé conserve le fichier témoin byte pour byte. La trace ne démontre
+  que les opérations instrumentées, pas l’absence de toute sortie réseau.
+references:
+- git-worktree
 ---
 # Autorité & agents
 
@@ -41,3 +54,29 @@ La permission d'écrire dans un worktree n'autorise ni `main`, ni push, ni manip
 Dessine les droits d'un agent qui peut modifier `examples/` mais pas `src/`, et montrer les tests sans utiliser le réseau.
 
 <details><summary>Auto-évaluation</summary>Les permissions doivent nommer `examples/**`, refuser `src/**`, interdire réseau et push, et limiter la durée du mandat. Les logs constituent des traces, pas des délégations.</details>
+
+
+## Problème traité
+Le composant fictif Courier veut écrire un rapport ; son agent possède seulement un droit de lecture.
+
+## Méthode reproductible
+1. Lister ressource, opération et expiration
+2. vérifier le droit au point d’exécution
+3. refuser par défaut les opérations absentes
+4. distinguer une proposition locale d’un push autorisé
+5. journaliser le refus sans recopier les données protégées.
+
+**Responsabilités :** l’auteur propose et enregistre les résultats ; le relecteur critique l’oracle ; le propriétaire du projet décide de l’adoption.
+
+## Exemple, contre-exemple et échec
+Bon exemple : write examples/report.txt autorisé jusqu’à une date UTC. Contre-exemple : un bouton caché tient lieu de contrôle d’accès. Échec : les droits sont vérifiés avant une attente puis réutilisés après expiration ; revérifier à l’exécution.
+
+## Artefacts et qualification
+Table de capacités ; cas autorisé, refusé et expiré ; trace de zéro écriture pour les refus.
+
+Chaque cas refusé conserve le fichier témoin byte pour byte. La trace ne démontre que les opérations instrumentées, pas l’absence de toute sortie réseau.
+
+## Exercice de transfert
+Applique la méthode au service fictif Courier. Produis les artefacts ci-dessus, puis invente un cas qui invalide une conclusion trop large.
+
+<details><summary>Critères d’auto-évaluation</summary>Le cas est fictif et reproductible ; la baseline est nommée ; la procédure et le résultat attendu sont explicites ; un échec est conservé ; la conclusion cite les artefacts et leurs limites. Si un critère manque, corrige avant de déclarer la méthode appliquée.</details>

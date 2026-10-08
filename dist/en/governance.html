@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Methods, evidence and autonomy"/><title>Governance · Engineering Corpus</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="fr" href="/fr/governance.html"><link rel="alternate" hreflang="en" href="/en/governance.html">
+    </head><body data-locale="en" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
+    <a class="skip" href="#content">Skip to content</a>
+    <header class="topbar"><a class="brand" href="/en/index.html" aria-label="Engineering Corpus, Home"><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/governance.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Close menu">✕</button></div>
+    <label class="search-label" for="chapterSearch">Filter chapters</label><input id="chapterSearch" type="search" placeholder="Filter chapters…" autocomplete="off" />
+    <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/en/chapters/01-mandate.html" data-search="mandate &amp; slicing" aria-current="false"><span class="nav-number">01</span>Mandate &amp; slicing <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/02-authority.html" data-search="authority &amp; agents" aria-current="false"><span class="nav-number">02</span>Authority &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/03-contract.html" data-search="architecture &amp; contracts" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contracts <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/04-delivery.html" data-search="delivery &amp; verification" aria-current="false"><span class="nav-number">04</span>Delivery &amp; verification <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/05-evidence.html" data-search="evidence &amp; public truth" aria-current="false"><span class="nav-number">05</span>Evidence &amp; public truth <span class="nav-duration">16m</span></a><a class="navlink " href="/en/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/07-llm.html" data-search="local llm &amp; copilot" aria-current="false"><span class="nav-number">07</span>Local LLM &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/en/chapters/08-hygiene.html" data-search="hygiene, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiene, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Labs <span>03</span></h2><a class="navlink " href="/en/labs/01-change.html" data-search="lab a — qualified change" aria-current="false"><span class="nav-number">↗</span>Lab A — Qualified change</a><a class="navlink " href="/en/labs/02-api.html" data-search="lab b — verified api" aria-current="false"><span class="nav-number">↗</span>Lab B — Verified API</a><a class="navlink " href="/en/labs/03-workspace.html" data-search="lab c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Lab C — Workspace Hygiene &amp; Git Topology</a>
+    <a class="navlink" href="/en/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/en/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Templates</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Locally studied</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Study progress"></progress><p data-storage-status role="status"></p><p>No account, no telemetry.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">gnu.in.labs / METHODOLOGY</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
+    <article class="prose"><h1 id="section-1">Governance and objections</h1>
+<h2 id="section-2">Classification and authority</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Class</th>
+<th>Meaning</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposed-principle</td>
+<td>A method proposal to test</td>
+<td>No implicit ratification</td>
+</tr>
+<tr>
+<td>external-standard</td>
+<td>Identified external normative text</td>
+<td>Cite organization, version and scope; no automatic compliance</td>
+</tr>
+<tr>
+<td>recommendation</td>
+<td>Contextual advice</td>
+<td>Publish prerequisites and exceptions</td>
+</tr>
+<tr>
+<td>ratified-decision</td>
+<td>A corpus-specific decision</td>
+<td>Requires owner, date, scope and accepted ADR</td>
+</tr>
+</tbody>
+</table>
+<p>All eight methods and three labs remain <code>draft</code>. CORPUS-01 is an author review of editorial quality, not automatic promotion to <code>adopted</code>. This edition introduces no ratified methodological decisions.</p>
+<h2 id="section-3">Propose or challenge</h2>
+<p>Open an issue with EC-M/EC-L identity, edition/commit, challenged claim, reproducible counterexample and consequence. An objection may challenge the oracle itself. Provide fictional data and a proposed FR/EN correction.</p>
+<p>The maintainer acknowledges, assigns a reviewer, records evidence and disagreement, then answers: accepted, amendment required, deferred with reason, or rejected with reason. The objection remains inspectable. An accepted PR records a repository decision; it ratifies no policy in another project.</p>
+<h2 id="section-4">States and editions</h2>
+<p><code>draft → reviewed → adopted → deprecated → retired</code>; <code>rejected</code> retains a declined proposal. <code>reviewed</code> requires a named reviewer and review scope. <code>adopted</code> requires an owner and ADR; its authority is limited to this corpus. Consumers ratify their adaptations separately.</p>
+<p>Documentary editions are identified by catalog, commit, change notes and manifest. Compatible corrections increment patch; a new method increments minor; an incompatible contract change requires a new major edition and migration guide. This convention is a governance proposal for review, not an already published release.</p>
+<h2 id="section-5">Publication gate</h2>
+<p>Clean isolated build, zero drift, link/metadata checks, positive and negative labs, FR/EN review, browser matrix and explicit limits. Evidence targets exact HEAD. Merge is separate from deployment. Future official domain: <code>docs.gnu6.live</code>.</p>
+<h2 id="section-6">Privacy and local study</h2>
+<p>Progress is a browser-local preference shared between FR/EN and removable through site data. It is neither a credential nor evidence of competence. With blocked storage, it lasts for the current page. No account or cloud service is required.</p>
+<h2 id="section-7">Contribution</h2>
+<p>Include problem, baseline, sources, example/counterexample, FR/EN, results and limits. Do not submit private code, secrets, model weights or personal traces. Tutorials guide learning; references describe contracts; guides give methods; runbooks govern authorized operations.</p>
+</article>
+    <div class="lesson-foot"><span>Study edition · not ratified</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>No agent authority is granted.</span><a href="/en/governance.html">Contribution rules →</a></footer>
+    </main></div></body></html>

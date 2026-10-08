@@ -4,7 +4,7 @@
 
 ## What this is
 
-A reference methodology designed to be interrogated, forked, tested, and adapted. No claims of universal applicability, Gnosix production adoption, or formal compliance certification.
+A reference methodology designed to be interrogated, forked, tested, and adapted. No claims of universal applicability, organizational adoption, or formal compliance certification.
 
 ## Invariants
 
@@ -37,4 +37,13 @@ Classes have distinct meanings; they are not simple numeric confidence levels. E
 
 ## Reader pathway
 
-Read **Mandate → Authority → Contract → Delivery → Evidence → Documentation → LLM tooling → Hygiene & release**. Complete both labs; assess against the provided checklists. This is a learning instrument, not an accreditation.
+Read **Mandate → Authority → Contract → Delivery → Evidence → Documentation → LLM tooling → Hygiene & release**. Complete the three labs; assess against the provided checklists. This is a learning instrument, not an accreditation.
+
+## Classification and review
+
+See [governance](docs/en/governance.md). Document status, claim classification,
+technical qualification and consumer adoption are separate axes. EC-M identities
+are stable within this edition; lab fixtures demonstrate bounded scenarios.
+CORPUS-01 editorial review is an author audit; an independent review is still
+requested through its PR. The E0–E6 taxonomy is a proposed corpus convention,
+not an external standard or a numeric confidence scale.

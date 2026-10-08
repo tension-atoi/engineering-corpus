@@ -1,0 +1,3 @@
+# Preserve the supplied upstream OFL license bytes, including CRLF line endings.
+site/fonts/SpaceGrotesk-OFL.txt -text whitespace=-blank-at-eol,cr-at-eol
+dist/fonts/SpaceGrotesk-OFL.txt -text whitespace=-blank-at-eol,cr-at-eol

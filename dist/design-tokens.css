@@ -1,0 +1,33 @@
+:root {
+  --corpus-neutral-950: #111418;
+  --corpus-neutral-50: #F7F3ED;
+  --corpus-white: #FFFFFF;
+  --corpus-neutral-200: #D7DADF;
+  --corpus-neutral-100: #E6E8EB;
+  --corpus-neutral-400: #A1A6AD;
+  --corpus-neutral-600: #667085;
+  --corpus-accent-orange-100: #FFE5D2;
+  --corpus-accent-orange-300: #FF8E40;
+  --corpus-accent-orange-500: #FF6A00;
+  --corpus-accent-orange-700: #C95400;
+  --corpus-accent-green-100: #E8EFE5;
+  --corpus-accent-green-300: #8DA982;
+  --corpus-accent-green-500: #5F7F52;
+  --corpus-accent-green-700: #455F3D;
+  --corpus-accent-blue-100: #E8EDFF;
+  --corpus-accent-blue-300: #87A0F4;
+  --corpus-accent-blue-500: #4169E1;
+  --corpus-accent-blue-700: #2446A8;
+  --corpus-feedback-danger: #E5484D;
+  --corpus-feedback-warning: #F5A524;
+  --corpus-font-primary: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --corpus-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --corpus-font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --corpus-font-navigation: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --corpus-font-controls: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --corpus-font-technical: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --corpus-weight-regular: 400;
+  --corpus-weight-medium: 500;
+  --corpus-weight-semibold: 600;
+  --corpus-weight-bold: 700;
+}

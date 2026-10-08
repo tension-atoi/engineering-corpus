@@ -1,0 +1,41 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Méthodes, preuves et autonomie"/><title>Références · Engineering Corpus</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="en" href="/en/references.html"><link rel="alternate" hreflang="fr" href="/fr/references.html">
+    </head><body data-locale="fr" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
+    <a class="skip" href="#content">Aller au contenu</a>
+    <header class="topbar"><a class="brand" href="/fr/index.html" aria-label="Engineering Corpus, Accueil"><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/references.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Fermer le menu">✕</button></div>
+    <label class="search-label" for="chapterSearch">Filtrer les chapitres</label><input id="chapterSearch" type="search" placeholder="Filtrer les chapitres…" autocomplete="off" />
+    <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/fr/chapters/01-mandate.html" data-search="mandat &amp; découpage" aria-current="false"><span class="nav-number">01</span>Mandat &amp; découpage <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/02-authority.html" data-search="autorité &amp; agents" aria-current="false"><span class="nav-number">02</span>Autorité &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/03-contract.html" data-search="architecture &amp; contrats" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contrats <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/04-delivery.html" data-search="tranches &amp; vérification" aria-current="false"><span class="nav-number">04</span>Tranches &amp; vérification <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/05-evidence.html" data-search="preuves &amp; vérité publique" aria-current="false"><span class="nav-number">05</span>Preuves &amp; vérité publique <span class="nav-duration">16m</span></a><a class="navlink " href="/fr/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/07-llm.html" data-search="llm local &amp; copilot" aria-current="false"><span class="nav-number">07</span>LLM local &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/fr/chapters/08-hygiene.html" data-search="hygiène, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiène, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Ateliers <span>03</span></h2><a class="navlink " href="/fr/labs/01-change.html" data-search="atelier a — modification qualifiée" aria-current="false"><span class="nav-number">↗</span>Atelier A — Modification qualifiée</a><a class="navlink " href="/fr/labs/02-api.html" data-search="atelier b — api vérifiable" aria-current="false"><span class="nav-number">↗</span>Atelier B — API vérifiable</a><a class="navlink " href="/fr/labs/03-workspace.html" data-search="atelier c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Atelier C — Workspace Hygiene &amp; Git Topology</a>
+    <a class="navlink" href="/fr/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/fr/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Modèles</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Étudié localement</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Progression d’étude"></progress><p data-storage-status role="status"></p><p>Sans compte, sans télémétrie.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">gnu.in.labs / MÉTHODOLOGIE</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
+    <article class="prose"><h1 id="section-1">Références et portée</h1>
+<p>Sources primaires consultées le 2026-10-08. Les liens externes sont explicites et ne chargent aucune ressource automatiquement.</p>
+<h2 id="git-worktree">Git worktree</h2>
+<p>Classification : <code>tool-reference</code>. <a href="https://git-scm.com/docs/git-worktree">Git worktree</a>.</p>
+<p>Des arbres de travail séparés partagent les objets et références du dépôt ; ils ne constituent pas une sandbox de sécurité.</p>
+<h2 id="git-merge-base">Git merge-base</h2>
+<p>Classification : <code>tool-reference</code>. <a href="https://git-scm.com/docs/git-merge-base">Git merge-base</a>.</p>
+<p><code>--is-ancestor</code> vérifie l’ascendance : le code de sortie 1 signifie « faux » ; les autres erreurs sont traitées séparément.</p>
+<h2 id="python-unittest">Python unittest</h2>
+<p>Classification : <code>tool-reference</code>. <a href="https://docs.python.org/3/library/unittest.html">Python unittest</a>.</p>
+<p>Les tests établissent le résultat de scénarios explicites, pas l’exhaustivité.</p>
+<h2 id="python-statistics">Python statistics</h2>
+<p>Classification : <code>tool-reference</code>. <a href="https://docs.python.org/3/library/statistics.html#statistics.median">Python statistics</a>.</p>
+<p>Le calcul d’une médiane ne prouve pas qu’un échantillon est représentatif.</p>
+<h2 id="wcag22">WCAG 2.2</h2>
+<p>Classification : <code>external-standard</code>. <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>.</p>
+<p>Référence normative d’accessibilité ; ce corpus ne certifie aucune conformité.</p>
+<h2 id="diataxis">Diátaxis</h2>
+<p>Classification : <code>recommendation</code>. <a href="https://diataxis.fr/">Diátaxis</a>.</p>
+<p>Cadre de structuration documentaire, et non norme externe d’ingénierie.</p>
+</article>
+    <div class="lesson-foot"><span>Version d’étude · non ratifiée</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>Aucune autorité accordée aux agents.</span><a href="/fr/governance.html">Règles de contribution →</a></footer>
+    </main></div></body></html>

@@ -1,27 +1,27 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
     <meta name="description" content="Methods, evidence and autonomy"/><title>Hygiene, release &amp; rollback · Engineering Corpus</title>
     <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
     <link rel="alternate" hreflang="fr" href="/fr/chapters/08-hygiene.html"><link rel="alternate" hreflang="en" href="/en/chapters/08-hygiene.html">
-    </head><body data-locale="en">
+    </head><body data-locale="en" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
     <a class="skip" href="#content">Skip to content</a>
-    <header class="topbar"><a class="brand" href="/en/index.html" aria-label="Engineering Corpus, Home"><span class="brandmark">&gt;#</span><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
-    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/chapters/08-hygiene.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false">☰</button></div></header>
-    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><a class="close-sidebar" href="#content">✕</a></div>
+    <header class="topbar"><a class="brand" href="/en/index.html" aria-label="Engineering Corpus, Home"><span>gnu.in.labs <em>/</em> <strong>Engineering Corpus</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/chapters/08-hygiene.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Close menu">✕</button></div>
     <label class="search-label" for="chapterSearch">Filter chapters</label><input id="chapterSearch" type="search" placeholder="Filter chapters…" autocomplete="off" />
-    <nav aria-label="Corpus"><h3>Corpus <span>08</span></h3><a class="navlink " href="/en/chapters/01-mandate.html" data-search="mandate &amp; slicing" aria-current="false"><span class="nav-number">01</span>Mandate &amp; slicing <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/02-authority.html" data-search="authority &amp; agents" aria-current="false"><span class="nav-number">02</span>Authority &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/03-contract.html" data-search="architecture &amp; contracts" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contracts <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/04-delivery.html" data-search="delivery &amp; verification" aria-current="false"><span class="nav-number">04</span>Delivery &amp; verification <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/05-evidence.html" data-search="evidence &amp; public truth" aria-current="false"><span class="nav-number">05</span>Evidence &amp; public truth <span class="nav-duration">16m</span></a><a class="navlink " href="/en/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/07-llm.html" data-search="local llm &amp; copilot" aria-current="false"><span class="nav-number">07</span>Local LLM &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink active" href="/en/chapters/08-hygiene.html" data-search="hygiene, release &amp; rollback" aria-current="page"><span class="nav-number">08</span>Hygiene, release &amp; rollback <span class="nav-duration">15m</span></a><h3>Labs <span>02</span></h3><a class="navlink " href="/en/labs/01-change.html" data-search="lab a — qualified change"><span class="nav-number">↗</span>Lab A — Qualified change</a><a class="navlink " href="/en/labs/02-api.html" data-search="lab b — verified api"><span class="nav-number">↗</span>Lab B — Verified API</a>
+    <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/en/chapters/01-mandate.html" data-search="mandate &amp; slicing" aria-current="false"><span class="nav-number">01</span>Mandate &amp; slicing <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/02-authority.html" data-search="authority &amp; agents" aria-current="false"><span class="nav-number">02</span>Authority &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/03-contract.html" data-search="architecture &amp; contracts" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contracts <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/04-delivery.html" data-search="delivery &amp; verification" aria-current="false"><span class="nav-number">04</span>Delivery &amp; verification <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/05-evidence.html" data-search="evidence &amp; public truth" aria-current="false"><span class="nav-number">05</span>Evidence &amp; public truth <span class="nav-duration">16m</span></a><a class="navlink " href="/en/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/07-llm.html" data-search="local llm &amp; copilot" aria-current="false"><span class="nav-number">07</span>Local LLM &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink active" href="/en/chapters/08-hygiene.html" data-search="hygiene, release &amp; rollback" aria-current="page"><span class="nav-number">08</span>Hygiene, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Labs <span>03</span></h2><a class="navlink " href="/en/labs/01-change.html" data-search="lab a — qualified change" aria-current="false"><span class="nav-number">↗</span>Lab A — Qualified change</a><a class="navlink " href="/en/labs/02-api.html" data-search="lab b — verified api" aria-current="false"><span class="nav-number">↗</span>Lab B — Verified API</a><a class="navlink " href="/en/labs/03-workspace.html" data-search="lab c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Lab C — Workspace Hygiene &amp; Git Topology</a>
     <a class="navlink" href="/en/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
     <a class="navlink" href="/en/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Templates</a></nav>
-    <div class="rail-bottom"><div class="progress-label"><span>Locally studied</span><strong data-progress-text>0 / 10</strong></div><div class="meter"><div data-progress-meter></div></div><p>No account, no telemetry.</p></div></aside><main id="content" class="main" tabindex="-1">
-    <div class="chapter-meta"><span class="eyebrow">GNU.IN.LABS / METHODOLOGY</span><span class="meta-right"><span class="status">DRAFT</span><span class="time-tag">15 min</span></span></div>
-    <article class="prose"><h1>Hygiene, release &amp; rollback</h1>
+    <div class="rail-bottom"><div class="progress-label"><span>Locally studied</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Study progress"></progress><p data-storage-status role="status"></p><p>No account, no telemetry.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow">gnu.in.labs / METHODOLOGY</span><span class="meta-right"><span class="status">DRAFT</span><span class="time-tag">15 min</span></span></div>
+    <article class="prose"><h1 id="section-1">Hygiene, release &amp; rollback</h1><dl class="method-meta"><dt>Identity</dt><dd>EC-M08</dd><dt>Classification</dt><dd>proposed-principle</dd><dt>Prerequisites</dt><dd>Git basics, Reading a test result</dd><dt>Artifacts</dt><dd>Git inventory; preserved-work hashes; ancestry log; previous and candidate artifacts; fallback result.</dd><dt>Success</dt><dd>Lab C demonstrates byte preservation and divergence of two branches. It does not simulate every submodule, conflict, ignored file or hook in a real repository.</dd></dl>
 <blockquote>
 <p>Status: methodological draft, to be adapted — not ratified in consuming projects.</p>
 </blockquote>
-<h2>Hygiene is a continuous gate</h2>
+<h2 id="section-2">Hygiene is a continuous gate</h2>
 <p>Avoid saving all problems for a final cleanup. Use fast local controls, dependency inventory, migration traces and a known rollback procedure.</p>
-<table>
+<table tabindex="0">
 <thead>
 <tr>
 <th>Frequency</th>
@@ -62,14 +62,34 @@
 </tr>
 </tbody>
 </table>
-<h3>Dependencies</h3>
+<h3 id="section-3">Dependencies</h3>
 <p>Adopt only with rationale, license, provenance, pinned version, exit strategy and authority assessment (network, filesystem, process). Do not silently float critical dependencies.</p>
-<h3>Separate release gate</h3>
+<h3 id="section-4">Separate release gate</h3>
 <p><code>merge</code> is not <code>deploy</code>. A release needs an artifact, provenance, a human decision and a tested fallback.</p>
-<h3>Exercise</h3>
+<h3 id="section-5">Exercise</h3>
 <p>A build is green but not reproducible. Is it deployable?</p>
 <details><summary>Self-check</summary>Block promotion, pin dependencies, compare a clean build and qualify a new artifact. Keep the last approved artifact for rollback.</details>
-</article>
+<h2 id="section-6">Engineering problem</h2>
+<p>A branch change can abandon uncommitted work; a green build may refer to a different delivered artifact.</p>
+<h2 id="section-7">Reproducible method</h2>
+<ol>
+<li>Inventory HEAD, index, tracked/untracked files and worktrees</li>
+<li>preserve bytes before mutation</li>
+<li>start from an explicit baseline</li>
+<li>check ancestry both ways</li>
+<li>qualify the final artifact</li>
+<li>rehearse fallback on a fictional copy.</li>
+</ol>
+<p><strong>Responsibilities:</strong> the author proposes and records results; the reviewer challenges the oracle; the consuming project owner decides adoption.</p>
+<h2 id="section-8">Example, counterexample and failure</h2>
+<p>Example: work in a separate worktree while preserving dirty files. Counterexample: reset --hard to obtain a “clean” workspace. Failure: same branch name is mistaken for same commit; compare exact identifiers.</p>
+<h2 id="section-9">Artifacts and qualification</h2>
+<p>Git inventory; preserved-work hashes; ancestry log; previous and candidate artifacts; fallback result.</p>
+<p>Lab C demonstrates byte preservation and divergence of two branches. It does not simulate every submodule, conflict, ignored file or hook in a real repository.</p>
+<h2 id="section-10">Transfer exercise</h2>
+<p>Apply this method to fictional Courier. Produce the artifacts above, then invent a case that invalidates an overbroad conclusion.</p>
+<details><summary>Transfer self-check</summary>The case is fictional and reproducible; baseline is identified; procedure and expected result are explicit; a failure is retained; the conclusion cites artifacts and limits. If any criterion is missing, revise before declaring the method applied.</details>
+<h2>References</h2><ul><li><a href="/en/references.html#git-worktree">git-worktree</a></li><li><a href="/en/references.html#git-merge-base">git-merge-base</a></li></ul></article>
     <div class="lesson-foot"><button type="button" class="study-button" data-progress-id="08-hygiene" data-default-label="Mark as studied">Mark as studied</button><span>Study edition · not ratified</span></div>
-    <footer><span>© 2026 gnu.in.labs · MIT</span><span>No agent authority is granted.</span><a href="/en/templates.html">Contribution rules →</a></footer>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>No agent authority is granted.</span><a href="/en/governance.html">Contribution rules →</a></footer>
     </main></div></body></html>
