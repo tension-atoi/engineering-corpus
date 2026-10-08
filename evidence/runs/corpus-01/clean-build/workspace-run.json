@@ -1,0 +1,467 @@
+{
+  "lab": "EC-L03",
+  "result": "PASS",
+  "utc": "2026-10-08T15:32:35.275668+00:00",
+  "sandbox": "/tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj",
+  "baseline": "300c0d7d266849d042a8ca2642d98f358588c62c",
+  "slice_head": "91697965ef1cdfc35e46081893c1cf6ec80dc3b8",
+  "other_head": "5bb25f482444e144c7c9901603cf023984520c44",
+  "preserved_hashes": {
+    "tracked.txt": "f67116d185d8a58471ede87d5ae18735bd4acc350d06bfbd09639a78784040e0",
+    "notes.txt": "f7a503a2a286b8753301d2261e0f0f1445ea39c8acbc8d7f88aaf5b3ffc68ab5"
+  },
+  "preserved_index": "staged work",
+  "divergence": [
+    1,
+    1
+  ],
+  "commands": [
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "init",
+        "-b",
+        "main"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "Initialized empty Git repository in /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/courier/.git/\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "add",
+        "tracked.txt"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "commit",
+        "-m",
+        "fictional baseline"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "[main (root-commit) 300c0d7] fictional baseline\n 1 file changed, 1 insertion(+)\n create mode 100644 tracked.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "300c0d7d266849d042a8ca2642d98f358588c62c\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "add",
+        "tracked.txt"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "show",
+        ":tracked.txt"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "staged work\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "MM tracked.txt\n?? notes.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "worktree",
+        "add",
+        "-b",
+        "slice",
+        "/tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/slice",
+        "300c0d7d266849d042a8ca2642d98f358588c62c"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "HEAD is now at 300c0d7 fictional baseline\n",
+      "stderr": "Preparing worktree (new branch 'slice')\n"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "add",
+        "slice.txt"
+      ],
+      "cwd": "slice",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "commit",
+        "-m",
+        "fictional slice"
+      ],
+      "cwd": "slice",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "[slice 9169796] fictional slice\n 1 file changed, 1 insertion(+)\n create mode 100644 slice.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "slice",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "91697965ef1cdfc35e46081893c1cf6ec80dc3b8\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "worktree",
+        "add",
+        "-b",
+        "other",
+        "/tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/other",
+        "300c0d7d266849d042a8ca2642d98f358588c62c"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "HEAD is now at 300c0d7 fictional baseline\n",
+      "stderr": "Preparing worktree (new branch 'other')\n"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "add",
+        "other.txt"
+      ],
+      "cwd": "other",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "commit",
+        "-m",
+        "fictional divergence"
+      ],
+      "cwd": "other",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "[other 5bb25f4] fictional divergence\n 1 file changed, 1 insertion(+)\n create mode 100644 other.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "other",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "5bb25f482444e144c7c9901603cf023984520c44\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "merge-base",
+        "--is-ancestor",
+        "300c0d7d266849d042a8ca2642d98f358588c62c",
+        "91697965ef1cdfc35e46081893c1cf6ec80dc3b8"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "merge-base",
+        "--is-ancestor",
+        "300c0d7d266849d042a8ca2642d98f358588c62c",
+        "5bb25f482444e144c7c9901603cf023984520c44"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "merge-base",
+        "--is-ancestor",
+        "91697965ef1cdfc35e46081893c1cf6ec80dc3b8",
+        "5bb25f482444e144c7c9901603cf023984520c44"
+      ],
+      "cwd": "courier",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "merge-base",
+        "--is-ancestor",
+        "5bb25f482444e144c7c9901603cf023984520c44",
+        "91697965ef1cdfc35e46081893c1cf6ec80dc3b8"
+      ],
+      "cwd": "courier",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "91697965ef1cdfc35e46081893c1cf6ec80dc3b8...5bb25f482444e144c7c9901603cf023984520c44"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "1\t1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "merge-base",
+        "91697965ef1cdfc35e46081893c1cf6ec80dc3b8",
+        "5bb25f482444e144c7c9901603cf023984520c44"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "300c0d7d266849d042a8ca2642d98f358588c62c\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "show",
+        ":tracked.txt"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "staged work\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "MM tracked.txt\n?? notes.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "300c0d7d266849d042a8ca2642d98f358588c62c\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "worktree",
+        "list",
+        "--porcelain"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "worktree /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/courier\nHEAD 300c0d7d266849d042a8ca2642d98f358588c62c\nbranch refs/heads/main\n\nworktree /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/other\nHEAD 5bb25f482444e144c7c9901603cf023984520c44\nbranch refs/heads/other\n\nworktree /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/slice\nHEAD 91697965ef1cdfc35e46081893c1cf6ec80dc3b8\nbranch refs/heads/slice\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "commit.gpgsign=false",
+        "log",
+        "--all",
+        "--graph",
+        "--oneline"
+      ],
+      "cwd": "courier",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": "* 5bb25f4 fictional divergence\n| * 9169796 fictional slice\n|/  \n* 300c0d7 fictional baseline\n",
+      "stderr": ""
+    }
+  ],
+  "limits": [
+    "Fictional repository only",
+    "No merge/rebase/conflict/submodule coverage",
+    "Backups and worktrees retained; no destructive cleanup"
+  ]
+}

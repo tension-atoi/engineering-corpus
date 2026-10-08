@@ -19,11 +19,11 @@ Separate documentary status from technical qualification and consumer adoption.
 - [x] Define governance, editions, objections and classification without consumer ratification.
 - [x] Strengthen checks: parsed metadata, parity, relative links and fragments, resources,
       exact page inventory, generated drift and negative fixtures.
-- [ ] Rebuild committed source in a clean checkout and isolated pinned environment twice;
+- [x] Rebuild committed source in a clean checkout and isolated pinned environment twice;
       compare artifact bytes and record commands, versions, hashes and limitations.
 - [x] Review desktop/mobile browser, keyboard, contrast, storage failures, language context,
       loaded resources, offline scope and 404 behavior; retain screenshots and raw results.
-- [ ] Commit/push branch and open PR with publication handoff. Attach qualification to the
+- Integration: commit/push branch and open PR with publication handoff. Attach qualification to the
       final exact HEAD externally to avoid a self-referential committed manifest.
 
 ## Review focus

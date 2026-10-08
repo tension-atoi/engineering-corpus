@@ -42,7 +42,7 @@ scenarios rather than inferring behavior from pixels.
 | Diagrams | resources.json / resources.png | All three images load; descriptions, full-size pan and source links |
 | Offline | resources.json | Loaded page and SVG remain readable with network disabled |
 | Resource loading | resources.json / pages-*.json | Local CSS/JS/font/SVG only in inspected resource timings |
-| Error route | resources.json | Unknown URL shows bilingual 404 and recovery links |
+| Error route | resources.json | Unknown URL returns HTTP 404, bilingual page and recovery links |
 
 Typography uses locally bundled Space Grotesk under OFL. Method metadata and code use
 the same interface family with weight/tabular-number differentiation. The SVG image

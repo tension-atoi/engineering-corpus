@@ -1,0 +1,236 @@
+{
+  "source_commit": "58f72f21c3cf073b2534c756d8236fcaf7961f53",
+  "utc": "2026-10-08T15:32:31.296747+00:00",
+  "environment": {
+    "python": "3.14.7 (main, Aug 14 2026, 06:38:32) [GCC 16.2.1 20260810]",
+    "platform": "Linux-7.2.8-1-cachyos-bore-lto-x86_64-with-glibc2.44"
+  },
+  "steps": [
+    {
+      "command": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "/home/tension_atoi/engineering-corpus",
+        "/tmp/corpus-clean-qdj0pi2f/checkout"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Cloning into '/tmp/corpus-clean-qdj0pi2f/checkout'...\ndone.\n"
+    },
+    {
+      "command": [
+        "git",
+        "checkout",
+        "--detach",
+        "58f72f21c3cf073b2534c756d8236fcaf7961f53"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "HEAD is now at 58f72f2 CORPUS-01: qualify bilingual methods, learning flows and fictional labs\n"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "venv",
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--find-links",
+        "/home/tension_atoi/engineering-corpus/vendor/wheels",
+        "--require-hashes",
+        "-r",
+        "requirements.lock"
+      ],
+      "exit_code": 0,
+      "stdout": "Looking in links: /home/tension_atoi/engineering-corpus/vendor/wheels\nProcessing /home/tension_atoi/engineering-corpus/vendor/wheels/markdown_it_py-4.0.0-py3-none-any.whl (from -r requirements.lock (line 2))\nProcessing /home/tension_atoi/engineering-corpus/vendor/wheels/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r requirements.lock (line 3))\nProcessing /home/tension_atoi/engineering-corpus/vendor/wheels/mdurl-0.1.2-py3-none-any.whl (from -r requirements.lock (line 4))\nInstalling collected packages: PyYAML, mdurl, markdown-it-py\n\nSuccessfully installed PyYAML-6.0.3 markdown-it-py-4.0.0 mdurl-0.1.2\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "-m",
+        "pip",
+        "freeze",
+        "--all"
+      ],
+      "exit_code": 0,
+      "stdout": "markdown-it-py==4.0.0\nmdurl==0.1.2\npip==26.2.1\nPyYAML==6.0.3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "scripts/check.py"
+      ],
+      "exit_code": 0,
+      "stdout": "CORPUS_CHECK_OK locales=2 chapters=8 labs=3 html=34 scope=source_and_static_coherence\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "scripts/build.py"
+      ],
+      "exit_code": 0,
+      "stdout": "BUILD_OK pages=34 assets=4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "scripts/build.py"
+      ],
+      "exit_code": 0,
+      "stdout": "BUILD_OK pages=34 assets=4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "scripts/check.py"
+      ],
+      "exit_code": 0,
+      "stdout": "CORPUS_CHECK_OK locales=2 chapters=8 labs=3 html=34 scope=source_and_static_coherence\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "scripts/test_checks.py"
+      ],
+      "exit_code": 0,
+      "stdout": "CHECKER_NEGATIVE_OK fixtures=6\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "scripts/test_labs.py"
+      ],
+      "exit_code": 0,
+      "stdout": "LABS_OK positive=2 expected_negative=2\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/corpus-clean-qdj0pi2f/checkout/.venv/bin/python",
+        "examples/workspace_lab.py",
+        "--output",
+        "/tmp/corpus-clean-qdj0pi2f/workspace-evidence"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"lab\": \"EC-L03\",\n  \"result\": \"PASS\",\n  \"utc\": \"2026-10-08T15:32:35.275668+00:00\",\n  \"sandbox\": \"/tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj\",\n  \"baseline\": \"300c0d7d266849d042a8ca2642d98f358588c62c\",\n  \"slice_head\": \"91697965ef1cdfc35e46081893c1cf6ec80dc3b8\",\n  \"other_head\": \"5bb25f482444e144c7c9901603cf023984520c44\",\n  \"preserved_hashes\": {\n    \"tracked.txt\": \"f67116d185d8a58471ede87d5ae18735bd4acc350d06bfbd09639a78784040e0\",\n    \"notes.txt\": \"f7a503a2a286b8753301d2261e0f0f1445ea39c8acbc8d7f88aaf5b3ffc68ab5\"\n  },\n  \"preserved_index\": \"staged work\",\n  \"divergence\": [\n    1,\n    1\n  ],\n  \"commands\": [\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"init\",\n        \"-b\",\n        \"main\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"Initialized empty Git repository in /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/courier/.git/\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"add\",\n        \"tracked.txt\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"commit\",\n        \"-m\",\n        \"fictional baseline\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"[main (root-commit) 300c0d7] fictional baseline\\n 1 file changed, 1 insertion(+)\\n create mode 100644 tracked.txt\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"rev-parse\",\n        \"HEAD\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"300c0d7d266849d042a8ca2642d98f358588c62c\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"add\",\n        \"tracked.txt\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"show\",\n        \":tracked.txt\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"staged work\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"status\",\n        \"--porcelain\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"MM tracked.txt\\n?? notes.txt\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"worktree\",\n        \"add\",\n        \"-b\",\n        \"slice\",\n        \"/tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/slice\",\n        \"300c0d7d266849d042a8ca2642d98f358588c62c\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"HEAD is now at 300c0d7 fictional baseline\\n\",\n      \"stderr\": \"Preparing worktree (new branch 'slice')\\n\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"add\",\n        \"slice.txt\"\n      ],\n      \"cwd\": \"slice\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"commit\",\n        \"-m\",\n        \"fictional slice\"\n      ],\n      \"cwd\": \"slice\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"[slice 9169796] fictional slice\\n 1 file changed, 1 insertion(+)\\n create mode 100644 slice.txt\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"rev-parse\",\n        \"HEAD\"\n      ],\n      \"cwd\": \"slice\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"91697965ef1cdfc35e46081893c1cf6ec80dc3b8\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"worktree\",\n        \"add\",\n        \"-b\",\n        \"other\",\n        \"/tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/other\",\n        \"300c0d7d266849d042a8ca2642d98f358588c62c\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"HEAD is now at 300c0d7 fictional baseline\\n\",\n      \"stderr\": \"Preparing worktree (new branch 'other')\\n\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"add\",\n        \"other.txt\"\n      ],\n      \"cwd\": \"other\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"commit\",\n        \"-m\",\n        \"fictional divergence\"\n      ],\n      \"cwd\": \"other\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"[other 5bb25f4] fictional divergence\\n 1 file changed, 1 insertion(+)\\n create mode 100644 other.txt\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"rev-parse\",\n        \"HEAD\"\n      ],\n      \"cwd\": \"other\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"5bb25f482444e144c7c9901603cf023984520c44\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"merge-base\",\n        \"--is-ancestor\",\n        \"300c0d7d266849d042a8ca2642d98f358588c62c\",\n        \"91697965ef1cdfc35e46081893c1cf6ec80dc3b8\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"merge-base\",\n        \"--is-ancestor\",\n        \"300c0d7d266849d042a8ca2642d98f358588c62c\",\n        \"5bb25f482444e144c7c9901603cf023984520c44\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"merge-base\",\n        \"--is-ancestor\",\n        \"91697965ef1cdfc35e46081893c1cf6ec80dc3b8\",\n        \"5bb25f482444e144c7c9901603cf023984520c44\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 1,\n      \"exit_code\": 1,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"merge-base\",\n        \"--is-ancestor\",\n        \"5bb25f482444e144c7c9901603cf023984520c44\",\n        \"91697965ef1cdfc35e46081893c1cf6ec80dc3b8\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 1,\n      \"exit_code\": 1,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"rev-list\",\n        \"--left-right\",\n        \"--count\",\n        \"91697965ef1cdfc35e46081893c1cf6ec80dc3b8...5bb25f482444e144c7c9901603cf023984520c44\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"1\\t1\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"merge-base\",\n        \"91697965ef1cdfc35e46081893c1cf6ec80dc3b8\",\n        \"5bb25f482444e144c7c9901603cf023984520c44\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"300c0d7d266849d042a8ca2642d98f358588c62c\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"show\",\n        \":tracked.txt\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"staged work\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"status\",\n        \"--porcelain\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"MM tracked.txt\\n?? notes.txt\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"rev-parse\",\n        \"HEAD\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"300c0d7d266849d042a8ca2642d98f358588c62c\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"worktree\",\n        \"list\",\n        \"--porcelain\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"worktree /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/courier\\nHEAD 300c0d7d266849d042a8ca2642d98f358588c62c\\nbranch refs/heads/main\\n\\nworktree /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/other\\nHEAD 5bb25f482444e144c7c9901603cf023984520c44\\nbranch refs/heads/other\\n\\nworktree /tmp/corpus-clean-qdj0pi2f/workspace-evidence/corpus-fictional-269ra3nj/slice\\nHEAD 91697965ef1cdfc35e46081893c1cf6ec80dc3b8\\nbranch refs/heads/slice\\n\\n\",\n      \"stderr\": \"\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"-c\",\n        \"core.hooksPath=/dev/null\",\n        \"-c\",\n        \"commit.gpgsign=false\",\n        \"log\",\n        \"--all\",\n        \"--graph\",\n        \"--oneline\"\n      ],\n      \"cwd\": \"courier\",\n      \"expected_exit\": 0,\n      \"exit_code\": 0,\n      \"stdout\": \"* 5bb25f4 fictional divergence\\n| * 9169796 fictional slice\\n|/  \\n* 300c0d7 fictional baseline\\n\",\n      \"stderr\": \"\"\n    }\n  ],\n  \"limits\": [\n    \"Fictional repository only\",\n    \"No merge/rebase/conflict/submodule coverage\",\n    \"Backups and worktrees retained; no destructive cleanup\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "--",
+        "docs",
+        "dist",
+        "scripts",
+        "examples"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "limits": [
+    "Same-host reproducibility only",
+    "CPython 3.14 Linux x86_64 wheel lock",
+    "Browser and editorial gates recorded separately",
+    "No deployment or WCAG certification"
+  ],
+  "result": "PASS",
+  "clean_checkout": true,
+  "isolated_environment": true,
+  "committed_dist_matches": true,
+  "rebuilds_identical": true,
+  "dist_sha256": {
+    "404.html": "30ac6d0c77a665d58975ae588e961eac436af3463f15eee0bca41bf499fb9c20",
+    "app.js": "cc5dedb7020747ff616162ef2b25bcd8b5b25ee0e0d2488f51791b367f2ca5d6",
+    "design-tokens.css": "ef76ac1a57f08ae4a3d6e8b80ed0d71a05d1b2034eb43ec6b657793c04f4ce1f",
+    "diagrams/authority.svg": "196de2fce279dbed01c1358256b083ae3e2933b08d1fc5bc7e61ea55b17efd77",
+    "diagrams/knowledge.svg": "53901c139272efdf802e63bcc3149cffaf5c4c32030ba2bbed799e735cf74f4d",
+    "diagrams/lifecycle.svg": "38169af5f7ebba5b88ecd1a3e145ebd8bb8283f657c9f806da969b72b387101e",
+    "en/chapters/01-mandate.html": "fbcb0f7aaf116cf27ca3e292db1e43ad7c34835abbe9476cc1d5fe9d740a5892",
+    "en/chapters/02-authority.html": "cde0af516a4da9137cccb7282b536d0c1b66d2f9c3e856d69e8131f20ebab6e1",
+    "en/chapters/03-contract.html": "6442bf940eb1484a1f3367c4544dcdc74f3b57e15a9003dad23fa96cb36cd581",
+    "en/chapters/04-delivery.html": "a43be7afff7b83c90d8f4de0c8d9ef546a53388ba3e54ce3dfadbc51d949396e",
+    "en/chapters/05-evidence.html": "95979093e773506e535532725a33d85d022c2f9382ef9c6421122dcb7c677023",
+    "en/chapters/06-documentation.html": "b375e5ea97bcd35f2897309398e2dceef6b6ae41fb57470daf347b9ce03e0118",
+    "en/chapters/07-llm.html": "0e3e159ec8a391eb2fa741d5a4a9e25ccbb306787471fec5825d79143c41c157",
+    "en/chapters/08-hygiene.html": "339b3e6f2e77cae13ca2952f3e54109bdb3c0d6a115fbfe8b8684b230600606f",
+    "en/governance.html": "1e6a020c04796c0f408109f3865a6be98dd5952da1e86b09726c1951dd57227b",
+    "en/index.html": "6a7bce483277e9afdf4173997fbb8d89cbfa953509156c4b51f4baaafb96fb8a",
+    "en/labs/01-change.html": "77718dd6c9b07afaf5f68be4e380a17970bed9f8ee4d2a0dd1d4ec9a6462d5a4",
+    "en/labs/02-api.html": "6bf0a45eb0f4dc823a5fa675c988d6ef58cad1d759752c98005be5957b63e28e",
+    "en/labs/03-workspace.html": "43747a9692b894997daa5933a784a2338e29f77b927537e9b16880dbb2bfd9a9",
+    "en/references.html": "30b42cf523f9866b85fe08f8416f1097d30a7bce8e3295a14a9c6e8a052029f9",
+    "en/templates.html": "cd5cb181f6d21a8c85600e656b41caec41ba174f673e9d4d641f977c8462aaad",
+    "en/topologies.html": "f1c19f36deb1ff2b380d0528438b93ba318e07a240e0ce34a9444769b2439079",
+    "examples/api_lab.py": "ec71ab2068cf7c405621a035bed47dba1f9809393c478334256ccd06244591f8",
+    "examples/change_lab.py": "66fcd091424bf729afe779b10e6e41eb126948037af0e79106d05ea3aa56c10a",
+    "examples/workspace_lab.py": "5d7fb12447eca70da7db2967df12a998de13208e7bedeb35396abe57009854fb",
+    "favicon.svg": "92c4ac6e0da8f0f7b401c649c75da5df45d2bdbda2ce5a527be4f56d6572a3d6",
+    "fonts/SpaceGrotesk-OFL.txt": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72",
+    "fonts/SpaceGrotesk-wght.woff2": "8e085aa438094f11487a836652edd5c054fa6a96f63fc7c282105ee3a4b08c07",
+    "fr/chapters/01-mandate.html": "9144174ad10a9f6e2bb623550bb52702a7abf181a49ffb0f6dcd4b1bb1370813",
+    "fr/chapters/02-authority.html": "ab57a13e14a96804084a68efde932fc16e799a530e850c8d1f39f50d253becd2",
+    "fr/chapters/03-contract.html": "a752dc231d95a3dfa766d095ab34936f79a12da83d743a8a72e5af8fd951d270",
+    "fr/chapters/04-delivery.html": "ea59123a5b85de33ab06976aaa0ff262570f6e1e819935584d915a2b1c4ca709",
+    "fr/chapters/05-evidence.html": "8d688288f9cf9da19c391ce92bda105a06f8dc074b6f95512e5124258a28e334",
+    "fr/chapters/06-documentation.html": "5ce87af2548fa4c25fe6b7c87c0adba196b6483f3ff2f404dcc7ed71688b5d0b",
+    "fr/chapters/07-llm.html": "a3a4dca6f974490d943f5b9190aee1b0cb63c3b1b2bb5039f7bdae74a3cb2ac3",
+    "fr/chapters/08-hygiene.html": "7cf8434a871173788b2a41f31981d780aaa058f762173360de7e22479142cac8",
+    "fr/governance.html": "f68b13038f27b2d0e4dbc75e7427bcda877af52254a88530bdc2ac58a0c2a79d",
+    "fr/index.html": "87cb046331e78ce369c2f02bcd26f95bbed113e6bf1a39762db12af143305994",
+    "fr/labs/01-change.html": "c91e31677bd9f69037d8731a00387b1f9d0e2984db9fe57ae2bdea09196c898e",
+    "fr/labs/02-api.html": "e4b0797e61be95427983bb55384fd843e164f1e7346e0edd8d12ef5415e0180f",
+    "fr/labs/03-workspace.html": "58dbd66bc4ad177c2d04c44e2c8f184da630a314357c56fe09ca8340defe55ff",
+    "fr/references.html": "51e7d782442c1eb497ae0430a051275273f20cafa3c28837a33ffeb770f556d4",
+    "fr/templates.html": "e7ca3f3bd685505345e27a3ae80d8fea50e7f7f2ba98bc001983d29b8b8f767c",
+    "fr/topologies.html": "50bd2fead49f2ad47845384878100a6b4d07fcddee6863318aea42d60d7f6db9",
+    "index.html": "bac91aa4a8e25f49c952896fdbfa1f51399c0da0039318ba5ea12895a9613041",
+    "mermaid/authority.mmd": "80e18bde535f74616bf75b4eaa1cf33bc2e5fa48d5c278aa39174e84b5b45404",
+    "mermaid/knowledge.mmd": "fae71fea6e3748a5e13bcfafd653c8d7dccec29287c588b1fa3718919207c022",
+    "mermaid/lifecycle.mmd": "88f85ee3424cdcff1fc33af7140f4c3ce4a69bddf2accfd1601ed564feddc38b",
+    "style.css": "ba36abdf1a6b74f8f1f98a8078f186d4bd8142b4cd0c40ce4d5eef52c53d66d4",
+    "templates/ADR.md": "5c032c015de91936dadd43a4ef4bb0dfbc9acba39304befc1a9a1b7583d10e9e",
+    "templates/CONTRACT.md": "4ee8ddda9f51a40c2631cbeb7f410999f309137b60ce9a1bc03cc247d9f0b9a0",
+    "templates/EVIDENCE.json": "3ce279278196dd4562b29984ccd00050160c6abcaec690b784b9741ecd2f0715",
+    "templates/MANDATE.md": "f9b73dc95da434a50b21d1c60285e4685464bc99eea88b0b60737bf47df8df16",
+    "templates/RELEASE.md": "2d1950e2f1ac8a37c88b77681544896c34e49080601b769557c91d31b59f2fc5"
+  },
+  "wheel_sha256": {
+    "markdown_it_py-4.0.0-py3-none-any.whl": "87327c59b172c5011896038353a81343b6754500a08cd7a4973bb48c6d578147",
+    "mdurl-0.1.2-py3-none-any.whl": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8",
+    "pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl": "c458b6d084f9b935061bc36216e8a69a7e293a2f1e68bf956dcd9e6cbcd143f5"
+  }
+}
