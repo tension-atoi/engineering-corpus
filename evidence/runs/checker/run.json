@@ -1,0 +1,54 @@
+[
+  {
+    "fixture": "relative-link",
+    "expected_reason": "broken link",
+    "errors": [
+      "fr/index.html broken link missing.html"
+    ],
+    "result": "PASS"
+  },
+  {
+    "fixture": "fragment",
+    "expected_reason": "broken fragment",
+    "errors": [
+      "fr/index.html broken fragment index.html#missing"
+    ],
+    "result": "PASS"
+  },
+  {
+    "fixture": "status",
+    "expected_reason": "invalid status",
+    "errors": [
+      "/tmp/corpus-negative-ok1la0ut/docs/fr/chapters/01-mandate.md invalid status",
+      "01-mandate FR/EN drift in status"
+    ],
+    "result": "PASS"
+  },
+  {
+    "fixture": "resource",
+    "expected_reason": "external resource",
+    "errors": [
+      "fr/index.html external resource https://example.invalid/x.js",
+      "fr/index.html unexpected external reference https://example.invalid/x.js"
+    ],
+    "result": "PASS"
+  },
+  {
+    "fixture": "metadata",
+    "expected_reason": "missing method_id",
+    "errors": [
+      "docs/fr/chapters/01-mandate.md missing method_id",
+      "01-mandate FR/EN drift in method_id"
+    ],
+    "result": "PASS"
+  },
+  {
+    "fixture": "css-resource",
+    "expected_reason": "external CSS resource",
+    "errors": [
+      "style.css external CSS resource https://example.invalid/x",
+      "style.css missing CSS resource https://example.invalid/x"
+    ],
+    "result": "PASS"
+  }
+]

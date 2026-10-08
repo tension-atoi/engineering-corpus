@@ -1,0 +1,218 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "accent insensitive search",
+            "result": "PASS"
+          },
+          {
+            "name": "empty search status",
+            "result": "PASS"
+          },
+          {
+            "name": "search reset",
+            "result": "PASS"
+          },
+          {
+            "name": "semantic progress value",
+            "result": "PASS"
+          },
+          {
+            "name": "FR EN context and state",
+            "result": "PASS"
+          },
+          {
+            "name": "corrupt storage variants",
+            "result": "PASS"
+          },
+          {
+            "name": "blocked storage notice",
+            "result": "PASS"
+          },
+          {
+            "name": "skip link focus",
+            "result": "PASS"
+          }
+        ],
+        "phase": "desktop",
+        "screenshot": {
+          "data": "saved desktop.png"
+        },
+        "snapshot": {
+          "refs": [
+            {
+              "backendNodeId": 25759,
+              "name": "Aller au contenu",
+              "nth": 0,
+              "ref": "e1",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25761,
+              "name": "Engineering Corpus, Accueil",
+              "nth": 0,
+              "ref": "e2",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25767,
+              "name": "English \u2197",
+              "nth": 0,
+              "ref": "e3",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25587,
+              "name": "Filtrer les chapitres",
+              "nth": 0,
+              "ref": "e4",
+              "role": "searchbox"
+            },
+            {
+              "backendNodeId": 25784,
+              "name": "01 Mandat & d\u00e9coupage 12m",
+              "nth": 0,
+              "ref": "e5",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25787,
+              "name": "02 Autorit\u00e9 & agents 14m",
+              "nth": 0,
+              "ref": "e6",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25790,
+              "name": "03 Architecture & contrats 14m",
+              "nth": 0,
+              "ref": "e7",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25793,
+              "name": "04 Tranches & v\u00e9rification 12m",
+              "nth": 0,
+              "ref": "e8",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25796,
+              "name": "05 Preuves & v\u00e9rit\u00e9 publique 16m",
+              "nth": 0,
+              "ref": "e9",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25799,
+              "name": "06 Documentation & SDK 14m",
+              "nth": 0,
+              "ref": "e10",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25802,
+              "name": "07 LLM local & Copilot 15m",
+              "nth": 0,
+              "ref": "e11",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25805,
+              "name": "08 Hygi\u00e8ne, release & rollback 15m",
+              "nth": 0,
+              "ref": "e12",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25810,
+              "name": "\u2197 Atelier A \u2014 Modification qualifi\u00e9e",
+              "nth": 0,
+              "ref": "e13",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25812,
+              "name": "\u2197 Atelier B \u2014 API v\u00e9rifiable",
+              "nth": 0,
+              "ref": "e14",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25814,
+              "name": "\u2197 Atelier C \u2014 Workspace Hygiene & Git Topology",
+              "nth": 0,
+              "ref": "e15",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25816,
+              "name": "\u25c7 Topologies",
+              "nth": 0,
+              "ref": "e16",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25818,
+              "name": "\u2261 Mod\u00e8les",
+              "nth": 0,
+              "ref": "e17",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25853,
+              "name": "",
+              "nth": 0,
+              "ref": "e18",
+              "role": "table"
+            },
+            {
+              "backendNodeId": 25896,
+              "name": "Auto-\u00e9valuation",
+              "nth": 0,
+              "ref": "e19",
+              "role": "DisclosureTriangle"
+            },
+            {
+              "backendNodeId": 25919,
+              "name": "Crit\u00e8res d\u2019auto-\u00e9valuation",
+              "nth": 0,
+              "ref": "e20",
+              "role": "DisclosureTriangle"
+            },
+            {
+              "backendNodeId": 25923,
+              "name": "git-worktree",
+              "nth": 0,
+              "ref": "e21",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 25925,
+              "name": "Marquer comme \u00e9tudi\u00e9",
+              "nth": 0,
+              "ref": "e22",
+              "role": "button"
+            },
+            {
+              "backendNodeId": 25930,
+              "name": "R\u00e8gles de contribution \u2192",
+              "nth": 0,
+              "ref": "e23",
+              "role": "link"
+            }
+          ],
+          "text": "- link \"Aller au contenu\" [ref=e1]\n- banner\n  - link \"Engineering Corpus, Accueil\" [ref=e2]\n  - link \"English \u2197\" [ref=e3]\n- complementary\n  - searchbox \"Filtrer les chapitres\" [ref=e4]\n  - navigation \"Corpus\"\n    - heading \"CORPUS 08\" [level=2]\n    - link \"01 Mandat & d\u00e9coupage 12m\" [ref=e5]\n    - link \"02 Autorit\u00e9 & agents 14m\" [ref=e6]\n    - link \"03 Architecture & contrats 14m\" [ref=e7]\n    - link \"04 Tranches & v\u00e9rification 12m\" [ref=e8]\n    - link \"05 Preuves & v\u00e9rit\u00e9 publique 16m\" [ref=e9]\n    - link \"06 Documentation & SDK 14m\" [ref=e10]\n    - link \"07 LLM local & Copilot 15m\" [ref=e11]\n    - link \"08 Hygi\u00e8ne, release & rollback 15m\" [ref=e12]\n    - heading \"ATELIERS 03\" [level=2]\n    - link \"\u2197 Atelier A \u2014 Modification qualifi\u00e9e\" [ref=e13]\n    - link \"\u2197 Atelier B \u2014 API v\u00e9rifiable\" [ref=e14]\n    - link \"\u2197 Atelier C \u2014 Workspace Hygiene & Git Topology\" [ref=e15]\n    - link \"\u25c7 Topologies\" [ref=e16]\n    - link \"\u2261 Mod\u00e8les\" [ref=e17]\n- main\n  - article\n    - heading \"Mandat & d\u00e9coupage\" [level=1]\n    - heading \"Pourquoi un mandat ?\" [level=2]\n    - table [ref=e18] [cursor=pointer]\n    - heading \"Unit\u00e9s de travail\" [level=3]\n    - heading \"Gate d'entr\u00e9e\" [level=3]\n    - heading \"Exercice\" [level=3]\n    - DisclosureTriangle \"Auto-\u00e9valuation\" [collapsed] [ref=e19]\n    - heading \"Probl\u00e8me trait\u00e9\" [level=2]\n    - heading \"M\u00e9thode reproductible\" [level=2]\n    - heading \"Exemple, contre-exemple et \u00e9chec\" [level=2]\n    - heading \"Artefacts et qualification\" [level=2]\n    - heading \"Exercice de transfert\" [level=2]\n    - DisclosureTriangle \"Crit\u00e8res d\u2019auto-\u00e9valuation\" [collapsed] [ref=e20]\n    - heading \"R\u00e9f\u00e9rences\" [level=2]\n    - list\n      - listitem [level=1]\n        - link \"git-worktree\" [ref=e21]\n  - button \"Marquer comme \u00e9tudi\u00e9\" [ref=e22]\n  - sectionfooter\n    - link \"R\u00e8gles de contribution \u2192\" [ref=e23]",
+          "url": "http://127.0.0.1:18766/fr/chapters/01-mandate.html#content"
+        }
+      }
+    },
+    "isError": false
+  }
+}

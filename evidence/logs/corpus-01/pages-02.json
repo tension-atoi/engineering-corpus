@@ -1,0 +1,70 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "bounded page sample",
+            "result": "PASS"
+          }
+        ],
+        "pages": [
+          {
+            "h1": 1,
+            "lang": "fr",
+            "overflow": false,
+            "path": "/fr/chapters/02-authority.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "en",
+            "overflow": false,
+            "path": "/en/chapters/02-authority.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "fr",
+            "overflow": false,
+            "path": "/fr/chapters/03-contract.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "en",
+            "overflow": false,
+            "path": "/en/chapters/03-contract.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          }
+        ],
+        "phase": "pages:fr/chapters/02-authority.html,en/chapters/02-authority.html,fr/chapters/03-contract.html,en/chapters/03-contract.html"
+      }
+    },
+    "isError": false
+  }
+}

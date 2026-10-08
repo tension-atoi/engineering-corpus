@@ -1,0 +1,33 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "ok\nreturn: {\n  \"close\": {\n    \"page\": 2,\n    \"value\": {\n      \"expanded\": \"true\",\n      \"open\": true\n    }\n  },\n  \"storage\": {\n    \"page\": 2,\n    \"value\": {\n      \"pressed\": null,\n      \"progress\": \"0 / 10\"\n    }\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "close": {
+          "page": 2,
+          "value": {
+            "expanded": "true",
+            "open": true
+          }
+        },
+        "storage": {
+          "page": 2,
+          "value": {
+            "pressed": null,
+            "progress": "0 / 10"
+          }
+        }
+      }
+    },
+    "isError": false
+  }
+}

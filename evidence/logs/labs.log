@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/home/tension_atoi/engineering-corpus/examples/change_lab.py", line 23, in <module>
+    print(json.dumps(run(args.broken), sort_keys=True))
+                     ~~~^^^^^^^^^^^^^
+  File "/home/tension_atoi/engineering-corpus/examples/change_lab.py", line 14, in run
+    assert actions == ['r1'], f'expected one r1 action, got {actions}'
+           ^^^^^^^^^^^^^^^^^
+AssertionError: expected one r1 action, got ['r1', 'r1']
+
+{"actions": ["r1"], "denied_action_count": 0, "target": "left"}
+
+Traceback (most recent call last):
+  File "/home/tension_atoi/engineering-corpus/examples/api_lab.py", line 23, in <module>
+    print(json.dumps(validate(parser.parse_args().symbol), sort_keys=True))
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tension_atoi/engineering-corpus/examples/api_lab.py", line 13, in validate
+    assert symbol in exports, f'unknown symbol: {symbol}; inventory: {exports}'
+           ^^^^^^^^^^^^^^^^^
+AssertionError: unknown symbol: Queue.morph_to; inventory: ['Queue.enqueue']
+
+{"example": ["parcel"], "exports": ["Queue.enqueue"], "symbol": "Queue.enqueue"}

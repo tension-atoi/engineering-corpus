@@ -1,0 +1,76 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "bounded page sample",
+            "result": "PASS"
+          }
+        ],
+        "pages": [
+          {
+            "h1": 1,
+            "lang": "fr",
+            "overflow": false,
+            "path": "/fr/topologies.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/diagrams/lifecycle.svg",
+              "http://127.0.0.1:18766/diagrams/authority.svg",
+              "http://127.0.0.1:18766/diagrams/knowledge.svg",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "en",
+            "overflow": false,
+            "path": "/en/topologies.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/diagrams/lifecycle.svg",
+              "http://127.0.0.1:18766/diagrams/authority.svg",
+              "http://127.0.0.1:18766/diagrams/knowledge.svg",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "fr",
+            "overflow": false,
+            "path": "/fr/templates.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "en",
+            "overflow": false,
+            "path": "/en/templates.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          }
+        ],
+        "phase": "pages:fr/topologies.html,en/topologies.html,fr/templates.html,en/templates.html"
+      }
+    },
+    "isError": false
+  }
+}

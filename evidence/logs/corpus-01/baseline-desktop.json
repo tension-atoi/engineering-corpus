@@ -1,0 +1,87 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "ok\nreturn: {\n  \"id\": 2,\n  \"snapshot\": {\n    \"refs\": [\n      {\n        \"backendNodeId\": 18,\n        \"name\": \"Aller au contenu\",\n        \"nth\": 0,\n        \"ref\": \"e1\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 20,\n        \"name\": \"Engineering Corpus, Accueil\",\n        \"nth\": 0,\n        \"ref\": \"e2\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 27,\n        \"name\": \"English \u2197\",\n        \"nth\": 0,\n        \"ref\": \"e3\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 28,\n        \"name\": \"Menu\",\n        \"nth\": 0,\n        \"ref\": \"e4\",\n        \"role\": \"button\"\n      },\n      {\n        \"backendNodeId\": 139,\n        \"name\": \"Auto-\u00e9valuation\",\n        \"nth\": 0,\n        \"ref\": \"e5\",\n        \"role\": \"DisclosureTriangle\"\n      },\n      {\n        \"backendNodeId\": 141,\n        \"name\": \"Marquer comme \u00e9tudi\u00e9\",\n        \"nth\": 0,\n        \"ref\": \"e6\",\n        \"role\": \"button\"\n      },\n      {\n        \"backendNodeId\": 146,\n        \"name\": \"R\u00e8gles de contribution \u2192\",\n        \"nth\": 0,\n        \"ref\": \"e7\",\n        \"role\": \"link\"\n      }\n    ],\n    \"text\": \"- link \\\"Aller au contenu\\\" [ref=e1]\\n- banner\\n  - link \\\"Engineering Corpus, Accueil\\\" [ref=e2]\\n  - link \\\"English \u2197\\\" [ref=e3]\\n  - button \\\"Menu\\\" [collapsed] [ref=e4]\\n- main\\n  - article\\n    - heading \\\"Mandat & d\u00e9coupage\\\" [level=1]\\n    - heading \\\"Pourquoi un mandat ?\\\" [level=2]\\n    - heading \\\"Unit\u00e9s de travail\\\" [level=3]\\n    - heading \\\"Gate d'entr\u00e9e\\\" [level=3]\\n    - heading \\\"Exercice\\\" [level=3]\\n    - DisclosureTriangle \\\"Auto-\u00e9valuation\\\" [collapsed] [ref=e5]\\n  - button \\\"Marquer comme \u00e9tudi\u00e9\\\" [ref=e6]\\n  - sectionfooter\\n    - link \\\"R\u00e8gles de contribution \u2192\\\" [ref=e7]\",\n    \"url\": \"http://127.0.0.1:18765/fr/chapters/01-mandate.html\"\n  },\n  \"inspect\": {\n    \"page\": 2,\n    \"value\": {\n      \"h1\": 1,\n      \"progress\": \"0 / 10\",\n      \"resources\": [\n        \"http://127.0.0.1:18765/style.css\",\n        \"http://127.0.0.1:18765/app.js\",\n        \"http://127.0.0.1:18765/favicon.ico\"\n      ]\n    }\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "id": 2,
+        "inspect": {
+          "page": 2,
+          "value": {
+            "h1": 1,
+            "progress": "0 / 10",
+            "resources": [
+              "http://127.0.0.1:18765/style.css",
+              "http://127.0.0.1:18765/app.js",
+              "http://127.0.0.1:18765/favicon.ico"
+            ]
+          }
+        },
+        "snapshot": {
+          "refs": [
+            {
+              "backendNodeId": 18,
+              "name": "Aller au contenu",
+              "nth": 0,
+              "ref": "e1",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 20,
+              "name": "Engineering Corpus, Accueil",
+              "nth": 0,
+              "ref": "e2",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 27,
+              "name": "English \u2197",
+              "nth": 0,
+              "ref": "e3",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 28,
+              "name": "Menu",
+              "nth": 0,
+              "ref": "e4",
+              "role": "button"
+            },
+            {
+              "backendNodeId": 139,
+              "name": "Auto-\u00e9valuation",
+              "nth": 0,
+              "ref": "e5",
+              "role": "DisclosureTriangle"
+            },
+            {
+              "backendNodeId": 141,
+              "name": "Marquer comme \u00e9tudi\u00e9",
+              "nth": 0,
+              "ref": "e6",
+              "role": "button"
+            },
+            {
+              "backendNodeId": 146,
+              "name": "R\u00e8gles de contribution \u2192",
+              "nth": 0,
+              "ref": "e7",
+              "role": "link"
+            }
+          ],
+          "text": "- link \"Aller au contenu\" [ref=e1]\n- banner\n  - link \"Engineering Corpus, Accueil\" [ref=e2]\n  - link \"English \u2197\" [ref=e3]\n  - button \"Menu\" [collapsed] [ref=e4]\n- main\n  - article\n    - heading \"Mandat & d\u00e9coupage\" [level=1]\n    - heading \"Pourquoi un mandat ?\" [level=2]\n    - heading \"Unit\u00e9s de travail\" [level=3]\n    - heading \"Gate d'entr\u00e9e\" [level=3]\n    - heading \"Exercice\" [level=3]\n    - DisclosureTriangle \"Auto-\u00e9valuation\" [collapsed] [ref=e5]\n  - button \"Marquer comme \u00e9tudi\u00e9\" [ref=e6]\n  - sectionfooter\n    - link \"R\u00e8gles de contribution \u2192\" [ref=e7]",
+          "url": "http://127.0.0.1:18765/fr/chapters/01-mandate.html"
+        }
+      }
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "720px reflow equivalent to 1440 at 200%",
+            "result": "PASS"
+          },
+          {
+            "name": "reduced motion",
+            "result": "PASS"
+          }
+        ],
+        "motion": {
+          "scroll": "auto",
+          "transition": "0s"
+        },
+        "phase": "zoom",
+        "screenshot": {
+          "data": "saved zoom.png"
+        }
+      }
+    },
+    "isError": false
+  }
+}

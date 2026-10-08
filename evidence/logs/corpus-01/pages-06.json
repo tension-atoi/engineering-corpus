@@ -1,0 +1,70 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "bounded page sample",
+            "result": "PASS"
+          }
+        ],
+        "pages": [
+          {
+            "h1": 1,
+            "lang": "fr",
+            "overflow": false,
+            "path": "/fr/labs/02-api.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "en",
+            "overflow": false,
+            "path": "/en/labs/02-api.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "fr",
+            "overflow": false,
+            "path": "/fr/labs/03-workspace.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          },
+          {
+            "h1": 1,
+            "lang": "en",
+            "overflow": false,
+            "path": "/en/labs/03-workspace.html",
+            "resources": [
+              "http://127.0.0.1:18766/design-tokens.css",
+              "http://127.0.0.1:18766/style.css",
+              "http://127.0.0.1:18766/app.js",
+              "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2"
+            ]
+          }
+        ],
+        "phase": "pages:fr/labs/02-api.html,en/labs/02-api.html,fr/labs/03-workspace.html,en/labs/03-workspace.html"
+      }
+    },
+    "isError": false
+  }
+}

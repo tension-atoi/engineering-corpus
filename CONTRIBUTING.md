@@ -1,13 +1,14 @@
 # Contributing
 
-This corpus is a public educational resource. Propose changes via issues or pull requests with:
+Read [governance](docs/en/governance.md) / [gouvernance](docs/fr/governance.md).
+Issues and PRs must identify method/lab, exact baseline, claim, primary source,
+reproducible fictional example or counterexample, FR/EN impact and verification limits.
+Challenges to an oracle are welcome; record disagreements and reasons rather than deleting them.
 
-1. The concrete problem and affected chapter(s).
-2. The claim that changes, its source and the scope of applicability.
-3. A small reproducible example or counterexample.
-4. FR/EN documentation updates (or an explicitly tracked translation gap).
-5. The result of `python scripts/check.py` and `python scripts/build.py`.
+Run the build, checker, checker negative controls, labs and clean qualification described in README.
+Retain machine-readable records in evidence/runs and raw logs in evidence/logs.
+Do not submit secrets, private code, user traces, model weights, dependency wheels or large builds.
 
-A change to methodology is a proposal until reviewed. A code or docs change does not silently change Gnosix engineering policy or authority. Do not submit private code, credentials or workstation traces.
-
-Maintainers can reject changes lacking proof, provenance, or an operationally testable definition.
+Methodological changes remain proposals until an explicit scoped owner decision.
+Acceptance here ratifies no policy in any consuming project. A reviewer must distinguish
+editorial review, executable evidence, browser observation and operational deployment.

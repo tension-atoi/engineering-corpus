@@ -1,0 +1,1 @@
+{"command":".venv/bin/python scripts/check.py","exit_code":1,"expected_reason":"lifecycle.svg rectangle clipped by viewBox","source":"baseline SVG rect x=1026 width=146 exceeds viewBox width=1160","result":"EXPECTED_FAILURE"}

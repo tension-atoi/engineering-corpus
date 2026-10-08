@@ -1,0 +1,10 @@
+{
+  "source": "Gnosix-DS-V3.4.1.tar.gz",
+  "source_sha256": "b77318a2e38041ff5ac2e968e78423986ee418cfd4f6e77e8ec8c498fac88407",
+  "files": {
+    "site/design-tokens.css": "ef76ac1a57f08ae4a3d6e8b80ed0d71a05d1b2034eb43ec6b657793c04f4ce1f",
+    "site/fonts/SpaceGrotesk-wght.woff2": "8e085aa438094f11487a836652edd5c054fa6a96f63fc7c282105ee3a4b08c07",
+    "site/fonts/SpaceGrotesk-OFL.txt": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72"
+  },
+  "scope": "Typography, approved color tokens, textual status, no capsules; not full design-system conformance"
+}

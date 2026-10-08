@@ -1,0 +1,120 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "text contrast sample >=4.5",
+            "result": "PASS"
+          },
+          {
+            "name": "no status capsules",
+            "result": "PASS"
+          }
+        ],
+        "contrasts": [
+          {
+            "background": [
+              35,
+              51,
+              40
+            ],
+            "color": "rgb(161, 166, 173)",
+            "ratio": 5.441185556298328,
+            "selector": ".nav-duration"
+          },
+          {
+            "background": [
+              35,
+              51,
+              40
+            ],
+            "color": "rgb(161, 166, 173)",
+            "ratio": 5.441185556298328,
+            "selector": ".nav-number"
+          },
+          {
+            "background": [
+              24,
+              28,
+              22
+            ],
+            "color": "rgb(226, 205, 173)",
+            "ratio": 11.154480322784751,
+            "selector": ".prose p"
+          },
+          {
+            "background": [
+              17,
+              20,
+              24
+            ],
+            "color": "rgb(141, 169, 130)",
+            "ratio": 7.149917984571999,
+            "selector": ".eyebrow"
+          },
+          {
+            "background": [
+              17,
+              20,
+              24
+            ],
+            "color": "rgb(161, 166, 173)",
+            "ratio": 7.539734304262641,
+            "selector": ".status"
+          },
+          {
+            "background": [
+              17,
+              20,
+              24
+            ],
+            "color": "rgb(141, 169, 130)",
+            "ratio": 7.149917984571999,
+            "selector": ".study-button"
+          },
+          {
+            "background": [
+              17,
+              20,
+              24
+            ],
+            "color": "rgb(161, 166, 173)",
+            "ratio": 7.539734304262641,
+            "selector": "footer"
+          },
+          {
+            "background": [
+              21,
+              30,
+              24
+            ],
+            "color": "rgb(247, 243, 237)",
+            "ratio": 15.43564217710398,
+            "selector": ".sidebar input"
+          }
+        ],
+        "phase": "contrast",
+        "statusStyles": [
+          {
+            "border": "0px",
+            "radius": "0px"
+          },
+          {
+            "border": "0px",
+            "radius": "0px"
+          },
+          {
+            "border": "0px",
+            "radius": "0px"
+          }
+        ]
+      }
+    },
+    "isError": false
+  }
+}

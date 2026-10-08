@@ -1,0 +1,37 @@
+[
+  {
+    "command": [
+      "examples/change_lab.py",
+      "--broken"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1,
+    "output": "Traceback (most recent call last):\n  File \"/home/tension_atoi/engineering-corpus/examples/change_lab.py\", line 23, in <module>\n    print(json.dumps(run(args.broken), sort_keys=True))\n                     ~~~^^^^^^^^^^^^^\n  File \"/home/tension_atoi/engineering-corpus/examples/change_lab.py\", line 14, in run\n    assert actions == ['r1'], f'expected one r1 action, got {actions}'\n           ^^^^^^^^^^^^^^^^^\nAssertionError: expected one r1 action, got ['r1', 'r1']\n"
+  },
+  {
+    "command": [
+      "examples/change_lab.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "output": "{\"actions\": [\"r1\"], \"denied_action_count\": 0, \"target\": \"left\"}\n"
+  },
+  {
+    "command": [
+      "examples/api_lab.py",
+      "--symbol",
+      "Queue.morph_to"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1,
+    "output": "Traceback (most recent call last):\n  File \"/home/tension_atoi/engineering-corpus/examples/api_lab.py\", line 23, in <module>\n    print(json.dumps(validate(parser.parse_args().symbol), sort_keys=True))\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tension_atoi/engineering-corpus/examples/api_lab.py\", line 13, in validate\n    assert symbol in exports, f'unknown symbol: {symbol}; inventory: {exports}'\n           ^^^^^^^^^^^^^^^^^\nAssertionError: unknown symbol: Queue.morph_to; inventory: ['Queue.enqueue']\n"
+  },
+  {
+    "command": [
+      "examples/api_lab.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "output": "{\"example\": [\"parcel\"], \"exports\": [\"Queue.enqueue\"], \"symbol\": \"Queue.enqueue\"}\n"
+  }
+]

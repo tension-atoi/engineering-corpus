@@ -1,0 +1,94 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "diagram loading and alt",
+            "result": "PASS"
+          },
+          {
+            "name": "loaded page offline",
+            "result": "PASS"
+          },
+          {
+            "name": "unknown route",
+            "result": "PASS"
+          },
+          {
+            "name": "HTTP 404 response",
+            "result": "PASS"
+          }
+        ],
+        "images": [
+          {
+            "alt": "Baseline \u2192 test causal \u2192 correction \u2192 v\u00e9rification \u2192 preuve \u2192 revue \u2192 livraison.",
+            "loaded": true,
+            "src": "http://127.0.0.1:18766/diagrams/lifecycle.svg"
+          },
+          {
+            "alt": "Un op\u00e9rateur octroie des droits born\u00e9s ; un agent observe ou propose ; une revue distincte d\u00e9cide de l\u2019int\u00e9gration.",
+            "loaded": true,
+            "src": "http://127.0.0.1:18766/diagrams/authority.svg"
+          },
+          {
+            "alt": "Code versionn\u00e9 \u2192 extraction \u2192 proposition \u2192 validation \u2192 revue humaine \u2192 \u00e9dition statique.",
+            "loaded": true,
+            "src": "http://127.0.0.1:18766/diagrams/knowledge.svg"
+          }
+        ],
+        "offline": {
+          "svgLoaded": true,
+          "text": "Topologies"
+        },
+        "phase": "resources",
+        "resources": [
+          {
+            "name": "http://127.0.0.1:18766/style.css",
+            "responseStatus": 200
+          },
+          {
+            "name": "http://127.0.0.1:18766/app.js",
+            "responseStatus": 200
+          },
+          {
+            "name": "http://127.0.0.1:18766/diagrams/lifecycle.svg",
+            "responseStatus": 200
+          },
+          {
+            "name": "http://127.0.0.1:18766/diagrams/authority.svg",
+            "responseStatus": 200
+          },
+          {
+            "name": "http://127.0.0.1:18766/diagrams/knowledge.svg",
+            "responseStatus": 200
+          },
+          {
+            "name": "http://127.0.0.1:18766/design-tokens.css",
+            "responseStatus": 200
+          },
+          {
+            "name": "http://127.0.0.1:18766/fonts/SpaceGrotesk-wght.woff2",
+            "responseStatus": 200
+          }
+        ],
+        "route": {
+          "links": [
+            "/fr/index.html",
+            "/en/index.html"
+          ],
+          "status": 404,
+          "title": "404 \u00b7 Engineering Corpus"
+        },
+        "screenshot": {
+          "data": "saved resources.png"
+        }
+      }
+    },
+    "isError": false
+  }
+}

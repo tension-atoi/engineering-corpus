@@ -1,0 +1,130 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "checks": [
+          {
+            "name": "mobile opening focus",
+            "result": "PASS"
+          },
+          {
+            "name": "mobile focus wrap",
+            "result": "PASS"
+          },
+          {
+            "name": "escape state and focus",
+            "result": "PASS"
+          },
+          {
+            "name": "close button",
+            "result": "PASS"
+          },
+          {
+            "name": "390px overflow",
+            "result": "PASS"
+          },
+          {
+            "name": "320px overflow",
+            "result": "PASS"
+          },
+          {
+            "name": "mobile touch opens menu",
+            "result": "PASS"
+          }
+        ],
+        "phase": "mobile",
+        "screenshot": {
+          "data": "saved mobile.png"
+        },
+        "snapshot": {
+          "refs": [
+            {
+              "backendNodeId": 9260,
+              "name": "Aller au contenu",
+              "nth": 0,
+              "ref": "e1",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 9262,
+              "name": "Engineering Corpus, Accueil",
+              "nth": 0,
+              "ref": "e2",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 9268,
+              "name": "English \u2197",
+              "nth": 0,
+              "ref": "e3",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 9269,
+              "name": "Menu",
+              "nth": 0,
+              "ref": "e4",
+              "role": "button"
+            },
+            {
+              "backendNodeId": 9355,
+              "name": "",
+              "nth": 0,
+              "ref": "e5",
+              "role": "code"
+            },
+            {
+              "backendNodeId": 9357,
+              "name": "T\u00e9l\u00e9charger le support",
+              "nth": 0,
+              "ref": "e6",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 9379,
+              "name": "Auto-\u00e9valuation",
+              "nth": 0,
+              "ref": "e7",
+              "role": "DisclosureTriangle"
+            },
+            {
+              "backendNodeId": 9385,
+              "name": "git-worktree",
+              "nth": 0,
+              "ref": "e8",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 9387,
+              "name": "git-merge-base",
+              "nth": 0,
+              "ref": "e9",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 9389,
+              "name": "Marquer comme \u00e9tudi\u00e9",
+              "nth": 0,
+              "ref": "e10",
+              "role": "button"
+            },
+            {
+              "backendNodeId": 9394,
+              "name": "R\u00e8gles de contribution \u2192",
+              "nth": 0,
+              "ref": "e11",
+              "role": "link"
+            }
+          ],
+          "text": "- link \"Aller au contenu\" [ref=e1]\n- banner\n  - link \"Engineering Corpus, Accueil\" [ref=e2]\n  - link \"English \u2197\" [ref=e3]\n  - button \"Menu\" [collapsed] [ref=e4]\n- main\n  - article\n    - heading \"Atelier C \u2014 Workspace Hygiene & Git Topology\" [level=1]\n    - heading \"Probl\u00e8me et invariants\" [level=2]\n    - heading \"Ex\u00e9cuter sur d\u00e9p\u00f4ts fictifs seulement\" [level=2]\n    - code [ref=e5] [cursor=pointer]\n    - paragraph\n      - link \"T\u00e9l\u00e9charger le support\" [ref=e6]\n    - heading \"M\u00e9thode op\u00e9rationnelle\" [level=2]\n    - heading \"Exercice et contre-exemple\" [level=2]\n    - DisclosureTriangle \"Auto-\u00e9valuation\" [collapsed] [ref=e7]\n    - heading \"Qualification et limites\" [level=2]\n    - heading \"R\u00e9f\u00e9rences\" [level=2]\n    - list\n      - listitem [level=1]\n        - link \"git-worktree\" [ref=e8]\n      - listitem [level=1]\n        - link \"git-merge-base\" [ref=e9]\n  - button \"Marquer comme \u00e9tudi\u00e9\" [ref=e10]\n  - sectionfooter\n    - link \"R\u00e8gles de contribution \u2192\" [ref=e11]",
+          "url": "http://127.0.0.1:18766/fr/labs/03-workspace.html"
+        }
+      }
+    },
+    "isError": false
+  }
+}

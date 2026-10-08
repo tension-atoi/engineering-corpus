@@ -1,0 +1,14 @@
+[
+  {
+    "fixture": "relative-link",
+    "expected_exit": 1,
+    "actual_exit": 0,
+    "output": "CORPUS_CHECK_OK locales=2 chapters=8 labs=2 html=28 no_external_site_requests=true\n"
+  },
+  {
+    "fixture": "invalid-status",
+    "expected_exit": 1,
+    "actual_exit": 0,
+    "output": "CORPUS_CHECK_OK locales=2 chapters=8 labs=2 html=28 no_external_site_requests=true\n"
+  }
+]

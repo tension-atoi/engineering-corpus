@@ -1,6 +1,6 @@
 # No network, installs, GitHub CI, or production mutations.
 serve:
-    python3 -m http.server 8080 --directory dist
+    python3 scripts/serve.py --port 8080
 
 build:
     python3 scripts/build.py
@@ -12,3 +12,9 @@ verify:
     python3 scripts/check.py
     python3 scripts/build.py
     python3 scripts/check.py
+
+check-negative:
+    python3 scripts/test_checks.py
+
+labs:
+    python3 scripts/test_labs.py

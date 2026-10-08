@@ -1,6 +1,6 @@
 # Deployment proposal (not executed)
 
-**Target hostname (proposed only):** `corpus.gnu6.live`.
+**Target hostname (proposed only):** `doc.gnu6.live`.
 
 1. Run `python scripts/check.py` and `python scripts/build.py` inside a clean, isolated builder.
 2. Review `dist/` files for secrets, unapproved references, license notices, and potentially misleading claims.

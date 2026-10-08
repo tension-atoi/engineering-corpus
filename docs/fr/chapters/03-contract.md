@@ -1,9 +1,22 @@
 ---
 id: 03-contract
-title: "Architecture & contrats"
+title: Architecture & contrats
 duration: 14
 status: draft
 category: core
+method_id: EC-M03
+classification: proposed-principle
+prerequisites:
+- Bases de Git
+- Lire le résultat d’un test
+artifacts:
+- CONTRACT.md ; table de transitions ; exemple exécutable de l’atelier A ; journal
+  des identités d’action.
+success_criteria:
+- Une demande valide produit une action unique ; une demande refusée n’en produit
+  aucune. Le modèle pédagogique ne prouve pas la continuité d’un vrai moteur graphique.
+references:
+- python-unittest
 ---
 # Architecture & contrats
 
@@ -32,3 +45,29 @@ Lorsqu'une surface change d'ancrage pendant un mouvement, expliciter le point de
 Un menu animé veut lancer un processus. Où placer la permission ? Que devient l'animation si l'action est refusée ?
 
 <details><summary>Auto-évaluation</summary>La permission est vérifiée à la frontière d'exécution, non dans la courbe d'animation. Le refus est un état métier explicite que le rendu peut refléter sans attribuer d'autorité au composant visuel.</details>
+
+
+## Problème traité
+Un menu fictif conserve son état pendant une interruption mais risque de déclencher deux fois la même action.
+
+## Méthode reproductible
+1. Nommer les états idle, moving, denied et done
+2. préciser les entrées request_id/target
+3. décider qui possède l’action
+4. spécifier les doublons et l’annulation
+5. écrire des oracles pour interruption, refus et reprise.
+
+**Responsabilités :** l’auteur propose et enregistre les résultats ; le relecteur critique l’oracle ; le propriétaire du projet décide de l’adoption.
+
+## Exemple, contre-exemple et échec
+Bon exemple : une reprise change la cible mais conserve request_id. Contre-exemple : le renderer lance l’action à chaque frame. Échec : un retry possède une identité neuve et contourne la déduplication ; fixer le contrat du retry.
+
+## Artefacts et qualification
+CONTRACT.md ; table de transitions ; exemple exécutable de l’atelier A ; journal des identités d’action.
+
+Une demande valide produit une action unique ; une demande refusée n’en produit aucune. Le modèle pédagogique ne prouve pas la continuité d’un vrai moteur graphique.
+
+## Exercice de transfert
+Applique la méthode au service fictif Courier. Produis les artefacts ci-dessus, puis invente un cas qui invalide une conclusion trop large.
+
+<details><summary>Critères d’auto-évaluation</summary>Le cas est fictif et reproductible ; la baseline est nommée ; la procédure et le résultat attendu sont explicites ; un échec est conservé ; la conclusion cite les artefacts et leurs limites. Si un critère manque, corrige avant de déclarer la méthode appliquée.</details>

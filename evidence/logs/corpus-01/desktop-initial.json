@@ -1,0 +1,196 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "ok\nreturn: {\n  \"id\": 2,\n  \"snapshot\": {\n    \"refs\": [\n      {\n        \"backendNodeId\": 150,\n        \"name\": \"Aller au contenu\",\n        \"nth\": 0,\n        \"ref\": \"e1\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 152,\n        \"name\": \"Engineering Corpus, Accueil\",\n        \"nth\": 0,\n        \"ref\": \"e2\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 159,\n        \"name\": \"English \u2197\",\n        \"nth\": 0,\n        \"ref\": \"e3\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 167,\n        \"name\": \"Filtrer les chapitres\",\n        \"nth\": 0,\n        \"ref\": \"e4\",\n        \"role\": \"searchbox\"\n      },\n      {\n        \"backendNodeId\": 177,\n        \"name\": \"01 Mandat & d\u00e9coupage 12m\",\n        \"nth\": 0,\n        \"ref\": \"e5\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 180,\n        \"name\": \"02 Autorit\u00e9 & agents 14m\",\n        \"nth\": 0,\n        \"ref\": \"e6\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 183,\n        \"name\": \"03 Architecture & contrats 14m\",\n        \"nth\": 0,\n        \"ref\": \"e7\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 186,\n        \"name\": \"04 Tranches & v\u00e9rification 12m\",\n        \"nth\": 0,\n        \"ref\": \"e8\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 189,\n        \"name\": \"05 Preuves & v\u00e9rit\u00e9 publique 16m\",\n        \"nth\": 0,\n        \"ref\": \"e9\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 192,\n        \"name\": \"06 Documentation & SDK 14m\",\n        \"nth\": 0,\n        \"ref\": \"e10\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 195,\n        \"name\": \"07 LLM local & Copilot 15m\",\n        \"nth\": 0,\n        \"ref\": \"e11\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 198,\n        \"name\": \"08 Hygi\u00e8ne, release & rollback 15m\",\n        \"nth\": 0,\n        \"ref\": \"e12\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 203,\n        \"name\": \"\u2197 Atelier A \u2014 Modification qualifi\u00e9e\",\n        \"nth\": 0,\n        \"ref\": \"e13\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 205,\n        \"name\": \"\u2197 Atelier B \u2014 API v\u00e9rifiable\",\n        \"nth\": 0,\n        \"ref\": \"e14\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 207,\n        \"name\": \"\u2197 Atelier C \u2014 Workspace Hygiene & Git Topology\",\n        \"nth\": 0,\n        \"ref\": \"e15\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 209,\n        \"name\": \"\u25c7 Topologies\",\n        \"nth\": 0,\n        \"ref\": \"e16\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 211,\n        \"name\": \"\u2261 Mod\u00e8les\",\n        \"nth\": 0,\n        \"ref\": \"e17\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 246,\n        \"name\": \"\",\n        \"nth\": 0,\n        \"ref\": \"e18\",\n        \"role\": \"table\"\n      },\n      {\n        \"backendNodeId\": 289,\n        \"name\": \"Auto-\u00e9valuation\",\n        \"nth\": 0,\n        \"ref\": \"e19\",\n        \"role\": \"DisclosureTriangle\"\n      },\n      {\n        \"backendNodeId\": 308,\n        \"name\": \"Crit\u00e8res d\u2019auto-\u00e9valuation\",\n        \"nth\": 0,\n        \"ref\": \"e20\",\n        \"role\": \"DisclosureTriangle\"\n      },\n      {\n        \"backendNodeId\": 312,\n        \"name\": \"git-worktree\",\n        \"nth\": 0,\n        \"ref\": \"e21\",\n        \"role\": \"link\"\n      },\n      {\n        \"backendNodeId\": 314,\n        \"name\": \"\u2713 \u00c9tudi\u00e9 \u2014 annuler\",\n        \"nth\": 0,\n        \"ref\": \"e22\",\n        \"role\": \"button\"\n      },\n      {\n        \"backendNodeId\": 319,\n        \"name\": \"R\u00e8gles de contribution \u2192\",\n        \"nth\": 0,\n        \"ref\": \"e23\",\n        \"role\": \"link\"\n      }\n    ],\n    \"text\": \"- link \\\"Aller au contenu\\\" [ref=e1]\\n- banner\\n  - link \\\"Engineering Corpus, Accueil\\\" [ref=e2]\\n  - link \\\"English \u2197\\\" [ref=e3]\\n- complementary\\n  - searchbox \\\"Filtrer les chapitres\\\" [ref=e4]\\n  - navigation \\\"Corpus\\\"\\n    - heading \\\"CORPUS 08\\\" [level=2]\\n    - link \\\"01 Mandat & d\u00e9coupage 12m\\\" [ref=e5]\\n    - link \\\"02 Autorit\u00e9 & agents 14m\\\" [ref=e6]\\n    - link \\\"03 Architecture & contrats 14m\\\" [ref=e7]\\n    - link \\\"04 Tranches & v\u00e9rification 12m\\\" [ref=e8]\\n    - link \\\"05 Preuves & v\u00e9rit\u00e9 publique 16m\\\" [ref=e9]\\n    - link \\\"06 Documentation & SDK 14m\\\" [ref=e10]\\n    - link \\\"07 LLM local & Copilot 15m\\\" [ref=e11]\\n    - link \\\"08 Hygi\u00e8ne, release & rollback 15m\\\" [ref=e12]\\n    - heading \\\"ATELIERS 03\\\" [level=2]\\n    - link \\\"\u2197 Atelier A \u2014 Modification qualifi\u00e9e\\\" [ref=e13]\\n    - link \\\"\u2197 Atelier B \u2014 API v\u00e9rifiable\\\" [ref=e14]\\n    - link \\\"\u2197 Atelier C \u2014 Workspace Hygiene & Git Topology\\\" [ref=e15]\\n    - link \\\"\u25c7 Topologies\\\" [ref=e16]\\n    - link \\\"\u2261 Mod\u00e8les\\\" [ref=e17]\\n- main\\n  - article\\n    - heading \\\"Mandat & d\u00e9coupage\\\" [level=1]\\n    - heading \\\"Pourquoi un mandat ?\\\" [level=2]\\n    - table [ref=e18] [cursor=pointer]\\n    - heading \\\"Unit\u00e9s de travail\\\" [level=3]\\n    - heading \\\"Gate d'entr\u00e9e\\\" [level=3]\\n    - heading \\\"Exercice\\\" [level=3]\\n    - DisclosureTriangle \\\"Auto-\u00e9valuation\\\" [collapsed] [ref=e19]\\n    - heading \\\"Probl\u00e8me trait\u00e9\\\" [level=2]\\n    - heading \\\"M\u00e9thode reproductible\\\" [level=2]\\n    - heading \\\"Exemple, contre-exemple et \u00e9chec\\\" [level=2]\\n    - heading \\\"Artefacts et qualification\\\" [level=2]\\n    - heading \\\"Exercice de transfert\\\" [level=2]\\n    - DisclosureTriangle \\\"Crit\u00e8res d\u2019auto-\u00e9valuation\\\" [collapsed] [ref=e20]\\n    - heading \\\"R\u00e9f\u00e9rences\\\" [level=2]\\n    - list\\n      - listitem [level=1]\\n        - link \\\"git-worktree\\\" [ref=e21]\\n  - button \\\"\u2713 \u00c9tudi\u00e9 \u2014 annuler\\\" [ref=e22]\\n  - sectionfooter\\n    - link \\\"R\u00e8gles de contribution \u2192\\\" [ref=e23]\",\n    \"url\": \"http://127.0.0.1:18765/fr/chapters/01-mandate.html\"\n  },\n  \"screenshot\": {\n    \"bytes\": 69455,\n    \"format\": \"jpeg\",\n    \"page\": 2\n  }\n}"
+      },
+      {
+        "type": "text",
+        "text": "Tip: this session is \"codex-corpus/steady-puffin\" \u2014 rename it with name_session name=\"<2-3 word task label>\""
+      }
+    ],
+    "structuredContent": {
+      "logs": [],
+      "ok": true,
+      "value": {
+        "id": 2,
+        "screenshot": {
+          "bytes": 69455,
+          "format": "jpeg",
+          "page": 2
+        },
+        "snapshot": {
+          "refs": [
+            {
+              "backendNodeId": 150,
+              "name": "Aller au contenu",
+              "nth": 0,
+              "ref": "e1",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 152,
+              "name": "Engineering Corpus, Accueil",
+              "nth": 0,
+              "ref": "e2",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 159,
+              "name": "English \u2197",
+              "nth": 0,
+              "ref": "e3",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 167,
+              "name": "Filtrer les chapitres",
+              "nth": 0,
+              "ref": "e4",
+              "role": "searchbox"
+            },
+            {
+              "backendNodeId": 177,
+              "name": "01 Mandat & d\u00e9coupage 12m",
+              "nth": 0,
+              "ref": "e5",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 180,
+              "name": "02 Autorit\u00e9 & agents 14m",
+              "nth": 0,
+              "ref": "e6",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 183,
+              "name": "03 Architecture & contrats 14m",
+              "nth": 0,
+              "ref": "e7",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 186,
+              "name": "04 Tranches & v\u00e9rification 12m",
+              "nth": 0,
+              "ref": "e8",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 189,
+              "name": "05 Preuves & v\u00e9rit\u00e9 publique 16m",
+              "nth": 0,
+              "ref": "e9",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 192,
+              "name": "06 Documentation & SDK 14m",
+              "nth": 0,
+              "ref": "e10",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 195,
+              "name": "07 LLM local & Copilot 15m",
+              "nth": 0,
+              "ref": "e11",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 198,
+              "name": "08 Hygi\u00e8ne, release & rollback 15m",
+              "nth": 0,
+              "ref": "e12",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 203,
+              "name": "\u2197 Atelier A \u2014 Modification qualifi\u00e9e",
+              "nth": 0,
+              "ref": "e13",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 205,
+              "name": "\u2197 Atelier B \u2014 API v\u00e9rifiable",
+              "nth": 0,
+              "ref": "e14",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 207,
+              "name": "\u2197 Atelier C \u2014 Workspace Hygiene & Git Topology",
+              "nth": 0,
+              "ref": "e15",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 209,
+              "name": "\u25c7 Topologies",
+              "nth": 0,
+              "ref": "e16",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 211,
+              "name": "\u2261 Mod\u00e8les",
+              "nth": 0,
+              "ref": "e17",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 246,
+              "name": "",
+              "nth": 0,
+              "ref": "e18",
+              "role": "table"
+            },
+            {
+              "backendNodeId": 289,
+              "name": "Auto-\u00e9valuation",
+              "nth": 0,
+              "ref": "e19",
+              "role": "DisclosureTriangle"
+            },
+            {
+              "backendNodeId": 308,
+              "name": "Crit\u00e8res d\u2019auto-\u00e9valuation",
+              "nth": 0,
+              "ref": "e20",
+              "role": "DisclosureTriangle"
+            },
+            {
+              "backendNodeId": 312,
+              "name": "git-worktree",
+              "nth": 0,
+              "ref": "e21",
+              "role": "link"
+            },
+            {
+              "backendNodeId": 314,
+              "name": "\u2713 \u00c9tudi\u00e9 \u2014 annuler",
+              "nth": 0,
+              "ref": "e22",
+              "role": "button"
+            },
+            {
+              "backendNodeId": 319,
+              "name": "R\u00e8gles de contribution \u2192",
+              "nth": 0,
+              "ref": "e23",
+              "role": "link"
+            }
+          ],
+          "text": "- link \"Aller au contenu\" [ref=e1]\n- banner\n  - link \"Engineering Corpus, Accueil\" [ref=e2]\n  - link \"English \u2197\" [ref=e3]\n- complementary\n  - searchbox \"Filtrer les chapitres\" [ref=e4]\n  - navigation \"Corpus\"\n    - heading \"CORPUS 08\" [level=2]\n    - link \"01 Mandat & d\u00e9coupage 12m\" [ref=e5]\n    - link \"02 Autorit\u00e9 & agents 14m\" [ref=e6]\n    - link \"03 Architecture & contrats 14m\" [ref=e7]\n    - link \"04 Tranches & v\u00e9rification 12m\" [ref=e8]\n    - link \"05 Preuves & v\u00e9rit\u00e9 publique 16m\" [ref=e9]\n    - link \"06 Documentation & SDK 14m\" [ref=e10]\n    - link \"07 LLM local & Copilot 15m\" [ref=e11]\n    - link \"08 Hygi\u00e8ne, release & rollback 15m\" [ref=e12]\n    - heading \"ATELIERS 03\" [level=2]\n    - link \"\u2197 Atelier A \u2014 Modification qualifi\u00e9e\" [ref=e13]\n    - link \"\u2197 Atelier B \u2014 API v\u00e9rifiable\" [ref=e14]\n    - link \"\u2197 Atelier C \u2014 Workspace Hygiene & Git Topology\" [ref=e15]\n    - link \"\u25c7 Topologies\" [ref=e16]\n    - link \"\u2261 Mod\u00e8les\" [ref=e17]\n- main\n  - article\n    - heading \"Mandat & d\u00e9coupage\" [level=1]\n    - heading \"Pourquoi un mandat ?\" [level=2]\n    - table [ref=e18] [cursor=pointer]\n    - heading \"Unit\u00e9s de travail\" [level=3]\n    - heading \"Gate d'entr\u00e9e\" [level=3]\n    - heading \"Exercice\" [level=3]\n    - DisclosureTriangle \"Auto-\u00e9valuation\" [collapsed] [ref=e19]\n    - heading \"Probl\u00e8me trait\u00e9\" [level=2]\n    - heading \"M\u00e9thode reproductible\" [level=2]\n    - heading \"Exemple, contre-exemple et \u00e9chec\" [level=2]\n    - heading \"Artefacts et qualification\" [level=2]\n    - heading \"Exercice de transfert\" [level=2]\n    - DisclosureTriangle \"Crit\u00e8res d\u2019auto-\u00e9valuation\" [collapsed] [ref=e20]\n    - heading \"R\u00e9f\u00e9rences\" [level=2]\n    - list\n      - listitem [level=1]\n        - link \"git-worktree\" [ref=e21]\n  - button \"\u2713 \u00c9tudi\u00e9 \u2014 annuler\" [ref=e22]\n  - sectionfooter\n    - link \"R\u00e8gles de contribution \u2192\" [ref=e23]",
+          "url": "http://127.0.0.1:18765/fr/chapters/01-mandate.html"
+        }
+      }
+    },
+    "isError": false
+  }
+}
