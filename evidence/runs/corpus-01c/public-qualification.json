@@ -1,0 +1,72 @@
+{
+  "mission": "CORPUS-01C-Public-Release-Hygiene",
+  "status": "PUBLIC_SOURCE_QUALIFIED / RELEASE_ARTIFACT_PINNED / DEPLOYMENT_APPROVAL_PENDING",
+  "base_commit": "22d5ebc43016588462a72e395afcc1d647d5150b",
+  "artifact_commit": "afbf37e43174e4aeaea371fc5da8ee1b3a022273",
+  "branch": "corpus-01c-public-release-hygiene",
+  "target": "docs.gnu6.live",
+  "artifact_manifest": "evidence/runs/corpus-01c/artifact-manifest.json",
+  "artifact_manifest_sha256": "fb044668c4dd1ef377483b0bd484f873117cdc38df518f538547725386d1a67f",
+  "artifact": {
+    "directory": "dist/",
+    "file_count": 54,
+    "bytes": 391534,
+    "sha256_list_matches_candidate_commit": true
+  },
+  "build_qualification": {
+    "result": "PASS",
+    "environment_scope": "CPython 3.14 on Linux x86_64",
+    "clean_checkout": true,
+    "isolated_virtual_environment": true,
+    "hash_locked_dependencies_installed_offline": true,
+    "document_checks": "PASS",
+    "two_builds_byte_identical": true,
+    "committed_dist_matches_build": true,
+    "checker_negative_fixtures": 6,
+    "fictional_labs": {"positive": 2, "expected_negative": 2, "workspace_topology": "PASS"},
+    "public_safe_step_summary": [
+      {"name": "clone-and-check-out-exact-commit", "result": "PASS"},
+      {"name": "clean-working-tree", "result": "PASS"},
+      {"name": "isolated-environment-and-offline-locked-dependencies", "result": "PASS"},
+      {"name": "document-coherence-check", "result": "PASS"},
+      {"name": "two-deterministic-builds", "result": "PASS"},
+      {"name": "negative-checker-and-fictional-lab-tests", "result": "PASS"},
+      {"name": "documentation-to-dist-drift-check", "result": "PASS"}
+    ],
+    "limits": [
+      "Same-host Linux x86_64 and CPython 3.14 qualification; other platforms are not covered.",
+      "Raw logs, temporary paths, local browser profiles, infrastructure captures and operator configuration are excluded from this public record.",
+      "No browser review was rerun after token-name sanitization; the color values and rendered content were preserved apart from removing organization-specific labels.",
+      "This is not a public HTTPS, TLS, deployment-image, Nginx syntax, WCAG, or production certification."
+    ]
+  },
+  "public_source_hygiene": {
+    "branch_base_is_last_public_main": true,
+    "raw_private_evidence_in_branch_delta": false,
+    "private_infrastructure_identifiers_in_new_source": 0,
+    "private_local_absolute_paths_in_new_source": 0,
+    "credential_pattern_hits_in_dist": 0,
+    "unexpected_runtime_network_dependencies": 0,
+    "external_links_are_explicit_documentation_navigation": true,
+    "local_build_caches_ignored": true
+  },
+  "coolify_static_configuration": {
+    "project": "gnu6-infra",
+    "environment": "production",
+    "destination": "coolify",
+    "build_pack": "Static",
+    "base_directory": "/dist",
+    "container_port": 80,
+    "nginx_file_role": "template copied manually into the Coolify Nginx configuration editor; repository path is not auto-loaded",
+    "application_requires_saved_ui_configuration_and_build": true
+  },
+  "pending_operator_checks": [
+    "Publish or merge this sanitized branch before Coolify fetches its pinned artifact commit.",
+    "Confirm the deployed checkout SHA is the artifact commit and verify artifact file hashes.",
+    "Save the Nginx template in the Coolify application editor and confirm it is present in the built image; validate its syntax against that image.",
+    "Verify curl or wget exists in the final image before enabling the in-container health check.",
+    "Check DNS, HTTPS SNI certificate, HTTP-to-HTTPS redirect, FR/EN 200, asset MIME/hash responses, bilingual 404 with HTTP 404, and no additional host ports.",
+    "Compare unrelated domains with the approved pre-publication baseline."
+  ],
+  "production_mutations": false
+}
