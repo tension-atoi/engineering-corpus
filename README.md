@@ -14,24 +14,36 @@ The corpus is intended to expand beyond engineering methods. Future editions may
 
 **Compatibility:** The GitHub repository remains `engineering-corpus` for now, and existing paths, chapter identifiers and the browser-local study-progress key are intentionally preserved. A future docs portal can place this independently versioned corpus under a dedicated route.
 
-## Documentation hub (DOCS-HUB-01B)
+## Documentation hub (DOCS-HUB-01C)
 
-The actual root of **[docs.gnu6.live](https://docs.gnu6.live/)** opens the
-French documentation hub. English is available at `/en/hub.html`.
-**Corpus Méthodologique & Hygiène Mental** remains a separate study route:
+The root of **[docs.gnu6.live](https://docs.gnu6.live/)** opens the French
+documentation hub. English is at `/en/hub.html`. The **Corpus Méthodologique
+& Hygiène Mental** is still independent and its study progression is unchanged.
 
 | Public route | Meaning |
 |---|---|
 | `/` | Redirects to `/fr/hub.html` |
 | `/fr/hub.html`, `/en/hub.html` | FR/EN federation entry point |
-| `/fr/index.html`, `/en/index.html` | Existing corpus home, unchanged |
+| `/fr/index.html`, `/en/index.html` | Existing corpus study home, unchanged |
 | `/fr/chapters/*`, `/en/chapters/*` | Existing stable chapter URLs |
+| `/fr/sdk.html`, `/en/sdk.html` | Transparent empty SDK inventory; **no distributable SDK qualified** |
+| `/fr/api.html`, `/en/api.html` | One **experimental Rust code contract**, not an HTTP service |
+| `/registry/source-catalog.json` | Versioned, machine-readable public source provenance |
 
-`docs/hub.json` is the versioned editorial index. Only the corpus currently
-has available routes. SDK, API, Guides and Releases are **planned, not published**:
-there are no placeholder endpoints, imaginary version numbers or dead links.
-Verified source manifests will be introduced in DOCS-HUB-01C. The corpus
-remains **DRAFT / ADOPTION_PENDING**.
+`docs/hub.json` is the editorial navigation index and
+`docs/source-registry.json` is the curated, pinned source manifest.
+The API section references the experimental `gnostral.rs`
+`EngineProvider v0` Rust trait at an exact Git commit with source-file
+SHA-256, crate version `0.0.1` and `publish = false`. This is **not a
+production API, public endpoint or published SDK**. Its async/streaming
+transport bindings are not included in the reference model.
+
+SDK, Guides and Releases have no qualified distributable entries yet.
+The SDK inventory page is accessible but correctly reports no available
+package; Guides and Releases remain non-navigable planned domains.
+Offline builds consume only the committed manifest — **no external network
+access at build or browser runtime**. Verify public pins explicitly when
+updating a source. The corpus remains **DRAFT / ADOPTION_PENDING**.
 
 ## Explore
 

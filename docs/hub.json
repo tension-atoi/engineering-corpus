@@ -1,5 +1,5 @@
 {
-  "edition": "DOCS-HUB-01B",
+  "edition": "DOCS-HUB-01C",
   "domains": [
     {
       "id": "corpus",
@@ -19,26 +19,34 @@
     },
     {
       "id": "sdk",
-      "state": "planned",
+      "state": "inventory",
       "label": {
         "fr": "SDK",
         "en": "SDK"
       },
       "description": {
-        "fr": "Packages, guides de démarrage et exemples liés à des versions réellement publiées.",
-        "en": "Packages, quickstarts and examples linked to versions actually published."
+        "fr": "Inventaire transparent des SDK. Aucun package public qualifié pour distribution dans cette édition.",
+        "en": "Transparent SDK inventory. No public package qualified for distribution in this edition."
+      },
+      "routes": {
+        "fr": "/fr/sdk.html",
+        "en": "/en/sdk.html"
       }
     },
     {
       "id": "api",
-      "state": "planned",
+      "state": "experimental",
       "label": {
         "fr": "Références API",
         "en": "API reference"
       },
       "description": {
-        "fr": "Contrats, schémas et interfaces extraits de services explicitement exposés.",
-        "en": "Contracts, schemas and interfaces extracted from explicitly published services."
+        "fr": "Une interface de programmation Rust expérimentale, sourcée et épinglée à un commit. Aucune API HTTP publique annoncée.",
+        "en": "One experimental Rust programming interface, source-verified and pinned to a commit. No public HTTP API announced."
+      },
+      "routes": {
+        "fr": "/fr/api.html",
+        "en": "/en/api.html"
       }
     },
     {

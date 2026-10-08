@@ -88,3 +88,43 @@ a.hub-domain-name span{color:var(--corpus-accent-orange-300)}
 .hub-footer{align-items:start;flex-direction:column;gap:12px}
 }
 @media(prefers-reduced-motion:reduce){.hub-primary{transition:none}}
+
+/* DOCS-HUB-01C — provenance-first indexes. No simulated service dashboards. */
+.hub-domain-inventory .hub-domain-status{color:var(--corpus-neutral-200)}
+.hub-domain-experimental .hub-domain-status{color:var(--corpus-accent-orange-300)}
+.hub-domain-inventory .hub-domain-name,
+.hub-domain-experimental .hub-domain-name{color:var(--corpus-neutral-50)}
+.registry-main{max-width:1260px}
+.registry-back{display:inline-flex;align-items:center;min-height:44px;padding:11px 0;margin:24px 0 0;font-size:12px;text-decoration:none;color:var(--corpus-neutral-200)!important}
+.registry-back:hover{color:var(--corpus-accent-green-300)!important}
+.registry-hero{padding:55px 0 42px;border-bottom:1px solid #424c53}
+.registry-hero h1{font-size:clamp(40px,5.6vw,71px);line-height:1.05;letter-spacing:-.065em;max-width:720px;margin:18px 0 20px}
+.registry-hero .hub-lede{font-size:16px;max-width:800px;margin-bottom:36px}
+.registry-status{display:flex;align-items:baseline;justify-content:space-between;gap:15px;color:var(--corpus-neutral-400);font-size:11px}
+.registry-status strong{font-size:14px;color:var(--corpus-neutral-50);font-weight:700;font-variant-numeric:tabular-nums}
+.registry-entries{padding-top:20px}
+.registry-entry{border-bottom:1px solid #424c53;padding:32px 0 45px}
+.registry-entry-head{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;align-items:center}
+.registry-kicker{color:var(--corpus-accent-orange-300);font-size:11px;letter-spacing:.12em;font-weight:700}
+.registry-version{color:var(--corpus-neutral-400);font-size:12px}
+.registry-entry h2{font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.045em;margin:22px 0 16px}
+.registry-entry>p{color:var(--corpus-neutral-200);max-width:810px;font-size:14px;line-height:1.7}
+.registry-facts{display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr);gap:0;margin:33px 0;border-top:1px solid #313941}
+.registry-facts dt,.registry-facts dd{margin:0;padding:13px 0;border-bottom:1px solid #313941;font-size:12px;line-height:1.65}
+.registry-facts dt{color:var(--corpus-neutral-400)}
+.registry-facts dd{color:var(--corpus-neutral-50);overflow-wrap:anywhere}
+.registry-facts code{font-size:11px;overflow-wrap:anywhere;color:var(--corpus-neutral-200)}
+.registry-links{display:flex;gap:12px;flex-wrap:wrap}
+.registry-links a{min-height:44px;display:inline-flex;align-items:center;border:1px solid #5a6670;padding:11px 17px;font-size:12px;font-weight:700;text-decoration:none;color:var(--corpus-neutral-50)!important}
+.registry-links a:hover{border-color:var(--corpus-accent-orange-300);color:var(--corpus-accent-orange-100)!important}
+.registry-empty{border-top:2px solid var(--corpus-neutral-600);padding:27px 0 45px}
+.registry-empty strong{display:block;font-size:clamp(21px,2.4vw,29px);letter-spacing:-.035em}
+.registry-empty p{color:var(--corpus-neutral-200);line-height:1.7;max-width:650px;font-size:13px;margin:14px 0 0}
+.registry-main .hub-policy a{color:var(--corpus-neutral-50)!important;text-underline-offset:3px}
+@media(max-width:600px){
+.registry-hero{padding:36px 0 33px}
+.registry-facts{grid-template-columns:1fr}
+.registry-facts dt{padding-bottom:2px;border-bottom:0}
+.registry-facts dd{padding-top:0}
+.registry-links a{width:100%;justify-content:space-between}
+}

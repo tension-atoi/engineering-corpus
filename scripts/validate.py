@@ -76,6 +76,7 @@ def check(root):
     expected={'index.html','404.html'}
     for lang in catalog['locales']:
         expected.add(f'{lang}/hub.html')
+        expected.update((f'{lang}/sdk.html',f'{lang}/api.html'))
         expected.update(f'{lang}/{directory}/{slug}.html' for directory,slug in units)
         expected.update(f'{lang}/{slug}.html' for slug in ('index','topologies','templates','governance','references'))
         for slug in ('index','governance','references'):
@@ -98,7 +99,7 @@ def check(root):
         for tag,key,ref in page.refs:
             url=urlsplit(ref)
             if url.scheme or url.netloc:
-                require(tag=='a' and key=='href' and url.scheme=='https' and rel.endswith('/references.html'), f'{rel} unexpected external reference {ref}')
+                require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com')), f'{rel} unexpected external reference {ref}')
                 continue
             raw=unquote(url.path)
             target=(dist/raw.lstrip('/') if raw.startswith('/') else (dist/rel).parent/raw) if raw else dist/rel
