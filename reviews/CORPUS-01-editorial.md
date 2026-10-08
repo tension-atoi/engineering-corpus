@@ -22,4 +22,4 @@ The audit of 22 files from the earlier internal candidate classified 8 `PUBLIC_S
 - This audit does not constitute the owner's human approval to merge.
 - Browser and assistive-technology review has not been rerun on the final post-correction commit. No WCAG conformance or learning-effectiveness claim is made.
 - No Coolify resource, image, healthcheck, DNS route, TLS certificate or production behavior has been tested or changed by this review.
-- The 54-file static artifact must be rebuilt, requalified and matched to its manifest after these editorial corrections. Its final commit must be recorded before merge approval.
+- A clean isolated qualification passed after these editorial corrections; the exact artifact commit and 54-file manifest are recorded in `evidence/runs/corpus-01c/`. That commit contains no further source changes. Browser evidence on the final public commit remains pending.
