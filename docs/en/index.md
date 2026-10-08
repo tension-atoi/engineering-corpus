@@ -3,9 +3,9 @@ id: home
 title: "Home"
 status: draft
 ---
-# Engineering Corpus — Study, challenge, transmit
+# Study, challenge, transmit
 
-**An inspectable method, not an obedience manual.** This bilingual, offline-friendly public resource teaches software engineering with explicit contracts, scoped permissions, and reproducible evidence.
+**An inspectable method, not an obedience manual.** The first edition of this bilingual, offline-friendly public corpus teaches software engineering with explicit contracts, scoped permissions and reproducible evidence. New disciplines, narratives and interactive learning paths may be added in later editions; they are not yet part of the published curriculum.
 
 ## Start here
 Read the eight chapters, attempt exercises, and compare answers against self-check criteria. Completion markers are stored in this browser only.

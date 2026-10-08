@@ -3,9 +3,9 @@ id: home
 title: "Accueil"
 status: draft
 ---
-# Corpus d’ingénierie — Étudier, éprouver, transmettre
+# Étudier, éprouver, transmettre
 
-**Une méthode inspectable, pas un manuel d'obéissance.** Ce site enseigne une discipline de travail logiciel fondée sur des contrats explicites, des permissions bornées et des preuves vérifiables. Il est public, bilingue et utilisable hors ligne.
+**Une méthode inspectable, pas un manuel d'obéissance.** Cette première édition enseigne une discipline de travail logiciel fondée sur des contrats explicites, des permissions bornées et des preuves vérifiables. Elle est publique, bilingue et utilisable hors ligne. Le corpus pourra accueillir d’autres disciplines, des récits et des parcours interactifs sans présenter des intentions comme des contenus déjà disponibles.
 
 ## Commencer
 Suivre les huit chapitres, réaliser les exercices et comparer ses réponses aux critères d'auto-évaluation. Les cases de progression sont stockées uniquement dans ce navigateur.

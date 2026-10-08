@@ -1,5 +1,11 @@
 {
   "edition": "0.1-draft",
+  "product": {
+    "name": "Corpus Méthodologique & Hygiène Mental",
+    "status": "draft",
+    "current_path": "engineering-methodology",
+    "future_scope": "open"
+  },
   "default_locale": "fr",
   "locales": [
     "fr",
