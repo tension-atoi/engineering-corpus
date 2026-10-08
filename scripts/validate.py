@@ -76,6 +76,7 @@ def check(root):
     expected={'index.html','404.html'}
     for lang in catalog['locales']:
         expected.add(f'{lang}/hub.html')
+        expected.add(f'{lang}/ecosystem.html')
         expected.update((f'{lang}/sdk.html',f'{lang}/api.html'))
         expected.update(f'{lang}/{directory}/{slug}.html' for directory,slug in units)
         expected.update(f'{lang}/{slug}.html' for slug in ('index','topologies','templates','governance','references'))

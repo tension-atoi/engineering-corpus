@@ -24,6 +24,7 @@ ASSETS=ROOT/'assets'
 CATALOG=json.loads((DOCS/'catalog.json').read_text('utf-8'))
 HUB_CATALOG=json.loads((DOCS/'hub.json').read_text('utf-8'))
 SOURCE_REGISTRY=json.loads((DOCS/'source-registry.json').read_text('utf-8'))
+ECOSYSTEM=json.loads((DOCS/'ecosystem.json').read_text('utf-8'))
 CORPUS_NAME=CATALOG['product']['name']
 M=MarkdownIt('commonmark',{'html':True,'linkify':False,'typographer':False}).enable('table')
 
@@ -213,7 +214,7 @@ def hub_page(locale):
 <link rel="stylesheet" href="/style.css"><link rel="alternate" hreflang="{locale}" href="/{locale}/hub.html"><link rel="alternate" hreflang="{opposite}" href="/{opposite}/hub.html"></head>
 <body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a>
 <header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html" aria-label="gnu.in.labs — {escape(indexlabel)}"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
-<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a aria-current="page" href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a></nav>
+<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a aria-current="page" href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a><a href="/{locale}/ecosystem.html">{'Écosystème' if fr else 'Ecosystem'}</a></nav>
 <a class="hub-language" href="/{opposite}/hub.html" lang="{opposite}">{language} ↗</a></header>
 <main class="hub-main" id="content" tabindex="-1">
 <div class="hub-hero"><div class="hub-intro"><span class="hub-kicker">{escape(kicker)}</span><h1>{escape(intro)}</h1><p class="hub-lede">{escape(subtitle)}</p>
@@ -276,7 +277,7 @@ def source_inventory_page(locale, kind):
 <link rel="alternate" hreflang="{locale}" href="/{locale}/{kind}.html"><link rel="alternate" hreflang="{opposite}" href="/{opposite}/{kind}.html"></head>
 <body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a>
 <header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html" aria-label="gnu.in.labs — docs"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
-<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a></nav>
+<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a><a href="/{locale}/ecosystem.html">{'Écosystème' if fr else 'Ecosystem'}</a></nav>
 <a class="hub-language" href="/{opposite}/{kind}.html" lang="{opposite}">{language} ↗</a></header>
 <main class="hub-main registry-main" id="content" tabindex="-1">
 <a class="registry-back" href="/{locale}/hub.html">{'← Portail documentaire' if fr else '← Documentation portal'}</a>
@@ -289,9 +290,32 @@ def source_inventory_page(locale, kind):
     (DIST/locale/f'{kind}.html').write_text(page,encoding='utf-8')
 
 
+
+def ecosystem_page(locale):
+    other='en' if locale=='fr' else 'fr'
+    fr=locale=='fr'
+    src={x['id']:x for x in ECOSYSTEM['sources']}
+    items=[]
+    for i,item in enumerate(ECOSYSTEM['families'],1):
+        links=[]
+        for ref in item['sources']:
+            source=src[ref]
+            label=escape(source['name'])
+            route=escape(source['route'][locale],quote=True)
+            links.append(f'<a href="{route}">{label} ↗</a>')
+        evidence=' · '.join(links) if links else ('Aucune source publique qualifiée pour cette famille' if fr else 'No qualified public source in this family')
+        items.append(f'<li class="hub-domain"><span class="hub-number">{i:02d}</span><div class="hub-domain-copy"><strong class="hub-domain-name">{escape(item["label"][locale])}</strong><p>{escape(item["summary"][locale])}</p><p class="ecosystem-evidence">{evidence}</p></div></li>')
+    title='Carte des domaines' if fr else 'Ecosystem map'
+    intro=('Six familles pour explorer le programme. Cette carte est un index éditorial, pas une annonce de disponibilité des produits.' if fr else 'Six families to explore the program. This is an editorial index, not a claim that every product is available.')
+    caveat=('Seuls deux dépôts publics sont référencés ici. Les travaux privés et les projets sans provenance publique qualifiée ne sont pas exposés par ce registre.' if fr else 'Only two public repositories are referenced here. Private work and projects without qualified public provenance are not exposed by this registry.')
+    content=f'''<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'"><title>{escape(title)} · gnu.in.labs</title><link rel="stylesheet" href="/style.css"></head><body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a><header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a><nav class="hub-global-nav" aria-label="{'Navigation' if fr else 'Navigation'}"><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a><a href="/{locale}/ecosystem.html">{'Écosystème' if fr else 'Ecosystem'}</a></nav><a class="hub-language" lang="{other}" href="/{other}/ecosystem.html">{'English' if fr else 'Français'} ↗</a></header><main class="hub-main registry-main" id="content" tabindex="-1"><a class="registry-back" href="/{locale}/hub.html">{'← Portail' if fr else '← Portal'}</a><header class="registry-hero"><span class="hub-kicker">GNU.IN.LABS / {'CARTOGRAPHIE' if fr else 'ECOSYSTEM'}</span><h1>{escape(title)}</h1><p class="hub-lede">{escape(intro)}</p></header><section class="hub-index" aria-label="{escape(title)}"><ol class="hub-domains">{''.join(items)}</ol></section><section class="hub-policy"><span class="hub-kicker">SOURCES / AUTHORITY</span><p>{escape(caveat)}</p></section><footer class="hub-footer"><span>gnu.in.labs · DOCS-HUB-01D-0</span><a href="/ecosystem/catalog.json">{'Catalogue source' if fr else 'Source catalog'} ↗</a></footer></main></body></html>'''
+    (DIST/locale/'ecosystem.html').write_text(content,encoding='utf-8')
+
 def build():
     if DIST.exists(): rmtree(DIST)
     DIST.mkdir(parents=True)
+    (DIST/'ecosystem').mkdir(parents=True,exist_ok=True)
+    copy2(DOCS/'ecosystem.json', DIST/'ecosystem'/'catalog.json')
     (DIST/'registry').mkdir(parents=True,exist_ok=True)
     copy2(DOCS/'source-registry.json', DIST/'registry'/'source-catalog.json')
     for file in ('style.css','app.js','favicon.svg','design-tokens.css'):
@@ -303,6 +327,7 @@ def build():
     copytree(DOCS/'templates',DIST/'templates')
     for locale in CATALOG['locales']:
         hub_page(locale)
+        ecosystem_page(locale)
         source_inventory_page(locale,'sdk')
         source_inventory_page(locale,'api')
         for path in [DOCS/locale/'index.md',*sorted((DOCS/locale/'chapters').glob('*.md')),*sorted((DOCS/locale/'labs').glob('*.md'))]:

@@ -1,0 +1,112 @@
+{
+  "edition": "DOCS-HUB-01D-0",
+  "scope": "public verified sources only",
+  "families": [
+    {
+      "id": "platform",
+      "label": {
+        "fr": "Produits & plateformes",
+        "en": "Products & platforms"
+      },
+      "summary": {
+        "fr": "Gnosix, interfaces natives et moteurs web : familles de produits, sans référence publique qualifiée dans ce registre.",
+        "en": "Gnosix, native interfaces and web engines: product families, with no qualified public source in this registry."
+      },
+      "sources": []
+    },
+    {
+      "id": "ux",
+      "label": {
+        "fr": "Interfaces & expérience",
+        "en": "Interfaces & experience"
+      },
+      "summary": {
+        "fr": "Design systems, ergonomie, surfaces et composants. Les projets privés ne sont pas publiés par cette carte.",
+        "en": "Design systems, ergonomics, surfaces and components. This map does not disclose private projects."
+      },
+      "sources": []
+    },
+    {
+      "id": "ai",
+      "label": {
+        "fr": "IA locale & orchestration",
+        "en": "Local AI & orchestration"
+      },
+      "summary": {
+        "fr": "Recherche sur les moteurs d’inférence et contrats expérimentaux publics.",
+        "en": "Research on inference engines and experimental public contracts."
+      },
+      "sources": [
+        "gnostral"
+      ]
+    },
+    {
+      "id": "methods",
+      "label": {
+        "fr": "Méthodologies & workflows",
+        "en": "Methodologies & workflows"
+      },
+      "summary": {
+        "fr": "Méthodes d’ingénierie, documentation inspectable et ateliers reproductibles.",
+        "en": "Engineering methods, inspectable documentation and reproducible labs."
+      },
+      "sources": [
+        "corpus"
+      ]
+    },
+    {
+      "id": "research",
+      "label": {
+        "fr": "Recherche & laboratoires",
+        "en": "Research & laboratories"
+      },
+      "summary": {
+        "fr": "Expérimentations techniques et preuves qualifiées au cas par cas, sans extrapolation des résultats.",
+        "en": "Technical experimentation and evidence qualified case by case, without extrapolating results."
+      },
+      "sources": [
+        "gnostral"
+      ]
+    },
+    {
+      "id": "references",
+      "label": {
+        "fr": "Références développeurs",
+        "en": "Developer references"
+      },
+      "summary": {
+        "fr": "SDK, API et versions : documenter seulement les contrats et artefacts publics réellement vérifiés.",
+        "en": "SDK, API and releases: document only genuinely verified public contracts and artifacts."
+      },
+      "sources": [
+        "gnostral"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "corpus",
+      "name": "Corpus Méthodologique & Hygiène Mental",
+      "repository": "https://github.com/tension-atoi/engineering-corpus",
+      "revision": "2712d93e9ca4e8de7fd56e74da95b17f6d85c929",
+      "kind": "study-corpus",
+      "status": "public-draft",
+      "route": {
+        "fr": "/fr/index.html",
+        "en": "/en/index.html"
+      }
+    },
+    {
+      "id": "gnostral",
+      "name": "gnostral.rs",
+      "repository": "https://github.com/tension-atoi/gnostral.rs",
+      "revision": "59a892d3e4dc56bd574e7d062f69f96b7b8193f0",
+      "kind": "experimental-research",
+      "status": "public-experimental",
+      "route": {
+        "fr": "/fr/api.html",
+        "en": "/en/api.html"
+      }
+    }
+  ]
+}
