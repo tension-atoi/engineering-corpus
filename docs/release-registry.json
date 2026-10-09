@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scope": "engineering-corpus only; no inference about tags of other repositories",
+  "source_repository": "https://github.com/tension-atoi/engineering-corpus",
+  "checked_ref": "9edf055d14716ef9f42c2bed80b01848d7318673",
+  "checked_at": "2026-10-08",
+  "verification": "git ls-remote --tags origin, zero refs observed",
+  "releases": []
+}

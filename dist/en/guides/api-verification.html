@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'">
+<title>Verify an interface before documenting it · gnu.in.labs</title><meta name="description" content="One teaching guide tied to a runnable lab. A documentation exercise is not a product API guarantee."><link rel="stylesheet" href="/style.css">
+<link rel="alternate" hreflang="en" href="/en/guides/api-verification.html"><link rel="alternate" hreflang="fr" href="/fr/guides/api-verification.html"></head>
+<body class="hub-page"><a class="skip" href="#content">Skip to content</a>
+<header class="hub-header"><a class="hub-logo" href="/en/hub.html"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
+<nav class="hub-global-nav" aria-label="Primary navigation"><a href="/en/hub.html">Portal</a><a href="/en/index.html">Corpus</a><a href="/en/ecosystem.html">Ecosystem</a></nav>
+<a class="hub-language" lang="fr" href="/fr/guides/api-verification.html">Français ↗</a></header>
+<main class="hub-main registry-main" id="content" tabindex="-1"><a class="registry-back" href="/en/hub.html">← Documentation portal</a>
+<header class="registry-hero"><span class="hub-kicker">GNU.IN.LABS / GUIDE / EXERCISE</span><h1>Verify an interface before documenting it</h1><p class="hub-lede">One teaching guide tied to a runnable lab. A documentation exercise is not a product API guarantee.</p></header>
+<article class="prose guide-prose"><p>A practical guide for distinguishing a <strong>real exported symbol</strong>, <strong>tested behavior</strong>, and <strong>merely proposed API</strong>. The example is deliberately fictional: it does not document any production Gnosix interface.</p>
+<h2 id="section-2">1. Start from source</h2>
+<p><a href="/en/labs/02-api.html">Lab B</a> provides the exercise. Its <a href="/examples/api_lab.py">api_lab.py fixture</a> contains a symbol inventory and an observable assertion. <code>Queue.morph_to</code> is absent; <code>Queue.enqueue</code> is present in the fixture.</p>
+<p>Consult the <a href="/registry/guide-catalog.json">pinned sources in the registry</a> before reaching conclusions about freshness. A pinned revision establishes inspectable content, <strong>not</strong> SDK stability.</p>
+<h2 id="section-3">2. Run both cases locally</h2>
+<p>From the <code>engineering-corpus</code> repository root, with Python 3:</p>
+<pre><code tabindex="0" class="language-sh">python3 examples/api_lab.py --symbol Queue.morph_to
+# Expected exit: 1 (unknown symbol)
+python3 examples/api_lab.py
+# Expected exit: 0
+python3 scripts/test_labs.py
+</code></pre>
+<p>The first failure is <strong>intentional</strong> and must be distinguished from a missing dependency or broken environment. Do not turn a passing teaching fixture into a guarantee about an external API.</p>
+<h2 id="section-4">3. Connect contract to evidence</h2>
+<p>Record: source SHA, requested symbol, result and exit status, test environment, and explicit limits. Classify <code>public-stable</code>, <code>public-experimental</code>, and <code>internal</code> separately; writing documentation does not grant a maturity status.</p>
+<p>For a comparison with a public Rust interface, consult <a href="/en/api.html">EngineProvider v0</a>. That reference remains <strong>experimental</strong>, is not distributed as an SDK, and describes no HTTP endpoint. This guide's Python fixture does not qualify the Rust interface.</p>
+<h2 id="section-5">4. Review and publish</h2>
+<p>Write the same scoped conclusion in English and French, with reciprocal links and the correct maturity status. Do not publish private code, model weights, credentials, or private files. Proposed changes require separate source review.</p>
+<p><strong>Evidence limit:</strong> this guide demonstrates an educational method with a fictional program; it is not a certification or an installation guide for the Gnosix product.</p>
+</article><section class="hub-policy"><span class="hub-kicker">SOURCE / PROVENANCE</span><p>Teaching example pinned to commit <code>9edf055d14716ef9f42c2bed80b01848d7318673</code> · DRAFT</p><ul class="guide-source-list"><li><a href="https://github.com/tension-atoi/engineering-corpus/blob/9edf055d14716ef9f42c2bed80b01848d7318673/docs/fr/labs/02-api.md" rel="noopener noreferrer">docs/fr/labs/02-api.md ↗</a> <code>sha256:7d51ecbd688614595838055ac83fa6bab18ca9dde828d8e55cf50da5fe795369</code></li><li><a href="https://github.com/tension-atoi/engineering-corpus/blob/9edf055d14716ef9f42c2bed80b01848d7318673/docs/en/labs/02-api.md" rel="noopener noreferrer">docs/en/labs/02-api.md ↗</a> <code>sha256:5567bc7be94cc503de96c6f4a4dad57b221046fced5b276e95d6f4a2e9851176</code></li><li><a href="https://github.com/tension-atoi/engineering-corpus/blob/9edf055d14716ef9f42c2bed80b01848d7318673/examples/api_lab.py" rel="noopener noreferrer">examples/api_lab.py ↗</a> <code>sha256:ec71ab2068cf7c405621a035bed47dba1f9809393c478334256ccd06244591f8</code></li><li><a href="https://github.com/tension-atoi/engineering-corpus/blob/9edf055d14716ef9f42c2bed80b01848d7318673/scripts/test_labs.py" rel="noopener noreferrer">scripts/test_labs.py ↗</a> <code>sha256:d627986a702a4337297c8c0c4f21c2061119a70da4e88a7e43044d32bd32711c</code></li></ul><p><a href="/registry/guide-catalog.json">Machine-readable registry ↗</a></p></section><footer class="hub-footer"><span>gnu.in.labs · DOCS-HUB-01D</span><a href="/en/hub.html">Portal ↗</a></footer>
+</main></body></html>

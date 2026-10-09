@@ -1,5 +1,5 @@
 {
-  "edition": "DOCS-HUB-01C",
+  "edition": "DOCS-HUB-01D",
   "domains": [
     {
       "id": "corpus",
@@ -51,26 +51,34 @@
     },
     {
       "id": "guides",
-      "state": "planned",
+      "state": "guide",
       "label": {
         "fr": "Guides",
         "en": "Guides"
       },
       "description": {
-        "fr": "Procédures d’intégration et parcours fondés sur des sources vérifiables.",
-        "en": "Integration procedures and learning paths grounded in verifiable sources."
+        "fr": "Premier guide pédagogique, relié à un atelier et à des sources épinglées. Aucune API de production qualifiée.",
+        "en": "First teaching guide connected to a lab and pinned sources. No production API qualification."
+      },
+      "routes": {
+        "fr": "/fr/guides.html",
+        "en": "/en/guides.html"
       }
     },
     {
       "id": "releases",
-      "state": "planned",
+      "state": "inventory",
       "label": {
         "fr": "Versions et changements",
         "en": "Releases and changes"
       },
       "description": {
-        "fr": "Historique, compatibilité et migrations associés à de véritables tags de publication.",
-        "en": "History, compatibility and migrations tied to actual release tags."
+        "fr": "Registre des versions vérifiées. Aucun tag publié pour le corpus à la dernière vérification.",
+        "en": "Verified release inventory. No corpus release tags observed at the last verification."
+      },
+      "routes": {
+        "fr": "/fr/releases.html",
+        "en": "/en/releases.html"
       }
     }
   ]

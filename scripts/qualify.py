@@ -52,12 +52,20 @@ def main():
         run([python,'-m','pip','freeze','--all'],checkout)
         run([python,'scripts/check.py'],checkout)
         run([python,'scripts/build.py'],checkout)
+        # Git checkout respects the caller's restrictive umask; generated
+        # deployment files must still be readable by an unprivileged web server.
+        import stat
+        for artifact in (checkout/'dist').rglob('*'):
+            expected=0o755 if artifact.is_dir() else 0o644
+            if stat.S_IMODE(artifact.stat().st_mode)!=expected:
+                raise SystemExit(f'Static artifact permissions differ: {artifact}')
         first=hashes(checkout/'dist')
         if first!=before: raise SystemExit('Generated artifact differs from committed dist')
         run([python,'scripts/build.py'],checkout)
         second=hashes(checkout/'dist')
         if second!=first: raise SystemExit('Second build drift')
         run([python,'scripts/check.py'],checkout)
+        run([python,'scripts/test_hub.py'],checkout)
         run([python,'scripts/test_checks.py'],checkout)
         run([python,'scripts/test_labs.py'],checkout)
         run([python,'examples/workspace_lab.py','--output',Path(temporary)/'workspace-evidence'],checkout)

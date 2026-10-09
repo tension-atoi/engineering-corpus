@@ -12,6 +12,9 @@ verify:
     python3 scripts/check.py
     python3 scripts/build.py
     python3 scripts/check.py
+    python3 scripts/test_hub.py
+    python3 scripts/test_checks.py
+    python3 scripts/test_labs.py
 
 check-negative:
     python3 scripts/test_checks.py
