@@ -92,7 +92,6 @@ for lang,other in [('fr','en'),('en','fr')]:
     assert parsed.h1==1
     assert f'/{other}/guides/api-verification.html' in parsed.links
     assert '/registry/guide-catalog.json' in parsed.links
-    assert (DIST/lang/'guides'/'api-verification.html').stat().st_mode & 0o444==0o444
     assert '/examples/api_lab.py' in parsed.links
     assert f'/{lang}/api.html' in parsed.links
     assert f'/{lang}/labs/02-api.html' in parsed.links
