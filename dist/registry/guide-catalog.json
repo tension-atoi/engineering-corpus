@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "qualification": "educational-example-source-verified; not an API, SDK, or production qualification",
+  "guides": [
+    {
+      "id": "api-verification",
+      "kind": "guide",
+      "owner": "engineering-corpus — tension-atoi",
+      "source_repository": "https://github.com/tension-atoi/engineering-corpus",
+      "source_ref": "9edf055d14716ef9f42c2bed80b01848d7318673",
+      "lifecycle": "draft",
+      "distribution": "published teaching content; not a released SDK",
+      "last_verified": "2026-10-08",
+      "locale": [
+        "fr",
+        "en"
+      ],
+      "route": {
+        "fr": "/fr/guides/api-verification.html",
+        "en": "/en/guides/api-verification.html"
+      },
+      "title": {
+        "fr": "Vérifier une interface avant de la documenter",
+        "en": "Verify an interface before documenting it"
+      },
+      "summary": {
+        "fr": "Essai local RED/GREEN sur des symboles fictifs, puis enregistrement des limites de preuve.",
+        "en": "Local RED/GREEN trial on fictional symbols, followed by explicit evidence limits."
+      },
+      "source_paths": {
+        "docs/fr/labs/02-api.md": "7d51ecbd688614595838055ac83fa6bab18ca9dde828d8e55cf50da5fe795369",
+        "docs/en/labs/02-api.md": "5567bc7be94cc503de96c6f4a4dad57b221046fced5b276e95d6f4a2e9851176",
+        "examples/api_lab.py": "ec71ab2068cf7c405621a035bed47dba1f9809393c478334256ccd06244591f8",
+        "scripts/test_labs.py": "d627986a702a4337297c8c0c4f21c2061119a70da4e88a7e43044d32bd32711c"
+      },
+      "related_lab": {
+        "fr": "/fr/labs/02-api.html",
+        "en": "/en/labs/02-api.html"
+      }
+    }
+  ]
+}

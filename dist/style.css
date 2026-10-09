@@ -128,3 +128,17 @@ a.hub-domain-name span{color:var(--corpus-accent-orange-300)}
 .registry-facts dd{padding-top:0}
 .registry-links a{width:100%;justify-content:space-between}
 }
+
+/* DOCS-HUB-01D — Source-backed guide and explicitly empty release registry. */
+.hub-domain-guide .hub-domain-status{color:var(--corpus-accent-orange-300)}
+.hub-domain-guide .hub-domain-name{color:var(--corpus-neutral-50)}
+.guide-prose{max-width:810px;min-height:0;margin:40px 0 44px}
+.guide-prose h2{margin:42px 0 16px;font-size:clamp(21px,2.1vw,28px)}
+.guide-prose p,.guide-prose li{color:var(--corpus-neutral-200);line-height:1.75}
+.guide-prose a{color:var(--corpus-neutral-50);text-decoration:underline;text-decoration-color:var(--corpus-accent-orange-300)}
+.guide-prose a:hover{color:var(--corpus-accent-orange-100)}
+.guide-prose pre{border-radius:0;background:var(--corpus-neutral-950);border-left:3px solid var(--corpus-accent-orange-500)}
+.guide-source-list{padding-left:20px;display:grid;gap:14px;line-height:1.7}
+.guide-source-list a{color:var(--corpus-neutral-50);overflow-wrap:anywhere}
+.guide-source-list code,.hub-policy code{display:inline;overflow-wrap:anywhere;word-break:break-word;font-size:11px;color:var(--corpus-neutral-200)}
+@media(max-width:600px){.guide-prose{margin-top:24px}.guide-prose pre{font-size:11px;padding:14px}.guide-source-list{padding-left:14px}}

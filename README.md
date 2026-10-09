@@ -14,7 +14,7 @@ The corpus is intended to expand beyond engineering methods. Future editions may
 
 **Compatibility:** The GitHub repository remains `engineering-corpus` for now, and existing paths, chapter identifiers and the browser-local study-progress key are intentionally preserved. A future docs portal can place this independently versioned corpus under a dedicated route.
 
-## Documentation hub (DOCS-HUB-01C)
+## Documentation hub (DOCS-HUB-01D)
 
 The root of **[docs.gnu6.live](https://docs.gnu6.live/)** opens the French
 documentation hub. English is at `/en/hub.html`. The **Corpus Méthodologique
@@ -29,6 +29,10 @@ documentation hub. English is at `/en/hub.html`. The **Corpus Méthodologique
 | `/fr/sdk.html`, `/en/sdk.html` | Transparent empty SDK inventory; **no distributable SDK qualified** |
 | `/fr/api.html`, `/en/api.html` | One **experimental Rust code contract**, not an HTTP service |
 | `/registry/source-catalog.json` | Versioned, machine-readable public source provenance |
+| `/fr/guides.html`, `/en/guides.html` | Source-pinned draft teaching guide inventory |
+| `/fr/guides/api-verification.html`, `/en/guides/api-verification.html` | RED/GREEN symbol verification using fictional local Python fixtures |
+| `/fr/releases.html`, `/en/releases.html` | Explicitly empty corpus release inventory: **zero verified tags** |
+| `/registry/guide-catalog.json`, `/registry/release-catalog.json` | Machine-readable, versioned guide and release provenance |
 
 `docs/hub.json` is the editorial navigation index and
 `docs/source-registry.json` is the curated, pinned source manifest.
@@ -38,9 +42,12 @@ SHA-256, crate version `0.0.1` and `publish = false`. This is **not a
 production API, public endpoint or published SDK**. Its async/streaming
 transport bindings are not included in the reference model.
 
-SDK, Guides and Releases have no qualified distributable entries yet.
-The SDK inventory page is accessible but correctly reports no available
-package; Guides and Releases remain non-navigable planned domains.
+No public SDK distribution is qualified. One experimental Rust contract remains
+source-verified, and one draft educational guide exercises the repository's
+fictional local API lab. The guide is **not** a stable SDK or production
+API integration. At the 2026-10-08 verification, engineering-corpus had **no
+release tags**; the release inventory is navigable but empty. Neither state
+makes claims about other Gnosix projects.
 Offline builds consume only the committed manifest — **no external network
 access at build or browser runtime**. Verify public pins explicitly when
 updating a source. The corpus remains **DRAFT / ADOPTION_PENDING**.

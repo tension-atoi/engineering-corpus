@@ -58,6 +58,7 @@ def main():
         second=hashes(checkout/'dist')
         if second!=first: raise SystemExit('Second build drift')
         run([python,'scripts/check.py'],checkout)
+        run([python,'scripts/test_hub.py'],checkout)
         run([python,'scripts/test_checks.py'],checkout)
         run([python,'scripts/test_labs.py'],checkout)
         run([python,'examples/workspace_lab.py','--output',Path(temporary)/'workspace-evidence'],checkout)

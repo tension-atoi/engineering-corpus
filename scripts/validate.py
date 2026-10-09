@@ -77,6 +77,7 @@ def check(root):
     for lang in catalog['locales']:
         expected.add(f'{lang}/hub.html')
         expected.add(f'{lang}/ecosystem.html')
+        expected.update((f'{lang}/guides.html', f'{lang}/guides/api-verification.html', f'{lang}/releases.html'))
         expected.update((f'{lang}/sdk.html',f'{lang}/api.html'))
         expected.update(f'{lang}/{directory}/{slug}.html' for directory,slug in units)
         expected.update(f'{lang}/{slug}.html' for slug in ('index','topologies','templates','governance','references'))
@@ -100,7 +101,7 @@ def check(root):
         for tag,key,ref in page.refs:
             url=urlsplit(ref)
             if url.scheme or url.netloc:
-                require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com')), f'{rel} unexpected external reference {ref}')
+                require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com') or (rel.endswith('/guides/api-verification.html') and url.netloc=='github.com')), f'{rel} unexpected external reference {ref}')
                 continue
             raw=unquote(url.path)
             target=(dist/raw.lstrip('/') if raw.startswith('/') else (dist/rel).parent/raw) if raw else dist/rel
