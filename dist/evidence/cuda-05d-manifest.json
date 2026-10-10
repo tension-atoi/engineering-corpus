@@ -1,0 +1,11 @@
+{
+  "data_artifact": "cuda-05d-public-results.json",
+  "data_sha256": "043ef2a36ae1a71dc7f63062f2a2f0c7e85d7611533a90f464ec350f2f7db078",
+  "document_status": "draft",
+  "evidence_visibility": "sanitized-public-projection-only",
+  "independent_reproduction": "unverified-external",
+  "preregistration_commit": "ee0ea36bae0950c04e13100c7f53cf7e643c82c4",
+  "production_authorization": "denied",
+  "study_id": "CUDA-05D-P01",
+  "underlying_raw_sha256": "b7fc1202b003c70418071815f1bd37dd6eed45a7f96b5f05c03866756083a4bf"
+}

@@ -1,0 +1,43 @@
+name: "Independent replication / Réplication indépendante"
+description: "Report a reproduction attempt, including failures and uncertainties"
+title: "[Replication] CUDA-05X — "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: "Research submissions are public. Redact secrets and personal identifiers. A negative or inconclusive result is welcome."
+  - type: input
+    id: experiment
+    attributes:
+      label: "Experiment ID and protocol revision"
+      description: "e.g. CUDA-05F-P01 and frozen Git commit"
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: "Environment, methodology and controls"
+      description: "Kernel, OS, GPU/driver, setup, commands, positive and negative controls"
+    validations:
+      required: true
+  - type: textarea
+    id: raw
+    attributes:
+      label: "Raw observations, negative outcomes and checksums"
+      description: "Upload redacted logs and hashes, link a public evidence bundle or explain why raw data cannot be shared"
+    validations:
+      required: true
+  - type: textarea
+    id: verdict
+    attributes:
+      label: "Claim tested and your verdict"
+      description: "PASS, FAIL, NOT_QUALIFIED, NOT_RUN or uncertainty; cite the preregistered predicate"
+    validations:
+      required: true
+  - type: textarea
+    id: independence
+    attributes:
+      label: "Independent implementation and conflicts of interest"
+      description: "What was independently implemented vs reused? Declare any affiliations and limitations."
+    validations:
+      required: true

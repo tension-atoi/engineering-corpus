@@ -1,0 +1,95 @@
+{
+  "entries": [
+    {
+      "claim": {
+        "en": "Namespace-local root did not constitute a second host identity in this trial.",
+        "fr": "Un UID root dans un namespace ne constitue pas ici une seconde identité hôte."
+      },
+      "date_utc": "2026-10-09T22:51:04.337441+00:00",
+      "decision": "NOT_QUALIFIED",
+      "evidence_class": "E4 / internal single observation",
+      "external_reproduction": "not demonstrated",
+      "id": "CUDA-05D",
+      "pages": {
+        "en": "/en/studies/cuda-05d.html",
+        "fr": "/fr/studies/cuda-05d.html"
+      },
+      "production_authorization": "DENIED",
+      "protocol_commit": "ee0ea36bae0950c04e13100c7f53cf7e643c82c4",
+      "public_sha256": "043ef2a36ae1a71dc7f63062f2a2f0c7e85d7611533a90f464ec350f2f7db078",
+      "raw_sha256": "b7fc1202b003c70418071815f1bd37dd6eed45a7f96b5f05c03866756083a4bf",
+      "review": "internal-automated-checks-only",
+      "revision": "1.0.0-experimental",
+      "scope": {
+        "en": "SO_PEERCRED and UID mapping comparison; subordinate mapping attempt failed.",
+        "fr": "Comparaison SO_PEERCRED et mapping UID — tentative de mapping subordonné échouée."
+      },
+      "source_commit": "184dd111bb2d364306cdf5abfe315e0b46405f4e",
+      "source_file": "/evidence/cuda-05d-public-results.json",
+      "source_visibility": "private",
+      "status": "draft"
+    },
+    {
+      "claim": {
+        "en": "A disposable supervisor running under a distinct host UID accepted and denied clients using SO_PEERCRED.",
+        "fr": "Un superviseur jetable sous un UID hôte distinct accepte et refuse les clients selon SO_PEERCRED."
+      },
+      "date_utc": "2026-10-09T23:48:28.687521+00:00",
+      "decision": "BOUNDED_OBSERVATION_ONLY",
+      "evidence_class": "E4 / internal single observation",
+      "external_reproduction": "not demonstrated",
+      "id": "CUDA-05E",
+      "pages": {
+        "en": "/en/studies/cuda-05e.html",
+        "fr": "/fr/studies/cuda-05e.html"
+      },
+      "production_authorization": "DENIED",
+      "protocol_commit": "84f82a786d80981edd824a2d9c81f4bbfd105c71",
+      "public_sha256": "67d191db25c00cf5e7a6cb58d7143e79bc7962a90c523c1f458dffc15dbd0a21",
+      "raw_sha256": "d41fa48b43a3b393c182368704585fd81dfcaaaf39427180a836d5c461ded69d",
+      "review": "internal-automated-checks-only",
+      "revision": "1.0.0-experimental",
+      "scope": {
+        "en": "Privileged Docker, DAC control and a connected UID denial; no GPU deployment.",
+        "fr": "Docker privilégié, contrôle DAC et refus d’un UID connecté; aucun déploiement GPU."
+      },
+      "source_commit": "f458c47dae8ffe67272d2a947d3ac022a2a79b74",
+      "source_file": "/evidence/cuda-05e-public-results.json",
+      "source_visibility": "private",
+      "status": "draft"
+    },
+    {
+      "claim": {
+        "en": "The integrated Rust supervisor under a distinct host UID rendered on CUDA/Vulkan and recovered after worker faults in the lab.",
+        "fr": "Le superviseur Rust intégré sous UID hôte distinct exécute CUDA/Vulkan et récupère après pannes de workers dans le laboratoire."
+      },
+      "date_utc": "2026-10-10T00:38:09.638408+00:00",
+      "decision": "BOUNDED_OPERATIONAL_PASS_RELEASE_NOT_QUALIFIED",
+      "evidence_class": "E4 / internal single observation",
+      "external_reproduction": "not demonstrated",
+      "id": "CUDA-05F",
+      "pages": {
+        "en": "/en/studies/cuda-05f.html",
+        "fr": "/fr/studies/cuda-05f.html"
+      },
+      "production_authorization": "DENIED",
+      "protocol_commit": "03ba7945fe6740b2cf35dc28656ba866f66c33fb",
+      "public_sha256": "36c46412207e6a77f5730f52f1e35aa5dcab3aa06bf0a5e1224ce1fe4e44e903",
+      "raw_sha256": "e5dbb22b479b51b5f1eaf9bfdeabab7d9d9050eb7236d176a7ed97dc70d3fdcf",
+      "review": "internal-automated-checks-only",
+      "revision": "1.0.0-experimental",
+      "scope": {
+        "en": "Four acquisitions retained, three negative or incomplete; ten operational lab gates passed, production authority denied.",
+        "fr": "Quatre acquisitions conservées, dont trois incomplètes ou négatives; 10 gates de laboratoire réussis, autorité de production refusée."
+      },
+      "source_commit": "7fa4596705f8611a5440a97d5a4556cdf64ac407",
+      "source_file": "/evidence/cuda-05f-public-results.json",
+      "source_visibility": "private",
+      "status": "draft"
+    }
+  ],
+  "policy": "An E4 internal observation is not a production E5/E6 qualification; raw private evidence cannot be externally verified from a SHA alone.",
+  "registry_version": "2026-10-09.2",
+  "review_status": "draft",
+  "schema": "gnu6.experiments.v1"
+}
