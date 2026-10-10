@@ -141,14 +141,16 @@ promotion**. This control is not equivalent to automatic FR translation.
 ## DOCS-FEDERATION-04 — standalone VPS read-only watch
 
 The authoritative public source registry is [sources.v1.json](sources.v1.json):
-`gnostral` is an enabled external source; `engineering-corpus` is a
-**disabled publisher**, preventing circular ingestion. Repositories not
-publicly qualified (including private Gnosix code) are not watched.
+`gnostral` and `gnosix` are enabled public source owners;
+`engineering-corpus` is a **disabled publisher**, preventing circular ingestion.
+`in.gnu6` is public as of the 2026-10-10 recheck but remains a **disabled
+candidate** until its documentation, license and public-source policy pass
+separate gates. See the dated [surface authority and domain/TLS boundary](SURFACE_AUTHORITY-20261010.md).
 
 The small Python stdlib [watcher](../../scripts/federation_vps_watch.py)
-checks GitHub's **public** commit and content APIs. It fetches 7 allowed
-Markdown blobs only when the upstream SHA changes, validates size/type/Git
-blob integrity, checks a second branch head against concurrent updates, and
+checks GitHub's **public** commit and content APIs. It fetches only the
+source-specific allowlisted Markdown blobs when each upstream SHA changes,
+validates size/type/Git blob integrity, checks a second branch head against concurrent updates, and
 writes mode-0600 `latest.json` or `candidate.json`. These receipts contain
 only repository names, commit hashes, document digests and statuses.
 
@@ -220,10 +222,14 @@ and frozen as a unit-file regression test.
   with 5 source-owned Markdown documents.
 - **Publisher:** `tension-atoi/engineering-corpus`, explicitly disabled as
   an upstream source to prevent self-ingestion loops.
-- **Not admitted:** `tension-atoi/in.gnu6` was reported as newly public, but
-  GitHub still returned `isPrivate=true` and HTTP 404 to unauthenticated
-  visitors at the 2026-10-10 intake. It is **not** in the public source
-  registry. Recheck visibility before any import or public narrative.
+- **Not admitted for content import:** GitHub now reports
+  `tension-atoi/in.gnu6` as **public** (`isPrivate=false`, 2026-10-10
+  10:28 America/Toronto). It is recorded as a **disabled candidate** in the
+  registry, not as an imported source. Its approved public Markdown paths,
+  licensing and claim/evidence boundaries still require a dedicated gate.
+  The Gnosix product site `gnosix.gnu6.live` is separate from the docs
+  portal and currently fails strict TLS with Traefik's default certificate;
+  its separate Motion/site agent retains all deployment authority.
 
 Gnosix source is pinned to the exact public commit in
 [gnosix/manifest.json](gnosix/manifest.json), with per-document SHA-256

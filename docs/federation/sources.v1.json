@@ -28,8 +28,18 @@
       "repository": "tension-atoi/engineering-corpus",
       "branch": "main",
       "enabled": false,
-      "display_name": "GNU6 Corpus M\u00e9thodologique",
+      "display_name": "GNU6 Corpus Méthodologique",
       "public_verified_on": "2026-10-10"
+    },
+    {
+      "id": "in-gnu6",
+      "kind": "upstream",
+      "repository": "tension-atoi/in.gnu6",
+      "branch": "main",
+      "enabled": false,
+      "display_name": "in.gnu6",
+      "public_verified_on": "2026-10-10",
+      "admission": "candidate-only; no manifest, license review, source allowlist or approved public route"
     }
   ]
 }

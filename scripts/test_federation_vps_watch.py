@@ -32,6 +32,14 @@ class WatchTests(unittest.TestCase):
         self.assertNotIn("RuntimeMaxSec=", service)
         self.assertIn("MemoryMax=96M", service)
 
+    def test_public_in_gnu6_candidate_disabled_until_source_review(self):
+        public=json.loads(REGISTRY.read_text())
+        candidate=next(x for x in public['sources'] if x['id']=='in-gnu6')
+        self.assertEqual(candidate['repository'],'tension-atoi/in.gnu6')
+        self.assertFalse(candidate['enabled'])
+        self.assertNotIn('manifest',candidate)
+        self.assertEqual([x['id'] for x in w.read_sources(REGISTRY)],['gnostral','gnosix'])
+
     def test_real_registry_has_one_public_upstream_no_publisher_loop(self):
         results = w.read_sources(REGISTRY)
         self.assertEqual(len(results),2)
