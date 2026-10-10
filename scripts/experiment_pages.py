@@ -36,6 +36,14 @@ def render_experiment_registry(dist:Path, registry:dict, locale:str)->None:
 <div class="registry-links"><a href="{escape(page,quote=True)}">{page_label} ↗</a>
 <a href="{escape(evidence,quote=True)}">{data_label} ↗</a></div></article>''')
     itemlist="".join(rows)
+    study=('<article class="registry-entry"><h2>Gnostral / RTX 3070 · Q-010 &amp; Q-011</h2>'
+           '<p>'+('Recherche locale reproductible sous contraintes : copies MoE et placement CPU/GPU. Revues externes en attente.' if fr else
+                   'Bounded local inference research: MoE weight copies and CPU/GPU placement. External review pending.')
+           +'</p><div class="registry-links"><a href="/'+locale+'/studies/gnostral-rtx3070.html">'
+           +('Lire l étude' if fr else 'Read study')+' ↗</a>'
+           '<a href="/evidence/gnostral-rtx3070-public-results.json">'
+           +('Données assainies' if fr else 'Sanitized observations')+' ↗</a></div></article>')
+
     other_label="English" if fr else "Français"
     index_label="Retour au portail" if fr else "Back to portal"
     policy=("Données nettoyées; les journaux originaux restent internes. Les hashes de données privées ne rendent pas les échantillons accessibles. Aucune autorisation de production."
@@ -60,7 +68,7 @@ def render_experiment_registry(dist:Path, registry:dict, locale:str)->None:
 <h1>{escape(title)}</h1><p class="hub-lede">{escape(intro)}</p>
 <div class="registry-status"><span>{escape(registry["registry_version"])}</span>
 <strong>{len(registry["entries"]):02d} / {'EXPÉRIENCES' if fr else 'EXPERIMENTS'}</strong></div></header>
-<section class="registry-entries" aria-label="{escape(title)}">{itemlist}</section>
+<section class="registry-entries" aria-label="{escape(title)}">{itemlist}{study}</section>
 <section class="hub-policy"><span class="hub-kicker">{'PREUVES / AUTORITÉ' if fr else 'EVIDENCE / AUTHORITY'}</span>
 <p>{escape(policy)} <a href="/experiments/registry.json">{'Registre JSON' if fr else 'Machine-readable registry'} ↗</a>
  · <a href="/templates/EXPERIMENT.md">{'Modèle de recherche' if fr else 'Research contract'} ↗</a>

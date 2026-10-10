@@ -420,6 +420,7 @@ def build():
     copy2(ROOT/'research'/'blob-in'/'CUDA-05G'/'PUBLIC-RESULTS.json', DIST/'evidence'/'cuda-05g-public-results.json')
     copy2(ROOT/'research'/'blob-in'/'CUDA-05H'/'PUBLIC-RESULTS.json', DIST/'evidence'/'cuda-05h-public-results.json')
     copy2(DOCS/'evidence'/'cuda-05f-manifest.json', DIST/'evidence'/'cuda-05f-manifest.json')
+    copy2(DOCS/'evidence'/'gnostral-rtx3070-public-results.json', DIST/'evidence'/'gnostral-rtx3070-public-results.json')
     (DIST/'experiments').mkdir(parents=True,exist_ok=True)
     copy2(DOCS/'experiments'/'registry.json', DIST/'experiments'/'registry.json')
     copy2(DOCS/'experiments'/'GPU-EVIDENCE-CONTRACT-v1.json', DIST/'experiments'/'GPU-EVIDENCE-CONTRACT-v1.json')
@@ -458,6 +459,8 @@ def build():
         shell(locale,study_meta_g['title'],render_markdown(study_body_g),f'/{locale}/studies/cuda-05g.html',status=study_meta_g['status'])
         study_meta_h,study_body_h=unpack(DOCS/locale/'studies'/'cuda-05h.md')
         shell(locale,study_meta_h['title'],render_markdown(study_body_h),f'/{locale}/studies/cuda-05h.html',status=study_meta_h['status'])
+        g_meta,g_body=unpack(DOCS/locale/'studies'/'gnostral-rtx3070.md')
+        shell(locale,g_meta['title'],render_markdown(g_body),f'/{locale}/studies/gnostral-rtx3070.html',status=g_meta['status'])
         for path in [DOCS/locale/'index.md',*sorted((DOCS/locale/'chapters').glob('*.md')),*sorted((DOCS/locale/'labs').glob('*.md'))]:
             m,body=unpack(path)
             page_id=m['id']

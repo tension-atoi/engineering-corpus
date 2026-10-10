@@ -83,6 +83,7 @@ def check(root):
         expected.add(f'{lang}/studies/cuda-05f.html')
         expected.add(f'{lang}/studies/cuda-05g.html')
         expected.add(f'{lang}/studies/cuda-05h.html')
+        expected.add(f'{lang}/studies/gnostral-rtx3070.html')
         expected.add(f'{lang}/experiments.html')
         expected.add(f'{lang}/challenges.html')
         expected.update((f'{lang}/sdk.html',f'{lang}/api.html'))
