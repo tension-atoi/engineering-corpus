@@ -1,0 +1,25 @@
+{
+  "schema": "gnu6.federation.public-sources.v1",
+  "policy": "public-read-only; reviewed-snapshots; never-auto-promote",
+  "sources": [
+    {
+      "id": "gnostral",
+      "kind": "upstream",
+      "repository": "tension-atoi/gnostral.rs",
+      "branch": "main",
+      "enabled": true,
+      "manifest": "gnostral/manifest.json",
+      "display_name": "gnostral.rs",
+      "public_verified_on": "2026-10-10"
+    },
+    {
+      "id": "engineering-corpus",
+      "kind": "publisher",
+      "repository": "tension-atoi/engineering-corpus",
+      "branch": "main",
+      "enabled": false,
+      "display_name": "GNU6 Corpus Méthodologique",
+      "public_verified_on": "2026-10-10"
+    }
+  ]
+}

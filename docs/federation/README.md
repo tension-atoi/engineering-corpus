@@ -137,3 +137,52 @@ All publication operations remain traceable to a qualified local worktree.
 A recurring read-only check may identify candidates automatically; there
 must still be a **separate GitHub PR review** and **separate pinned Coolify
 promotion**. This control is not equivalent to automatic FR translation.
+
+## DOCS-FEDERATION-04 — standalone VPS read-only watch
+
+The authoritative public source registry is [sources.v1.json](sources.v1.json):
+`gnostral` is an enabled external source; `engineering-corpus` is a
+**disabled publisher**, preventing circular ingestion. Repositories not
+publicly qualified (including private Gnosix code) are not watched.
+
+The small Python stdlib [watcher](../../scripts/federation_vps_watch.py)
+checks GitHub's **public** commit and content APIs. It fetches 7 allowed
+Markdown blobs only when the upstream SHA changes, validates size/type/Git
+blob integrity, checks a second branch head against concurrent updates, and
+writes mode-0600 `latest.json` or `candidate.json`. These receipts contain
+only repository names, commit hashes, document digests and statuses.
+
+**No GitHub credentials, branch writes, PR creation, merge, build or
+Coolify access exist in the VPS watcher.** GitHub PR preparation stays with
+the separately qualified DOCS-FEDERATION-03 desktop tooling and its explicit
+draft-only publication gate. Its regular ChatGPT review automation is
+independent and must recheck upstream SHA before proposing a PR.
+
+The [systemd user unit and timer](../../ops/federation/) are oneshot,
+twice daily (08:17 and 20:17 UTC, randomized up to 10 min), with
+`MemoryHigh=64M`, `MemoryMax=96M`, CPU quota, task limit, 90-second runtime,
+read-only filesystem, and a single narrowly writable operator state
+directory. User linger must be enabled and independently verified; otherwise
+the watcher cannot be called autonomous.
+
+### VPS status and rollback
+
+```bash
+systemctl --user list-timers gnu6-docs-federation-watch.timer
+systemctl --user status gnu6-docs-federation-watch.service --no-pager
+journalctl --user -u gnu6-docs-federation-watch.service -n 30 --no-pager
+cat ~/.local/state/gnu6-docs-federation/latest.json
+loginctl show-user operator -p Linger
+```
+
+Use a release directory named by its exact `engineering-corpus` SHA and
+atomically update the `current` symlink only after staging verification.
+Previous immutable release directories are retained for fast rollback.
+`systemctl --user disable --now gnu6-docs-federation-watch.timer` stops
+future checks without affecting docs.gnu6.live or other Coolify apps.
+
+**Interpretation:** `CURRENT` means *no changed allowlisted document at
+inspection time*. `SOURCE_AHEAD_NO_DOC_CHANGE` means new upstream code but
+no approved Markdown update. `DOC_UPDATE_CANDIDATE` requires the separate
+DOCS-FEDERATION-03 draft-PR qualification; this watcher will not create one
+and never constitutes a site deployment authorization.
