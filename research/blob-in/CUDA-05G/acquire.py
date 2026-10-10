@@ -55,12 +55,17 @@ def host_client(socket_path):
     except OSError as error:
         return {'code': 1, 'error': f'{type(error).__name__}: {error.strerror}'}
 
+PERL_CLIENT = '''use strict;use warnings;use IO::Socket::UNIX;use Socket qw(SOCK_STREAM);
+my $s=IO::Socket::UNIX->new(Type=>SOCK_STREAM,Peer=>"/lab/experiment.sock") or die "CONNECT_FAILED $!\n";
+print {$s} "PING\n"; print scalar(<$s>//"");close $s;
+'''
+
 def other_client(folder, uid, gid):
     return docker('run', '--rm', '--pull=never', '--network', 'none', '--read-only',
                   '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges',
                   '--pids-limit', '24', '--memory', '96m', '--user', f'{uid}:{gid}',
                   '--mount', f'type=bind,source={folder},target=/lab,readonly',
-                  '--entrypoint', 'perl', IMAGE, '/lab/client.pl', '/lab/experiment.sock')
+                  '--entrypoint', 'perl', IMAGE, '-e', PERL_CLIENT)
 
 def acquire(output):
     label = 'gnu6-05g-' + uuid.uuid4().hex[:14]
@@ -87,8 +92,10 @@ def acquire(output):
         '-MSocket', '-MIO::Socket::UNIX', '-e', 'print qq(PERL_OK\n)')
     required(perl_check, 'IMAGE_PERL_MODULES_MISSING')
     record['image_digest'] = image_info['stdout'].strip()
-    with tempfile.TemporaryDirectory(prefix=label+'-', dir=output) as temp:
+    with tempfile.TemporaryDirectory(prefix='c05g-') as temp:
         folder = Path(temp)
+        if len(os.fsencode(str(folder / 'experiment.sock'))) > 107:
+            raise RuntimeError('AF_UNIX_SUN_PATH_LIMIT_EXCEEDED')
         for filename in ('server.pl', 'client.pl'):
             shutil.copyfile(BASE / filename, folder / filename)
             (folder / filename).chmod(0o644)
@@ -139,10 +146,11 @@ def acquire(output):
             record['observations']['connected_unauthorized'] = other_client(folder, UNAUTHORIZED, gid)
             record['observations']['dac_outsider'] = other_client(folder, DAC_OUTSIDER, DAC_OUTSIDER)
             record['observations']['allowed_after'] = host_client(sock)
-            for _ in range(80):
+            for _ in range(150):
                 running = docker('inspect', '--format', '{{.State.Running}}', name)
                 if running['stdout'].strip() == 'false': break
-                time.sleep(.075)
+                time.sleep(.05)
+            record['commands']['server_running_after_wait'] = running
             record['commands']['server_logs'] = docker('logs', name)
             record['commands']['service_exit'] = docker('inspect', '--format',
                                                        '{{.State.ExitCode}}', name)
