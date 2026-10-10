@@ -1,0 +1,93 @@
+/* GNU6 Context Core 1.0.2 — consumer of gnu6-design 1.1.1.
+ * The contextual plane is the shared GNU6 menu surface, not a Pixi theme.
+ * Uses versioned design tokens only; not a parallel palette or motion system. */
+.g6-context-plane {
+  position: fixed;
+  z-index: 1100;
+  width: min(20rem, calc(100vw - 2 * var(--g6-space-xs)));
+  max-height: calc(100dvh - 2 * var(--g6-space-xs));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--g6-space-xs);
+  background: var(--g6-surface-1);
+  border: 1px solid var(--g6-rule-strong);
+  border-radius: var(--g6-radius);
+  box-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  color: var(--g6-text);
+  font-family: var(--g6-font);
+  font-size: var(--g6-text-sm);
+  transform-origin: top left;
+}
+.g6-context-plane__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--g6-space-sm);
+  border-bottom: 1px solid var(--g6-rule);
+  padding: var(--g6-space-xs) var(--g6-space-sm);
+  color: var(--g6-text-3);
+  font-size: var(--g6-text-xs);
+  font-weight: var(--g6-weight-semibold);
+  letter-spacing: var(--g6-track-label);
+}
+.g6-context-plane__subject {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 11rem;
+  font-weight: var(--g6-weight-medium);
+  color: var(--g6-text);
+  letter-spacing: normal;
+}
+.g6-context-plane__rows {
+  padding: var(--g6-space-2xs) 0;
+}
+.g6-context-plane__rows :is(button, a) {
+  box-sizing: border-box;
+  appearance: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--g6-space-sm);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--g6-space-xs) var(--g6-space-sm);
+  border: 0;
+  border-radius: var(--g6-radius-sm);
+  background: transparent;
+  color: var(--g6-text);
+  font-family: var(--g6-font);
+  font-size: var(--g6-text-sm);
+  font-weight: var(--g6-weight-medium);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+.g6-context-plane__rows :is(button, a):hover,
+.g6-context-plane__rows :is(button, a):focus-visible {
+  background: var(--g6-surface-2);
+  color: var(--g6-text);
+  outline: 2px solid var(--g6-focus);
+  outline-offset: -2px;
+}
+.g6-context-plane__footer {
+  padding: var(--g6-space-xs) var(--g6-space-sm);
+  border-top: 1px solid var(--g6-rule);
+  color: var(--g6-text-3);
+  font-size: var(--g6-text-xs);
+  letter-spacing: var(--g6-track-label);
+}
+.g6-context-plane__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Reuse the ratified GNU6 drop keyframe. Animated/Off is a shell decision. */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-g6-motion="off"]) .g6-context-plane {
+    animation: g6-drop var(--g6-dur-1) var(--g6-ease-out) both;
+  }
+}
