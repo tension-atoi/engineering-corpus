@@ -45,3 +45,17 @@ Local representative matrix: **16/16 PASS** (FR/EN hubs, Gnosix project page, AP
 **NON-CLAIMS:** No seamless real cross-origin animation is proven. Native browser document replacement still destroys the old header/body. The owner ratified native isolated domains (D6), not a persistent iframe shell with substituted address-bar identity. Source-public Gnosix/in.gnu6 does not prove `gnosix.gnu6.live` or `in.gnu6.live` are deployed; both returned HTTP 404 during 2026-10-10 inspection (Gnosix also served Traefik's default TLS certificate).
 
 **Next bounded gate:** review/qualify any native cross-domain motion handoff against true browser frames and focus/URL semantics. The earlier radial cover candidate had measured blank frames and MUST NOT be deployed merely because its unit tests pass. Real Gnosix integration starts with a separate workload owner and TLS/router readiness. No new topological authority is implied.
+
+## Owner clarification — intentional new design work
+
+**[CANONICAL, 2026-10-10 11:11 EDT]** The product sites
+`gnosix.gnu6.live` and `in.gnu6.live` are **yet to be written and designed**.
+Their absent routes are a planned creative/product scope, not an outage requiring
+repair. Existing TLS/HTTP observations are checkpoints only. The correct order is
+content/authentic media → UX/design system/interactive prototype → owner review →
+release version → Coolify/TLS/HTTPS qualification. Docs' already-qualified native
+adapter work may continue independently and must not pretend these sites are live.
+
+The proposed GNU6 program contract and distinct product briefs live on
+`gnu6-live feat/motion-service-adapter-02-platform`; they do not transfer
+product ownership to Docs or authorize changing its hosting configuration.

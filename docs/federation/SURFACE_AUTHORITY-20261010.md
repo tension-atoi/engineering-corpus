@@ -4,6 +4,17 @@
 This is a cross-agent boundary record, **not** a request to deploy other
 applications or a permanent claim about their availability.
 
+> **[CANONICAL OWNER AMENDMENT — 2026-10-10, 11:11 EDT]**
+> `gnosix.gnu6.live` and `in.gnu6.live` are **intentionally not yet authored or designed**.
+> Treat them as **DESIGN-PLANNED / EDITORIAL CREATION** workstreams, **not** production
+> outages, TLS repair tickets, or missing deployed sites. The TLS and 404 results
+> below remain valid dated observations, but the word **BLOCKED** in the historical
+> snapshot means only **not yet a candidate for navigation/deployment**. The
+> required next work is genuine product-site content, design, provenance,
+> independent workload-owner approval and then an ordinary release with TLS/route
+> qualification. Public source repositories do not imply published product pages.
+> in.gnu6 is not implicitly a fourth cube orientation.
+
 | Surface | Responsible program | Verified on 2026-10-10 | Publishing boundary |
 | --- | --- | --- | --- |
 | `gnu6.live` | GNU6 portal / Motion promotion team | Strict HTTPS valid; HTTP 200 | Another agent owns the site shell, visual direction, Motion cutover and any Coolify deployment |
