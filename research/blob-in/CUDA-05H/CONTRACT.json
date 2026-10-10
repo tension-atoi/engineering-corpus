@@ -1,0 +1,13 @@
+{
+  "schema": "gnu6.blobin.compute-replication.v1",
+  "experiment_id": "CUDA-05H-P01",
+  "workload": "quadratic-integer-CSG-proxy-not-private-CUDA02-SDF",
+  "width": 96,
+  "height": 64,
+  "primitive_count": 16,
+  "integer_bytes": 4,
+  "required_gates": ["fixture_integrity", "cpu_oracle", "cuda_device_hardware", "vulkan_device_hardware", "cuda_bitwise_parity", "vulkan_bitwise_parity", "mutation_bitflip_rejected", "mutation_truncation_rejected"],
+  "cuda05f_gpu_parity": "NOT_RUN",
+  "cuda05f_runtime_replication": "BLOCKED_PRIVATE_RUNTIME_SOURCE",
+  "production_authorization": "DENIED"
+}

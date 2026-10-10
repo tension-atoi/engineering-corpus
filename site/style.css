@@ -142,3 +142,6 @@ a.hub-domain-name span{color:var(--corpus-accent-orange-300)}
 .guide-source-list a{color:var(--corpus-neutral-50);overflow-wrap:anywhere}
 .guide-source-list code,.hub-policy code{display:inline;overflow-wrap:anywhere;word-break:break-word;font-size:11px;color:var(--corpus-neutral-200)}
 @media(max-width:600px){.guide-prose{margin-top:24px}.guide-prose pre{font-size:11px;padding:14px}.guide-source-list{padding-left:14px}}
+
+/* Reproducibility digests must not force a horizontal page overflow on mobile. */
+.prose :not(pre)>code{overflow-wrap:anywhere;word-break:break-word}

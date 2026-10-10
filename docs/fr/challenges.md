@@ -9,7 +9,7 @@ Une invitation aux scientifiques indépendants : nos résultats sont des **hypot
 
 **Statut : brouillon scientifique ouvert aux critiques.** [Le corpus GitHub](https://github.com/tension-atoi/engineering-corpus) est public et ses Issues accueillent les critiques et contre-exemples authentifiés. Certains kits sont encore incomplets : nous les signalons explicitement. Gitea reste un miroir secondaire envisagé, **pas** la plateforme de soumission.
 
-## Trois défis scientifiques
+## Quatre défis scientifiques
 
 ### CUDA-05D — Identités et namespaces Linux
 
@@ -30,6 +30,12 @@ La question : un service réellement exécuté sous un autre UID hôte peut-il r
 La question : les garanties d'identité et de révocation tiennent-elles *ensemble* lorsque de vrais workers CUDA/Vulkan fonctionnent et échouent ? Dix gates opérationnels ont passé en laboratoire, mais trois acquisitions antérieures ont révélé des défaillances. Le code du runtime complet n'est **pas** encore ouvert à une reproduction indépendante.
 
 [Protocole préenregistré](/challenges/protocols/CUDA-05F-PREREG.md) · [Étude et contre-preuves conservées](/fr/studies/cuda-05f.html) · [Contrat expérimental](/experiments/GPU-EVIDENCE-CONTRACT-v1.json)
+
+### CUDA-05H — Témoin GPU numérique ouvert
+
+Peut-on reproduire, sur du vrai matériel, 6 144 résultats entiers identiques entre CPU, CUDA et Vulkan ? **Kit MIT autonome publiable**, avec source et oracle; une seule expérience locale réussie, réplication extérieure en attente. **Il ne remplace pas la preuve du moteur privé de blob.in.**
+
+[Étude et protocole CUDA-05H](/fr/studies/cuda-05h.html) · [Résultats structurés](/evidence/cuda-05h-public-results.json)
 
 ## Comment participer scientifiquement
 

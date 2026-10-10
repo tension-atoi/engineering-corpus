@@ -1,13 +1,13 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
-    <meta name="description" content="Methods, evidence and autonomy"/><title>Replicate. Refute. Improve the evidence. · Corpus Méthodologique &amp; Hygiène Mental</title>
+    <meta name="description" content="Methods, evidence and autonomy"/><title>CUDA-05H — An inspectable, falsifiable CPU/CUDA/Vulkan compute witness · Corpus Méthodologique &amp; Hygiène Mental</title>
     <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
-    <link rel="alternate" hreflang="fr" href="/fr/challenges.html"><link rel="alternate" hreflang="en" href="/en/challenges.html">
+    <link rel="alternate" hreflang="fr" href="/fr/studies/cuda-05h.html"><link rel="alternate" hreflang="en" href="/en/studies/cuda-05h.html">
     </head><body data-locale="en" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
     <a class="skip" href="#content">Skip to content</a>
     <header class="topbar"><a class="brand" href="/en/index.html" aria-label="Corpus Méthodologique &amp; Hygiène Mental, Home"><span>gnu.in.labs <em>/</em> <strong>Corpus Méthodologique &amp; Hygiène Mental</strong></span></a>
-    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/challenges.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/studies/cuda-05h.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
     <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Close menu">✕</button></div>
     <label class="search-label" for="chapterSearch">Filter chapters</label><input id="chapterSearch" type="search" placeholder="Filter chapters…" autocomplete="off" />
     <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/en/chapters/01-mandate.html" data-search="mandate &amp; slicing" aria-current="false"><span class="nav-number">01</span>Mandate &amp; slicing <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/02-authority.html" data-search="authority &amp; agents" aria-current="false"><span class="nav-number">02</span>Authority &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/03-contract.html" data-search="architecture &amp; contracts" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contracts <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/04-delivery.html" data-search="delivery &amp; verification" aria-current="false"><span class="nav-number">04</span>Delivery &amp; verification <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/05-evidence.html" data-search="evidence &amp; public truth" aria-current="false"><span class="nav-number">05</span>Evidence &amp; public truth <span class="nav-duration">16m</span></a><a class="navlink " href="/en/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/07-llm.html" data-search="local llm &amp; copilot" aria-current="false"><span class="nav-number">07</span>Local LLM &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/en/chapters/08-hygiene.html" data-search="hygiene, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiene, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Labs <span>03</span></h2><a class="navlink " href="/en/labs/01-change.html" data-search="lab a — qualified change" aria-current="false"><span class="nav-number">↗</span>Lab A — Qualified change</a><a class="navlink " href="/en/labs/02-api.html" data-search="lab b — verified api" aria-current="false"><span class="nav-number">↗</span>Lab B — Verified API</a><a class="navlink " href="/en/labs/03-workspace.html" data-search="lab c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Lab C — Workspace Hygiene &amp; Git Topology</a>
@@ -16,28 +16,57 @@
     <a class="navlink" href="/en/studies/cuda-05d.html" data-search="études evidence science expérimentale méthodologie"><span class="nav-number">◇</span>Study · Linux identities</a></nav>
     <div class="rail-bottom"><div class="progress-label"><span>Locally studied</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Study progress"></progress><p data-storage-status role="status"></p><p>No account, no telemetry.</p></div></aside><main id="content" class="main" tabindex="-1">
     <div class="chapter-meta"><span class="eyebrow"><a class="hub-return" href="/en/hub.html">← Portal</a><span class="hub-separator"> / </span>METHODOLOGY</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
-    <article class="prose"><h1 id="section-1">Replicate. Refute. Improve the evidence.</h1>
-<p>An invitation to independent researchers: our published observations are <strong>falsifiable hypotheses</strong>, not claims you are expected to endorse. We seek independent reproductions, counterexamples, alternative methods, and carefully documented negative results.</p>
-<p><strong>State: scientific research draft open to critique.</strong> <a href="https://github.com/tension-atoi/engineering-corpus">The canonical GitHub corpus</a> is public, and its Issues support authenticated independent critiques and counterexamples. Some replication kits remain incomplete and are labeled accordingly. Gitea is a prospective secondary mirror, <strong>not</strong> the submission authority.</p>
-<h2 id="section-2">Four scientific challenges</h2>
-<h3 id="section-3">CUDA-05D — Linux identities and namespaces</h3>
-<p>Question: can a namespace-local root user be mapped to a distinct host principal? Our single trial did <strong>not</strong> demonstrate such a distinction. A valid counterexample must show the actual UID observed by the receiving service using <code>SO_PEERCRED</code>, together with a control.</p>
-<p><a href="/en/studies/cuda-05d.html">Study and limits</a> · <a href="/evidence/cuda-05d-public-results.json">Bounded public data</a></p>
-<h3 id="section-4">CUDA-05E — Socket authorization and DAC</h3>
-<p>Question: can a server running under a genuinely distinct host UID reject both a connected but unauthorized client and another client blocked by filesystem access rules before connection? We observed this within a disposable Docker laboratory and invite researchers to falsify its assumptions and boundary.</p>
-<p><strong>New: <a href="/en/studies/cuda-05g.html">independently implemented CUDA-05G falsification kit</a></strong>. Public code and protocol; one completed local trial, external replication pending.</p>
-<p><a href="/challenges/protocols/CUDA-05E-PREREG.md">Frozen preregistration</a> · <a href="/en/studies/cuda-05e.html">Study and limits</a> · <a href="/evidence/cuda-05e-public-results.json">Bounded public data</a></p>
-<h3 id="section-5">CUDA-05F — Rust GPU supervisor and fault recovery</h3>
-<p>Question: do identity and revocation gates still hold <em>together</em> through actual CUDA/Vulkan computation and child failures? Ten operational gates passed in a bounded laboratory, while three earlier runs revealed meaningful failures. Complete runtime source is <strong>not yet available for independent public replication</strong>.</p>
-<p><a href="/challenges/protocols/CUDA-05F-PREREG.md">Frozen preregistration</a> · <a href="/en/studies/cuda-05f.html">Study and preserved failures</a> · <a href="/experiments/GPU-EVIDENCE-CONTRACT-v1.json">Experiment contract</a></p>
-<h3 id="section-6">CUDA-05H — Open GPU numeric witness</h3>
-<p>Can a real GPU reproduce 6,144 exact integer results across CPU, CUDA and Vulkan? <strong>Independent MIT-licensed source and oracle</strong>; one local trial passed, outside replication pending. <strong>Not a reproduction of the private blob.in GPU engine.</strong></p>
-<p><a href="/en/studies/cuda-05h.html">CUDA-05H study and protocol</a> · <a href="/evidence/cuda-05h-public-results.json">Structured results</a></p>
-<h2 id="section-7">How independent contributions will work</h2>
-<p>A falsifying result should identify a claim and frozen Git revision, specify the machine and controls, preserve raw observations including error conditions, identify the preregistered criterion it contradicts and supply reasonable reproduction instructions. Original authors should be able to respond without erasing or changing earlier results.</p>
-<p>The <a href="/challenges/CONTRIBUTING.md">proposed contribution contract</a> and <a href="/challenges/registry.json">machine-readable challenge register</a> are available. <strong><a href="https://github.com/tension-atoi/engineering-corpus/issues/new/choose">Submit a replication or counterexample through GitHub Issues</a></strong> (GitHub account required). CUDA-05F replication remains limited by unpublished runtime sources.</p>
-<h2 id="section-8">Our commitment</h2>
-<p>We will distinguish <strong>observation</strong>, <strong>independent replication</strong>, <strong>falsification</strong>, <strong>review</strong>, and <strong>production authorization</strong>. Documented disagreement must remain addressable even when it refutes our own conclusion. A private-data checksum is not access to evidence, and no local verdict is a universal claim.</p>
+    <article class="prose"><h1 id="section-1">CUDA-05H — An inspectable, falsifiable CPU/CUDA/Vulkan compute witness</h1>
+<blockquote>
+<p><strong>Open research, one local hardware trial.</strong> An independently implemented MIT-licensed project runs an identical frozen binary scene through Python CPU, native CUDA and native Vulkan compute. <strong>External replication is pending</strong>; the original private blob.in engine is neither released nor reproduced.</p>
+</blockquote>
+<h2 id="section-2">Preregistered hypothesis and numerical workload</h2>
+<p>Protocol <strong>CUDA-05H-P01</strong> was frozen <strong>before</strong> implementing device kernels at Git commit <code>b89b266829b396d5b9569e0cbb2cd38a04f603bb</code>. The fixture contains 16 immutable primitives over a 96 × 64 grid. Each primitive has a center, radius and union/intersection/subtraction operation. The expression <code>q=(x-cx)²+(y-cy)²-r²</code> is an <strong>integer quadratic geometry proxy</strong>, <strong>not</strong> the private engine's floating-point signed distance algorithm.</p>
+<p><strong>Pass criterion:</strong> exactly <strong>6,144 signed 32-bit outputs</strong> or <strong>24,576 bytes</strong>, bitwise identical across CPU, CUDA and Vulkan, with zero tolerance. One mismatching byte falsifies parity. Vulkan must dispatch on a discrete or integrated <strong>physical GPU</strong>, not on a CPU software adapter.</p>
+<h2 id="section-3">RTX 3070 observations</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Backend / negative control</th>
+<th>Observed behavior</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Independently recomputed Python CPU oracle</td>
+<td>Full 6,144 values</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Native compiled CUDA</td>
+<td>RTX 3070 CUDA GPU kernel, sync/readback</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Native Vulkan/SPIR-V</td>
+<td>RTX 3070 GPU compute and fence/readback</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Bit-flipped CUDA output</td>
+<td>Independent checker rejects it</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Truncated Vulkan output</td>
+<td>Independent checker rejects it</td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+<p>All three output files share SHA-256 <code>613845b6341e4491efce3be997853467213ef6687770495b0d2515329678961b</code>. The separately implemented numerical checker reports <strong>8/8 operational gates</strong>. A public-only source/CPU reference validator runs without GPU drivers.</p>
+<h2 id="section-4">Independent replication and counterexamples</h2>
+<p><strong><a href="https://github.com/tension-atoi/engineering-corpus/tree/main/research/blob-in/CUDA-05H">Full new CPU, CUDA, GLSL, Vulkan code and reproduction protocol</a></strong> · <a href="/evidence/cuda-05h-public-results.json">Structured public observations</a> · <a href="https://github.com/tension-atoi/engineering-corpus/issues/new/choose">Submit a replication or counterexample</a></p>
+<p>A CPU-only researcher can reproduce the CPU oracle and check the source manifest, but <strong>cannot claim GPU parity</strong>. Report exact GPU/driver/compiler versions, shader parameters, output digests, negative controls and unsuccessful attempts. No production system probing, privileged host changes or GPU reset is required.</p>
+<h2 id="section-5">Validity limits</h2>
+<p>This is an <strong>independently written GPU compute witness</strong>, not a reproduction of the original CUDA-02/03 signed-distance renderer, the CUDA-05F Rust supervisor, worker isolation or cross-vendor reliability. Local raw samples/tool logs remain private, and their public hashes do not provide external access. Researchers can generate their own raw outputs using the fully published source code.</p>
+<p><strong>Exact statuses:</strong> external replication <code>PENDING</code>; original CUDA-05F <code>BLOCKED_PRIVATE_RUNTIME_SOURCE</code>; CUDA-05F GPU parity <code>NOT_RUN</code>; production authorization <code>DENIED</code>.</p>
 </article>
     <div class="lesson-foot"><span>Study edition · not ratified</span></div>
     <footer><span>© 2026 gnu.in.labs · MIT</span><span>No agent authority is granted.</span><a href="/en/governance.html">Contribution rules →</a></footer>

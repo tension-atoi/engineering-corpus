@@ -1,0 +1,21 @@
+#version 450
+// SPDX-License-Identifier: MIT
+// The input/output buffer binding ABI is an independently published contract.
+layout(local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
+layout(set = 0, binding = 0, std430) readonly buffer Geometry { ivec4 primitives[]; } src;
+layout(set = 0, binding = 1, std430) writeonly buffer Samples { int value[]; } dst;
+void main() {
+    uint i = gl_GlobalInvocationID.x;
+    if(i >= 6144u) return;
+    int x=int(i % 96u),y=int(i / 96u),acc=0;
+    for(int k=0;k<16;k++) {
+        ivec4 p=src.primitives[k];
+        int dx=x-p.x,dy=y-p.y;
+        int q=dx*dx+dy*dy-p.z*p.z;
+        if(k==0)acc=q;
+        else if(p.w==0)acc=min(acc,q);
+        else if(p.w==1)acc=max(acc,q);
+        else acc=max(acc,-q);
+    }
+    dst.value[i]=acc;
+}

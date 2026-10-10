@@ -69,6 +69,37 @@
         "CPU_oracle",
         "failure_trace"
       ]
+    },
+    {
+      "counterexample": {
+        "en": "Observe at least one divergent sample, a software adapter misreported as physical GPU, or an undetected output mutation.",
+        "fr": "Observer au moins un échantillon divergent, un adaptateur logiciel annoncé comme GPU physique, ou une corruption ignorée."
+      },
+      "hypothesis": {
+        "en": "Can an open numeric witness produce the same 6144 integer values using CPU, CUDA and Vulkan on physical GPU hardware?",
+        "fr": "Un témoin numérique public peut-il produire les mêmes 6144 valeurs entières avec CPU, CUDA et Vulkan sur un GPU physique ?"
+      },
+      "id": "CUDA-05H",
+      "public_kit": "OPEN_INDEPENDENT_COMPUTE_WITNESS_NOT_PRIVATE_RUNTIME",
+      "replication_kit": {
+        "experiment_id": "CUDA-05H-P01",
+        "original_cuda05f_runtime_replicated": false,
+        "source_path": "https://github.com/tension-atoi/engineering-corpus/tree/main/research/blob-in/CUDA-05H",
+        "status": "ONE_LOCAL_PASS_EXTERNAL_REPLICATION_PENDING",
+        "study_routes": {
+          "en": "/en/studies/cuda-05h.html",
+          "fr": "/fr/studies/cuda-05h.html"
+        }
+      },
+      "required_artifacts": [
+        "preregistration_commit",
+        "frozen_scene_sha256",
+        "gpu_driver",
+        "cuda_device",
+        "vulkan_device",
+        "raw_output_digest",
+        "independent_validator"
+      ]
     }
   ],
   "forge": {
@@ -88,5 +119,5 @@
   "publication_status": "DRAFT_OPEN_FOR_REVIEW",
   "schema": "gnu6.public-challenges.v1",
   "scientific_review": "OPEN_TO_INDEPENDENT_CRITIQUE_IN_PRINCIPLE",
-  "version": "2026-10-09.cuda-05g-public-kit-draft"
+  "version": "2026-10-09.cuda-05h-open-gpu-witness"
 }

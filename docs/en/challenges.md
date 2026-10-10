@@ -9,7 +9,7 @@ An invitation to independent researchers: our published observations are **falsi
 
 **State: scientific research draft open to critique.** [The canonical GitHub corpus](https://github.com/tension-atoi/engineering-corpus) is public, and its Issues support authenticated independent critiques and counterexamples. Some replication kits remain incomplete and are labeled accordingly. Gitea is a prospective secondary mirror, **not** the submission authority.
 
-## Three scientific challenges
+## Four scientific challenges
 
 ### CUDA-05D — Linux identities and namespaces
 
@@ -30,6 +30,12 @@ Question: can a server running under a genuinely distinct host UID reject both a
 Question: do identity and revocation gates still hold *together* through actual CUDA/Vulkan computation and child failures? Ten operational gates passed in a bounded laboratory, while three earlier runs revealed meaningful failures. Complete runtime source is **not yet available for independent public replication**.
 
 [Frozen preregistration](/challenges/protocols/CUDA-05F-PREREG.md) · [Study and preserved failures](/en/studies/cuda-05f.html) · [Experiment contract](/experiments/GPU-EVIDENCE-CONTRACT-v1.json)
+
+### CUDA-05H — Open GPU numeric witness
+
+Can a real GPU reproduce 6,144 exact integer results across CPU, CUDA and Vulkan? **Independent MIT-licensed source and oracle**; one local trial passed, outside replication pending. **Not a reproduction of the private blob.in GPU engine.**
+
+[CUDA-05H study and protocol](/en/studies/cuda-05h.html) · [Structured results](/evidence/cuda-05h-public-results.json)
 
 ## How independent contributions will work
 
