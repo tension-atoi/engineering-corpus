@@ -15,9 +15,9 @@
       },
       "owner": "gnostral.rs — tension-atoi",
       "source_repository": "https://github.com/tension-atoi/gnostral.rs",
-      "source_ref": "59a892d3e4dc56bd574e7d062f69f96b7b8193f0",
+      "source_ref": "b23923a110608b565deec56e6360041f56a59c0b",
       "source_path": "harness/engine-provider-contract/src/lib.rs",
-      "source_sha256": "6e364db2676ce657f3ab986c1d0be2eca93cd389b426e7e5a26c3b27836f4cef",
+      "source_sha256": "f1cda0bf83aea0da197c790e967548ca3be45ddc66aebb1bc6498814ebd142b0",
       "manifest_path": "harness/engine-provider-contract/Cargo.toml",
       "manifest_sha256": "dfdb5bffcadec3f61ffd95c258e216193590360cf946922fec33cb39090197af",
       "version": "0.0.1",
@@ -30,7 +30,7 @@
         "fr",
         "en"
       ],
-      "last_verified": "2026-10-08",
+      "last_verified": "2026-10-10",
       "route": {
         "fr": "/fr/api.html",
         "en": "/en/api.html"

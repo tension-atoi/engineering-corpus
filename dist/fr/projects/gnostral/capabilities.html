@@ -1,0 +1,182 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'"><meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark light"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111418"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F3ED">
+<title>gnostral.rs / Capacités et preuves</title><meta name="description" content="Documentation reprise depuis le dépôt public avec commit et SHA vérifiés. Contenu technique anglais original.">
+<meta property="og:type" content="website"><meta property="og:title" content="gnostral.rs / Capacités et preuves"><meta property="og:description" content="Documentation reprise depuis le dépôt public avec commit et SHA vérifiés. Contenu technique anglais original.">
+<meta property="og:image" content="https://docs.gnu6.live/gnu6/social/docs-og.png"><meta property="og:url" content="https://docs.gnu6.live/fr/projects/gnostral/capabilities.html"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/gnu6/icons/gnu6-live-32.png"><link rel="apple-touch-icon" href="/gnu6/icons/gnu6-live-180.png">
+<link rel="stylesheet" href="/gnu6/gnu6.css?v=1.1.1"><link rel="stylesheet" href="/style.css?v=1.1.1"><link rel="stylesheet" href="/spine.css"><script src="/spine-map.js" defer></script><script src="/spine.js" defer></script>
+<link rel="alternate" hreflang="fr" href="/fr/projects/gnostral/capabilities.html"><link rel="alternate" hreflang="en" href="/en/projects/gnostral/capabilities.html"></head><body class="g6-site g6-site--docs"><a class="g6-skip" href="#content">Aller au contenu</a><header class="g6-sysbar"><div class="g6-frame g6-sysbar__inner">
+<a class="g6-brand" href="https://gnu6.live/"><img src="/gnu6/identity/gnu6-live-64.png" width="28" height="28" alt=""><span class="g6-brand__word">gnu6<span class="g6-brand__dot">.</span>live</span></a>
+<nav class="g6-sysnav" aria-label="Navigation principale"><a href="https://gnu6.live/">Accueil</a><a href="/fr/hub.html" aria-current="true">Docs</a><a href="https://github.com/tension-atoi">Code <span class="g6-ext" aria-hidden="true">↗</span></a></nav>
+<div class="g6-sysbar__end"><a class="g6-lang lang" href="/en/projects/gnostral/capabilities.html" hreflang="en" lang="en" aria-label="View in English">EN</a>
+<a class="g6-action g6-action--portal" href="https://gnu6.live/login">Portail</a>
+<details class="g6-sysmenu"><summary>Menu</summary><nav class="g6-sysmenu__panel" aria-label="Navigation compacte"><a href="https://gnu6.live/"><span>Accueil</span><span aria-hidden="true">→</span></a><a href="/fr/hub.html" aria-current="page"><span>Docs</span><span aria-hidden="true">→</span></a><a href="https://github.com/tension-atoi"><span>Code</span><span aria-hidden="true">↗</span></a><a href="/en/projects/gnostral/capabilities.html" hreflang="en" lang="en"><span>View in English</span><span aria-hidden="true">EN</span></a></nav></details></div>
+</div></header><div class="g6-spine__mobile-wrap"><button type="button" class="g6-spine__mobile" data-g6-spine-toggle aria-controls="gnu6-spine" aria-expanded="false">☰ Navigation</button></div><div class="g6-spine-shell"><aside class="g6-spine" id="gnu6-spine" aria-label="Navigation GNU6 et Docs"><div class="g6-spine__header"><span class="g6-spine__brand">ESPACE / GNU6</span><div class="g6-spine__domains"><a href="https://gnu6.live/">GNU6</a><a data-domain-active="true" href="/fr/hub.html">Docs</a></div></div><div class="g6-spine__actions"><button type="button" class="g6-spine__control" data-g6-open-search>Rechercher <kbd>/</kbd></button><button type="button" class="g6-spine__control" data-g6-open-atlas>Explorer ▦</button></div><nav class="g6-spine__group" aria-label="Parcours documentaires"><span class="g6-spine__label">PARCOURIR</span><a href="/fr/hub.html"><span aria-hidden="true">01</span>Index documentaire</a><a href="/fr/api.html"><span aria-hidden="true">02</span>Références API</a><a href="/fr/sdk.html"><span aria-hidden="true">03</span>Inventaire SDK</a><a href="/fr/guides.html"><span aria-hidden="true">04</span>Guides</a><a href="/fr/index.html"><span aria-hidden="true">05</span>Corpus méthodologique</a><a href="/fr/experiments.html"><span aria-hidden="true">06</span>Expériences</a><a href="/fr/releases.html"><span aria-hidden="true">07</span>Versions</a></nav></aside><div class="g6-spine__main"><main id="content" class="g6-frame g6-page" tabindex="-1"><section class="g6-hero g6-hero--compact"><div class="g6-hero__copy"><span class="g6-label">gnu.in.labs / FEDERATED SOURCE</span><h1 class="g6-display">gnostral.rs / Capacités et preuves</h1><p class="g6-lede">Documentation reprise depuis le dépôt public avec commit et SHA vérifiés. Contenu technique anglais original.</p></div></section><section class="g6-section"><p class="g6-label">Document source en anglais (version exacte du dépôt)</p><nav class="g6-record__links" aria-label="Parcours Gnostral"><a class="g6-action g6-action--quiet" href="/fr/projects/gnostral/index.html">Projet →</a><a class="g6-action g6-action--quiet" href="/fr/projects/gnostral/overview.html">Vue d’ensemble →</a><a class="g6-action g6-action--quiet" href="/fr/projects/gnostral/capabilities.html">Capacités →</a><a class="g6-action g6-action--quiet" href="/fr/projects/gnostral/questlog.html">QUESTLOG →</a><a class="g6-action g6-action--quiet" href="/fr/projects/gnostral/roadmap.html">Roadmap →</a><a class="g6-action g6-action--quiet" href="/fr/projects/gnostral/architecture.html">Architecture →</a><a class="g6-action g6-action--quiet" href="/fr/projects/gnostral/reproducibility.html">Reproduction →</a></nav></section><section class="g6-section"><article class="g6-prose"><p><strong>Snapshot: 2026-10-10 · Reference workstation: RTX 3070 8 GiB VRAM / 32 GiB RAM</strong></p>
+<p>This is the <strong>public truth table</strong>. A <code>PASS</code> means only that the precise linked gate completed; it does <strong>not</strong> imply a shipped feature, portable speed, or operational readiness.</p>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Capability</th>
+<th>Status</th>
+<th>Mechanism / exact observation</th>
+<th>Primary evidence</th>
+<th>Not established</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bonsai PTQ1 inference baseline</td>
+<td><strong>QUALIFIED WITH LIMITS</strong></td>
+<td>Product-control 35.2 tok/s, 28.44 ms/token, FG-02</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-001-FG03-TRUTH-01.md">Q-001</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/bonsai/BASELINE.md">Bonsai baseline</a></td>
+<td>FG-03 40 tok/s</td>
+</tr>
+<tr>
+<td>Full runtime control methodology</td>
+<td><strong>QUALIFIED WITH LIMITS</strong></td>
+<td>Cold/HTTP/semantic ready, memory, reclaim, concurrency and two desktop profiles</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-002-RUNTIME-BASELINE-01.md">Q-002</a></td>
+<td>Uninterrupted production uptime</td>
+</tr>
+<tr>
+<td>Memory-residency observability ledger</td>
+<td><strong>CONTRACT SUPPORTED</strong></td>
+<td>Cross-mechanism sourced facts vs unsupported/unknown fields</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-003-ELASTIC-LEDGER-02.md">Q-003</a></td>
+<td>Engine-neutral allocator</td>
+</tr>
+<tr>
+<td>EngineProvider v0 lifecycle contract</td>
+<td><strong>CONTRACT TESTED</strong></td>
+<td>Typed engine capability, semantic readiness, unload, reclaim</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/contracts/ENGINE_PROVIDER_V0.md">Contract</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/harness/engine-provider-contract">tests</a></td>
+<td>Dynamic multi-engine deployment</td>
+</tr>
+<tr>
+<td>Strata MoE borrowed CPU weights</td>
+<td><strong>BOUNDED A/B PASS</strong></td>
+<td>Q2_K/Q3_K copy-free path; 9.51 → 20.18 tok/s six-check medians</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/GNOSTRAL-Q010-Q011-PUBLIC-HANDOFF-20261010.md">Q-010/Q-011</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/evidence/runs">receipts</a></td>
+<td>Faster than llama.cpp; all architectures</td>
+</tr>
+<tr>
+<td>Adaptive MoE layer count at load</td>
+<td><strong>OBSERVED</strong></td>
+<td>22/21/21 → 13/12/13 GPU layers with synthetic VRAM reservation</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/GNOSTRAL-Q010-Q011-PUBLIC-HANDOFF-20261010.md">Q-011</a></td>
+<td>Migration while live; competing compute fairness</td>
+</tr>
+<tr>
+<td>Native dense Qwen2.5-Coder 1.5B</td>
+<td><strong>FUNCTIONAL PASS</strong></td>
+<td>Same SHA-pinned Rust/CUDA Q012 engine</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/GNOSTRAL-Q012-NATIVE-CAPABILITIES-20261010.md">Q-012</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/evidence/runs/gnostral-q012-native-three-families-20261010.json">receipt</a></td>
+<td>Quality at production traffic</td>
+</tr>
+<tr>
+<td>Native Qwen3-Embedding 0.6B</td>
+<td><strong>FUNCTIONAL PASS</strong></td>
+<td>3 × 1024 vectors, finite norms and expected cosine ordering</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/evidence/runs/gnostral-q012-native-three-families-20261010.json">Q-012 receipt</a></td>
+<td>Broad retrieval benchmarks</td>
+</tr>
+<tr>
+<td>Native quantized Qwen3 MoE 30B-A3B</td>
+<td><strong>FUNCTIONAL PASS</strong></td>
+<td>Q2_K GGUF mixed CPU/GPU after correcting missing Cargo residency feature</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/GNOSTRAL-Q012-NATIVE-CAPABILITIES-20261010.md">Q-012 report</a></td>
+<td>Concurrent resident models</td>
+</tr>
+<tr>
+<td>SHA-pinned evidence-bound admission</td>
+<td><strong>CONTRACT-ONLY PASS</strong></td>
+<td>Three exact probe plans, all <code>execution_authorized=false</code></td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-013-EVIDENCE-BOUND-ADMISSION.md">Q013-A</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/evidence/runs/gnostral-q013-exact-probe-plans-20261010.json">plans</a></td>
+<td>Permission to spawn arbitrary programs</td>
+</tr>
+<tr>
+<td>Bounded subprocess lifecycle</td>
+<td><strong>CPU FIXTURE PASS</strong></td>
+<td>Pinned executable, cgroup v2, timeout/cancel, group kill, CPU reclaim</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-013B-ISOLATED-FIXTURE.md">Q013-B</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/evidence/runs/gnostral-q013b-fixture-process-20261010.json">receipt</a></td>
+<td>VRAM isolation, adversarial process security</td>
+</tr>
+<tr>
+<td>Real dense inference supervisor pilot</td>
+<td><strong>SINGLE-SERVER PASS</strong></td>
+<td>One bounded local Qwen2.5 server, exact <code>GNOSTRAL</code> oracle, independently audited rehash and GPU ambient return</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-013C-REAL-DENSE-PILOT.md">Q013-C</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/evidence/runs/gnostral-q013c-real-dense-single-server-20261010.json">receipt</a></td>
+<td>Generic server, authenticated public API</td>
+</tr>
+<tr>
+<td>Modeld resource-envelope intents</td>
+<td><strong>DESIGN BOUNDARY</strong></td>
+<td>Supervisor may express envelopes and consume facts; kernel/KV/expert policy remains inside engine</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-008-MODELD-PROMOTION-GATE.md">Q-008</a></td>
+<td>Generic materialization authority</td>
+</tr>
+<tr>
+<td>Real multi-model hot swap</td>
+<td><strong>NOT QUALIFIED</strong></td>
+<td>A→B→A lifetime not demonstrated under one supervisor</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/docs/ROADMAP.md">Next gates</a></td>
+<td>Zero-downtime switching, co-residency</td>
+</tr>
+<tr>
+<td>Always-on multitenant service / authentication</td>
+<td><strong>NOT IMPLEMENTED / NOT QUALIFIED</strong></td>
+<td>No ratified deployment/control plane</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/docs/ROADMAP.md">Roadmap</a></td>
+<td>Public API, SLA</td>
+</tr>
+<tr>
+<td>Burn Remote v5 quantized transfers</td>
+<td><strong>UPSTREAM CONFIRMED, LOCAL NOT TESTED</strong></td>
+<td>Q8/Q4/FP8/FP4 and protocol v5 candidate</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/RUST-INFERENCE-WATCH-20261010.md">Watch</a></td>
+<td>Q012 model transport or engine integration</td>
+</tr>
+<tr>
+<td>Ferrum SLO scheduler</td>
+<td><strong>UPSTREAM EXPERIMENT, LOCAL NOT TESTED</strong></td>
+<td>Optional TTFT/TPOT/ITL-aware policy</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/RUST-INFERENCE-WATCH-20261010.md">Watch</a></td>
+<td>Throughput improvement or SLO guarantee</td>
+</tr>
+<tr>
+<td>WakeKV reversible KV</td>
+<td><strong>PAPER LEAD / NO LOCAL RUN</strong></td>
+<td>Cooling-head CPU reservoir and potential wake-back</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/WAKEKV-LEAD-20261009.md">Paper intake</a></td>
+<td>Q012 attention compatibility, local performance</td>
+</tr>
+<tr>
+<td>CubeCL NCCL/transfer stream ordering</td>
+<td><strong>UPSTREAM CONFIRMED; MULTI-GPU NOT TESTED</strong></td>
+<td>Separate communication resources and collective order</td>
+<td><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/research/runtime/RUST-INFERENCE-WATCH-20261010.md">Watch</a></td>
+<td>Multi-GPU result on one RTX 3070</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section-1">Operational interpretation</h2>
+<p><strong>Three distinct layers must not be merged in product language:</strong></p>
+<ol>
+<li><strong>Mechanism:</strong> upstream source or experimental patch exists.</li>
+<li><strong>Qualification:</strong> a narrowly scoped experiment passed, with evidence and negative gates.</li>
+<li><strong>Delivery:</strong> reproducible, packaged, supported software usable outside the lab.</li>
+</ol>
+<p><code>gnostral.rs</code> currently includes parts of (1) and (2). It does not yet fulfill (3) for a general multi-model serving system.</p>
+<h2 id="section-2">Audit navigation</h2>
+<ul>
+<li><strong>What failed?</strong> The original Q010 reclaim run failed (+196 MiB vs ±128 MiB gate); the first Q012 three-family run omitted a compile-time residency feature, and MoE timed out. Both remained recorded.</li>
+<li><strong>What was repaired?</strong> A fresh Q010 run satisfied the same reclaim threshold; Q012 recompiled with explicit <code>gnostral-expert-residency</code> and all three families passed independently.</li>
+<li><strong>How is the desktop protected?</strong> The external local <code>gnu6-lab-run</code> wrapper places cooperating tasks inside a memory/swap-limited systemd slice. This is <strong>not</strong> itself a portable GNOSTRAL feature or a GPU VRAM cap.</li>
+</ul>
+<p>Read <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/docs/EVIDENCE_MODEL.md">the methodology</a> before reusing a result in a public claim, portfolio, pitch or API documentation.</p>
+</article></section><section class="g6-notice"><span class="g6-label">GIT / SOURCE</span><p><code>b23923a110608b565deec56e6360041f56a59c0b</code> · <code>sha256:25cc0f04bc5d055a15db699c3b7c4012c378c8d79653b0955bc56068f1f069a4</code></p><p><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/docs/CAPABILITY_MATRIX.md" rel="noopener noreferrer">Voir le Markdown original</a></p></section></main></div></div><footer class="g6-footer"><div class="g6-frame g6-footer__inner">
+<div class="g6-footer__org"><img src="/gnu6/identity/gnuinlabs-64.png" width="20" height="20" alt=""><span>gnu.in.labs · Montréal</span></div>
+<p>Édition de travail · non ratifiée · DOCS-HUB-01I-DRAFT · gnu6-design 1.1.1</p>
+<nav class="g6-footer__links" aria-label="Pied de page"><a href="https://gnu6.live/">gnu6.live</a><a href="/fr/governance.html">Gouvernance</a><a href="/registry/source-catalog.json">Provenance</a><a href="https://github.com/tension-atoi">Code <span aria-hidden="true">↗</span></a></nav>
+</div></footer></body></html>

@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'"><meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark light"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111418"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F3ED">
+<title>gnostral.rs / Architecture</title><meta name="description" content="Exact source-backed documentation snapshot, pinned to a public commit and SHA.">
+<meta property="og:type" content="website"><meta property="og:title" content="gnostral.rs / Architecture"><meta property="og:description" content="Exact source-backed documentation snapshot, pinned to a public commit and SHA.">
+<meta property="og:image" content="https://docs.gnu6.live/gnu6/social/docs-og.png"><meta property="og:url" content="https://docs.gnu6.live/en/projects/gnostral/architecture.html"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/gnu6/icons/gnu6-live-32.png"><link rel="apple-touch-icon" href="/gnu6/icons/gnu6-live-180.png">
+<link rel="stylesheet" href="/gnu6/gnu6.css?v=1.1.1"><link rel="stylesheet" href="/style.css?v=1.1.1"><link rel="stylesheet" href="/spine.css"><script src="/spine-map.js" defer></script><script src="/spine.js" defer></script>
+<link rel="alternate" hreflang="en" href="/en/projects/gnostral/architecture.html"><link rel="alternate" hreflang="fr" href="/fr/projects/gnostral/architecture.html"></head><body class="g6-site g6-site--docs"><a class="g6-skip" href="#content">Skip to content</a><header class="g6-sysbar"><div class="g6-frame g6-sysbar__inner">
+<a class="g6-brand" href="https://gnu6.live/?lang=en"><img src="/gnu6/identity/gnu6-live-64.png" width="28" height="28" alt=""><span class="g6-brand__word">gnu6<span class="g6-brand__dot">.</span>live</span></a>
+<nav class="g6-sysnav" aria-label="Main navigation"><a href="https://gnu6.live/?lang=en">Home</a><a href="/en/hub.html" aria-current="true">Docs</a><a href="https://github.com/tension-atoi">Code <span class="g6-ext" aria-hidden="true">↗</span></a></nav>
+<div class="g6-sysbar__end"><a class="g6-lang lang" href="/fr/projects/gnostral/architecture.html" hreflang="fr" lang="fr" aria-label="Voir en français">FR</a>
+<a class="g6-action g6-action--portal" href="https://gnu6.live/login?lang=en">Portal</a>
+<details class="g6-sysmenu"><summary>Menu</summary><nav class="g6-sysmenu__panel" aria-label="Compact navigation"><a href="https://gnu6.live/?lang=en"><span>Home</span><span aria-hidden="true">→</span></a><a href="/en/hub.html" aria-current="page"><span>Docs</span><span aria-hidden="true">→</span></a><a href="https://github.com/tension-atoi"><span>Code</span><span aria-hidden="true">↗</span></a><a href="/fr/projects/gnostral/architecture.html" hreflang="fr" lang="fr"><span>Voir en français</span><span aria-hidden="true">FR</span></a></nav></details></div>
+</div></header><div class="g6-spine__mobile-wrap"><button type="button" class="g6-spine__mobile" data-g6-spine-toggle aria-controls="gnu6-spine" aria-expanded="false">☰ Navigation</button></div><div class="g6-spine-shell"><aside class="g6-spine" id="gnu6-spine" aria-label="GNU6 and Docs navigation"><div class="g6-spine__header"><span class="g6-spine__brand">ESPACE / GNU6</span><div class="g6-spine__domains"><a href="https://gnu6.live/?lang=en">GNU6</a><a data-domain-active="true" href="/en/hub.html">Docs</a></div></div><div class="g6-spine__actions"><button type="button" class="g6-spine__control" data-g6-open-search>Search <kbd>/</kbd></button><button type="button" class="g6-spine__control" data-g6-open-atlas>Explore ▦</button></div><nav class="g6-spine__group" aria-label="Documentation paths"><span class="g6-spine__label">BROWSE</span><a href="/en/hub.html"><span aria-hidden="true">01</span>Documentation index</a><a href="/en/api.html"><span aria-hidden="true">02</span>API references</a><a href="/en/sdk.html"><span aria-hidden="true">03</span>SDK inventory</a><a href="/en/guides.html"><span aria-hidden="true">04</span>Guides</a><a href="/en/index.html"><span aria-hidden="true">05</span>Methodological corpus</a><a href="/en/experiments.html"><span aria-hidden="true">06</span>Experiments</a><a href="/en/releases.html"><span aria-hidden="true">07</span>Releases</a></nav></aside><div class="g6-spine__main"><main id="content" class="g6-frame g6-page" tabindex="-1"><section class="g6-hero g6-hero--compact"><div class="g6-hero__copy"><span class="g6-label">gnu.in.labs / FEDERATED SOURCE</span><h1 class="g6-display">gnostral.rs / Architecture</h1><p class="g6-lede">Exact source-backed documentation snapshot, pinned to a public commit and SHA.</p></div></section><section class="g6-section"><p class="g6-label">Original upstream English source (exact revision)</p><nav class="g6-record__links" aria-label="Gnostral documentation"><a class="g6-action g6-action--quiet" href="/en/projects/gnostral/index.html">Project →</a><a class="g6-action g6-action--quiet" href="/en/projects/gnostral/overview.html">Overview →</a><a class="g6-action g6-action--quiet" href="/en/projects/gnostral/capabilities.html">Capabilities →</a><a class="g6-action g6-action--quiet" href="/en/projects/gnostral/questlog.html">QUESTLOG →</a><a class="g6-action g6-action--quiet" href="/en/projects/gnostral/roadmap.html">Roadmap →</a><a class="g6-action g6-action--quiet" href="/en/projects/gnostral/architecture.html">Architecture →</a><a class="g6-action g6-action--quiet" href="/en/projects/gnostral/reproducibility.html">Reproduction →</a></nav></section><section class="g6-section"><article class="g6-prose"><p><strong>2026-10-10 qualification snapshot.</strong> gnostral.rs is a layered <em>research lab</em>, not a monolithic inference engine or a deployed orchestration service.</p>
+<h2 id="section-1">Operational truth</h2>
+<pre><code tabindex="0" class="language-mermaid">flowchart TB
+    subgraph Proof[&quot;Evidence and qualification (repository)&quot;]
+      Ledger[&quot;SHA-pinned runs, negative controls, independent audit&quot;]
+      Contract[&quot;EngineProvider v0 + Q013-A typed probe plans&quot;]
+    end
+    subgraph Pilot[&quot;Q013-C: qualified single-model local pilot&quot;]
+      Guard[&quot;gnu6-lab-run / systemd cgroup v2&quot;]
+      Supervisor[&quot;Restricted Python experiment supervisor&quot;]
+      Port[&quot;localhost:18949&quot;]
+      Engine[&quot;Pinned mistral.rs/Candle CUDA executable&quot;]
+      Model[&quot;Pinned Qwen2.5-Coder-1.5B weights&quot;]
+      Guard --&gt; Supervisor --&gt; Port --&gt; Engine --&gt; Model
+    end
+    Ledger -. proof checked .-&gt; Supervisor
+    Contract -. reference contract, NOT active controller .-&gt; Supervisor
+    subgraph Experimental[&quot;Separate experimental source/benchmarks&quot;]
+      MoE[&quot;Strata expert residency + Q2_K/Q3_K CPU hot path&quot;]
+      Plac[&quot;Engine-owned layer placement on model load&quot;]
+      Family[&quot;Q012 dense / embeddings / MoE sequential probes&quot;]
+    end
+    Ledger -. reports .-&gt; Experimental
+</code></pre>
+<p><strong>Key distinction:</strong> Q013-A's Rust selection model is <em>not yet wired to the real Q013-C Python pilot</em>. Q013-B's Rust process fixture is a validated local subprocess boundary, not a generic executor or daemon. Q013-C is one hard-coded, identity-checked real server run and independent audit.</p>
+<h2 id="section-2">Truth before availability</h2>
+<p>An engine may report that an endpoint is reachable while model weights are still loading, or respond to <code>/v1/models</code> before it can produce valid output. Therefore:</p>
+<ol>
+<li><strong>Declared</strong> — source or vendor says an operation exists.</li>
+<li><strong>Planned</strong> — a request has an exact SHA-bound capability/evidence match; still no execution grant.</li>
+<li><strong>HTTP-ready</strong> — control endpoint responds, not enough for inference.</li>
+<li><strong>Semantic-ready</strong> — an independently verified oracle succeeds on the exact engine and model.</li>
+<li><strong>Serving</strong> — only the admitted, bounded operation proceeds.</li>
+<li><strong>Draining/unloading</strong> — processes/requests are canceled or completed, engine unload acknowledged.</li>
+<li><strong>Reclaimed</strong> — host-sourced CPU/GPU observations show return to a stated ambient envelope.</li>
+<li><strong>Qualified</strong> — post-run independent auditor checks identities, negative gates and nonclaims.</li>
+</ol>
+<p>These are <strong>desired and/or tested states</strong>, not evidence that every API stage is implemented in one always-running Rust supervisor.</p>
+<h2 id="section-3">Authority table</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Concern</th>
+<th>Owner</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expert slot selection / quantization and compute kernels</td>
+<td>Inference engine</td>
+<td>Engine-specific, requires exact layout and scheduling semantics</td>
+</tr>
+<tr>
+<td>KV paging, compression, per-head cooling/waking</td>
+<td>Inference engine</td>
+<td>No safe generic KV-materialization authority has passed Q008</td>
+</tr>
+<tr>
+<td>Model lifecycle intent, evidence requirements, resource <em>envelopes</em></td>
+<td>Future supervisor</td>
+<td>Q007/Q008 contract permits intent + sourced facts</td>
+</tr>
+<tr>
+<td>Actual host process/OS limits</td>
+<td>systemd/cgroup kernel boundary</td>
+<td>Test harness checks physical limits, never assumes flags alone are enforcement</td>
+</tr>
+<tr>
+<td>GPU VRAM and CUDA fault telemetry</td>
+<td>Device/runtime + host observations</td>
+<td>Cgroups do not directly cap NVIDIA VRAM</td>
+</tr>
+<tr>
+<td>Authentication, network/secret/tool permission</td>
+<td>Separate privileged platform</td>
+<td>Neither a model prompt nor EngineProvider trait receives automatic OS authority</td>
+</tr>
+<tr>
+<td>Public claims and releases</td>
+<td>Evidence/qualification gate</td>
+<td>Independent proof and exact provenance required</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section-4">The transport/security caveat</h2>
+<p>The Q013-C pilot talks to <strong>localhost</strong> on a fixed port, uses a private executable snapshot and a bounded prompt, and checks the pinned model weights before launch. This is useful for a controlled workstation experiment; it does <strong>not</strong> authenticate a hostile peer binding that port, guarantee weight immutability against a same-UID adversary, or supply public API security.</p>
+<p>Q013-D exists to close the listener/PID and semantic trust gap with a real adapter. No delegated OS actions, arbitrary scripts, unknown models, background services or public routes are authorized by the current protocol.</p>
+<h2 id="section-5">Model family taxonomy</h2>
+<ul>
+<li><strong>Bonsai ternary/PTQ1:</strong> separate low-bit research baseline and kernel experiments. Do not mix its throughput figures with Qwen3 MoE.</li>
+<li><strong>Qwen2.5-Coder-1.5B:</strong> dense model; used by Q012 functional pass and the Q013-C real-process pilot.</li>
+<li><strong>Qwen3-Embedding-0.6B:</strong> embedding-only response surface and 1024-dimension oracle; Q012 functional pass, <strong>not</strong> yet Q013-C real-process pilot.</li>
+<li><strong>Qwen3-30B-A3B Q2_K:</strong> quantized MoE with CPU/GPU expert placement; Q010/Q011 performance and Q012 functional results; <strong>not</strong> hot-swappable.</li>
+</ul>
+<h2 id="section-6">Architecture evolution</h2>
+<pre><code tabindex="0" class="language-mermaid">flowchart LR
+  A[&quot;Today: typed contracts + disposable pilots&quot;] --&gt; B[&quot;Q013D: authenticated owned-process adapter&quot;]
+  B --&gt; C[&quot;Q014: sequential A→B→A lifecycle&quot;]
+  C --&gt; D[&quot;Q015: freshness-bound resource admission&quot;]
+  D --&gt; E[&quot;Q016: client-side SLO and scheduling A/B&quot;]
+  E --&gt; F[&quot;Future: secure and independently qualified multi-model service&quot;]
+</code></pre>
+<p>Potential upstream technology donors (Burn remote, Ferrum, CubeCL, WakeKV) remain on an <strong>independent research lane</strong>. Their commits are not proof of integration into this implementation.</p>
+<p>See <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/docs/CAPABILITY_MATRIX.md">capability matrix</a>, <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/docs/ROADMAP.md">roadmap</a> and <a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/quests/Q-008-MODELD-PROMOTION-GATE.md">Q008 promotion decision</a>.</p>
+</article></section><section class="g6-notice"><span class="g6-label">GIT / SOURCE</span><p><code>b23923a110608b565deec56e6360041f56a59c0b</code> · <code>sha256:a8b0fca66ea136215d8737f25be0c0f8872c1314cccf3a548896bed378123f4c</code></p><p><a href="https://github.com/tension-atoi/gnostral.rs/blob/b23923a110608b565deec56e6360041f56a59c0b/docs/ARCHITECTURE.md" rel="noopener noreferrer">Read original Markdown</a></p></section></main></div></div><footer class="g6-footer"><div class="g6-frame g6-footer__inner">
+<div class="g6-footer__org"><img src="/gnu6/identity/gnuinlabs-64.png" width="20" height="20" alt=""><span>gnu.in.labs · Montréal</span></div>
+<p>Draft study edition · not ratified · DOCS-HUB-01I-DRAFT · gnu6-design 1.1.1</p>
+<nav class="g6-footer__links" aria-label="Footer"><a href="https://gnu6.live/?lang=en">gnu6.live</a><a href="/en/governance.html">Governance</a><a href="/registry/source-catalog.json">Provenance</a><a href="https://github.com/tension-atoi">Code <span aria-hidden="true">↗</span></a></nav>
+</div></footer></body></html>

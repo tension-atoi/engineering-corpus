@@ -50,6 +50,22 @@
       }
     },
     {
+      "id": "projects",
+      "state": "available",
+      "label": {
+        "fr": "Projets et sources",
+        "en": "Projects and sources"
+      },
+      "description": {
+        "fr": "Documentation fédérée des dépôts publics : sources, preuves, QUESTLOG et roadmap liés à un commit exact.",
+        "en": "Federated public repository documentation: sources, evidence, questlog and roadmap pinned to an exact commit."
+      },
+      "routes": {
+        "fr": "/fr/projects.html",
+        "en": "/en/projects.html"
+      }
+    },
+    {
       "id": "sdk",
       "state": "inventory",
       "label": {

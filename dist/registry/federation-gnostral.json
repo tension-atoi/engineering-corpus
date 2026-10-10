@@ -1,0 +1,16 @@
+{
+  "branch_observed": "main",
+  "files": {
+    "QUESTLOG.md": "eb043da345d6d01dee807f30a7dd25fe523ec1d6ac1c12ba1204e58d32605131",
+    "README.md": "3daff4d930e73a2eff3a75cf66b07c89a09b3c7f6fde24f42e2f57f0689a1a4e",
+    "docs/ARCHITECTURE.md": "a8b0fca66ea136215d8737f25be0c0f8872c1314cccf3a548896bed378123f4c",
+    "docs/CAPABILITY_MATRIX.md": "25cc0f04bc5d055a15db699c3b7c4012c378c8d79653b0955bc56068f1f069a4",
+    "docs/REPRODUCIBILITY.md": "7f602b0e80f1dd99ae5dda2185caec3cd44e133c7e9f3466a38ec44421053a75",
+    "docs/ROADMAP.md": "271d0ab603a397e1a9f1def010ba0e0a2e49fe49d1b9b1aafca6aa8b55afa618",
+    "docs/START_HERE.md": "b80d70b0630089f3dde9e11b5ff1409dbb85f1f604b3b170195621d3b2ed916e"
+  },
+  "mode": "reviewed-snapshot; offline static rendering; no live fetch or auto-promotion",
+  "repository": "https://github.com/tension-atoi/gnostral.rs",
+  "schema": "gnu6.federation.pinned-markdown.v1",
+  "source_ref": "b23923a110608b565deec56e6360041f56a59c0b"
+}
