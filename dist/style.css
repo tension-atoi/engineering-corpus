@@ -5,6 +5,12 @@
   --g6-ledger-identity: var(--g6-identity-labs);
 }
 
+/* Real top-level Docs identity at rest: green text and existing green icon.
+   Cross-origin navigation remains native; Motion's persistent shell is not injected here. */
+.g6-site--docs .g6-sysbar .g6-brand__word {
+  color: var(--g6-accent-labs-text);
+}
+
 /* Corpus home hero inside the reading column */
 .g6-corpus-hero {
   display: grid;
