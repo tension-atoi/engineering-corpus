@@ -211,3 +211,43 @@ its previously qualified immutable static container image (commit
 container was created or restarted. The earlier service path regression was
 fixed in commit `16e29c8` (use `current/` for both script and manifest)
 and frozen as a unit-file regression test.
+
+## DOCS-FEDERATION-05 — second independent public source: Gnosix
+
+- **Source #1:** `tension-atoi/gnostral.rs` (MIT first-party material),
+  with 7 source-owned Markdown documents.
+- **Source #2:** `tension-atoi/gnosix` (upstream GPL-3.0-or-later declaration),
+  with 5 source-owned Markdown documents.
+- **Publisher:** `tension-atoi/engineering-corpus`, explicitly disabled as
+  an upstream source to prevent self-ingestion loops.
+- **Not admitted:** `tension-atoi/in.gnu6` was reported as newly public, but
+  GitHub still returned `isPrivate=true` and HTTP 404 to unauthenticated
+  visitors at the 2026-10-10 intake. It is **not** in the public source
+  registry. Recheck visibility before any import or public narrative.
+
+Gnosix source is pinned to the exact public commit in
+[gnosix/manifest.json](gnosix/manifest.json), with per-document SHA-256
+and no live GitHub fetch during page rendering. The original technical
+Markdown remains English. The site adds bilingual navigation/editorial
+context, strips image references that are outside the source allowlist and
+links back to the exact version and upstream license.
+
+**Critical claim boundary:** Gnosix is experimental/pre-release; R19
+whole-product acceptance is open. The upstream README/LICENSE declare GPL,
+while `docs/status/STATUS.md` still lists repository-wide license
+ratification as pending. The discrepancy is displayed on the landing page,
+not papered over or treated as a release pass. Runtime receipt digests are
+provenance references, not public audit bundles.
+
+The user-owned VPS watcher supports both upstream manifest entries and
+produces two independent rows in its read-only JSON receipt. The
+DOCS-FEDERATION-03 PR-preparation scripts still operate specifically on
+`gnostral.rs`; Gnosix changes can be **detected** and reviewed manually
+but must not be described as automatically PR-promoted until a separately
+tested multi-source review adapter exists.
+
+Acceptance: second source real and externally publicly visible; manifest,
+hash oracle, 12 retained source snapshots, 92-site-page build, FR/EN Gnosix
+routes, static link/privacy validator, read-only VPS watcher and independent
+negative tests. No auto-merge, auto-deploy, stable Gnosix release or private
+repository ingest follows from these gates.

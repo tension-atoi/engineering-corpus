@@ -13,12 +13,22 @@
       "public_verified_on": "2026-10-10"
     },
     {
+      "id": "gnosix",
+      "kind": "upstream",
+      "repository": "tension-atoi/gnosix",
+      "branch": "main",
+      "enabled": true,
+      "manifest": "gnosix/manifest.json",
+      "display_name": "Gnosix",
+      "public_verified_on": "2026-10-10"
+    },
+    {
       "id": "engineering-corpus",
       "kind": "publisher",
       "repository": "tension-atoi/engineering-corpus",
       "branch": "main",
       "enabled": false,
-      "display_name": "GNU6 Corpus Méthodologique",
+      "display_name": "GNU6 Corpus M\u00e9thodologique",
       "public_verified_on": "2026-10-10"
     }
   ]

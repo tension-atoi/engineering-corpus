@@ -103,7 +103,10 @@ def project_index(locale):
         if fr else "Local Rust inference, quantization and bounded execution, experimental qualification with commit-linked documentation.")
     body=(f'<section class="g6-section"><article class="g6-record"><div class="g6-record__head">{state("experimental","RESEARCH · EXPERIMENTAL")}</div>'
           f'<h2>gnostral.rs</h2><p>{html.escape(summary)}</p><div class="g6-record__links">'
-          f'<a class="g6-action" href="/{locale}/{PATHROOT}/index.html">{"Explorer le projet" if fr else "Explore project"} →</a></div></article></section>'
+          f'<a class="g6-action" href="/{locale}/{PATHROOT}/index.html">{"Explorer le projet" if fr else "Explore project"} →</a></div></article>'
+          '<article class="g6-record"><div class="g6-record__head">'+state("experimental","PRE-RELEASE · EXPERIMENTAL")+'</div>'
+          '<h2>Gnosix</h2><p>'+html.escape("Plateforme Linux locale Rust/Wayland, preuves de surfaces natives et autorités bornées. La release stable reste ouverte." if fr else "Rust/Wayland local-first Linux platform, bounded native-surface and authority evidence. Stable release remains open.")+'</p>'
+          f'<div class="g6-record__links"><a class="g6-action" href="/{locale}/projects/gnosix/index.html">{"Explorer Gnosix" if fr else "Explore Gnosix"} →</a></div></article></section>'
           '<section class="g6-notice"><span class="g6-label">Source / Autorité</span><p>'
           +("Un dépôt public n’est pas automatiquement un produit déployé. Aucun SDK n’est annoncé ici."
             if fr else "A public repository is not automatically a deployed product. No SDK is announced here.")

@@ -79,6 +79,8 @@ def check(root):
         expected.add(f'{lang}/hub.html')
         expected.add(f'{lang}/projects.html')
         expected.add(f'{lang}/projects/gnostral/index.html')
+        expected.add(f'{lang}/projects/gnosix/index.html')
+        expected.update(f'{lang}/projects/gnosix/{name}.html' for name in ('overview','status','roadmap','evidence','methodology'))
         expected.update(f'{lang}/projects/gnostral/{name}.html' for name in ('overview','capabilities','questlog','roadmap','architecture','reproducibility'))
         expected.add(f'{lang}/ecosystem.html')
         expected.update((f'{lang}/guides.html', f'{lang}/guides/api-verification.html', f'{lang}/releases.html'))
@@ -115,7 +117,7 @@ def check(root):
             if url.scheme or url.netloc:
                 if tag=='a' and key=='href' and ref in SYSTEM_LINKS:
                     continue  # ADR-0001: exact GNU6 system-bar links, identical on every page
-                require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com') or (rel.endswith('/guides/api-verification.html') and url.netloc=='github.com') or (rel.endswith('/challenges.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.endswith('/studies/cuda-05g.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.endswith('/studies/cuda-05h.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.startswith(('fr/projects/gnostral/','en/projects/gnostral/')) and url.netloc=='github.com' and url.path.startswith('/tension-atoi/gnostral.rs'))), f'{rel} unexpected external reference {ref}')
+                require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com') or (rel.endswith('/guides/api-verification.html') and url.netloc=='github.com') or (rel.endswith('/challenges.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.endswith('/studies/cuda-05g.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.endswith('/studies/cuda-05h.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.startswith(('fr/projects/gnostral/','en/projects/gnostral/')) and url.netloc=='github.com' and url.path.startswith('/tension-atoi/gnostral.rs')) or (rel.startswith(('fr/projects/gnosix/','en/projects/gnosix/')) and url.netloc=='github.com' and url.path.startswith('/tension-atoi/gnosix'))), f'{rel} unexpected external reference {ref}')
                 continue
             raw=unquote(url.path)
             target=(dist/raw.lstrip('/') if raw.startswith('/') else (dist/rel).parent/raw) if raw else dist/rel

@@ -11,6 +11,7 @@ import re
 import shutil
 from experiment_pages import render_experiment_registry
 from federation_pages import build_pages
+from gnosix_pages import build_pages as build_gnosix_pages
 from gnu6_shell import index_page, reading_page, specimen, state
 
 try:
@@ -458,6 +459,7 @@ def build():
         shell(locale,'Topologies',topology(locale),f'/{locale}/topologies.html')
         shell(locale,'Modèles' if locale=='fr' else 'Templates',template_index(locale),f'/{locale}/templates.html')
     build_pages(DIST, CATALOG['locales'], EDITION, render_markdown)
+    build_gnosix_pages(DIST, CATALOG['locales'], EDITION, render_markdown)
     (DIST/'index.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/fr/hub.html"><title>{escape(CORPUS_NAME)}</title></head><body><a href="/fr/hub.html">Portail français →</a></body></html>',encoding='utf-8')
     index_page(DIST,'fr','/404.html',title=f'404 · {CORPUS_NAME}',description='Page introuvable / Page not found',section='',edition=EDITION,
                body=registry_hero('fr','HTTP 404','Page introuvable','Cette route n’existe pas. This route does not exist.')

@@ -34,11 +34,12 @@ class WatchTests(unittest.TestCase):
 
     def test_real_registry_has_one_public_upstream_no_publisher_loop(self):
         results = w.read_sources(REGISTRY)
-        self.assertEqual(len(results),1)
+        self.assertEqual(len(results),2)
+        self.assertEqual([row['id'] for row in results],['gnostral','gnosix'])
         self.assertEqual(results[0]["id"],"gnostral")
         public=json.loads(REGISTRY.read_text())
-        self.assertEqual(public["sources"][1]["kind"],"publisher")
-        self.assertFalse(public["sources"][1]["enabled"])
+        self.assertEqual(public["sources"][2]["kind"],"publisher")
+        self.assertFalse(public["sources"][2]["enabled"])
 
     def test_current_requires_no_document_download(self):
         with patch.object(w,"get_head",return_value=OLD),patch.object(w,"get_blob") as blob:
@@ -72,6 +73,10 @@ class WatchTests(unittest.TestCase):
         target=fake.parent/"gnostral/manifest.json"
         target.parent.mkdir(parents=True,exist_ok=True)
         target.write_bytes(source.read_bytes())
+        gnosix=REGISTRY.parent/"gnosix/manifest.json"
+        gtarget=fake.parent/"gnosix/manifest.json"
+        gtarget.parent.mkdir(parents=True,exist_ok=True)
+        gtarget.write_bytes(gnosix.read_bytes())
         return fake
 
     def test_unknown_registry_schema_denied(self):
@@ -83,14 +88,14 @@ class WatchTests(unittest.TestCase):
 
     def test_circular_publisher_cannot_be_enabled(self):
         registry=json.loads(REGISTRY.read_text())
-        registry["sources"][1]["enabled"]=True
+        registry["sources"][2]["enabled"]=True
         fake=self.write_registry(registry)
         with self.assertRaisesRegex(w.WatchRefused,"self-ingestion"):
             w.read_sources(fake)
 
     def test_noncanonical_private_owner_rejected(self):
         registry=json.loads(REGISTRY.read_text())
-        registry["sources"][1]["repository"]="other/private"
+        registry["sources"][2]["repository"]="other/private"
         fake=self.write_registry(registry)
         with self.assertRaisesRegex(w.WatchRefused,"public owner"):
             w.read_sources(fake)
