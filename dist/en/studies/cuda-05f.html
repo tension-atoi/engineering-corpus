@@ -1,0 +1,88 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Methods, evidence and autonomy"/><title>CUDA-05F — Testing the integrated GPU chain without erasing failures · Corpus Méthodologique &amp; Hygiène Mental</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="fr" href="/fr/studies/cuda-05f.html"><link rel="alternate" hreflang="en" href="/en/studies/cuda-05f.html">
+    </head><body data-locale="en" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
+    <a class="skip" href="#content">Skip to content</a>
+    <header class="topbar"><a class="brand" href="/en/index.html" aria-label="Corpus Méthodologique &amp; Hygiène Mental, Home"><span>gnu.in.labs <em>/</em> <strong>Corpus Méthodologique &amp; Hygiène Mental</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/studies/cuda-05f.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Close menu">✕</button></div>
+    <label class="search-label" for="chapterSearch">Filter chapters</label><input id="chapterSearch" type="search" placeholder="Filter chapters…" autocomplete="off" />
+    <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/en/chapters/01-mandate.html" data-search="mandate &amp; slicing" aria-current="false"><span class="nav-number">01</span>Mandate &amp; slicing <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/02-authority.html" data-search="authority &amp; agents" aria-current="false"><span class="nav-number">02</span>Authority &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/03-contract.html" data-search="architecture &amp; contracts" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contracts <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/04-delivery.html" data-search="delivery &amp; verification" aria-current="false"><span class="nav-number">04</span>Delivery &amp; verification <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/05-evidence.html" data-search="evidence &amp; public truth" aria-current="false"><span class="nav-number">05</span>Evidence &amp; public truth <span class="nav-duration">16m</span></a><a class="navlink " href="/en/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/07-llm.html" data-search="local llm &amp; copilot" aria-current="false"><span class="nav-number">07</span>Local LLM &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/en/chapters/08-hygiene.html" data-search="hygiene, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiene, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Labs <span>03</span></h2><a class="navlink " href="/en/labs/01-change.html" data-search="lab a — qualified change" aria-current="false"><span class="nav-number">↗</span>Lab A — Qualified change</a><a class="navlink " href="/en/labs/02-api.html" data-search="lab b — verified api" aria-current="false"><span class="nav-number">↗</span>Lab B — Verified API</a><a class="navlink " href="/en/labs/03-workspace.html" data-search="lab c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Lab C — Workspace Hygiene &amp; Git Topology</a>
+    <a class="navlink" href="/en/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/en/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Templates</a>
+    <a class="navlink" href="/en/studies/cuda-05d.html" data-search="études evidence science expérimentale méthodologie"><span class="nav-number">◇</span>Study · Linux identities</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Locally studied</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Study progress"></progress><p data-storage-status role="status"></p><p>No account, no telemetry.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow"><a class="hub-return" href="/en/hub.html">← Portal</a><span class="hub-separator"> / </span>METHODOLOGY</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
+    <article class="prose"><h1 id="section-1">CUDA-05F — Testing the integrated GPU chain without erasing failures</h1>
+<blockquote>
+<p><strong>Local experimental study, October 2026 · Draft pending review.</strong> The real Rust supervisor and CUDA/Vulkan workers were exercised in disposable containers. Laboratory qualification is not a system-wide security certification or deployment authorization.</p>
+</blockquote>
+<h2 id="section-2">Research question</h2>
+<p>Can properties established separately in CUDA-05C and CUDA-05E hold <strong>together in the actual Rust service</strong>? The experiment combines a distinct host service identity, peer-authenticated IPC, grant revocation, worker fault recovery, and genuine GPU outputs checked against a CPU numerical oracle.</p>
+<p>Protocol <strong>CUDA-05F-P01</strong> was committed before acquisition as <code>03ba7945fe6740b2cf35dc28656ba866f66c33fb</code>. The shared <code>gnu6.gpu-evidence-contract.v1</code> defines 11 independent gates and explicitly prevents test success from granting authority to publish or deploy.</p>
+<h2 id="section-3">Results from the fourth acquisition</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Observed control</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service under a different real Linux host principal</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Authorized client, connected UID denial via <code>SO_PEERCRED</code>, DAC denial</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Genuine CUDA dispatch, CPU numerical parity</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Genuine Vulkan dispatch, CPU numerical parity</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Worker crash, grant revocation, fresh GPU execution</td>
+<td>PASS on both backends</td>
+</tr>
+<tr>
+<td>Worker timeout, grant revocation, fresh GPU execution</td>
+<td>PASS on both backends</td>
+</tr>
+<tr>
+<td>Worker/native CUDA-provider same-path substitution</td>
+<td>Refusal and restoration observed</td>
+</tr>
+<tr>
+<td>Release or production authority</td>
+<td><strong>NOT_QUALIFIED</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ten of eleven gates passed within the operational laboratory scope.</strong> The eleventh remains open because there is no production authorization.</p>
+<h2 id="section-4">The three runs we did not hide</h2>
+<ul>
+<li><strong>Run 01 — Vulkan RED.</strong> The Rust service's ELF library lookup prevented adapter selection. A discriminating probe compared RUNPATH with transitive RPATH; the repair was separately recorded.</li>
+<li><strong>Run 02 — incomplete identity evidence.</strong> The service denied an unauthorized client but did not retain the kernel-observed UID in its own log. We amended the instrument to record actual server-side <code>SO_PEERCRED</code> observations.</li>
+<li><strong>Run 03 — IPC lifecycle RED.</strong> A disconnected client during a Vulkan crash scenario triggered a fatal <code>Broken pipe</code>. The supervisor was changed to revoke on failed response delivery rather than exit.</li>
+</ul>
+<p><strong>Run 04</strong> repeated all eight finite scenarios under the amended method. These are four archived acquisitions, <strong>not four statistically interchangeable repetitions</strong>.</p>
+<h2 id="section-5">Evidence, scope and limits</h2>
+<p>The Rust server ran as a host UID distinct from its permitted client's identity. The Unix socket enforced filesystem permissions and the service rejected a connected but unauthorized UID using kernel-provided credentials. Each render used a disposable real GPU worker with CPU parity.</p>
+<p><strong>69 cumulative Rust tests</strong> passed, and an independently written validator verified kernel-peer observations, generation transitions, negative outcomes and SHA-256-covered evidence. A deliberately forged service host UID was rejected.</p>
+<p><strong>Not established:</strong> defense against a privileged Docker daemon, malicious same-UID workers, signed provider provenance, actual GPU device loss, long-duration availability, or production Gnosix integration. Native-provider refusal is behaviorally observed; the worker's specific internal error remained suppressed.</p>
+<p>Private raw traces contain Linux identity data and remain internal. The public dataset is a deliberately narrow projection. <strong>A digest does not provide independent access to private evidence.</strong> External replication has not yet been demonstrated.</p>
+<p><strong><a href="/evidence/cuda-05f-public-results.json">Sanitized structured data</a></strong> · <a href="/evidence/cuda-05f-manifest.json">Provenance receipt</a> · <a href="/experiments/GPU-EVIDENCE-CONTRACT-v1.json">Experiment contract</a> · <a href="/en/experiments.html">Registry</a></p>
+<h2 id="section-6">Decision</h2>
+<p><strong>Evidence class:</strong> one internal E4 integrated-system observation, not ratified. <strong>Publication:</strong> draft pending independent scientific review. <strong>Deployment gate:</strong> <code>DENIED</code>. The next study should test a truly confined worker and an independent service-authority policy; resetting the GPU driving the desktop remains out of scope.</p>
+</article>
+    <div class="lesson-foot"><span>Study edition · not ratified</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>No agent authority is granted.</span><a href="/en/governance.html">Contribution rules →</a></footer>
+    </main></div></body></html>

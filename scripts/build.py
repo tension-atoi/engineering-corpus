@@ -9,6 +9,7 @@ from shutil import copy2, copytree, rmtree
 import json
 import re
 import shutil
+from experiment_pages import render_experiment_registry
 
 try:
     import yaml
@@ -27,6 +28,8 @@ SOURCE_REGISTRY=json.loads((DOCS/'source-registry.json').read_text('utf-8'))
 ECOSYSTEM=json.loads((DOCS/'ecosystem.json').read_text('utf-8'))
 GUIDE_REGISTRY=json.loads((DOCS/'guide-registry.json').read_text('utf-8'))
 RELEASE_REGISTRY=json.loads((DOCS/'release-registry.json').read_text('utf-8'))
+EXPERIMENTS=json.loads((DOCS/'experiments'/'registry.json').read_text('utf-8'))
+CHALLENGES=json.loads((DOCS/'challenges'/'registry.json').read_text('utf-8'))
 CORPUS_NAME=CATALOG['product']['name']
 M=MarkdownIt('commonmark',{'html':True,'linkify':False,'typographer':False}).enable('table')
 
@@ -78,7 +81,8 @@ def nav(locale,active):
     <label class="search-label" for="chapterSearch">{searchlabel}</label><input id="chapterSearch" type="search" placeholder="{searchlabel}…" autocomplete="off" />
     <p data-search-status role="status" aria-live="polite"></p><nav aria-label="{rootlabel}"><h2>{rootlabel} <span>{len(CATALOG['chapters']):02d}</span></h2>{''.join(entries)}<h2>{lablabel} <span>{len(CATALOG['labs']):02d}</span></h2>{''.join(labs)}
     <a class="navlink" href="{base}topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
-    <a class="navlink" href="{base}templates.html" data-search="templates modèles"><span class="nav-number">≡</span>{'Modèles' if locale=='fr' else 'Templates'}</a></nav>
+    <a class="navlink" href="{base}templates.html" data-search="templates modèles"><span class="nav-number">≡</span>{'Modèles' if locale=='fr' else 'Templates'}</a>
+    <a class="navlink" href="{base}studies/cuda-05d.html" data-search="études evidence science expérimentale méthodologie"><span class="nav-number">◇</span>{'Étude · Identités Linux' if locale=='fr' else 'Study · Linux identities'}</a></nav>
     <div class="rail-bottom"><div class="progress-label"><span>{'Étudié localement' if locale=='fr' else 'Locally studied'}</span><strong data-progress-text aria-live="polite">0 / {len(study_ids())}</strong></div><progress class="meter" data-progress-meter max="{len(study_ids())}" value="0" aria-label="{'Progression d’étude' if locale=='fr' else 'Study progress'}"></progress><p data-storage-status role="status"></p><p>{'Sans compte, sans télémétrie.' if locale=='fr' else 'No account, no telemetry.'}</p></div>'''
 
 
@@ -131,7 +135,7 @@ def topology(locale):
 
 
 def template_index(locale):
-    names=['MANDATE.md','CONTRACT.md','ADR.md','EVIDENCE.json','RELEASE.md']
+    names=['MANDATE.md','CONTRACT.md','ADR.md','EVIDENCE.json','RELEASE.md','EXPERIMENT.md']
     title='Modèles opératoires' if locale=='fr' else 'Operational templates'
     sub='Points de départ à adapter : aucun template ne crée d’autorité.' if locale=='fr' else 'Adapt these starting points: templates grant no authority.'
     links=''.join(f'<a class="template-card" href="/templates/{n}" download><span>↓</span><strong>{n}</strong><small>{"Télécharger" if locale=="fr" else "Download"}</small></a>' for n in names)
@@ -155,14 +159,14 @@ def home_hero(locale):
         sub='Une méthode qui se démontre. Le premier parcours explore les pratiques d’ingénierie : contrats, frontières d’autorité, preuves, documentation et livraison. D’autres domaines et formats d’apprentissage pourront s’y ajouter.'
         start='Commencer le parcours'
         topology_lbl='Explorer les topologies'
-        cards=['8 chapitres',f"{len(CATALOG['labs'])} ateliers",'5 modèles','0 service distant requis']
+        cards=['8 chapitres',f"{len(CATALOG['labs'])} ateliers",'6 modèles','0 service distant requis']
     else:
         label='OPEN CORPUS · BILINGUAL · LOCAL-FIRST'
         title=CORPUS_NAME
         sub='A methodology you can prove. The first learning path covers engineering practice: contracts, authority boundaries, evidence, documentation and delivery. Future editions may welcome other fields and learning formats.'
         start='Start the curriculum'
         topology_lbl='Explore topologies'
-        cards=['8 chapters',f"{len(CATALOG['labs'])} labs",'5 templates','0 required remote services']
+        cards=['8 chapters',f"{len(CATALOG['labs'])} labs",'6 templates','0 required remote services']
     stat=''.join(f'<div><strong>{escape(a.split(" ")[0])}</strong><span>{escape(" ".join(a.split(" ")[1:]))}</span></div>' for a in cards)
     return f'''<div class="hero"><span class="eyebrow">{label}</span><h1>{escape(title)}</h1><p>{escape(sub)}</p><div class="hero-actions"><a class="primary" href="/{locale}/chapters/01-mandate.html">{start} →</a><a class="outline" href="/{locale}/topologies.html">{topology_lbl} ↗</a></div><div class="stats">{stat}</div></div>'''
 
@@ -173,11 +177,11 @@ def hub_page(locale):
     opposite='en' if locale=='fr' else 'fr'
     fr=locale=='fr'
     name='Documentation · gnu.in.labs'
-    intro='Des sources. Des méthodes. Des preuves.' if fr else 'Sources. Methods. Evidence.'
+    intro='Des hypothèses. Des méthodes. Des contre-preuves.' if fr else 'Hypotheses. Methods. Counterevidence.'
     kicker='PORTAIL DOCUMENTAIRE / GNU.IN.LABS' if fr else 'DOCUMENTATION PORTAL / GNU.IN.LABS'
-    subtitle=('Une porte d’entrée vers les connaissances publiées, les contrats techniques et leurs sources. Chaque domaine distingue ce qui est disponible de ce qui reste à documenter.'
-              if fr else 'An entry point to published knowledge, technical contracts and their sources. Every section distinguishes what is available from what is still being documented.')
-    primary='Explorer le corpus' if fr else 'Explore the corpus'
+    subtitle=('Une invitation à reproduire, contredire et améliorer nos expériences. Proposez une réplication ou un contre-exemple via GitHub Issues; les kits encore incomplets sont indiqués.'
+              if fr else 'An invitation to reproduce, refute and improve our experiments. Submit a replication or counterexample through GitHub Issues; incomplete kits remain explicitly labeled.')
+    primary='Examiner les défis scientifiques' if fr else 'Explore scientific challenges'
     language='English' if fr else 'Français'
     indexlabel='Index documentaire' if fr else 'Documentation index'
     availability='Disponibilité vérifiée dans cette édition' if fr else 'Availability in this edition'
@@ -224,8 +228,8 @@ def hub_page(locale):
 <a class="hub-language" href="/{opposite}/hub.html" lang="{opposite}">{language} ↗</a></header>
 <main class="hub-main" id="content" tabindex="-1">
 <div class="hub-hero"><div class="hub-intro"><span class="hub-kicker">{escape(kicker)}</span><h1>{escape(intro)}</h1><p class="hub-lede">{escape(subtitle)}</p>
-<a class="hub-primary" href="/{locale}/index.html">{primary}<span aria-hidden="true">↗</span></a></div>
-<aside class="hub-proof" aria-label="{escape(availability)}"><span class="hub-proof-label">01 / 05</span><strong>Corpus Méthodologique &amp; Hygiène Mental</strong><p>{'8 chapitres · 3 ateliers · FR/EN' if fr else '8 chapters · 3 labs · FR/EN'}</p><span class="hub-proof-state">{escape(state_av)}</span></aside></div>
+<a class="hub-primary" href="/{locale}/challenges.html">{primary}<span aria-hidden="true">↗</span></a></div>
+<aside class="hub-proof" aria-label="{escape(availability)}"><span class="hub-proof-label">01 / {len(HUB_CATALOG["domains"]):02d}</span><strong>Corpus Méthodologique &amp; Hygiène Mental</strong><p>{'8 chapitres · 3 ateliers · FR/EN' if fr else '8 chapters · 3 labs · FR/EN'}</p><span class="hub-proof-state">{escape(state_av)}</span></aside></div>
 <section class="hub-index" aria-labelledby="hub-index-title"><div class="hub-section-head"><div><span class="hub-kicker">{escape(indexlabel)}</span><h2 id="hub-index-title">{escape(library)}</h2></div><p>{escape(section_sub)}</p></div><ol class="hub-domains">{cards}</ol></section>
 <section class="hub-policy" aria-label="{'Provenance des contenus' if fr else 'Content provenance'}"><span class="hub-kicker">{'PROVENANCE / PUBLICATION' if fr else 'PROVENANCE / PUBLICATION'}</span><p>{escape(provenance)}</p></section>
 <footer class="hub-footer"><span>© 2026 gnu.in.labs</span><span>{'Corpus : édition de travail non ratifiée' if fr else 'Corpus: draft study edition, not ratified'}</span><a href="/{locale}/governance.html">{'Règles du corpus' if fr else 'Corpus governance'} ↗</a></footer>
@@ -408,6 +412,23 @@ def build():
     copy2(DOCS/'source-registry.json', DIST/'registry'/'source-catalog.json')
     copy2(DOCS/'guide-registry.json', DIST/'registry'/'guide-catalog.json')
     copy2(DOCS/'release-registry.json', DIST/'registry'/'release-catalog.json')
+    (DIST/'evidence').mkdir(parents=True,exist_ok=True)
+    copy2(DOCS/'evidence'/'cuda-05d-public-results.json', DIST/'evidence'/'cuda-05d-public-results.json')
+    copy2(DOCS/'evidence'/'cuda-05d-manifest.json', DIST/'evidence'/'cuda-05d-manifest.json')
+    copy2(DOCS/'evidence'/'cuda-05e-public-results.json', DIST/'evidence'/'cuda-05e-public-results.json')
+    copy2(DOCS/'evidence'/'cuda-05f-public-results.json', DIST/'evidence'/'cuda-05f-public-results.json')
+    copy2(DOCS/'evidence'/'cuda-05f-manifest.json', DIST/'evidence'/'cuda-05f-manifest.json')
+    (DIST/'experiments').mkdir(parents=True,exist_ok=True)
+    copy2(DOCS/'experiments'/'registry.json', DIST/'experiments'/'registry.json')
+    copy2(DOCS/'experiments'/'GPU-EVIDENCE-CONTRACT-v1.json', DIST/'experiments'/'GPU-EVIDENCE-CONTRACT-v1.json')
+    copy2(DOCS/'experiments'/'PIPELINE.md', DIST/'experiments'/'PIPELINE.md')
+    (DIST/'challenges').mkdir(parents=True,exist_ok=True)
+    copy2(DOCS/'challenges'/'registry.json', DIST/'challenges'/'registry.json')
+    copy2(DOCS/'challenges'/'CONTRIBUTING.md', DIST/'challenges'/'CONTRIBUTING.md')
+    for protocol in ('CUDA-05E-PREREG.md','CUDA-05F-PREREG.md'):
+        (DIST/'challenges'/'protocols').mkdir(parents=True,exist_ok=True)
+        copy2(DOCS/'challenges'/'protocols'/protocol, DIST/'challenges'/'protocols'/protocol)
+    copy2(DOCS/'challenges'/'PROVENANCE.json', DIST/'challenges'/'PROVENANCE.json')
     for file in ('style.css','app.js','favicon.svg','design-tokens.css'):
         copy2(SITE/file,DIST/file)
     copytree(ASSETS/'diagrams',DIST/'diagrams',ignore=shutil.ignore_patterns('*.py','__pycache__'))
@@ -418,10 +439,19 @@ def build():
     for locale in CATALOG['locales']:
         hub_page(locale)
         ecosystem_page(locale)
+        challenge_meta,challenge_body=unpack(DOCS/locale/'challenges.md')
+        shell(locale,challenge_meta['title'],render_markdown(challenge_body),f'/{locale}/challenges.html',status=challenge_meta['status'])
+        render_experiment_registry(DIST,EXPERIMENTS,locale)
         source_inventory_page(locale,'sdk')
         source_inventory_page(locale,'api')
         guides_pages(locale)
         releases_page(locale)
+        study_meta,study_body=unpack(DOCS/locale/'studies'/'cuda-05d.md')
+        shell(locale,study_meta['title'],render_markdown(study_body),f'/{locale}/studies/cuda-05d.html',status=study_meta['status'])
+        study_meta_e,study_body_e=unpack(DOCS/locale/'studies'/'cuda-05e.md')
+        shell(locale,study_meta_e['title'],render_markdown(study_body_e),f'/{locale}/studies/cuda-05e.html',status=study_meta_e['status'])
+        study_meta_f,study_body_f=unpack(DOCS/locale/'studies'/'cuda-05f.md')
+        shell(locale,study_meta_f['title'],render_markdown(study_body_f),f'/{locale}/studies/cuda-05f.html',status=study_meta_f['status'])
         for path in [DOCS/locale/'index.md',*sorted((DOCS/locale/'chapters').glob('*.md')),*sorted((DOCS/locale/'labs').glob('*.md'))]:
             m,body=unpack(path)
             page_id=m['id']

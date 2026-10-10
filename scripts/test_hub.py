@@ -15,9 +15,9 @@ class Links(HTMLParser):
         d=dict(attrs)
         if tag=='h1':self.h1+=1
         if tag=='a':self.links.append(d.get('href'))
-assert CAT['edition']=='DOCS-HUB-01D'
-assert [x['id'] for x in CAT['domains']]==['corpus','sdk','api','guides','releases']
-assert [x['state'] for x in CAT['domains']]==['available','inventory','experimental','guide','inventory']
+assert CAT['edition']=='DOCS-HUB-01I-DRAFT'
+assert [x['id'] for x in CAT['domains']]==['corpus','challenges','experiments','sdk','api','guides','releases']
+assert [x['state'] for x in CAT['domains']]==['available','experimental','experimental','inventory','experimental','guide','inventory']
 assert SRC['schema_version']==1 and len(SRC['sources'])==1
 item=SRC['sources'][0]
 assert item['kind']=='api' and item['lifecycle']=='experimental'
@@ -35,10 +35,12 @@ for lang,other in [('fr','en'),('en','fr')]:
     links=Links();links.feed(page)
     assert links.h1==1
     for klass in ('available','experimental','guide'):
-        assert page.count('hub-domain-'+klass)==1
+        assert page.count('hub-domain-'+klass)==(3 if klass=='experimental' else 1)
     assert page.count('hub-domain-guide')==1
     assert page.count('hub-domain-inventory')==2
     assert page.count('hub-domain-planned')==0
+    assert f'/{lang}/challenges.html' in links.links
+    assert f'/{lang}/experiments.html' in links.links
     assert f'/{lang}/sdk.html' in links.links
     assert f'/{lang}/api.html' in links.links
     assert f'/{other}/hub.html' in links.links
@@ -104,4 +106,4 @@ for lang,other in [('fr','en'),('en','fr')]:
     assert links.h1==1 and f'/{other}/releases.html' in links.links
     assert '/registry/release-catalog.json' in links.links
     assert RELEASES['checked_ref'] in empty and '0 / TAGS' in empty
-print('DOCS_HUB_01D_PASS locales=2 guide_refs=1 guide_source_paths=4 release_tags=0 api_refs=1 sdk_refs=0')
+print('SCIENCE_PORTAL_HUB_PASS locales=2 guide_refs=1 guide_source_paths=4 release_tags=0 api_refs=1 sdk_refs=0')

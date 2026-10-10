@@ -1,5 +1,5 @@
 {
-  "edition": "DOCS-HUB-01D",
+  "edition": "DOCS-HUB-01I-DRAFT",
   "domains": [
     {
       "id": "corpus",
@@ -15,6 +15,38 @@
       "routes": {
         "fr": "/fr/index.html",
         "en": "/en/index.html"
+      }
+    },
+    {
+      "id": "challenges",
+      "state": "experimental",
+      "label": {
+        "fr": "Appels à réplication et réfutation",
+        "en": "Replication and falsification challenges"
+      },
+      "description": {
+        "fr": "Questions réfutables, critères de contradiction et accès public aux preuves disponibles — soumissions Gitea non encore ouvertes.",
+        "en": "Falsifiable questions, counterevidence criteria and available public evidence — Gitea submissions not yet open."
+      },
+      "routes": {
+        "fr": "/fr/challenges.html",
+        "en": "/en/challenges.html"
+      }
+    },
+    {
+      "id": "experiments",
+      "state": "experimental",
+      "label": {
+        "fr": "Expériences et preuves",
+        "en": "Experiments and evidence"
+      },
+      "description": {
+        "fr": "Études bornées, protocoles préenregistrés, données publiques assainies et décisions de qualification explicites.",
+        "en": "Bounded studies, preregistered protocols, sanitized public data, and explicit qualification decisions."
+      },
+      "routes": {
+        "fr": "/fr/experiments.html",
+        "en": "/en/experiments.html"
       }
     },
     {

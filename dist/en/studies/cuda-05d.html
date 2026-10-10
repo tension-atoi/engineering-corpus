@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta name="description" content="Methods, evidence and autonomy"/><title>Why namespace root does not prove a separate host identity · Corpus Méthodologique &amp; Hygiène Mental</title>
+    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+    <link rel="alternate" hreflang="fr" href="/fr/studies/cuda-05d.html"><link rel="alternate" hreflang="en" href="/en/studies/cuda-05d.html">
+    </head><body data-locale="en" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
+    <a class="skip" href="#content">Skip to content</a>
+    <header class="topbar"><a class="brand" href="/en/index.html" aria-label="Corpus Méthodologique &amp; Hygiène Mental, Home"><span>gnu.in.labs <em>/</em> <strong>Corpus Méthodologique &amp; Hygiène Mental</strong></span></a>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/fr/studies/cuda-05d.html" lang="fr">Français ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Close menu">✕</button></div>
+    <label class="search-label" for="chapterSearch">Filter chapters</label><input id="chapterSearch" type="search" placeholder="Filter chapters…" autocomplete="off" />
+    <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/en/chapters/01-mandate.html" data-search="mandate &amp; slicing" aria-current="false"><span class="nav-number">01</span>Mandate &amp; slicing <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/02-authority.html" data-search="authority &amp; agents" aria-current="false"><span class="nav-number">02</span>Authority &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/03-contract.html" data-search="architecture &amp; contracts" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contracts <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/04-delivery.html" data-search="delivery &amp; verification" aria-current="false"><span class="nav-number">04</span>Delivery &amp; verification <span class="nav-duration">12m</span></a><a class="navlink " href="/en/chapters/05-evidence.html" data-search="evidence &amp; public truth" aria-current="false"><span class="nav-number">05</span>Evidence &amp; public truth <span class="nav-duration">16m</span></a><a class="navlink " href="/en/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/en/chapters/07-llm.html" data-search="local llm &amp; copilot" aria-current="false"><span class="nav-number">07</span>Local LLM &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/en/chapters/08-hygiene.html" data-search="hygiene, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiene, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Labs <span>03</span></h2><a class="navlink " href="/en/labs/01-change.html" data-search="lab a — qualified change" aria-current="false"><span class="nav-number">↗</span>Lab A — Qualified change</a><a class="navlink " href="/en/labs/02-api.html" data-search="lab b — verified api" aria-current="false"><span class="nav-number">↗</span>Lab B — Verified API</a><a class="navlink " href="/en/labs/03-workspace.html" data-search="lab c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Lab C — Workspace Hygiene &amp; Git Topology</a>
+    <a class="navlink" href="/en/topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
+    <a class="navlink" href="/en/templates.html" data-search="templates modèles"><span class="nav-number">≡</span>Templates</a>
+    <a class="navlink" href="/en/studies/cuda-05d.html" data-search="études evidence science expérimentale méthodologie"><span class="nav-number">◇</span>Study · Linux identities</a></nav>
+    <div class="rail-bottom"><div class="progress-label"><span>Locally studied</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Study progress"></progress><p data-storage-status role="status"></p><p>No account, no telemetry.</p></div></aside><main id="content" class="main" tabindex="-1">
+    <div class="chapter-meta"><span class="eyebrow"><a class="hub-return" href="/en/hub.html">← Portal</a><span class="hub-separator"> / </span>METHODOLOGY</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
+    <article class="prose"><h1 id="section-1">Why namespace root does not prove a separate host identity</h1>
+<blockquote>
+<p><strong>Experimental study, 9 October 2026 · Not ratified · Partially reproducible externally.</strong> This page reports a bounded result on one Linux workstation. It is not a certification of agent isolation or production security.</p>
+</blockquote>
+<h2 id="section-2">Question</h2>
+<p>Does a process running as <code>root</code> inside a user namespace necessarily have a <strong>different identity as seen by the host service</strong>? The experiment distinguishes a process's namespace-local identity from the kernel identity returned by <code>SO_PEERCRED</code> on a Unix socket.</p>
+<h2 id="section-3">Criteria frozen before collecting data</h2>
+<p>Protocol <strong>CUDA-05D-P01</strong> was committed as <code>ee0ea36bae0950c04e13100c7f53cf7e643c82c4</code> before acquisition. It specifies a baseline connection, a client launched with <code>unshare --user --map-root-user</code>, an automatic subordinate-UID mapping attempt, and independent evidence validation. Genuine host-principal isolation would require <strong>different host UIDs</strong>, a service running under another real identity, and both accepted and denied cross-UID access tests.</p>
+<p>If those conditions are absent, the preregistered outcome is <code>NOT_QUALIFIED</code>. The standard is not revised to fit the observed result.</p>
+<h2 id="section-4">Three observations on one workstation</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Trial</th>
+<th>Observation</th>
+<th>Supported scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baseline socket connection</td>
+<td>The host server's peer UID equals the host process UID.</td>
+<td>Measurement control passed.</td>
+</tr>
+<tr>
+<td>Namespace <code>--map-root-user</code></td>
+<td>The client sees UID 0 <strong>inside</strong> its namespace, while <code>SO_PEERCRED</code> still sees <strong>the baseline host UID</strong>.</td>
+<td>This namespace did not create a separate host principal here.</td>
+</tr>
+<tr>
+<td>Subordinate mapping <code>--map-auto</code></td>
+<td>The attempt failed with <code>newuidmap: Could not set caps</code>.</td>
+<td>Subordinate mappings are unqualified in this environment; the underlying cause is not established.</td>
+</tr>
+</tbody>
+</table>
+<p>These attempts were made <strong>once on 9 October 2026</strong>. They do not generalize to all Linux kernels, rootless container runtimes or machines with correctly delegated UID mapping.</p>
+<h2 id="section-5">Observation, interpretation and authority</h2>
+<p><strong>Observed (E4, internal):</strong> the identity comparison was captured through kernel peer credentials. <strong>Interpretation:</strong> namespace-local UID 0 is not evidence of host-level separation. <strong>Engineering gate:</strong> <code>NOT_QUALIFIED</code> for a distinct service principal; <code>DENIED</code> for production authorization. CUDA-05C separately demonstrates recovery after child-process faults, not physical GPU loss or different host-user accounts.</p>
+<p>The method could be replicated elsewhere, but the complete source repository and raw traces remain internal. A checksum alone does not let an outsider verify unavailable evidence. The public data contains only derived outcomes and the internal raw-data digest—no hostname, numeric UID or PID.</p>
+<p><strong><a href="/evidence/cuda-05d-public-results.json">Inspect structured observations</a></strong> · <a href="/evidence/cuda-05d-manifest.json">Provenance and review-status manifest</a>.</p>
+<h2 id="section-6">Reuse the method</h2>
+<p>The downloadable <strong><a href="/templates/EXPERIMENT.md">EXPERIMENT research contract</a></strong> separates preregistered hypotheses, controls, raw data, transformations, independent validation and publication authority. Negative outcomes must be retained, not erased.</p>
+<h2 id="section-7">What would qualify the next claim</h2>
+<p>Use a <strong>disposable</strong> environment with two genuine host principals. Demonstrate an allowed and a rejected socket connection, preserve the <code>SO_PEERCRED</code> observations, and test GPU faults independently without endangering the graphical session. Retain timestamped logs, exit codes, data schema, negative outcomes and the exact reproduction procedure.</p>
+<p>A failed hypothesis still yields useful evidence. Rewording it into a marketing promise does not turn it into certification.</p>
+<h2 id="section-8">Publication gate</h2>
+<p><strong>Evidence class:</strong> E4 for a single internal observation, not E5/E6. <strong>Document status:</strong> draft, independent review pending. <strong>External access to complete sources:</strong> not currently available. This study grants no agent authority.</p>
+</article>
+    <div class="lesson-foot"><span>Study edition · not ratified</span></div>
+    <footer><span>© 2026 gnu.in.labs · MIT</span><span>No agent authority is granted.</span><a href="/en/governance.html">Contribution rules →</a></footer>
+    </main></div></body></html>

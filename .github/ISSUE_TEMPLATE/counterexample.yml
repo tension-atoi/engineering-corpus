@@ -1,0 +1,35 @@
+name: "Counterexample / Contre-preuve"
+description: "Submit a falsifying observation or a challenge to experimental interpretation"
+title: "[Counterexample] CUDA-05X — "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: "A counterexample is not an attack authorization. Use only machines and services you control. Never include credentials or private host identifiers."
+  - type: input
+    id: claim
+    attributes:
+      label: "Claim, experiment ID, and frozen protocol commit"
+    validations:
+      required: true
+  - type: textarea
+    id: contradiction
+    attributes:
+      label: "Exact prediction contradicted and observed result"
+      description: "Explain the preregistered predicate that fails; do not collapse untested and failed."
+    validations:
+      required: true
+  - type: textarea
+    id: procedure
+    attributes:
+      label: "Reproduction procedure and controlled environment"
+      description: "Exact commands, versions, comparison controls and safety assumptions"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: "Evidence, raw data, hashes, caveats"
+      description: "Include failed attempts too; describe if raw data are inaccessible."
+    validations:
+      required: true

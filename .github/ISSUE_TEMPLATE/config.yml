@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Research contribution methodology"
+    url: https://github.com/tension-atoi/engineering-corpus/blob/main/docs/challenges/CONTRIBUTING.md
+    about: "Review the evidence and privacy contract before submitting"

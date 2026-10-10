@@ -1,0 +1,21 @@
+{
+  "protocols": {
+    "CUDA-05E": {
+      "path": "/challenges/protocols/CUDA-05E-PREREG.md",
+      "protocol_commit": "84f82a786d80981edd824a2d9c81f4bbfd105c71",
+      "runtime_source_public": false,
+      "sha256": "2e83c87c7c409fee84faf037e76ce9f8eda8e95724d1625fa3004c7fa6b6cc60",
+      "source_visibility": "public_verbatim_preregistration"
+    },
+    "CUDA-05F": {
+      "path": "/challenges/protocols/CUDA-05F-PREREG.md",
+      "protocol_commit": "03ba7945fe6740b2cf35dc28656ba866f66c33fb",
+      "runtime_source_public": false,
+      "sha256": "f59e14252120bb6e66883c955b4193d25fd49e995b87c988307d62b9f22f0a5a",
+      "source_visibility": "public_verbatim_preregistration"
+    }
+  },
+  "publication_note": "Git commit and sha256 anchor a preregistered public copy; the original private acquisition source and raw data remain inaccessible to external reviewers.",
+  "review_status": "draft",
+  "schema": "gnu6.public-protocol-provenance.v1"
+}

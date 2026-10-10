@@ -1,0 +1,16 @@
+{
+  "contract_sha256": "9af8d1f9222c4be0a3e7febbe6c4318eba069fd540ae2c0de848f8aa766a1761",
+  "experiment_id": "CUDA-05F",
+  "external_reproduction": "not demonstrated",
+  "observed_utc": "2026-10-10T00:38:09.638408+00:00",
+  "operational_gates": "10/10 PASS in one amended lab acquisition",
+  "private_raw_access": "not available from public site",
+  "production_authorization": "DENIED",
+  "protocol_commit": "03ba7945fe6740b2cf35dc28656ba866f66c33fb",
+  "public_sha256": "36c46412207e6a77f5730f52f1e35aa5dcab3aa06bf0a5e1224ce1fe4e44e903",
+  "raw_sha256": "e5dbb22b479b51b5f1eaf9bfdeabab7d9d9050eb7236d176a7ed97dc70d3fdcf",
+  "release_authority": "NOT_QUALIFIED",
+  "review_status": "draft",
+  "schema": "gnu6.evidence-receipt.v1",
+  "source_commit": "7fa4596705f8611a5440a97d5a4556cdf64ac407"
+}
