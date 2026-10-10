@@ -1,0 +1,39 @@
+{
+  "attempts": 4,
+  "contract_sha256": "3878177fb264f6f0076100040a571776e18b3868a2129e0d1559470e7feb47e0",
+  "cuda05f_gpu_parity": "NOT_RUN",
+  "cuda05f_runtime_replication": "BLOCKED_PRIVATE_RUNTIME_SOURCE",
+  "experiment_id": "CUDA-05G-P01",
+  "gate_results": {
+    "actual_host_uid": "PASS",
+    "connected_denied_uid": "PASS",
+    "dac_denied_before_accept": "PASS",
+    "permitted_after": "PASS",
+    "permitted_before": "PASS",
+    "reproduction_is_gpu_independent": "PASS",
+    "service_cleanup": "PASS",
+    "socket_dac": "PASS"
+  },
+  "instrument_image_digest": "sha256:ca0bd484cb98bf4b24eb1010e73fb3fcbd6714d240fbc1a10eea5b7dbecb641d",
+  "limitations": [
+    "Only one completed independent fixture trial; no statistical confidence estimate",
+    "The rootful Docker daemon remains privileged and out of scope",
+    "This independently tests Linux IPC identity, not the real Rust supervisor",
+    "Original CUDA-05F Rust runtime and raw observations are private",
+    "No GPU kernel, Vulkan/CUDA rendering, physical device loss or native provider loading was tested",
+    "Private raw data remains outside Git; its checksum is not an externally auditable dataset",
+    "Host and container environments can differ; external replication is pending"
+  ],
+  "method": "Independent Perl service/clients + Python acquisition, rootful disposable Docker, network disabled",
+  "negative_trial_history": [
+    "Initial image unavailable: BLOCKED before measurement",
+    "First actual socket trial: invalid host pathname and DAC script witness"
+  ],
+  "observed_utc": "2026-10-10T02:40:46.332903+00:00",
+  "production_authorization": "DENIED",
+  "protocol_commit": "396c36e7aef2271544bb98d025129c6de1a73547",
+  "raw_sha256": "9b137215465a9faebacf6f8a748959fc26ec647214c7f079bf2c2c9ff8e8db36",
+  "review_status": "draft_pending_external_replication",
+  "schema": "gnu6.blobin.replication.public.v1",
+  "socket_accepts": 3
+}

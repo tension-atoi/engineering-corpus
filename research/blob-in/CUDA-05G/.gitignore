@@ -1,0 +1,5 @@
+raw.json
+failure.json
+private/
+__pycache__/
+*.pyc

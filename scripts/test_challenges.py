@@ -18,11 +18,15 @@ def audit(manifest):
     assert [c["id"] for c in manifest["challenges"]]==expected
     assert len(manifest["challenges"])==3
     for c in manifest["challenges"]:
-        assert c["public_kit"] in ("INCOMPLETE","PARTIAL_PROTOCOL_ONLY","PARTIAL_PROTOCOL_NO_RUNTIME_SOURCE")
+        assert c["public_kit"] in ("INCOMPLETE","PARTIAL_ORIGINAL_WITH_OPEN_IPC_FIXTURE","PARTIAL_PROTOCOL_NO_RUNTIME_SOURCE")
         assert len(c["required_artifacts"])>=5
         for lang in ("fr","en"):
             assert len(c["hypothesis"][lang])>=30
             assert len(c["counterexample"][lang])>=30
+    fixture=next(x for x in manifest["challenges"] if x["id"]=="CUDA-05E")
+    assert fixture["replication_kit"]["experiment_id"]=="CUDA-05G-P01"
+    assert fixture["replication_kit"]["status"]=="LOCAL_PASS_EXTERNAL_REPLICATION_PENDING"
+    assert fixture["replication_kit"]["original_cuda05f_runtime_replicated"] is False
     for lang in ("fr","en"):
         output=(ROOT/"dist"/lang/"challenges.html").read_text()
         assert f'<html lang="{lang}">' in output

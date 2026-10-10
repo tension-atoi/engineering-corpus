@@ -21,6 +21,8 @@ Question: can a namespace-local root user be mapped to a distinct host principal
 
 Question: can a server running under a genuinely distinct host UID reject both a connected but unauthorized client and another client blocked by filesystem access rules before connection? We observed this within a disposable Docker laboratory and invite researchers to falsify its assumptions and boundary.
 
+**New: [independently implemented CUDA-05G falsification kit](/en/studies/cuda-05g.html)**. Public code and protocol; one completed local trial, external replication pending.
+
 [Frozen preregistration](/challenges/protocols/CUDA-05E-PREREG.md) · [Study and limits](/en/studies/cuda-05e.html) · [Bounded public data](/evidence/cuda-05e-public-results.json)
 
 ### CUDA-05F — Rust GPU supervisor and fault recovery
