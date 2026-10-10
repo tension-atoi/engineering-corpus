@@ -1,11 +1,11 @@
 {
  "package": "gnu6-design",
- "version": "1.1.0",
+ "version": "1.1.1",
  "source": "gnu6-design (local package; see its README for provenance)",
  "files": {
   "fonts/SpaceGrotesk-OFL.txt": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72",
   "fonts/SpaceGrotesk-wght.woff2": "8e085aa438094f11487a836652edd5c054fa6a96f63fc7c282105ee3a4b08c07",
-  "gnu6.css": "bdf7378c95b5a16135d7f5df7cede8e1f0a63536ccc463a03140f0b757180c80",
+  "gnu6.css": "203051c2db426f809b63c7f131cd585b31f789d3bde7e187ab3ea29528286534",
   "icons/gnu6-live-180.png": "e82417e839092246e322ba0e74d5b82b9f7120020ce82064a68ea64fe73b1701",
   "icons/gnu6-live-32.png": "c10c5abb4970060ee678276d490c4d68f3323e4bf5e8ce221bb9261e61ac6e3e",
   "identity/gnu6-live-64.png": "ee00aee2578be41f855254b7d4053149fb690ad6588f6ea6547178a35a1444e4",
@@ -13,6 +13,6 @@
   "identity/gnuinlabs-256.png": "2ee276c5f90442735715a6d77d2fd7fc1c3de72d72e3d0ed9f08254d66319382",
   "identity/gnuinlabs-512.png": "563eb0587f384b808e3e1e05f4151f809b50da3122cee37c82a4417bebd1bdfc",
   "identity/gnuinlabs-64.png": "14b67e37a197156d5df65fec3bb3d27ed2405da3b427e862fd2489e912d21e0a",
-  "social/docs-og.png": "2135d29b05b721b778d5f1ad14affc63ef89298ec1921b81ad3dedb1dae48184"
+  "social/docs-og.png": "2bdd3e304af4d36eee803f7bfb6a27db87ef4e23003748896448fd3dc12b8813"
  }
 }
