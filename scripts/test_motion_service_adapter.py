@@ -31,7 +31,7 @@ class Probe(HTMLParser):
             self.icons.append(a)
         if tag == "a":
             self.links.append(a)
-            if a.get("class") == "g6-brand":
+            if a.get("class") == "g6-bar__title":
                 self.brand.append(a)
         if tag == "header" and a.get("class") == "g6-sysbar":
             self.headers.append(a)
@@ -56,7 +56,13 @@ def main():
         expected_hub = f"/{locale}/hub.html"
         assert probe.brand[0]["href"] == expected_hub, page
         assert probe.brand[0]["aria-label"] == "docs.gnu6.live", page
-        assert '<span class="g6-brand__word">docs.gnu6.live</span>' in html, page
+        assert '<span class="g6-tw">docs.gnu6.live</span>' in html, page
+        assert '<html lang="' + locale + '" data-g6-domain="docs">' in html, page
+        assert html.count('data-g6-site-nav>') == 1, page
+        assert 'name="g6-site-mode" value="full"' in html and 'name="g6-site-mode" value="off"' in html, page
+        assert 'name="g6-site-mode" value="calm"' not in html, page
+        assert '/motion/g6-site-nav.js' in html, page
+        assert len([item for item in probe.links if item.get("data-g6-nav-destination") == "live"]) == 2, page
         assert any(link.get("href") == MOTION for link in probe.links), page
         assert sum(1 for link in probe.links if link.get("href") == MOTION) == 2, page  # wide + mobile
         assert sum(1 for icon in probe.icons if icon["rel"] == "icon") == 1, page
@@ -71,9 +77,24 @@ def main():
         fr += (locale == "fr")
         en += (locale == "en")
     css = (SITE / "style.css").read_text("utf-8")
-    assert ".g6-site--docs .g6-sysbar .g6-brand__word" in css
+    assert ".g6-site--docs .g6-sysbar .g6-tw:not([data-g6-tw-domain])" in css
+    assert (SITE / "motion/g6-site-nav.js").read_bytes() == (DIST / "motion/g6-site-nav.js").read_bytes()
+    assert (SITE / "motion/g6-site-nav.css").read_bytes() == (DIST / "motion/g6-site-nav.css").read_bytes()
     assert "var(--g6-accent-labs-text)" in css
     assert hashlib.sha256((DIST / IDENTITY.lstrip("/")).read_bytes()).hexdigest() == "14b67e37a197156d5df65fec3bb3d27ed2405da3b427e862fd2489e912d21e0a"
+    import json
+    lock = json.loads((SITE / "motion/global-nav.lock.json").read_text("utf-8"))
+    assert lock["component"] == "gnu6-global-site-navigation"
+    assert lock["adapterVersion"] == "0.1.0"
+    assert lock["designSourceCommit"] == "32faf620fc5a67110838a983c14c73f604dd7937"
+    assert lock["eligibleRealOrigins"] == ["gnu6.live", "docs.gnu6.live"]
+    assert lock["displayedModes"] == ["full", "off"]
+    assert "gnosix.gnu6.live" in lock["plannedIdentityNotNavigable"]
+    for name,digest in lock["sourceSHA256"].items():
+        for folder in (SITE, DIST):
+            actual=hashlib.sha256((folder/"motion"/name).read_bytes()).hexdigest()
+            assert actual == digest, (folder,name)
+    assert (SITE/"motion/global-nav.lock.json").read_bytes() == (DIST/"motion/global-nav.lock.json").read_bytes()
     print("MOTION_SERVICE_ADAPTER_02_DOCS PASS", len(pages), "pages", fr, "FR", en, "EN", "real native domains / no framing / identity green")
 
 if __name__ == "__main__":

@@ -52,9 +52,16 @@ body.g6-spine-modal-open{overflow:hidden}
 @media(max-width:560px){.g6-spine-overlay[data-kind=atlas] .g6-spine__results{grid-template-columns:1fr}.g6-spine-shell .g6-page{padding-inline:var(--g6-gutter)}}
 @media(prefers-reduced-motion:reduce){.g6-spine-shell *{scroll-behavior:auto}}
 
-/* One global navigation: hide redundant legacy header menus, never Portal/Auth. */
-.g6-site:has(.g6-spine-shell) .g6-sysnav,.g6-site:has(.g6-spine-shell) .g6-sysmenu{display:none}
-.g6-site:has(.g6-spine-shell) .g6-sysbar__inner{gap:1rem}
+/* GNU6 Motion owns global site navigation; Spine owns within-site
+   navigation. The desktop links are deliberate and the compact menu replaces
+   them below 980px. Never hide the canonical header bar itself. */
+.g6-site:has(.g6-spine-shell) .g6-sysnav{display:flex}
+.g6-site:has(.g6-spine-shell) .g6-sysmenu{display:none}
+.g6-site:has(.g6-spine-shell) .g6-sysbar__inner{gap:clamp(.5rem,1.4vw,1.25rem)}
+@media(max-width:980px){
+ .g6-site:has(.g6-spine-shell) .g6-sysnav{display:none}
+ .g6-site:has(.g6-spine-shell) .g6-sysmenu{display:block}
+}
 .g6-site--live .g6-spine-shell .g6-hero{min-height:clamp(490px,67vh,760px);align-items:center}
 .g6-site--live .g6-spine-shell .g6-hero .g6-display{font-size:clamp(2.5rem,4.8vw,5.5rem)}
 .g6-site--live .g6-spine-shell .g6-hero__aside{align-self:center}

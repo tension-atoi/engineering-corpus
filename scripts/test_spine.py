@@ -7,7 +7,7 @@ LOCK=json.loads((ROOT/'site/spine-adapter.lock.json').read_text('utf-8'))
 
 
 def main():
-    assert LOCK['component']=='gnu6-spine-adapter' and LOCK['version']=='1.0.0'
+    assert LOCK['component']=='gnu6-spine-adapter' and LOCK['version']=='1.1.0'
     for rel,digest in LOCK['files'].items():
         for folder in (ROOT/'site',ROOT/'dist'):
             assert hashlib.sha256((folder/rel).read_bytes()).hexdigest()==digest,(str(folder),rel)

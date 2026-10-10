@@ -1,10 +1,10 @@
 {
   "component": "gnu6-spine-adapter",
-  "version": "1.0.0",
-  "gnu6_design": "1.1.0",
+  "version": "1.1.0",
+  "gnu6_design": "1.1.1",
   "provenance": "gnu6-design canonical adapter sources + compiled source-backed sitemap",
   "files": {
-    "spine.css": "00799265b3f422198293dcc39ccc4651f822af45e0f09b32f5bcd564bd58bd32",
+    "spine.css": "e580786958a84a9a36cb3cbbf68351aa897a1f6472806d2698954a0f49ac50a9",
     "spine.js": "61e1cc184cb49d823c021f54b4ad461eef8c15f687be1621b0f83fa58a0d113f",
     "spine-map.js": "43971ae8ef5641a266305338d16ca18ff7b5e796bfc6bfbe9d2efb1303b3b323"
   }

@@ -56,14 +56,17 @@ def _csp(scripts: bool) -> str:
 
 def head(locale: str, path: str, alt_path: str, title: str, description: str, *, scripts: bool, og: str) -> str:
     other = "en" if locale == "fr" else "fr"
-    return f"""<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    return f"""<!doctype html><html lang="{locale}" data-g6-domain="docs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="{_csp(scripts)}"><meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="dark light"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111418"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F3ED">
 <title>{escape(title)}</title><meta name="description" content="{escape(description, quote=True)}">
 <meta property="og:type" content="website"><meta property="og:title" content="{escape(title, quote=True)}"><meta property="og:description" content="{escape(description, quote=True)}">
 <meta property="og:image" content="{DOCS_ORIGIN}/gnu6/social/{og}"><meta property="og:url" content="{DOCS_ORIGIN}{escape(path, quote=True)}"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="64x64" href="/gnu6/identity/gnuinlabs-64.png"><link rel="apple-touch-icon" href="/gnu6/identity/gnuinlabs-128.png">
-<link rel="stylesheet" href="{CSS}"><link rel="stylesheet" href="{SITE_CSS}"><link rel="stylesheet" href="/spine.css"><script src="/spine-map.js" defer></script><script src="/spine.js" defer></script>{'<script src="/app.js" defer></script>' if scripts else ''}
+<link rel="stylesheet" href="{CSS}"><link rel="stylesheet" href="{SITE_CSS}"><link rel="stylesheet" href="/spine.css">
+<link rel="stylesheet" href="/motion/g6-motion.css"><link rel="stylesheet" href="/motion/g6-site-nav.css">
+<script src="/motion/g6-motion.js"></script><script src="/motion/rig-data.js" defer></script><script src="/motion/identity-rig.js" defer></script><script src="/motion/g6-bar.js" defer></script><script src="/motion/g6-site-nav.js" defer></script>
+<script src="/spine-map.js" defer></script><script src="/spine.js" defer></script>{'<script src="/app.js" defer></script>' if scripts else ''}
 <link rel="alternate" hreflang="{locale}" href="{escape(path, quote=True)}"><link rel="alternate" hreflang="{other}" href="{escape(alt_path, quote=True)}"></head>"""
 
 
@@ -91,12 +94,25 @@ def system_bar(locale: str, alt_path: str) -> str:
         f'<span aria-hidden="true">{"↗" if ext else "→"}</span></a>'
         for h, n, cur, ext in items
     )
+    # Same native Motion handoff for the cross-origin link and cube. Unmodified
+    # anchors remain fully functional without JS; no CORS or auth changes.
+    inline = inline.replace(f'href="{home}"', f'href="{home}" data-g6-nav-destination="live"')
+    panel = panel.replace(f'href="{home}"', f'href="{home}" data-g6-nav-destination="live"')
+    panel += (f'<a href="{portal}"><span>{t(locale, "Portail", "Portal")}</span>'
+              '<span aria-hidden="true">→</span></a>')
     panel += (f'<a href="{escape(alt_path, quote=True)}" hreflang="{other}" lang="{other}"><span>{escape(lang_name)}</span>'
               f'<span aria-hidden="true">{other.upper()}</span></a>')
     return f"""<header class="g6-sysbar"><div class="g6-frame g6-sysbar__inner">
-<a class="g6-brand" href="{hub}" aria-label="docs.gnu6.live"><img src="/gnu6/identity/gnuinlabs-64.png" width="28" height="28" alt=""><span class="g6-brand__word">docs.gnu6.live</span></a>
+<div class="g6-site-motion" data-g6-site-nav>
+<button class="g6-bar__cube" type="button" aria-label="{t(locale, 'Ouvrir GNU6', 'Open GNU6')}"><span class="g6-bar__rig" aria-hidden="true"><img class="g6-site-motion__fallback" src="/gnu6/identity/gnuinlabs-64.png" width="32" height="32" alt=""></span></button>
+<a class="g6-bar__title" href="{hub}" aria-label="docs.gnu6.live"><span class="g6-tw">docs.gnu6.live</span></a>
+<span class="g6-site-motion__status" role="status" aria-live="polite"></span></div>
 <nav class="g6-sysnav" aria-label="{t(locale, 'Navigation principale', 'Main navigation')}">{inline}</nav>
-<div class="g6-sysbar__end"><a class="g6-lang lang" href="{escape(alt_path, quote=True)}" hreflang="{other}" lang="{other}" aria-label="{escape(lang_name)}">{other.upper()}</a>
+<div class="g6-sysbar__end"><fieldset class="g6-site-motion-switch" data-g6-site-motion aria-label="{t(locale, 'Mode de mouvement', 'Motion mode')}">
+<legend class="g6-visually-hidden">{t(locale, 'Mode de mouvement', 'Motion mode')}</legend>
+<label>{t(locale, 'Animé', 'Animated')}<input type="radio" name="g6-site-mode" value="full" checked></label>
+<label>Off<input type="radio" name="g6-site-mode" value="off"></label>
+</fieldset><a class="g6-lang lang" href="{escape(alt_path, quote=True)}" hreflang="{other}" lang="{other}" aria-label="{escape(lang_name)}">{other.upper()}</a>
 <a class="g6-action g6-action--portal" href="{portal}">{t(locale, 'Portail', 'Portal')}</a>
 <details class="g6-sysmenu"><summary>Menu</summary><nav class="g6-sysmenu__panel" aria-label="{t(locale, 'Navigation compacte', 'Compact navigation')}">{panel}</nav></details></div>
 </div></header>"""

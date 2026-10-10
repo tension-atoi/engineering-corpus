@@ -5,9 +5,9 @@
   --g6-ledger-identity: var(--g6-identity-labs);
 }
 
-/* Real top-level Docs identity at rest: green text and existing green icon.
-   Cross-origin navigation remains native; Motion's persistent shell is not injected here. */
-.g6-site--docs .g6-sysbar .g6-brand__word {
+/* Docs' identity is green before shared Motion hydrates.
+   The versioned typewriter owns its subsequent phase colours. */
+.g6-site--docs .g6-sysbar .g6-tw:not([data-g6-tw-domain]) {
   color: var(--g6-accent-labs-text);
 }
 

@@ -96,12 +96,12 @@ def assess(reg):
             assert len(item["scope"][locale])>20
             study=(ROOT/"dist"/locale/"studies"/(identifier.lower()+".html")).read_text()
             assert identifier+"-P01" in study
-            assert f'<html lang="{locale}">' in study
+            assert f'<html lang="{locale}" data-g6-domain="docs">' in study
             assert item["source_file"] in study
             assert "<h1" in study
             assert "tension_atoi" not in study and "/mnt/workbench" not in study
             page=(ROOT/"dist"/locale/"experiments.html").read_text()
-            assert f'<html lang="{locale}">' in page
+            assert f'<html lang="{locale}" data-g6-domain="docs">' in page
             assert identifier in page and item["pages"][locale] in page
             assert item["source_file"] in page
             assert "DENIED" in page
