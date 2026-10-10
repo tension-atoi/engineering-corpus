@@ -53,7 +53,7 @@ def main():
         page=(ROOT/"dist"/locale/"studies"/"cuda-05d.html").read_text()
         sourcepage=(ROOT/"docs"/locale/"studies"/"cuda-05d.md").read_text()
         assert len(re.findall(r"<h1[^>]*>",page))==1
-        assert f'<html lang="{locale}">' in page
+        assert f'<html lang="{locale}" data-g6-domain="docs">' in page
         assert "CUDA-05D-P01" in page and COMMIT in page
         assert "/evidence/cuda-05d-public-results.json" in page
         assert "/evidence/cuda-05d-manifest.json" in page

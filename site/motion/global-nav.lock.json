@@ -1,0 +1,27 @@
+{
+  "adapterVersion": "0.1.0",
+  "component": "gnu6-global-site-navigation",
+  "designSourceBranch": "feat/persistent-site-nav-01",
+  "designSourceCommit": "32faf620fc5a67110838a983c14c73f604dd7937",
+  "displayedModes": [
+    "full",
+    "off"
+  ],
+  "eligibleRealOrigins": [
+    "gnu6.live",
+    "docs.gnu6.live"
+  ],
+  "mediaAuthority": "Original GNU6-owned rig and identity assets; all local; no remote runtime fetch",
+  "motionReferenceVersion": "gnu6-motion-public 1.0.0",
+  "plannedIdentityNotNavigable": [
+    "gnosix.gnu6.live",
+    "in.gnu6.live"
+  ],
+  "sourceSHA256": {
+    "g6-site-nav.css": "84d4811a22defec1a47e818f3dd0eb6186a8192e00bb33b668886df98fb5a333",
+    "g6-site-nav.js": "e776c0a0905bb16aadb786b50a3728b565ffb03b1cba8fc5150a6abe4d465441"
+  },
+  "status": "source candidate; per-workload browser and deployment gates required",
+  "themeVersion": "gnu6-design 1.1.1",
+  "transport": "Top-level native HTTPS with bounded ephemeral visual fragment; no cross-origin shared DOM"
+}

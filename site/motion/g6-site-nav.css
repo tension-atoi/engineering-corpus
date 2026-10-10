@@ -1,0 +1,89 @@
+/* GNU6 global site navigation. Exposed through the versioned adapter;
+ * use the same shell classes for React and statically generated Docs.
+ * The identity slot has fixed geometry before hydration: no nav-header cut.
+ */
+.g6-site-motion {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-inline-size: 12.75rem;
+  block-size: 44px;
+}
+.g6-site-motion .g6-bar__cube {
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  flex: none;
+  padding: 5px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--g6-radius, 6px);
+  color: var(--g6-text);
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.g6-site-motion .g6-bar__cube:hover { border-color:var(--g6-rule-strong) }
+.g6-site-motion .g6-bar__cube:focus-visible { outline:2px solid var(--g6-focus);outline-offset:1px }
+.g6-site-motion .g6-bar__rig { display:block;position:relative;inline-size:32px;block-size:32px;pointer-events:none }
+.g6-site-motion__fallback {
+  display:block;
+  position:absolute;
+  inset:0;
+  inline-size:32px;
+  block-size:32px;
+}
+.g6-site-motion[data-g6-site-nav-ready] .g6-site-motion__fallback { display:none }
+.g6-site-motion .g6-bar__title { font-size:1.0625rem;letter-spacing:-.03em;min-inline-size:0 }
+.g6-site-motion .g6-tw__pre { display:inline }
+.g6-site-motion .g6-tw__suf { color:var(--g6-text) }
+.g6-site-motion .g6-tw[data-g6-tw-domain] .g6-tw__pre { color:var(--g6-edit-ink,var(--g6-text)) }
+.g6-site-motion[aria-busy=true] { cursor:progress }
+.g6-site-motion__status { position:absolute;block-size:1px;inline-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap }
+.g6-site-motion-switch {
+  display:inline-flex;align-items:center;gap:2px;
+  padding:2px;border:1px solid var(--g6-rule-strong);
+  border-radius:var(--g6-radius,6px);
+}
+.g6-site-motion-switch label {
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  min-height:34px;padding:0 .54rem;font-size:.72rem;font-weight:680;
+  color:var(--g6-text-2);border-radius:var(--g6-radius-sm,4px);cursor:pointer;
+}
+.g6-site-motion-switch input {
+  position:absolute;inset:0;margin:0;appearance:none;cursor:pointer;
+}
+.g6-site-motion-switch input:focus-visible { outline:2px solid var(--g6-focus);outline-offset:0 }
+.g6-site-motion-switch label:has(input:checked) { color:var(--g6-text);background:var(--g6-selected-bg) }
+.g6-site-motion-switch label:has(input:disabled) { opacity:.7;cursor:default }
+.g6-site-motion-switch input:disabled { cursor:default }
+@media (max-width:820px) {
+  .g6-site-motion {min-inline-size:9.5rem}
+  .g6-site-motion .g6-bar__title {font-size:.93rem}
+  .g6-site-motion-switch label{padding:0 .36rem}
+}
+@media (prefers-reduced-motion:reduce) {
+  .g6-site-motion *, .g6-site-motion-switch * {transition:none!important;animation:none!important}
+}@media (max-width:760px) {
+  /* The global bar has three real controls: identity, motion, compact menu.
+     Preserve them without horizontal clipping on 320px viewports; move the
+     full portal and locale actions into the accessible compact menu. */
+  .g6-sysbar__inner {
+    block-size:auto;
+    height:auto;
+    min-block-size:var(--g6-bar-h);
+    flex-wrap:wrap;
+    row-gap:.18rem;
+    padding-block:.35rem;
+  }
+  .g6-sysbar__end > .g6-lang,
+  .g6-sysbar__end > .g6-action,
+  .g6-sysbar__end > .portal-auth-control {display:none}
+  .g6-sysbar__end {margin-inline-start:auto;gap:.35rem}
+}
+@media (max-width:380px) {
+  .g6-site-motion {min-inline-size:8.9rem}
+  .g6-site-motion-switch label {padding-inline:.30rem}
+}

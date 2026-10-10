@@ -34,7 +34,7 @@ def audit(manifest):
     assert gpu["public_kit"]=="OPEN_INDEPENDENT_COMPUTE_WITNESS_NOT_PRIVATE_RUNTIME"
     for lang in ("fr","en"):
         output=(ROOT/"dist"/lang/"challenges.html").read_text()
-        assert f'<html lang="{lang}">' in output
+        assert f'<html lang="{lang}" data-g6-domain="docs">' in output
         assert all(name in output for name in expected)
         assert "/challenges/registry.json" in output
         assert "/challenges/CONTRIBUTING.md" in output
