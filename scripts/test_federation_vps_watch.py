@@ -24,6 +24,14 @@ class WatchTests(unittest.TestCase):
                        "branch":"main","pinned_sha":OLD,
                        "files":{"README.md":"0"*64}}
 
+    def test_systemd_unit_uses_versioned_current_release(self):
+        service = (ROOT/"ops/federation/gnu6-docs-federation-watch.service").read_text()
+        self.assertIn("/gnu6-docs-federation/current/scripts/", service)
+        self.assertIn("/gnu6-docs-federation/current/docs/federation/", service)
+        self.assertIn("TimeoutStartSec=90s", service)
+        self.assertNotIn("RuntimeMaxSec=", service)
+        self.assertIn("MemoryMax=96M", service)
+
     def test_real_registry_has_one_public_upstream_no_publisher_loop(self):
         results = w.read_sources(REGISTRY)
         self.assertEqual(len(results),1)

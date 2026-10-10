@@ -5,8 +5,8 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 %h/.local/share/gnu6-docs-federation/scripts/federation_vps_watch.py --registry %h/.local/share/gnu6-docs-federation/docs/federation/sources.v1.json --state %h/.local/state/gnu6-docs-federation
-RuntimeMaxSec=90
+ExecStart=/usr/bin/python3 %h/.local/share/gnu6-docs-federation/current/scripts/federation_vps_watch.py --registry %h/.local/share/gnu6-docs-federation/current/docs/federation/sources.v1.json --state %h/.local/state/gnu6-docs-federation
+TimeoutStartSec=90s
 MemoryHigh=64M
 MemoryMax=96M
 CPUQuota=35%
