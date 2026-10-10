@@ -412,6 +412,7 @@ def build():
     for file in ('style.css','app.js','spine.css','spine.js','spine-map.js'):
         copy2(SITE/file,DIST/file)
     copytree(SITE/'gnu6',DIST/'gnu6')
+    copytree(SITE/'context',DIST/'context')
     copytree(ASSETS/'diagrams',DIST/'diagrams',ignore=shutil.ignore_patterns('*.py','__pycache__'))
     copytree(ROOT/'examples',DIST/'examples',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
     copytree(DOCS/'diagrams',DIST/'mermaid')

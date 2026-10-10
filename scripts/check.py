@@ -9,6 +9,7 @@ from test_replication_kit import check as verify_cuda05g
 from test_gpu_compute_kit import check as verify_cuda05h
 from test_gnu6_design import main as verify_design
 from test_spine import main as verify_spine
+from test_context import main as verify_context
 import sys
 errors, summary = check(Path(__file__).resolve().parents[1])
 if errors:
@@ -21,4 +22,5 @@ verify_cuda05g()
 verify_cuda05h()
 verify_design()
 verify_spine()
+verify_context()
 print('CORPUS_CHECK_OK', ' '.join(f'{key}={value}' for key,value in summary.items()), 'scope=source_static_and_experiment_provenance')
