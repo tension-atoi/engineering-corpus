@@ -1,0 +1,12 @@
+{
+  "component": "gnu6-motion-direct-handoff-docs-adapter",
+  "design": "gnu6-design@1.1.1",
+  "upstream_commit": "f03fe5063d94703e9237f5e0378e46b008be7d57",
+  "transport": "G6Motion v1 fragment, isolated top-level origins",
+  "files": {
+    "g6-motion.js": "af41dfe727f8c6d870777b6fcd6ca3c8483331f39049be64277d988dfcac97ae",
+    "g6-motion.css": "2d6d04c5304cadf698c2871d157172ba3702290f13a153767242fb374b9ba559",
+    "receiver.js": "359f8f19715cfbf4e70cfa9aba76b6129af867c03b9e5f852295ddf50b980cc1",
+    "domain.js": "b97a695e6338a2c529600b26c5d0518c3cfaa3f473f1ae0eee200db73c2d4510"
+  }
+}

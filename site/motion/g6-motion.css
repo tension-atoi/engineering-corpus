@@ -1,0 +1,82 @@
+/* GNU6 living title bar + motion hooks (MOTION-STANDARD.md). No opacity anywhere (WM-01). */
+
+/* Cross-origin geometric bridge: identical full-viewport opaque surface on
+   both documents during the browser's unavoidable top-level replacement.
+   The outgoing circle grows from the cube; the incoming one collapses into it.
+   No opacity changes, no screenshot transfer, no shared cookies or DOM. */
+html[data-g6-bridge]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  background: var(--g6-canvas, #111418);
+  pointer-events: none;
+  clip-path: circle(0px at var(--g6-bridge-x, 62px) var(--g6-bridge-y, 22px));
+  transition: clip-path var(--g6-bridge-cover-ms, 105ms) cubic-bezier(.4, 0, 1, .8);
+}
+html[data-g6-bridge="covered"]::after {
+  clip-path: circle(170vmax at var(--g6-bridge-x, 62px) var(--g6-bridge-y, 22px));
+}
+html[data-g6-bridge="uncovering"]::after {
+  transition-duration: var(--g6-bridge-reveal-ms, 155ms);
+  transition-timing-function: cubic-bezier(0, .25, .3, 1);
+}
+
+/* Before JS applies its arrival keyframes, show each block at the same
+   small offset as its first frame. Never blank or fade the arriving page. */
+html[data-g6-arriving] [data-g6-block] {
+  transform: translate3d(var(--g6-arrival-x, 0px), 0, 0);
+}
+
+/* Reserve stable header geometry even before deferred rig/JS hydration. */
+#g6-bar { display: inline-flex; flex: 0 0 14rem; min-inline-size: 14rem; }
+@media (max-width: 760px) {
+  #g6-bar { flex-basis: 10rem; min-inline-size: 10rem; }
+}
+.g6-bar { display: inline-flex; align-items: center; gap: 0.6rem; position: relative; min-height: 44px; }
+.g6-bar__cube {
+  inline-size: 44px; block-size: 44px; padding: 6px; margin: 0; flex: none;
+  display: grid; place-items: center;
+  border: 1px solid transparent; border-radius: var(--g6-radius, 6px);
+  background: none; cursor: pointer; touch-action: manipulation;
+  -webkit-touch-callout: none; user-select: none; -webkit-user-select: none;
+}
+.g6-bar__cube:hover { border-color: var(--g6-rule-strong); }
+.g6-bar__cube:focus-visible { outline: 2px solid var(--g6-focus); outline-offset: 2px; }
+.g6-bar__rig { inline-size: 32px; display: block; pointer-events: none; }
+.g6-bar__title {
+  font-weight: var(--g6-weight-bold, 700); font-size: 1.0625rem; letter-spacing: -0.03em;
+  color: var(--g6-text); text-decoration: none; white-space: nowrap; min-height: 44px;
+  display: inline-flex; align-items: center; font-variant-numeric: tabular-nums;
+}
+.g6-bar__title:hover { color: var(--g6-text); text-decoration: underline; text-decoration-color: var(--g6-rule-strong); text-underline-offset: 0.3em; }
+.g6-tw { display: inline-flex; align-items: baseline; }
+/* Versioned GNU6 surface identity on BOTH sides of the typewriter.
+   Theme-correct inks, not hardcoded royal blue; common ".live" stays neutral.
+   These are CSS color changes only at existing character frames (no fade). */
+.g6-tw[data-g6-tw-domain="live"] { --g6-edit-ink: var(--g6-accent-live-text); }
+.g6-tw[data-g6-tw-domain="docs"] { --g6-edit-ink: var(--g6-accent-labs-text); }
+/* 70% of the original Gnosix signal, mixed with readable foreground.
+   The identity stays orange and gains contrast in light mode. */
+.g6-tw[data-g6-tw-domain="gnosix"] {
+  --g6-edit-ink: color-mix(in srgb, var(--g6-identity-gnosix) 70%, var(--g6-text) 30%);
+}
+.g6-tw[data-g6-tw-domain] .g6-tw__pre { color: var(--g6-edit-ink, var(--g6-text)); }
+.g6-tw[data-editing] .g6-tw__caret::before { background: var(--g6-edit-ink, var(--g6-text)); }
+/* block caret: present only while editing (no idle blink: MOT-BAN-IDLE) */
+.g6-tw__caret { display: inline-block; inline-size: 0.55em; block-size: 1.05em; margin-inline: 1px; transform: translateY(0.12em); }
+.g6-tw__caret::before { content: ""; display: block; inline-size: 100%; block-size: 100%; background: var(--g6-signal); }
+.g6-tw__caret[hidden] { display: none; }
+.g6-bar__hint {
+  position: absolute; inset-block-start: calc(100% + 4px); inset-inline-start: 0; z-index: 70;
+  padding: 0.3rem 0.55rem; font-size: var(--g6-text-xs, 0.75rem); white-space: nowrap;
+  color: var(--g6-text); background: var(--g6-surface-2); border: 1px solid var(--g6-rule-strong); border-radius: var(--g6-radius-sm, 4px);
+}
+.g6-bar__hint[hidden] { display: none; }
+
+/* Full / Calm / Off switch */
+.g6-motion-switch { display: inline-flex; border: 1px solid var(--g6-rule-strong); border-radius: var(--g6-radius, 6px); padding: 2px; gap: 2px; }
+.g6-motion-switch label { position: relative; display: inline-flex; align-items: center; min-height: 36px; padding: 0 0.7rem; font-size: var(--g6-text-xs, 0.75rem); font-weight: 600; letter-spacing: 0.04em; color: var(--g6-text-2); cursor: pointer; border-radius: var(--g6-radius-sm, 4px); }
+.g6-motion-switch input { position: absolute; inset: 0; margin: 0; appearance: none; cursor: pointer; border-radius: inherit; }
+.g6-motion-switch input:focus-visible { outline: 2px solid var(--g6-focus); outline-offset: 1px; }
+.g6-motion-switch label:has(input:checked) { background: var(--g6-selected-bg); color: var(--g6-text); }

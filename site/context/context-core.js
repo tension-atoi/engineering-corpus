@@ -75,7 +75,68 @@ function resolveContext(facts) {
     source: facts.kind === "spatial" && facts.provenance === "in.gnu6" ? "in.gnu6" : "dom"
   };
 }
+
+// packages/gnu6-context-core/src/handoff.ts
+var HOSTS = { live: "gnu6.live", docs: "docs.gnu6.live" };
+function domainFor(url) {
+  if (url.protocol !== "https:" || url.username || url.password || url.port) return null;
+  return url.hostname === HOSTS.live ? "live" : url.hostname === HOSTS.docs ? "docs" : null;
+}
+function crossDomainPlan(sourceHref, destinationHref) {
+  try {
+    const source = new URL(sourceHref);
+    const target = new URL(destinationHref, source);
+    const from = domainFor(source);
+    const to = domainFor(target);
+    if (!from || !to || from === to) return null;
+    return { from, to, target: target.href, fromT: from === "live" ? 0 : 1 };
+  } catch {
+    return null;
+  }
+}
+var pending = false;
+var operation = 0;
+function beginCrossDomainHandoff(href, motion, anchor = null, currentHref = location.href) {
+  const plan = crossDomainPlan(currentHref, href);
+  if (!plan || !motion || motion.domain !== plan.from) return false;
+  if (pending) return true;
+  if (!motion.handoff?.go || !motion.bridge?.cover) return false;
+  pending = true;
+  const ticket = ++operation;
+  const r = anchor?.getBoundingClientRect();
+  const point = r ? { x: r.left + r.width / 2, y: r.top + r.height / 2 } : { x: 22, y: 22 };
+  const state = { from: plan.from, t: plan.fromT, mode: motion.chosen, chain: motion.chain() };
+  motion.noteNavigation();
+  const cleanup = () => {
+    document.documentElement.removeAttribute("data-g6-bridge");
+    document.documentElement.style.removeProperty("--g6-bridge-x");
+    document.documentElement.style.removeProperty("--g6-bridge-y");
+    pending = false;
+    ++operation;
+  };
+  const cancel = (event) => {
+    if (event.key !== "Escape") return;
+    event.preventDefault();
+    document.removeEventListener("keydown", cancel, true);
+    cleanup();
+  };
+  document.addEventListener("keydown", cancel, true);
+  const accepted = pending;
+  void (motion.bridge.active ? motion.bridge.cover(point) : Promise.resolve()).then(() => {
+    document.removeEventListener("keydown", cancel, true);
+    if (!pending || ticket !== operation) return;
+    motion.handoff.go(plan.target, state);
+  }).catch(() => {
+    document.removeEventListener("keydown", cancel, true);
+    if (!pending || ticket !== operation) return;
+    cleanup();
+    location.assign(plan.target);
+  });
+  return accepted;
+}
 export {
+  beginCrossDomainHandoff,
   contextFacts,
+  crossDomainPlan,
   resolveContext
 };

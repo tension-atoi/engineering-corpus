@@ -1,14 +1,15 @@
 {
   "component": "gnu6-context-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "source_repository": "tension-atoi/gnu6-live",
-  "source_branch": "feat/gnu6-shell-context-02d-design",
+  "source_branch": "feat/context-03-cross-domain",
   "source_base_commit": "ea82cc1de97b177870c86dc0f4ca130b94ae19de",
   "files": {
-    "context-core.js": "e01e9c6bc3b9b06fc91d2c4f0786b667f806934fa45ca7a919c43b22ce2873a7",
+    "context-core.js": "197ff4c2253ec200de11b3ffcf45dcee8342c1b7eb6906b1a39b99ee925ecadf",
     "context-menu.css": "ce24c930539424cc1655f9846cffccd73418f541f8f89c666b9555162a398268",
-    "context-adapter.js": "6d98a62432a3614e28a37e25ebc506a48f4b7027d402a19e1238614c1d0392bb"
+    "context-adapter.js": "aa88730bc26ea3fea480a3e6552b1dcd7a69c16377a82a7a106d3ba6d4010817"
   },
   "gnu6_design": "1.1.1",
-  "source_commit": "d372fc82f35811e25b8b528bcc1f9f42a5144d0f"
+  "source_commit": "0b7afeb79e8b3907058bd92825ee5763ee113f9a",
+  "transport": "gnu6-motion-direct-handoff@1.1.1"
 }
