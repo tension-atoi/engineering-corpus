@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 class TestFederation(unittest.TestCase):
     def test_real_source_is_pinned_and_covered(self):
         manifest=core.verify()
-        self.assertEqual(manifest["source_ref"],"b23923a110608b565deec56e6360041f56a59c0b")
+        self.assertRegex(manifest["source_ref"],r"^[0-9a-f]{40}$")
         self.assertEqual(len(manifest["files"]),7)
         self.assertIn("docs/CAPABILITY_MATRIX.md",manifest["files"])
 

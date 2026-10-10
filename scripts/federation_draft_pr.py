@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+"""Publish a qualified federation candidate as a DRAFT GitHub PR, never merge/deploy.
+
+No remote mutation unless --publish is explicitly supplied, with independent
+fresh upstream/source + target repo fast-forward checks and strict staged paths.
+"""
+from __future__ import annotations
+import argparse
+import json
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+import federation_review_bot as bot
+import federate_gnostral as federation
+
+DOCS_REPO = "tension-atoi/engineering-corpus"
+ALLOWED = ("docs/federation/gnostral/", "dist/", "docs/source-registry.json")
+SAFE_REF = re.compile(r"^[a-f0-9]{40}$")
+
+class PublicationRefused(ValueError):
+    pass
+
+def invoke(*args, cwd=None):
+    return subprocess.run(args,cwd=cwd,capture_output=True,text=True,
+                          check=True,timeout=60).stdout.strip()
+
+def remote_ref(url:str, branch:str) -> str:
+    result=invoke("git","ls-remote",url,"refs/heads/"+branch)
+    sha=result.split()[0] if result else ""
+    if not SAFE_REF.fullmatch(sha):
+        raise PublicationRefused("cannot verify exact public remote ref")
+    return sha
+
+def audit_worktree(worktree:Path, report:dict, source:Path):
+    candidate=report.get("candidate",{})
+    expected=bot.BRANCH+str(candidate.get("source_head",""))[:12]
+    current_branch=invoke("git","-C",str(worktree),"branch","--show-current")
+    if current_branch!=expected or not expected.startswith(bot.BRANCH):
+        raise PublicationRefused("candidate branch identity mismatch")
+    if report.get("requires_review") is not True or candidate.get("status")!="DOC_UPDATE_CANDIDATE":
+        raise PublicationRefused("not a qualified review proposal")
+    if report.get("branch")!=expected or report.get("docs_base_sha")!=remote_ref(
+            "https://github.com/"+DOCS_REPO+".git","main"):
+        raise PublicationRefused("documentation base changed; rebuild required")
+    if invoke("git","-C",str(worktree),"rev-parse","HEAD")!=report["docs_base_sha"]:
+        raise PublicationRefused("candidate did not start at frozen docs base")
+    if not bot.SHA40.fullmatch(candidate["source_head"]):
+        raise PublicationRefused("candidate source digest invalid")
+    bot.check_source_remote(source)
+    if remote_ref(bot.CANONICAL+".git","main")!=candidate["source_head"]:
+        raise PublicationRefused("upstream main moved since the candidate was prepared")
+    staging=invoke("git","-C",str(worktree),"diff","--cached","--name-only").splitlines()
+    if not staging or any(not x.startswith(ALLOWED[:2]) and x!=ALLOWED[2] for x in staging):
+        raise PublicationRefused("staged files exceed federation allowlist")
+    if invoke("git","-C",str(worktree),"diff","--name-only"):
+        raise PublicationRefused("unstaged tracked files require manual investigation")
+    # No ephemeral build logs, secrets or other hidden additions.
+    if invoke("git","-C",str(worktree),"ls-files","--others","--exclude-standard"):
+        raise PublicationRefused("untracked files require manual investigation")
+    invoke(sys.executable,str(worktree/"scripts/federate_gnostral.py"),"--verify")
+    installed=json.loads((worktree/"docs/federation/gnostral/manifest.json").read_text())
+    if installed["source_ref"]!=candidate["source_head"]:
+        raise PublicationRefused("source manifest does not match the new qualified upstream SHA")
+    before=invoke("git","-C",str(worktree),"merge-base","HEAD",report["docs_base_sha"])
+    if before!=report["docs_base_sha"]:
+        raise PublicationRefused("candidate is not based on public docs main")
+    invoke("git","-C",str(worktree),"diff","--cached","--check")
+    return staging
+
+def body(report:dict,staging:list[str]) -> str:
+    candidate=report["candidate"]
+    docs_changes=candidate["changed_documents"]
+    text=["## Docs federation · reviewed update proposal","",
+        "Automated, **draft-only** candidate; not merged or deployed.",
+        "",f"Source: {bot.CANONICAL}",
+        f"From SHA: `{candidate['docs_main_source_ref']}`",
+        f"To SHA: `{candidate['source_head']}`","",
+        "### Allowlisted upstream Markdown changes",""]
+    for d in docs_changes:
+        text.append(f"- `{d['path']}`: `{d['before_sha256'][:12]}` → `{d['after_sha256'][:12]}`")
+    text += ["","### Local qualification","",
+        "Static build + source-manifest SHA check + full docs check + federation/hub tests: PASS.",
+        f"Changed files in docs repo: {len(staging)}","",
+        "### Review gates before merge","",
+        "- Verify the source doc changes and provenance against the pinned commit.",
+        "- Review public safety/nonclaims, licenses, FR/EN presentation and links.",
+        "- Rebuild from the exact branch; do not rely on remote CI for inference tests.",
+        "- Merge requires human authorization; Coolify deployment separately requires a pinned commit.",
+        "",f"**Upstream source:** {bot.CANONICAL}/tree/{candidate['source_head']}",
+        "","Generated by DOCS-FEDERATION-03; no auto-merge or auto-deploy.",""]
+    return "\n".join(text)
+
+def publish(worktree:Path, report:dict, source:Path, *, perform:bool=False)->str:
+    staged=audit_worktree(worktree,report,source)
+    message=f"docs(federation): propose gnostral {report['candidate']['source_head'][:12]} snapshot"
+    pr_body=body(report,staged)
+    if not perform:
+        return "DRAFT_PR_DRY_RUN_PASS "+report["branch"]+" files="+str(len(staged))
+    invoke("git","-C",str(worktree),"-c","user.name=OpenAI","-c",
+           "user.email=noreply@openai.com","commit","-s","-m",message)
+    invoke("git","-C",str(worktree),"push","origin",
+           "HEAD:refs/heads/"+report["branch"])
+    existing=invoke("gh","pr","list","--repo",DOCS_REPO,"--head",report["branch"],
+                    "--state","open","--json","number")
+    if json.loads(existing):
+        return "DRAFT_PR_ALREADY_OPEN "+existing
+    result=invoke("gh","pr","create","--repo",DOCS_REPO,"--base","main",
+                  "--head",report["branch"],"--draft","--title",message,
+                  "--body",pr_body)
+    return "DRAFT_PR_CREATED "+result
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--report",type=Path,required=True)
+    p.add_argument("--worktree",type=Path,required=True)
+    p.add_argument("--source-checkout",type=Path,required=True)
+    p.add_argument("--publish",action="store_true")
+    a=p.parse_args()
+    try:
+        report=json.loads(a.report.read_text())
+        print(publish(a.worktree.resolve(),report,a.source_checkout.resolve(),
+                      perform=a.publish))
+        return 0
+    except (OSError,PublicationRefused,bot.Refused,subprocess.CalledProcessError,
+            subprocess.TimeoutExpired,ValueError,KeyError) as e:
+        print("DOCS_DRAFT_PR_REFUSED",str(e),file=sys.stderr)
+        return 2
+
+if __name__=="__main__":raise SystemExit(main())

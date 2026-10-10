@@ -71,3 +71,69 @@ diff; they must never promote unreviewed private/research outputs or bypass
 static/Coolify qualification. A true French technical translation should be
 versioned as a separately reviewed, source-referenced artifact rather than
 presented as an automatic language-equivalent translation.
+
+## DOCS-FEDERATION-03 — source drift → human-reviewed draft PR
+
+A new **fail-closed proposal bot** watches only the seven public, exact
+`gnostral.rs` Markdown paths already allowed by the federation manifest.
+It does **not** subscribe to private repositories, infer product maturity
+from a commit, or grant GitHub Actions GPU/runtime test authority.
+
+1. **Detect (read-only to docs):** fetch the *canonical public*
+   `gnostral.rs/main` into an isolated source checkout and compare each
+   allowlisted file's byte SHA-256 against the deployed manifest.
+   `CURRENT` and `SOURCE_AHEAD_NO_DOC_CHANGE` create **no PR**.
+   Rewritten history, unexpected origin or executable/symlink/raw active HTML
+   inputs are rejected.
+2. **Prepare candidate:** generate an isolated `engineering-corpus`
+   worktree at its fetched `origin/main`; import only the reviewed source
+   commit, rebuild static pages and run `scripts/check.py` plus **all local
+   `scripts/test_*.py` suites**, then stage only the static pages and the
+   bounded source snapshot. The worktree is retained on failure for inspection.
+3. **Draft PR (explicit opt-in):** independently revalidate both public
+   upstream heads, docs base, staged-file allowlist and snapshot identity.
+   Open a **draft** PR with file-level before/after hashes. Never merge, tag,
+   force-push or deploy automatically. The draft cannot authorize a Coolify
+   deployment by itself.
+
+### Safe watch command
+
+```bash
+python3 scripts/federation_review_bot.py \
+  --source-checkout /path/to/public/gnostral.rs \
+  --refresh
+# Exit 0: source current or ahead with no relevant Markdown change.
+# Exit 10: new reviewed-doc candidate exists; requires a prepared branch.
+# Exit 2: security/provenance refusal.
+```
+
+### Qualified proposal on a real changed source
+
+```bash
+python3 scripts/federation_review_bot.py \
+  --source-checkout /path/to/public/gnostral.rs --refresh \
+  --docs-repo /path/to/clean/engineering-corpus \
+  --prepare-worktree /new/isolated/federation-worktree \
+  --proposal /private/evidence/federation-proposal.json
+
+# Default dry run re-checks public refs and does NOT commit or push:
+python3 scripts/federation_draft_pr.py \
+  --report /private/evidence/federation-proposal.json \
+  --worktree /new/isolated/federation-worktree \
+  --source-checkout /path/to/public/gnostral.rs
+
+# Explicit, separately authorized publication as GitHub DRAFT PR only:
+python3 scripts/federation_draft_pr.py \
+  --report /private/evidence/federation-proposal.json \
+  --worktree /new/isolated/federation-worktree \
+  --source-checkout /path/to/public/gnostral.rs --publish
+```
+
+The proposal publisher uses the local `gh` authorization only when
+`--publish` is provided. It never saves API tokens in the repository.
+All publication operations remain traceable to a qualified local worktree.
+**No GitHub Actions inference/benchmark runners are introduced.**
+
+A recurring read-only check may identify candidates automatically; there
+must still be a **separate GitHub PR review** and **separate pinned Coolify
+promotion**. This control is not equivalent to automatic FR translation.
