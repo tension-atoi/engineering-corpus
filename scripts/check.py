@@ -7,6 +7,7 @@ from test_experiment_registry import main as verify_experiments
 from test_challenges import main as verify_challenges
 from test_replication_kit import check as verify_cuda05g
 from test_gpu_compute_kit import check as verify_cuda05h
+from test_gnu6_design import main as verify_design
 import sys
 errors, summary = check(Path(__file__).resolve().parents[1])
 if errors:
@@ -17,4 +18,5 @@ verify_experiments()
 verify_challenges()
 verify_cuda05g()
 verify_cuda05h()
+verify_design()
 print('CORPUS_CHECK_OK', ' '.join(f'{key}={value}' for key,value in summary.items()), 'scope=source_static_and_experiment_provenance')
