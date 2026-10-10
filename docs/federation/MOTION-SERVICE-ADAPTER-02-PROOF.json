@@ -1,0 +1,58 @@
+{
+  "adapter_version": "docs-native 0.1.0",
+  "captured_utc": "2026-10-10T15:06:56+00:00",
+  "classification": "[CHECKPOINT] source and local browser qualification, no production change",
+  "consumer": "https://gnu6.live/motion/index.html",
+  "design_version": "gnu6-design 1.1.1",
+  "no_go": [
+    "no replacement of native top-level Docs with foreign iframe",
+    "no real cross-origin continuity asserted",
+    "no Docs production deployment in this slice",
+    "Gnosix domain and in.gnu6 domain readiness unproven"
+  ],
+  "parent_authority": "origin/main@d09eede",
+  "proof": {
+    "EN": 45,
+    "FR": 45,
+    "browser_matrix": {
+      "axe_detected_violations": 0,
+      "desktop_mobile": [
+        "desktop",
+        "mobile"
+      ],
+      "javascript_console_errors": 0,
+      "passed": 16,
+      "proof_sha256": "154d8904942481d04abc95df9a50ddca2398e7b3352362f49c251c1fa28e63ca",
+      "sampled_routes": [
+        "/fr/hub.html",
+        "/en/hub.html",
+        "/fr/projects/gnosix/index.html",
+        "/en/api.html"
+      ],
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "total": 16
+    },
+    "design_lock": "PASS",
+    "hub_contract": "PASS",
+    "labs": "PASS",
+    "motion_docs_test": "PASS",
+    "negative_checker": "PASS",
+    "source_build": "PASS",
+    "spine_lock": "PASS",
+    "static_html_pages_checked": 90,
+    "static_validator": "PASS",
+    "total_built_html_pages": 92
+  },
+  "repository": "tension-atoi/engineering-corpus",
+  "source_files": {
+    "scripts/gnu6_shell.py": "c79b688ecd884d4a35d6928e8816bdb3fc76c578d65026257239a5e5f3490589",
+    "scripts/motion-browser-qualification.cjs": "a3f4c543232819d94dce1243e2be78d348d30f4bdeccc5d76b349c84852d630b",
+    "scripts/test_motion_service_adapter.py": "6841216251c23bcf5820f6340c6d9c408329ddea751f4e7e7055301320b3cd8a",
+    "site/style.css": "1a1a550a00c37ea46ad1651c08f7680410f03aeeacf171272c5f8c839c194ec6"
+  },
+  "spine_adapter_version": "1.0.0",
+  "workstream": "feat/motion-service-adapter-02-docs"
+}

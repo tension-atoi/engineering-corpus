@@ -21,7 +21,7 @@ CODE = "https://github.com/tension-atoi"
 DOCS_ORIGIN = "https://docs.gnu6.live"
 
 # Public external hrefs the shared shell itself emits (allow-listed by scripts/validate.py).
-SYSTEM_LINKS = (f"{GNU6}/", f"{GNU6}/?lang=en", f"{GNU6}/login", f"{GNU6}/login?lang=en", CODE)
+SYSTEM_LINKS = (f"{GNU6}/", f"{GNU6}/?lang=en", f"{GNU6}/login", f"{GNU6}/login?lang=en", f"{GNU6}/motion/index.html", CODE)
 
 STATE = {
     # hub/registry state -> gnu6-design state modifier (shape + colour + text)
@@ -62,7 +62,7 @@ def head(locale: str, path: str, alt_path: str, title: str, description: str, *,
 <title>{escape(title)}</title><meta name="description" content="{escape(description, quote=True)}">
 <meta property="og:type" content="website"><meta property="og:title" content="{escape(title, quote=True)}"><meta property="og:description" content="{escape(description, quote=True)}">
 <meta property="og:image" content="{DOCS_ORIGIN}/gnu6/social/{og}"><meta property="og:url" content="{DOCS_ORIGIN}{escape(path, quote=True)}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" sizes="32x32" href="/gnu6/icons/gnu6-live-32.png"><link rel="apple-touch-icon" href="/gnu6/icons/gnu6-live-180.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/gnu6/identity/gnuinlabs-64.png"><link rel="apple-touch-icon" href="/gnu6/identity/gnuinlabs-128.png">
 <link rel="stylesheet" href="{CSS}"><link rel="stylesheet" href="{SITE_CSS}"><link rel="stylesheet" href="/spine.css"><script src="/spine-map.js" defer></script><script src="/spine.js" defer></script>{'<script src="/app.js" defer></script>' if scripts else ''}
 <link rel="alternate" hreflang="{locale}" href="{escape(path, quote=True)}"><link rel="alternate" hreflang="{other}" href="{escape(alt_path, quote=True)}"></head>"""
 
@@ -78,6 +78,7 @@ def system_bar(locale: str, alt_path: str) -> str:
     items = [
         (home, t(locale, "Accueil", "Home"), False, False),
         (hub, "Docs", True, False),
+        (f"{GNU6}/motion/index.html", "Motion", False, True),
         (CODE, "Code", False, True),
     ]
     inline = "".join(
@@ -93,7 +94,7 @@ def system_bar(locale: str, alt_path: str) -> str:
     panel += (f'<a href="{escape(alt_path, quote=True)}" hreflang="{other}" lang="{other}"><span>{escape(lang_name)}</span>'
               f'<span aria-hidden="true">{other.upper()}</span></a>')
     return f"""<header class="g6-sysbar"><div class="g6-frame g6-sysbar__inner">
-<a class="g6-brand" href="{home}"><img src="/gnu6/identity/gnu6-live-64.png" width="28" height="28" alt=""><span class="g6-brand__word">gnu6<span class="g6-brand__dot">.</span>live</span></a>
+<a class="g6-brand" href="{hub}" aria-label="docs.gnu6.live"><img src="/gnu6/identity/gnuinlabs-64.png" width="28" height="28" alt=""><span class="g6-brand__word">docs.gnu6.live</span></a>
 <nav class="g6-sysnav" aria-label="{t(locale, 'Navigation principale', 'Main navigation')}">{inline}</nav>
 <div class="g6-sysbar__end"><a class="g6-lang lang" href="{escape(alt_path, quote=True)}" hreflang="{other}" lang="{other}" aria-label="{escape(lang_name)}">{other.upper()}</a>
 <a class="g6-action g6-action--portal" href="{portal}">{t(locale, 'Portail', 'Portal')}</a>
