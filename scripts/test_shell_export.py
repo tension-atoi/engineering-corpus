@@ -6,7 +6,16 @@ from export_shell_documents import OUT, ROOT, UnsafeDocument, export_documents, 
 def main():
     manifest = export_documents()
     persisted = json.loads(OUT.read_text())
-    assert manifest == persisted
+    # The export is immutable and records its originating commit. After a Git
+    # merge, HEAD changes while the original editorial bytes remain identical.
+    # Never rewrite source_commit merely to satisfy a later checkout.
+    import subprocess
+    original_commit = persisted["source_commit"]
+    assert len(original_commit) == 40
+    subprocess.check_call(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", original_commit, "HEAD"])
+    assert {k: v for k, v in manifest.items() if k != "source_commit"} == {
+        k: v for k, v in persisted.items() if k != "source_commit"
+    }
     assert manifest["schema"] == "gnu6.corpus.semantic.v1"
     assert len(manifest["documents"]) == 18
     assert len({item["route"] for item in manifest["documents"]}) == 18

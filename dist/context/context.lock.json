@@ -7,11 +7,11 @@
   "files": {
     "context-core.js": "197ff4c2253ec200de11b3ffcf45dcee8342c1b7eb6906b1a39b99ee925ecadf",
     "context-menu.css": "ce24c930539424cc1655f9846cffccd73418f541f8f89c666b9555162a398268",
-    "context-adapter.js": "72f7b70bc8106486ba0db95a99b682fbedc0aec0abfed5636a9e29599081d283"
+    "context-adapter.js": "123e0c0d6f8ab178bb7d2ade4657189f415f433804225e3680442fb51c4fd9f5"
   },
   "gnu6_design": "1.1.1",
   "source_commit": "0b7afeb79e8b3907058bd92825ee5763ee113f9a",
-  "transport": "gnu6-motion-direct-handoff@1.1.1",
+  "transport": "gnu6-no-veil-native-cross-origin@1.1.1",
   "baseline_docs_main": "9c9ba8e",
   "motion_authority": "existing site/motion/global-nav.lock.json from Docs main PR #15, NOT old adapter"
 }
