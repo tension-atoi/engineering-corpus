@@ -48,5 +48,22 @@ def render_experiment_registry(dist:Path, registry:dict, locale:str, edition:str
           f'<p>{escape(policy)} <a href="/experiments/registry.json">{"Registre JSON" if fr else "Machine-readable registry"} ↗</a>'
           f' · <a href="/templates/EXPERIMENT.md">{"Modèle de recherche" if fr else "Research contract"} ↗</a>'
           f' · <a href="/experiments/PIPELINE.md">{"Pipeline de preuves" if fr else "Evidence pipeline"} ↗</a></p></section>')
+    # Independent bounded Gnostral research remains separate from the three-entry
+    # CUDA scientific challenge registry. Do not silently expand registry claims.
+    gnostral_title=("Gnostral / RTX 3070 · Q-010 et Q-011" if fr else
+                    "Gnostral / RTX 3070 · Q-010 and Q-011")
+    gnostral_desc=("Étude locale répétée sous contrainte mémoire; la reproduction externe et la qualification production ne sont pas établies." if fr else
+                  "Repeated bounded local inference study; neither external reproduction nor production qualification is established.")
+    study_label="Lire l'étude" if fr else "Read study"
+    evidence_label="Données assainies" if fr else "Sanitized results"
+    gnostral=(f'<section class="g6-section" aria-label="{escape(gnostral_title)}">'
+              f'<article class="g6-record"><div class="g6-record__head">'
+              f'{state("attention", "Étude indépendante / brouillon" if fr else "Independent study / draft")}'
+              f'<span class="g6-label">Q-010 / Q-011 · RTX 3070</span></div>'
+              f'<h2>{escape(gnostral_title)}</h2><p>{escape(gnostral_desc)}</p>'
+              f'<div class="g6-record__links"><a class="g6-action" href="/{locale}/studies/gnostral-rtx3070.html">'
+              f'{study_label} ↗</a><a class="g6-action g6-action--quiet" href="/evidence/gnostral-rtx3070-public-results.json">'
+              f'{evidence_label} ↓</a></div></article></section>')
+    body+=gnostral
     index_page(dist,locale,f"/{locale}/experiments.html",title=f"{title} · gnu.in.labs",description=intro,section="experiments",
                body=body,edition=edition,footer_note=("Études non ratifiées" if fr else "Unratified studies"))

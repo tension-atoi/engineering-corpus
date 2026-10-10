@@ -1,0 +1,47 @@
+{
+  "external_reproduction": "PENDING",
+  "hardware": "RTX 3070 8 GiB",
+  "limitations": [
+    "raw GGUF and logs not published",
+    "whole GPU memory includes desktop",
+    "RSS is not PSS",
+    "only 3 trials per condition",
+    "synthetic GPU memory pressure has no competing compute"
+  ],
+  "model": "Qwen3-30B-A3B Q2_K",
+  "production_authorization": "DENIED",
+  "published_source_sha256": {
+    "evidence/runs/q010-hotpath-ssd-ab-audit-20261010.json": "fefc46bbb20943d04eec418ea2f3cd8a520c31db40bb1150fea08b1cd3683999",
+    "evidence/runs/q011-rtx3070-placement-observation-20261010.json": "b048df6ba0aff62ca06e99336dc95c0be6d3f0949ab7c92bc7a8e016088f7738"
+  },
+  "q010": {
+    "candidate_over_baseline": 2.12,
+    "first_attempt": "NOT_QUALIFIED_GPU_RECLAIM_196_MIB",
+    "median_decode_tps_baseline": 9.51,
+    "median_decode_tps_candidate": 20.18,
+    "paired_identical_answers": 6,
+    "repetitions_each": 3,
+    "retest": "PASS_THRESHOLDS_UNCHANGED"
+  },
+  "q011": {
+    "cuda_reservation_mib": 2048,
+    "gpu_layers_control": [
+      22,
+      21,
+      21
+    ],
+    "gpu_layers_reserved": [
+      13,
+      12,
+      13
+    ],
+    "hot_rebalancing": "NOT_QUALIFIED",
+    "median_decode_tps_control": 20.88,
+    "median_decode_tps_reserved": 20.15,
+    "mixed_paged_attention": "DISABLED",
+    "startup_adaptation": "OBSERVED"
+  },
+  "schema": "gnu6.gnostral-rtx3070-study-public.v1",
+  "source_commit": "f1fbe2214a209eadfd4b1a90ed17433cb7a84c5a",
+  "status": "draft"
+}
