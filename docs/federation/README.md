@@ -186,3 +186,28 @@ inspection time*. `SOURCE_AHEAD_NO_DOC_CHANGE` means new upstream code but
 no approved Markdown update. `DOC_UPDATE_CANDIDATE` requires the separate
 DOCS-FEDERATION-03 draft-PR qualification; this watcher will not create one
 and never constitutes a site deployment authorization.
+
+### Qualification VPS — 2026-10-10
+
+**Actual state:** `DOCS_FEDERATION_04_VPS_ONESHOT_AND_TIMER_ARMED_PASS`.
+A versioned release of commit
+`16e29c8354b8b3de343b21667a59338af9a4754e`
+was installed under operator's home on `server1.gnu6.live`.
+VPS-local 14/14 Python tests passed, and a real systemd user oneshot returned
+`Result=success`, `ExecMainStatus=0`. The timer was independently observed
+`enabled` and `active` after a separate SSH connection, and
+`loginctl show-user operator` reports `Linger=yes`.
+
+The run's public upstream verdict is `CURRENT` (0 changed documents).
+The next scheduled callback was observed as
+`2026-10-10 20:18:56 UTC`; **its successful firing has not yet been
+observed**. This is not a long-term reliability qualification.
+Details and exact scope are in
+[the public VPS qualification receipt](../../evidence/runs/docs-federation-04-vps-20261010.json).
+
+**Deployment boundary:** production `docs.gnu6.live` remains served from
+its previously qualified immutable static container image (commit
+`80bb6b1`); this VPS watcher does not own or rebuild it. No Docker/Coolify
+container was created or restarted. The earlier service path regression was
+fixed in commit `16e29c8` (use `current/` for both script and manifest)
+and frozen as a unit-file regression test.

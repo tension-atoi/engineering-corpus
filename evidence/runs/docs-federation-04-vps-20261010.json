@@ -1,0 +1,45 @@
+{
+  "schema": "gnu6.docs.federation.vps.qualification.v1",
+  "date": "2026-10-10",
+  "verdict": "DOCS_FEDERATION_04_VPS_ONESHOT_AND_TIMER_ARMED_PASS",
+  "repository": "tension-atoi/engineering-corpus",
+  "implementation_commit": "16e29c8354b8b3de343b21667a59338af9a4754e",
+  "release_archive_sha256": "5b7be5457e51280621ab05ed50c1b1da0d0f2088348f1edbb3f9078f8bc26f7f",
+  "host": "server1.gnu6.live",
+  "service": "gnu6-docs-federation-watch.service",
+  "timer": "gnu6-docs-federation-watch.timer",
+  "observed": {
+    "systemd_oneshot_result": "success",
+    "systemd_exec_main_status": 0,
+    "timer_is_enabled": true,
+    "timer_is_active": true,
+    "linger": true,
+    "timer_next_utc": "2026-10-10T20:18:56Z",
+    "memory_high_bytes": 67108864,
+    "memory_max_bytes": 100663296,
+    "cpu_quota_percent": 35,
+    "vps_tests_passed": 14,
+    "observed_utc": "2026-10-10T14:04:09.636579Z",
+    "source_repository": "tension-atoi/gnostral.rs",
+    "source_ref": "b23923a110608b565deec56e6360041f56a59c0b",
+    "documents_changed": 0,
+    "watcher_result": "CURRENT",
+    "site_http_status": 200,
+    "site_image_revision": "80bb6b1f63d9b665e9790ce67f7d2099c2e4fe9a"
+  },
+  "control_boundaries": {
+    "vps_github_api": "unauthenticated public read-only",
+    "does_not_create_pull_requests": true,
+    "does_not_merge": true,
+    "does_not_deploy": true,
+    "publisher_registry_entry_disabled": true,
+    "private_repositories_excluded": true
+  },
+  "still_pending": [
+    "first scheduled timer firing not yet observed",
+    "VPS notification-to-PR integration is separate and reviewed by scheduled ChatGPT workflow",
+    "no second external public source has been federated",
+    "long-term service reliability"
+  ],
+  "evidence_class": "local_host_observation_not_third_party_audit"
+}
