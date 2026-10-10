@@ -1,42 +1,46 @@
-/* A single context plane at the persistent shell level.
-   No surface-specific fork or artificial blur over document content. */
+/* GNU6 Context Core 1.0.2 — consumer of gnu6-design 1.1.1.
+ * The contextual plane is the shared GNU6 menu surface, not a Pixi theme.
+ * Uses versioned design tokens only; not a parallel palette or motion system. */
 .g6-context-plane {
   position: fixed;
   z-index: 1100;
-  width: min(280px, calc(100vw - 16px));
-  max-height: calc(100dvh - 16px);
+  width: min(20rem, calc(100vw - 2 * var(--g6-space-xs)));
+  max-height: calc(100dvh - 2 * var(--g6-space-xs));
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 6px;
-  border: 1px solid #60738b;
-  border-radius: 10px;
-  background: #161d27;
-  color: #f3f6fa;
-  box-shadow: 0 18px 55px #0005;
-  font: inherit;
-  animation: g6-context-appear 140ms cubic-bezier(0.22, 0.8, 0.2, 1) both;
+  padding: var(--g6-space-xs);
+  background: var(--g6-surface-1);
+  border: 1px solid var(--g6-rule-strong);
+  border-radius: var(--g6-radius);
+  box-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  color: var(--g6-text);
+  font-family: var(--g6-font);
+  font-size: var(--g6-text-sm);
+  transform-origin: top left;
 }
 .g6-context-plane__heading {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 12px;
-  border-bottom: 1px solid #60738b;
-  padding: 10px 10px 11px;
-  color: #bbc8d5;
-  font-size: 11px;
-  font-weight: 700;
+  gap: var(--g6-space-sm);
+  border-bottom: 1px solid var(--g6-rule);
+  padding: var(--g6-space-xs) var(--g6-space-sm);
+  color: var(--g6-text-3);
+  font-size: var(--g6-text-xs);
+  font-weight: var(--g6-weight-semibold);
+  letter-spacing: var(--g6-track-label);
 }
 .g6-context-plane__subject {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 150px;
-  font-weight: 500;
-  color: #f3f6fa;
+  max-width: 11rem;
+  font-weight: var(--g6-weight-medium);
+  color: var(--g6-text);
+  letter-spacing: normal;
 }
 .g6-context-plane__rows {
-  padding: 5px 0;
+  padding: var(--g6-space-2xs) 0;
 }
 .g6-context-plane__rows :is(button, a) {
   box-sizing: border-box;
@@ -44,32 +48,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: var(--g6-space-sm);
   width: 100%;
-  min-height: 40px;
-  padding: 8px 11px;
+  min-height: 44px;
+  padding: var(--g6-space-xs) var(--g6-space-sm);
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--g6-radius-sm);
   background: transparent;
-  color: #f3f6fa;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--g6-text);
+  font-family: var(--g6-font);
+  font-size: var(--g6-text-sm);
+  font-weight: var(--g6-weight-medium);
   text-align: start;
   text-decoration: none;
   cursor: pointer;
 }
-.g6-context-plane__rows :is(button, a):is(:hover, :focus-visible) {
-  outline: 2px solid #8cb0ff;
+.g6-context-plane__rows :is(button, a):hover,
+.g6-context-plane__rows :is(button, a):focus-visible {
+  background: var(--g6-surface-2);
+  color: var(--g6-text);
+  outline: 2px solid var(--g6-focus);
   outline-offset: -2px;
-  background: #30425c;
 }
 .g6-context-plane__footer {
-  padding: 8px 10px;
-  border-top: 1px solid #60738b;
-  color: #bbc8d5;
-  font-size: 9px;
-  letter-spacing: 0.11em;
+  padding: var(--g6-space-xs) var(--g6-space-sm);
+  border-top: 1px solid var(--g6-rule);
+  color: var(--g6-text-3);
+  font-size: var(--g6-text-xs);
+  letter-spacing: var(--g6-track-label);
 }
 .g6-context-plane__announcement {
   position: absolute;
@@ -79,44 +85,9 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
-@keyframes g6-context-appear {
-  from {
-    opacity: 0;
-    transform: translateY(4px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .g6-context-plane {
-    animation: none !important;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .g6-context-plane {
-    background: #fdfcf9;
-    border-color: #9baaba;
-    color: #17212d;
-  }
-  .g6-context-plane__heading {
-    border-color: #9baaba;
-    color: #425365;
-  }
-  .g6-context-plane__subject {
-    color: #17212d;
-  }
-  .g6-context-plane__rows :is(button, a) {
-    color: #17212d;
-  }
-  .g6-context-plane__rows :is(button, a):is(:hover, :focus-visible) {
-    background: #dbe7f6;
-    outline-color: #275eb8;
-  }
-  .g6-context-plane__footer {
-    border-color: #9baaba;
-    color: #425365;
+/* Reuse the ratified GNU6 drop keyframe. Animated/Off is a shell decision. */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-g6-motion="off"]) .g6-context-plane {
+    animation: g6-drop var(--g6-dur-1) var(--g6-ease-out) both;
   }
 }

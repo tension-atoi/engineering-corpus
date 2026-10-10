@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DESIGN = json.loads((ROOT / "site" / "gnu6" / "gnu6-design.lock.json").read_text("utf-8"))
 DESIGN_VERSION = DESIGN["version"]
+CONTEXT_VERSION = json.loads((ROOT / "site/context/context.lock.json").read_text("utf-8"))["version"]
 CSS = f"/gnu6/gnu6.css?v={DESIGN_VERSION}"
 SITE_CSS = f"/style.css?v={DESIGN_VERSION}"
 GNU6 = "https://gnu6.live"
@@ -63,7 +64,7 @@ def head(locale: str, path: str, alt_path: str, title: str, description: str, *,
 <meta property="og:type" content="website"><meta property="og:title" content="{escape(title, quote=True)}"><meta property="og:description" content="{escape(description, quote=True)}">
 <meta property="og:image" content="{DOCS_ORIGIN}/gnu6/social/{og}"><meta property="og:url" content="{DOCS_ORIGIN}{escape(path, quote=True)}"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="32x32" href="/gnu6/icons/gnu6-live-32.png"><link rel="apple-touch-icon" href="/gnu6/icons/gnu6-live-180.png">
-<link rel="stylesheet" href="{CSS}"><link rel="stylesheet" href="{SITE_CSS}"><link rel="stylesheet" href="/spine.css"><link rel="stylesheet" href="/context/context-menu.css"><script src="/spine-map.js" defer></script><script src="/spine.js" defer></script><script type="module" src="/context/context-adapter.js"></script>{'<script src="/app.js" defer></script>' if scripts else ''}
+<link rel="stylesheet" href="{CSS}"><link rel="stylesheet" href="{SITE_CSS}"><link rel="stylesheet" href="/spine.css"><link rel="stylesheet" href="/context/context-menu.css?v={CONTEXT_VERSION}"><script src="/spine-map.js" defer></script><script src="/spine.js" defer></script><script type="module" src="/context/context-adapter.js?v={CONTEXT_VERSION}"></script>{'<script src="/app.js" defer></script>' if scripts else ''}
 <link rel="alternate" hreflang="{locale}" href="{escape(path, quote=True)}"><link rel="alternate" hreflang="{other}" href="{escape(alt_path, quote=True)}"></head>"""
 
 

@@ -8,12 +8,11 @@ var native = (el) => Boolean(
 function contextFacts(target) {
   const el = target instanceof Element ? target : null;
   if (!el || native(el)) return null;
-  const typed = el.closest("[data-g6-context-kind]");
   const link = el.closest("a[href]");
   const image = el.closest("img[src]");
   const button = el.closest('button,[role="button"]');
   const heading = el.closest("h1,h2,h3,h4,h5,h6");
-  const kind = typed?.dataset.g6ContextKind === "spatial" && typed.dataset.g6ContextProvenance === "in.gnu6" ? "spatial" : link ? "link" : image ? "image" : button ? "button" : heading ? "heading" : "document";
+  const kind = link ? "link" : image ? "image" : button ? "button" : heading ? "heading" : "document";
   const selection = window.getSelection();
   const selected = selection?.rangeCount && selection.getRangeAt(0).intersectsNode(el) ? selection.toString().slice(0, 8192) : "";
   const section = heading?.id ? new URL("#" + encodeURIComponent(heading.id), document.baseURI).href : void 0;
@@ -24,10 +23,8 @@ function contextFacts(target) {
     ...link?.href ? { link: link.href } : {},
     ...image?.currentSrc || image?.src ? { image: image.currentSrc || image.src } : {},
     ...section ? { section } : {},
-    ...typed?.dataset.g6ContextSubjectId ? { subjectId: typed.dataset.g6ContextSubjectId } : {},
-    ...typed?.dataset.g6ContextProvenance ? { provenance: typed.dataset.g6ContextProvenance } : {},
     label: compact(
-      typed?.dataset.g6ContextLabel || link?.textContent || image?.alt || button?.getAttribute("aria-label") || button?.textContent || heading?.textContent || document.title
+      link?.textContent || image?.alt || button?.getAttribute("aria-label") || button?.textContent || heading?.textContent || document.title
     )
   };
 }

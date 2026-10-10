@@ -4,7 +4,7 @@ import hashlib, json
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = json.loads((ROOT / 'site/context/context.lock.json').read_text())
 def main():
-    assert LOCK['component'] == 'gnu6-context-core' and LOCK['version'] == '1.0.0'
+    assert LOCK['component'] == 'gnu6-context-core' and LOCK['version'] == '1.0.2' and LOCK['gnu6_design'] == '1.1.1'
     for name, digest in LOCK['files'].items():
         for folder in ('site', 'dist'):
             path = ROOT / folder / 'context' / name

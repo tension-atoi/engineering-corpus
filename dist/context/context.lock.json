@@ -1,12 +1,14 @@
 {
   "component": "gnu6-context-core",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "source_repository": "tension-atoi/gnu6-live",
-  "source_branch": "feat/gnu6-shell-context-02-core",
-  "source_base_commit": "ccb40bd87932d0a25153f8477418c174115683b2",
+  "source_branch": "feat/gnu6-shell-context-02d-design",
+  "source_base_commit": "ea82cc1de97b177870c86dc0f4ca130b94ae19de",
   "files": {
-    "context-core.js": "e8bdbca2db9d988dd50a05f89191dae3f7ac6a3d82b6dabc4196bbac2b33bde7",
-    "context-menu.css": "ae5f3b1ad0f98db0b190fd0aa874b8ce53ef5234759f8e0be255c725d9e4b215",
-    "context-adapter.js": "5280cd64021b769937fc6d306611a69d99d5ca429cfe5a653d914c948d75cd3f"
-  }
+    "context-core.js": "e01e9c6bc3b9b06fc91d2c4f0786b667f806934fa45ca7a919c43b22ce2873a7",
+    "context-menu.css": "ce24c930539424cc1655f9846cffccd73418f541f8f89c666b9555162a398268",
+    "context-adapter.js": "6d98a62432a3614e28a37e25ebc506a48f4b7027d402a19e1238614c1d0392bb"
+  },
+  "gnu6_design": "1.1.1",
+  "source_commit": "d372fc82f35811e25b8b528bcc1f9f42a5144d0f"
 }

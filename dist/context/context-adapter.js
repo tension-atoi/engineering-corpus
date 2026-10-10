@@ -34,7 +34,7 @@ function open(target,x,y) {
   box.setAttribute("role","menu");
   box.setAttribute("aria-label",labels[locale][resolution.kind]+": "+resolution.label);
   box.tabIndex=-1;
-  box.style.left=Math.max(8,Math.min(x,innerWidth-Math.min(280,innerWidth-16)-8))+"px";
+  box.style.left=Math.max(8,Math.min(x,innerWidth-Math.min(320,innerWidth-16)-8))+"px";
   box.style.top=Math.max(8,Math.min(y,innerHeight-Math.min(innerHeight-16,56+resolution.actions.length*40)-8))+"px";
   const header=document.createElement("div");header.className="g6-context-plane__heading";
   const kind=document.createElement("span");kind.textContent=labels[locale][resolution.kind];
