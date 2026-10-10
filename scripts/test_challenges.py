@@ -14,11 +14,11 @@ def audit(manifest):
     assert forge["public_submissions"]=="AVAILABLE_VIA_GITHUB_ACCOUNT"
     assert manifest["mirror"]["service"]=="Gitea"
     assert manifest["mirror"]["state"]=="NOT_CONFIGURED_AS_PUBLIC_MIRROR"
-    expected=["CUDA-05D","CUDA-05E","CUDA-05F"]
+    expected=["CUDA-05D","CUDA-05E","CUDA-05F","CUDA-05H"]
     assert [c["id"] for c in manifest["challenges"]]==expected
-    assert len(manifest["challenges"])==3
+    assert len(manifest["challenges"])==4
     for c in manifest["challenges"]:
-        assert c["public_kit"] in ("INCOMPLETE","PARTIAL_ORIGINAL_WITH_OPEN_IPC_FIXTURE","PARTIAL_PROTOCOL_NO_RUNTIME_SOURCE")
+        assert c["public_kit"] in ("INCOMPLETE","PARTIAL_ORIGINAL_WITH_OPEN_IPC_FIXTURE","PARTIAL_PROTOCOL_NO_RUNTIME_SOURCE","OPEN_INDEPENDENT_COMPUTE_WITNESS_NOT_PRIVATE_RUNTIME")
         assert len(c["required_artifacts"])>=5
         for lang in ("fr","en"):
             assert len(c["hypothesis"][lang])>=30
@@ -27,10 +27,15 @@ def audit(manifest):
     assert fixture["replication_kit"]["experiment_id"]=="CUDA-05G-P01"
     assert fixture["replication_kit"]["status"]=="LOCAL_PASS_EXTERNAL_REPLICATION_PENDING"
     assert fixture["replication_kit"]["original_cuda05f_runtime_replicated"] is False
+    gpu=next(c for c in manifest["challenges"] if c["id"]=="CUDA-05H")
+    assert gpu["replication_kit"]["experiment_id"]=="CUDA-05H-P01"
+    assert gpu["replication_kit"]["status"]=="ONE_LOCAL_PASS_EXTERNAL_REPLICATION_PENDING"
+    assert gpu["replication_kit"]["original_cuda05f_runtime_replicated"] is False
+    assert gpu["public_kit"]=="OPEN_INDEPENDENT_COMPUTE_WITNESS_NOT_PRIVATE_RUNTIME"
     for lang in ("fr","en"):
         output=(ROOT/"dist"/lang/"challenges.html").read_text()
         assert f'<html lang="{lang}">' in output
-        assert "CUDA-05D" in output and "CUDA-05E" in output and "CUDA-05F" in output
+        assert all(name in output for name in expected)
         assert "/challenges/registry.json" in output
         assert "/challenges/CONTRIBUTING.md" in output
         assert "GitHub" in output
@@ -59,7 +64,7 @@ def audit(manifest):
     for filename in ("replication.yml","counterexample.yml","config.yml"):
         assert (ROOT/".github"/"ISSUE_TEMPLATE"/filename).is_file()
     experimental=json.loads((ROOT/"docs"/"experiments"/"registry.json").read_text())
-    assert [record["id"] for record in experimental["entries"]]==expected
+    assert [record["id"] for record in experimental["entries"]]==expected[:3]
     assert all(record["production_authorization"]=="DENIED" for record in experimental["entries"])
 def main():
     manifest=json.loads((ROOT/"docs"/"challenges"/"registry.json").read_text())
@@ -74,5 +79,5 @@ def main():
     try:audit(forged)
     except AssertionError:pass
     else:raise AssertionError("fabricated public reproducibility kit accepted")
-    print("SCIENTIFIC_CHALLENGES_PASS studies=3 locales=2 forge=GITHUB_PUBLIC kits=PARTIAL falsifiers=2 rejected")
+    print("SCIENTIFIC_CHALLENGES_PASS studies=4 locales=2 forge=GITHUB_PUBLIC kits=PARTIAL falsifiers=2 rejected")
 if __name__=="__main__":main()

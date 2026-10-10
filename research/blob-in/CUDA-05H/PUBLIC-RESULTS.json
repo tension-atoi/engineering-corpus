@@ -1,0 +1,43 @@
+{
+  "contract_sha256": "d3eb88143e8426c8ff9ab162c37db37220c866b8b9e9c6a610caf05fc433a8d5",
+  "cuda05f_gpu_parity": "NOT_RUN",
+  "cuda05f_runtime_replication": "BLOCKED_PRIVATE_RUNTIME_SOURCE",
+  "device_observed": "NVIDIA GeForce RTX 3070 CUDA and Vulkan native compute",
+  "experiment_id": "CUDA-05H-P01",
+  "external_replication": "PENDING",
+  "fixture_sha256": "77759079523ca127a4c24617b42a05a08c5a7c03ebdeb36b092b9ed91387fc86",
+  "gate_results": {
+    "cpu_oracle": "PASS",
+    "cuda_bitwise_parity": "PASS",
+    "cuda_device_hardware": "PASS",
+    "fixture_integrity": "PASS",
+    "mutation_bitflip_rejected": "PASS",
+    "mutation_truncation_rejected": "PASS",
+    "vulkan_bitwise_parity": "PASS",
+    "vulkan_device_hardware": "PASS"
+  },
+  "limitations": [
+    "One qualified run on one local RTX 3070; no independent external reproductions",
+    "Integer proxy intentionally excludes floating-point SDF, CUDA-05F supervisor and provider",
+    "Actual real GPU execution and CPU-byte parity only; device loss and worker fault isolation NOT_TESTED",
+    "Compiler/driver versions and raw outputs are retained privately; public digest is not public access",
+    "Vulkan device selection requires discrete/integrated GPU; no proof of cross-vendor portability",
+    "No benchmark or performance advantage is claimed",
+    "Private CUDA-02/03/05F runtime code is not copied or relicensed"
+  ],
+  "output_sha256": {
+    "cpu": "613845b6341e4491efce3be997853467213ef6687770495b0d2515329678961b",
+    "cuda": "613845b6341e4491efce3be997853467213ef6687770495b0d2515329678961b",
+    "vulkan": "613845b6341e4491efce3be997853467213ef6687770495b0d2515329678961b"
+  },
+  "private_raw_sha256": "322e054a64985ea93d56fc108ec8b3034fa7ab159814f7356a36bce453bf7ace",
+  "production_authorization": "DENIED",
+  "protocol_commit": "b89b266829b396d5b9569e0cbb2cd38a04f603bb",
+  "review_status": "draft",
+  "run_utc": "2026-10-10T03:10:32.156847+00:00",
+  "sample_count": 6144,
+  "sample_encoding": "signed-int32-le",
+  "schema": "gnu6.blobin.gpu.public.v1",
+  "source_manifest_version": "CUDA05H.V1",
+  "workload": "integer quadratic-distance CSG proxy, not private CSG signed-distance engine"
+}

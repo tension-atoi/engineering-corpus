@@ -1,13 +1,13 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
-    <meta name="description" content="Méthodes, preuves et autonomie"/><title>Répliquer. Réfuter. Faire progresser la preuve. · Corpus Méthodologique &amp; Hygiène Mental</title>
+    <meta name="description" content="Méthodes, preuves et autonomie"/><title>CUDA-05H — CPU, CUDA et Vulkan : une géométrie calculable et réfutable · Corpus Méthodologique &amp; Hygiène Mental</title>
     <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
-    <link rel="alternate" hreflang="en" href="/en/challenges.html"><link rel="alternate" hreflang="fr" href="/fr/challenges.html">
+    <link rel="alternate" hreflang="en" href="/en/studies/cuda-05h.html"><link rel="alternate" hreflang="fr" href="/fr/studies/cuda-05h.html">
     </head><body data-locale="fr" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
     <a class="skip" href="#content">Aller au contenu</a>
     <header class="topbar"><a class="brand" href="/fr/index.html" aria-label="Corpus Méthodologique &amp; Hygiène Mental, Accueil"><span>gnu.in.labs <em>/</em> <strong>Corpus Méthodologique &amp; Hygiène Mental</strong></span></a>
-    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/challenges.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/studies/cuda-05h.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
     <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Fermer le menu">✕</button></div>
     <label class="search-label" for="chapterSearch">Filtrer les chapitres</label><input id="chapterSearch" type="search" placeholder="Filtrer les chapitres…" autocomplete="off" />
     <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/fr/chapters/01-mandate.html" data-search="mandat &amp; découpage" aria-current="false"><span class="nav-number">01</span>Mandat &amp; découpage <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/02-authority.html" data-search="autorité &amp; agents" aria-current="false"><span class="nav-number">02</span>Autorité &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/03-contract.html" data-search="architecture &amp; contrats" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contrats <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/04-delivery.html" data-search="tranches &amp; vérification" aria-current="false"><span class="nav-number">04</span>Tranches &amp; vérification <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/05-evidence.html" data-search="preuves &amp; vérité publique" aria-current="false"><span class="nav-number">05</span>Preuves &amp; vérité publique <span class="nav-duration">16m</span></a><a class="navlink " href="/fr/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/07-llm.html" data-search="llm local &amp; copilot" aria-current="false"><span class="nav-number">07</span>LLM local &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/fr/chapters/08-hygiene.html" data-search="hygiène, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiène, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Ateliers <span>03</span></h2><a class="navlink " href="/fr/labs/01-change.html" data-search="atelier a — modification qualifiée" aria-current="false"><span class="nav-number">↗</span>Atelier A — Modification qualifiée</a><a class="navlink " href="/fr/labs/02-api.html" data-search="atelier b — api vérifiable" aria-current="false"><span class="nav-number">↗</span>Atelier B — API vérifiable</a><a class="navlink " href="/fr/labs/03-workspace.html" data-search="atelier c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Atelier C — Workspace Hygiene &amp; Git Topology</a>
@@ -16,28 +16,57 @@
     <a class="navlink" href="/fr/studies/cuda-05d.html" data-search="études evidence science expérimentale méthodologie"><span class="nav-number">◇</span>Étude · Identités Linux</a></nav>
     <div class="rail-bottom"><div class="progress-label"><span>Étudié localement</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Progression d’étude"></progress><p data-storage-status role="status"></p><p>Sans compte, sans télémétrie.</p></div></aside><main id="content" class="main" tabindex="-1">
     <div class="chapter-meta"><span class="eyebrow"><a class="hub-return" href="/fr/hub.html">← Portail</a><span class="hub-separator"> / </span>MÉTHODOLOGIE</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
-    <article class="prose"><h1 id="section-1">Répliquer. Réfuter. Faire progresser la preuve.</h1>
-<p>Une invitation aux scientifiques indépendants : nos résultats sont des <strong>hypothèses contestables</strong>, pas des vérités à approuver. Nous cherchons des reproductions, des contre-exemples, des méthodes alternatives et des résultats négatifs documentés.</p>
-<p><strong>Statut : brouillon scientifique ouvert aux critiques.</strong> <a href="https://github.com/tension-atoi/engineering-corpus">Le corpus GitHub</a> est public et ses Issues accueillent les critiques et contre-exemples authentifiés. Certains kits sont encore incomplets : nous les signalons explicitement. Gitea reste un miroir secondaire envisagé, <strong>pas</strong> la plateforme de soumission.</p>
-<h2 id="section-2">Quatre défis scientifiques</h2>
-<h3 id="section-3">CUDA-05D — Identités et namespaces Linux</h3>
-<p>La question : un UID 0 <em>à l'intérieur</em> d'un namespace peut-il correspondre à un principal hôte différent selon le mapping ? Notre expérience ponctuelle ne démontrait <strong>pas</strong> cette distinction. Un contre-exemple valable doit montrer l'UID effectivement observé côté serveur avec <code>SO_PEERCRED</code>, et un témoin.</p>
-<p><a href="/fr/studies/cuda-05d.html">Étude et limites</a> · <a href="/evidence/cuda-05d-public-results.json">Données publiques limitées</a></p>
-<h3 id="section-4">CUDA-05E — Autorisation IPC et refus DAC</h3>
-<p>La question : un service réellement exécuté sous un autre UID hôte peut-il refuser à la fois un client connecté mais non autorisé, et un client bloqué avant la connexion par DAC ? Nous avons observé ce comportement dans un laboratoire Docker jetable. Nous invitons à rechercher les conditions qui le contredisent.</p>
-<p><strong>Nouveau : <a href="/fr/studies/cuda-05g.html">kit CUDA-05G de contre-expérience indépendante</a></strong>. Code et protocole publics; un seul essai local, réplication externe toujours en attente.</p>
-<p><a href="/challenges/protocols/CUDA-05E-PREREG.md">Protocole préenregistré</a> · <a href="/fr/studies/cuda-05e.html">Étude et limites</a> · <a href="/evidence/cuda-05e-public-results.json">Données publiques limitées</a></p>
-<h3 id="section-5">CUDA-05F — Superviseur Rust, GPU et résilience</h3>
-<p>La question : les garanties d'identité et de révocation tiennent-elles <em>ensemble</em> lorsque de vrais workers CUDA/Vulkan fonctionnent et échouent ? Dix gates opérationnels ont passé en laboratoire, mais trois acquisitions antérieures ont révélé des défaillances. Le code du runtime complet n'est <strong>pas</strong> encore ouvert à une reproduction indépendante.</p>
-<p><a href="/challenges/protocols/CUDA-05F-PREREG.md">Protocole préenregistré</a> · <a href="/fr/studies/cuda-05f.html">Étude et contre-preuves conservées</a> · <a href="/experiments/GPU-EVIDENCE-CONTRACT-v1.json">Contrat expérimental</a></p>
-<h3 id="section-6">CUDA-05H — Témoin GPU numérique ouvert</h3>
-<p>Peut-on reproduire, sur du vrai matériel, 6 144 résultats entiers identiques entre CPU, CUDA et Vulkan ? <strong>Kit MIT autonome publiable</strong>, avec source et oracle; une seule expérience locale réussie, réplication extérieure en attente. <strong>Il ne remplace pas la preuve du moteur privé de blob.in.</strong></p>
-<p><a href="/fr/studies/cuda-05h.html">Étude et protocole CUDA-05H</a> · <a href="/evidence/cuda-05h-public-results.json">Résultats structurés</a></p>
-<h2 id="section-7">Comment participer scientifiquement</h2>
-<p>Une contradiction recevable doit identifier le claim et sa version Git, décrire l'environnement et les contrôles, conserver la méthode et les observations brutes (y compris les erreurs), présenter le critère réfuté, et proposer un moyen raisonnable de réexécuter l'expérience. L'auteur original doit pouvoir répondre sans effacer ni réécrire le résultat initial.</p>
-<p>Le <a href="/challenges/CONTRIBUTING.md">contrat de contribution proposé</a> et le <a href="/challenges/registry.json">registre des défis</a> sont consultables. <strong><a href="https://github.com/tension-atoi/engineering-corpus/issues/new/choose">Soumettre une réplication ou une réfutation sur GitHub</a></strong> (compte GitHub requis). Les issues publiques accueillent les objections, mais la réplication de CUDA-05F reste limitée par les sources non publiées.</p>
-<h2 id="section-8">Notre engagement</h2>
-<p>Nous distinguerons toujours <strong>observation</strong>, <strong>réplication indépendante</strong>, <strong>réfutation</strong>, <strong>revue</strong> et <strong>autorisation de production</strong>. Une objection documentée doit demeurer adressable même si elle contredit nos résultats. Une empreinte SHA-256 ne rend pas des données privées accessibles, et aucun verdict local ne représente une vérité universelle.</p>
+    <article class="prose"><h1 id="section-1">CUDA-05H — CPU, CUDA et Vulkan : une géométrie calculable et réfutable</h1>
+<blockquote>
+<p><strong>Recherche publique, expérience locale unique.</strong> Une nouvelle implémentation sous licence MIT exécute une scène binaire identique avec un oracle Python, un kernel CUDA et un shader Vulkan. <strong>Réplication externe : en attente.</strong> Le moteur privé de blob.in n'a pas été publié ni reproduit ici.</p>
+</blockquote>
+<h2 id="section-2">Hypothèse préenregistrée et calcul</h2>
+<p>Avant d'implémenter les kernels, nous avons fixé le protocole <strong>CUDA-05H-P01</strong> au commit <code>b89b266829b396d5b9569e0cbb2cd38a04f603bb</code> et une scène de 16 primitives sur une grille 96 × 64. Chaque primitive encode un centre, un rayon et une opération géométrique (<code>min</code> pour union, <code>max</code> pour intersection, <code>max(acc,-q)</code> pour soustraction). Le score <code>q = (x-cx)² + (y-cy)² - r²</code> est un <strong>substitut géométrique quadratique entier</strong>, <strong>pas</strong> le calcul de distance signée flottante original.</p>
+<p><strong>Critère de succès :</strong> exactement <strong>6 144 valeurs <code>int32</code></strong>, soit <strong>24 576 octets</strong>, identiques CPU/CUDA/Vulkan, sans aucune tolérance. Un seul octet différent suffit à réfuter la parité. Vulkan doit exécuter sur un GPU matériel, non un rendu logiciel.</p>
+<h2 id="section-3">Observations sur RTX 3070</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Backend</th>
+<th>Exécution observée</th>
+<th>Parité exacte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python CPU</td>
+<td>Référence recalculée indépendamment</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>CUDA compilé natif</td>
+<td>GPU NVIDIA RTX 3070, synchronisation et copie</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Vulkan/SPIR-V compilé natif</td>
+<td>GPU RTX 3070, shader, fence et lecture mémoire</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Bit inversé dans la sortie CUDA</td>
+<td>Validateur distinct refuse le résultat</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Sortie Vulkan tronquée</td>
+<td>Validateur distinct refuse le résultat</td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+<p>Les trois sorties produisent l'empreinte SHA-256 <code>613845b6341e4491efce3be997853467213ef6687770495b0d2515329678961b</code>. Le contrôleur indépendant passe <strong>8/8 gates</strong>, et le manifeste public vérifie les fichiers du kit et un nouveau calcul CPU sans exiger de GPU.</p>
+<h2 id="section-4">Pour un laboratoire extérieur : reproduire ou contredire</h2>
+<p><strong><a href="https://github.com/tension-atoi/engineering-corpus/tree/main/research/blob-in/CUDA-05H">Sources CPU, CUDA, GLSL et Vulkan, outils de compilation et protocole</a></strong> · <a href="/evidence/cuda-05h-public-results.json">Résultats numériques structurés</a> · <a href="https://github.com/tension-atoi/engineering-corpus/issues/new/choose">Déposer une contre-expérience</a></p>
+<p>Sans GPU NVIDIA, on peut exécuter l'oracle CPU et vérifier l'intégrité du kit; on <strong>ne peut pas</strong> conclure à la parité CUDA/Vulkan. Une reproduction valable rapporte le GPU/driver, le compilateur, les paramètres de shader, les hashes des résultats, les contrôles et les tentatives échouées. Aucune mise à jour du VPS ou réinitialisation GPU n'est requise.</p>
+<h2 id="section-5">Ce qui demeure hors preuve</h2>
+<p>Cette étude fournit un <strong>témoin de calcul GPU indépendamment implémenté</strong> : elle ne démontre pas l'équivalence du moteur SDF privé CUDA-02/03, la récupération des workers CUDA-05F, la sécurité d'exécution, ni la fiabilité sur d'autres GPU. Les sorties et journaux bruts du run original restent privés; un hash public ne les rend pas auditables par lui-même. Les chercheurs peuvent cependant produire leurs propres données à partir des sources intégrales du kit.</p>
+<p><strong>Statuts explicites :</strong> réplication externe <code>PENDING</code>; original CUDA-05F <code>BLOCKED_PRIVATE_RUNTIME_SOURCE</code>; parité CUDA-05F <code>NOT_RUN</code>; autorisation de production <code>DENIED</code>.</p>
 </article>
     <div class="lesson-foot"><span>Version d’étude · non ratifiée</span></div>
     <footer><span>© 2026 gnu.in.labs · MIT</span><span>Aucune autorité accordée aux agents.</span><a href="/fr/governance.html">Règles de contribution →</a></footer>
