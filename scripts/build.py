@@ -406,7 +406,7 @@ def build():
         (DIST/'challenges'/'protocols').mkdir(parents=True,exist_ok=True)
         copy2(DOCS/'challenges'/'protocols'/protocol, DIST/'challenges'/'protocols'/protocol)
     copy2(DOCS/'challenges'/'PROVENANCE.json', DIST/'challenges'/'PROVENANCE.json')
-    for file in ('style.css','app.js'):
+    for file in ('style.css','app.js','spine.css','spine.js','spine-map.js'):
         copy2(SITE/file,DIST/file)
     copytree(SITE/'gnu6',DIST/'gnu6')
     copytree(ASSETS/'diagrams',DIST/'diagrams',ignore=shutil.ignore_patterns('*.py','__pycache__'))

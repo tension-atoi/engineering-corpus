@@ -49,7 +49,7 @@ def label(text: str, *, sep: str | None = None) -> str:
 
 
 def _csp(scripts: bool) -> str:
-    script = "script-src 'self'; " if scripts else ""
+    script = "script-src 'self'; "
     return (f"default-src 'none'; style-src 'self'; {script}img-src 'self'; font-src 'self'; "
             "connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'")
 
@@ -63,7 +63,7 @@ def head(locale: str, path: str, alt_path: str, title: str, description: str, *,
 <meta property="og:type" content="website"><meta property="og:title" content="{escape(title, quote=True)}"><meta property="og:description" content="{escape(description, quote=True)}">
 <meta property="og:image" content="{DOCS_ORIGIN}/gnu6/social/{og}"><meta property="og:url" content="{DOCS_ORIGIN}{escape(path, quote=True)}"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="32x32" href="/gnu6/icons/gnu6-live-32.png"><link rel="apple-touch-icon" href="/gnu6/icons/gnu6-live-180.png">
-<link rel="stylesheet" href="{CSS}"><link rel="stylesheet" href="{SITE_CSS}">{'<script src="/app.js" defer></script>' if scripts else ''}
+<link rel="stylesheet" href="{CSS}"><link rel="stylesheet" href="{SITE_CSS}"><link rel="stylesheet" href="/spine.css"><script src="/spine-map.js" defer></script><script src="/spine.js" defer></script>{'<script src="/app.js" defer></script>' if scripts else ''}
 <link rel="alternate" hreflang="{locale}" href="{escape(path, quote=True)}"><link rel="alternate" hreflang="{other}" href="{escape(alt_path, quote=True)}"></head>"""
 
 
@@ -122,6 +122,48 @@ def masthead(locale: str, section: str) -> str:
 </div></div>"""
 
 
+
+def spine(locale: str, path: str) -> str:
+    """Domain-specific GNU6 Spine: real anchors, no JavaScript required for links."""
+    hub = f"/{locale}/hub.html"
+    en = locale == "en"
+    items = (
+        ("01", hub, "Index documentaire" if not en else "Documentation index"),
+        ("02", f"/{locale}/api.html", "Références API" if not en else "API references"),
+        ("03", f"/{locale}/sdk.html", "Inventaire SDK" if not en else "SDK inventory"),
+        ("04", f"/{locale}/guides.html", "Guides"),
+        ("05", f"/{locale}/index.html", "Corpus méthodologique" if not en else "Methodological corpus"),
+        ("06", f"/{locale}/experiments.html", "Expériences" if not en else "Experiments"),
+        ("07", f"/{locale}/releases.html", "Versions" if not en else "Releases"),
+    )
+    links = "".join(
+        f'<a href="{href}"' + (' aria-current="page"' if href == path else '')
+        + f'><span aria-hidden="true">{num}</span>{escape(name)}</a>'
+        for num, href, name in items
+    )
+    live = f"{GNU6}/" + ("?lang=en" if en else "")
+    search = "Rechercher" if not en else "Search"
+    atlas = "Explorer" if not en else "Explore"
+    return (f'<aside class="g6-spine" id="gnu6-spine" aria-label="'
+            + ("Navigation GNU6 et Docs" if not en else "GNU6 and Docs navigation") + '">'
+            + '<div class="g6-spine__header"><span class="g6-spine__brand">ESPACE / GNU6</span>'
+            + f'<div class="g6-spine__domains"><a href="{live}">GNU6</a>'
+            + f'<a data-domain-active="true" href="{hub}">Docs</a></div></div>'
+            + '<div class="g6-spine__actions"><button type="button" class="g6-spine__control" '
+            + f'data-g6-open-search>{search} <kbd>/</kbd></button><button type="button" '
+            + f'class="g6-spine__control" data-g6-open-atlas>{atlas} ▦</button></div>'
+            + '<nav class="g6-spine__group" aria-label="'
+            + ("Parcours documentaires" if not en else "Documentation paths") + '">'
+            + '<span class="g6-spine__label">' + ("PARCOURIR" if not en else "BROWSE") + '</span>'
+            + links + '</nav></aside>')
+
+
+def spine_mobile(locale: str) -> str:
+    return ('<div class="g6-spine__mobile-wrap"><button type="button" '
+            'class="g6-spine__mobile" data-g6-spine-toggle aria-controls="gnu6-spine" '
+            'aria-expanded="false">☰ ' + ("Navigation" if locale == "fr" else "Navigation")
+            + '</button></div>')
+
 def footer(locale: str, edition: str, note: str | None = None) -> str:
     q = "?lang=en" if locale == "en" else ""
     note = note or t(locale, "Édition de travail · non ratifiée", "Draft study edition · not ratified")
@@ -144,8 +186,9 @@ def index_page(dist: Path, locale: str, path: str, *, title: str, description: s
     alt = path.replace(f"/{locale}/", f"/{'en' if locale == 'fr' else 'fr'}/", 1)
     html = (head(locale, path, alt, title, description, scripts=False, og=og)
             + f'<body class="g6-site g6-site--docs"><a class="g6-skip" href="#content">{t(locale, "Aller au contenu", "Skip to content")}</a>'
-            + system_bar(locale, alt) + masthead(locale, section)
-            + f'<main id="content" class="g6-frame g6-page" tabindex="-1">{body}</main>'
+            + system_bar(locale, alt) + spine_mobile(locale)
+            + f'<div class="g6-spine-shell">{spine(locale, path)}<div class="g6-spine__main">'
+            + f'<main id="content" class="g6-frame g6-page" tabindex="-1">{body}</main></div></div>'
             + footer(locale, edition, footer_note) + "</body></html>")
     write(dist, path, html)
 
@@ -174,14 +217,15 @@ def reading_page(dist: Path, locale: str, path: str, *, title: str, description:
     html = (head(locale, path, alt, title, description, scripts=True, og=og)
             + f'<body class="g6-site g6-site--docs" data-locale="{locale}" data-study-ids="{escape(json.dumps(study_ids), quote=True)}">'
             + f'<a class="g6-skip" href="#content">{t(locale, "Aller au contenu", "Skip to content")}</a>'
-            + system_bar(locale, alt) + masthead(locale, section)
+            + system_bar(locale, alt) + spine_mobile(locale)
+            + f'<div class="g6-spine-shell">{spine(locale, path)}<div class="g6-spine__main">'
             + f'<div class="g6-frame g6-doc"><aside id="sidebar" class="g6-doc__nav" aria-label="{menu}">{rail}</aside>'
             + f'<main id="content" class="g6-doc__body" tabindex="-1">'
             + f'<div class="g6-doc__crumbs"><span class="g6-label">{crumbs}</span><span class="g6-doc__meta">{meta}'
             + f'<button id="toggleSidebar" class="g6-action g6-action--quiet g6-doc__menu" type="button" aria-expanded="false" aria-controls="sidebar">{menu}</button></span></div>'
             + inline_toc + f'<article class="g6-prose">{prose}</article>{foot}</main>'
             + (f'<aside class="g6-doc__toc">{side_toc}</aside>' if side_toc else '<div class="g6-doc__toc" aria-hidden="true"></div>')
-            + "</div>" + footer(locale, edition, footer_note) + "</body></html>")
+            + "</div></div></div>" + footer(locale, edition, footer_note) + "</body></html>")
     write(dist, path, html)
 
 

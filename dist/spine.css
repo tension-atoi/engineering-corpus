@@ -1,0 +1,63 @@
+/* gnu6-design 2.0 candidate — Unified Spine contract.
+   One system shell, domain-owned page bodies and page authorities.
+   Production URLs are ordinary links; no prototype hash router. */
+.g6-spine-shell{display:grid;grid-template-columns:clamp(220px,19vw,278px) minmax(0,1fr);align-items:stretch;width:min(100%,var(--g6-frame));margin-inline:auto;min-height:calc(100vh - var(--g6-bar-h))}
+.g6-spine{min-width:0;border-right:1px solid var(--g6-rule);background:var(--g6-surface-1);padding:1.25rem .75rem;position:sticky;top:var(--g6-bar-h);height:calc(100vh - var(--g6-bar-h));overflow-y:auto;scrollbar-width:thin}
+.g6-spine__header{display:grid;gap:1rem;padding:.75rem .5rem 1.3rem;border-bottom:1px solid var(--g6-rule)}
+.g6-spine__brand{font-size:.68rem;font-weight:700;color:var(--g6-text-3);letter-spacing:.14em;text-transform:uppercase}
+.g6-spine__domains{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.g6-spine__domains a{display:block;text-decoration:none;text-align:center;border:1px solid var(--g6-rule);padding:.65rem .4rem;font-size:.81rem;font-weight:650;color:var(--g6-text)}
+.g6-spine__domains a[data-domain-active=true]{border-color:var(--g6-identity-live);background:var(--g6-selected-bg)}
+.g6-site--docs .g6-spine__domains a[data-domain-active=true]{border-color:var(--g6-identity-labs)}
+.g6-spine__label{display:block;color:var(--g6-text-3);font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;margin:1.4rem .85rem .55rem}
+.g6-spine__group{border-bottom:1px solid var(--g6-rule);padding-bottom:.9rem}
+.g6-spine__group a{display:flex;min-height:38px;align-items:center;gap:.7rem;border-left:2px solid transparent;padding:.5rem .75rem;text-decoration:none;color:var(--g6-text-2);font-size:.825rem;line-height:1.45}
+.g6-spine__group a:hover,.g6-spine__group a:focus-visible{background:var(--g6-selected-bg);color:var(--g6-text)}
+.g6-spine__group a[aria-current=page],.g6-spine__group a[data-section-active=true]{border-color:var(--g6-identity-live);background:var(--g6-selected-bg);color:var(--g6-text)}
+.g6-site--docs .g6-spine__group a[aria-current=page]{border-color:var(--g6-identity-labs)}
+.g6-spine__group a span:first-child{color:var(--g6-text-3);font-size:.7rem;font-variant-numeric:tabular-nums;min-width:20px}
+.g6-spine__actions{display:flex;gap:.35rem;align-items:center;margin:.75rem .5rem}
+.g6-spine__control{background:var(--g6-surface-2);border:1px solid var(--g6-rule);color:var(--g6-text);padding:.65rem .8rem;min-height:40px;text-align:left;flex:1;font-size:.75rem;cursor:pointer}
+.g6-spine__control:hover{border-color:var(--g6-rule-strong)}
+.g6-spine__control kbd{float:right;color:var(--g6-text-3)}
+.g6-spine__private{margin:.75rem 0;font-size:.8rem}
+.g6-spine__main{min-width:0}
+.g6-spine-shell>.g6-spine__main>.g6-frame{max-width:none}
+.g6-spine-shell .g6-page{padding-inline:clamp(1.2rem,4vw,4rem)}
+.g6-spine-shell .g6-doc{margin:0;max-width:none;grid-template-columns:clamp(200px,22vw,270px) minmax(0,1fr) minmax(0,13rem);padding-inline:clamp(1rem,2.3vw,2.5rem)}
+.g6-spine-shell .g6-doc__nav{border-left:1px solid var(--g6-rule);border-right:0;padding-left:1rem}
+.g6-spine-shell .g6-doc__body{max-width:100%}
+.g6-spine-shell .g6-doc__toc{min-width:0}
+.g6-spine__mobile{display:none;align-items:center;gap:.5rem;min-height:40px;border:1px solid var(--g6-rule-strong);background:var(--g6-surface-1);padding:.45rem .7rem;font-weight:600;font-size:.81rem}
+.g6-spine__mobile-wrap{display:none;padding:.7rem var(--g6-gutter);border-bottom:1px solid var(--g6-rule)}
+/* Shared popover; output is an accessible list of real route hrefs. */
+.g6-spine-overlay[hidden]{display:none}
+.g6-spine-overlay{position:fixed;inset:0;z-index:80;display:grid;place-items:start center;padding:10vh 12px 20px;background:rgb(3 6 10 / .78)}
+.g6-spine-dialog{width:min(700px,100%);max-height:80vh;overflow:auto;background:var(--g6-surface-1);color:var(--g6-text);border:1px solid var(--g6-rule-strong);box-shadow:0 20px 70px rgb(0 0 0 / .5)}
+.g6-spine-dialog__top{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-bottom:1px solid var(--g6-rule)}
+.g6-spine-dialog__top h2{font-size:.9rem;margin:0}
+.g6-spine-dialog__top button{border:1px solid var(--g6-rule);min-height:36px;min-width:36px;background:var(--g6-surface-2)}
+.g6-spine-dialog label{display:block;font-size:.75rem;font-weight:600;padding:1rem 1.2rem .4rem}
+.g6-spine-dialog input{display:block;margin:0 1.2rem 1rem;width:calc(100% - 2.4rem);border:1px solid var(--g6-rule-strong);padding:.75rem;background:var(--g6-canvas)}
+.g6-spine__results{margin:0;padding:.5rem 1rem 1rem;list-style:none;overflow-y:auto;max-height:47vh}
+.g6-spine__results li a{display:block;padding:.65rem .7rem;border-left:2px solid transparent;text-decoration:none;color:var(--g6-text);font-size:.85rem}
+.g6-spine__results li a:hover,.g6-spine__results li a:focus-visible{border-color:var(--g6-identity-live);background:var(--g6-selected-bg)}
+.g6-spine__results li small{display:block;color:var(--g6-text-3)}
+.g6-spine__result-count{font-size:.75rem;color:var(--g6-text-3);padding:.3rem 1.3rem}
+.g6-spine-overlay[data-kind=atlas] .g6-spine__results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem}
+.g6-spine-overlay[data-kind=atlas] .g6-spine__results li a{border:1px solid var(--g6-rule);height:100%}
+body.g6-spine-modal-open{overflow:hidden}
+@media(max-width:1150px){.g6-spine-shell .g6-doc{grid-template-columns:minmax(185px,25%) minmax(0,1fr)}.g6-spine-shell .g6-doc__toc{display:none}}
+@media(max-width:900px){.g6-spine-shell{display:block}.g6-spine{display:none;position:static;height:auto;max-height:65vh;overflow-y:auto;border-right:0;border-bottom:1px solid var(--g6-rule)}.g6-spine.is-open{display:block}.g6-spine__mobile-wrap{display:block}.g6-spine__mobile{display:inline-flex}.g6-spine-shell .g6-doc{grid-template-columns:minmax(0,1fr)}.g6-spine-shell .g6-doc__nav{border-left:0;padding-left:var(--g6-gutter)}}
+@media(max-width:560px){.g6-spine-overlay[data-kind=atlas] .g6-spine__results{grid-template-columns:1fr}.g6-spine-shell .g6-page{padding-inline:var(--g6-gutter)}}
+@media(prefers-reduced-motion:reduce){.g6-spine-shell *{scroll-behavior:auto}}
+
+/* One global navigation: hide redundant legacy header menus, never Portal/Auth. */
+.g6-site:has(.g6-spine-shell) .g6-sysnav,.g6-site:has(.g6-spine-shell) .g6-sysmenu{display:none}
+.g6-site:has(.g6-spine-shell) .g6-sysbar__inner{gap:1rem}
+.g6-site--live .g6-spine-shell .g6-hero{min-height:clamp(490px,67vh,760px);align-items:center}
+.g6-site--live .g6-spine-shell .g6-hero .g6-display{font-size:clamp(2.5rem,4.8vw,5.5rem)}
+.g6-site--live .g6-spine-shell .g6-hero__aside{align-self:center}
+.g6-site--live .g6-spine-shell .g6-hero__actions{margin-top:2rem}
+.g6-site--live .g6-spine-shell .g6-section{padding-block:clamp(2rem,4vw,4.5rem)}
+.g6-site--docs .g6-spine-shell .g6-page{padding-top:clamp(1.5rem,3vw,3rem)}
