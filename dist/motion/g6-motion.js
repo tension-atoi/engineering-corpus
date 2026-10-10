@@ -44,42 +44,14 @@
       } catch { /* prefetch is an optimisation only */ }
     },
 
-    // ── Cross-document geometric bridge: a matching, opaque canvas-colour
-    // radial shutter on either side of the unavoidable top-level navigation.
-    // It covers both the header and content while they are reconstructed, without
-    // sharing DOM, cookies or pixels between isolated origins.
+    // Deprecated cross-origin overlay compatibility only: always inert.
+    // Native document loads are visible; the persistent React shell alone
+    // owns continuous Motion for integrated routes.
     bridge: {
-      get active() { return Motion.seam === "cut" && Motion.mode !== "off"; },
-      get arriving() { return Boolean(Motion.incoming && this.active); },
-      cover(point = { x: 22, y: 22 }) {
-        if (!this.active) return Promise.resolve();
-        root.style.setProperty("--g6-bridge-x", `${Math.round(point.x)}px`);
-        root.style.setProperty("--g6-bridge-y", `${Math.round(point.y)}px`);
-        root.dataset.g6Bridge = "covering";
-        // Force the initial clip geometry to become an actual CSS state.
-        getComputedStyle(root, "::after").clipPath;
-        const ms = Math.max(36, Math.round(105 * Motion.scale()));
-        root.style.setProperty("--g6-bridge-cover-ms", `${ms}ms`);
-        return new Promise((resolve) => {
-          requestAnimationFrame(() => {
-            root.dataset.g6Bridge = "covered";
-            setTimeout(resolve, ms + 10);
-          });
-        });
-      },
-      reveal(point = { x: 62, y: 22 }) {
-        if (!this.arriving || root.dataset.g6Bridge !== "covered") return Promise.resolve();
-        root.style.setProperty("--g6-bridge-x", `${Math.round(point.x)}px`);
-        root.style.setProperty("--g6-bridge-y", `${Math.round(point.y)}px`);
-        const ms = Math.max(54, Math.round(155 * Motion.scale()));
-        root.style.setProperty("--g6-bridge-reveal-ms", `${ms}ms`);
-        return new Promise((resolve) => {
-          requestAnimationFrame(() => {
-            root.dataset.g6Bridge = "uncovering";
-            setTimeout(() => { root.removeAttribute("data-g6-bridge"); resolve(); }, ms + 15);
-          });
-        });
-      },
+      get active() { return false; },
+      get arriving() { return false; },
+      cover() { return Promise.resolve(); },
+      reveal() { return Promise.resolve(); },
     },
 
     // ── WM-05 Animated / Off. Auto follows system reduced-motion preference.
@@ -186,35 +158,24 @@
     history.replaceState(history.state, "", location.pathname + location.search + anchor);
   }
   if (incoming) {
-    if (incoming.mode !== Motion.chosen && incoming.mode !== "auto") local.set(KEY, incoming.mode);
+    if (incoming.mode !== Motion.chosen && incoming.mode !== "auto")
+      local.set(KEY, incoming.mode);
     Motion.noteNavigation(incoming.chain);
-    if (Motion.bridge.active) {
-      // The very first styled frame must match the departing covered canvas.
-      root.dataset.g6Bridge = "covered";
-    } else if (Motion.mode !== "off") {
-      const from = DOMAINS.indexOf(incoming.from), cur = DOMAINS.indexOf(root.dataset.g6Domain || root.dataset.domain);
-      const dir = cur < 0 || ((cur - from + 3) % 3) === 1 ? 1 : -1;
-      root.style.setProperty("--g6-arrival-x", `${dir * Motion.travel()}px`);
-      root.dataset.g6Arriving = "";
-    }
   }
   Motion.incoming = incoming;
   Motion.domain = root.dataset.g6Domain || root.dataset.domain || null;
-  if (incoming && Motion.mode !== "off" && !Motion.bridge.active) {
-    // readyState "interactive" fires when parsing ends, before deferred scripts: no blank gap waiting for them
-    const start = () => {
-      if (Motion.arrival || document.readyState === "loading") return;
-      const anchor = document.querySelector("[data-g6-origin]") || document.querySelector("#g6-bar, .g6-bar");
-      const r = anchor ? anchor.getBoundingClientRect() : { left: 0, top: 0, height: 44 };
-      const origin = { x: r.left + 22, y: r.top + (r.height || 44) / 2 };
-      const from = DOMAINS.indexOf(incoming.from), cur = DOMAINS.indexOf(Motion.domain);
-      const dir = cur < 0 || ((cur - from + 3) % 3) === 1 ? 1 : -1;
-      Motion.arrival = Motion.arc([...document.querySelectorAll("[data-g6-block]")], { origin, dir, phase: "in" });
-      root.removeAttribute("data-g6-arriving");
-    };
-    document.addEventListener("readystatechange", start);
-    document.addEventListener("DOMContentLoaded", start);
-  }
+  // Legacy BFCache entries can restore pre-navigation DOM state verbatim.
+  // Never permit an obsolete covered state to survive Back/Forward.
+  const clearOldOverlay = () => {
+    root.removeAttribute("data-g6-bridge");
+    root.removeAttribute("data-g6-arriving");
+    for (const key of ["--g6-bridge-x", "--g6-bridge-y",
+      "--g6-bridge-cover-ms", "--g6-bridge-reveal-ms", "--g6-arrival-x"])
+      root.style.removeProperty(key);
+  };
+  window.addEventListener("pageshow", clearOldOverlay);
+  window.addEventListener("pagehide", clearOldOverlay);
+  clearOldOverlay();
   apply();
   window.G6Motion = Motion;
 })();

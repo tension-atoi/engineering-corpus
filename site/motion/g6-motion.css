@@ -1,26 +1,6 @@
 /* GNU6 living title bar + motion hooks (MOTION-STANDARD.md). No opacity anywhere (WM-01). */
 
-/* Cross-origin geometric bridge: identical full-viewport opaque surface on
-   both documents during the browser's unavoidable top-level replacement.
-   The outgoing circle grows from the cube; the incoming one collapses into it.
-   No opacity changes, no screenshot transfer, no shared cookies or DOM. */
-html[data-g6-bridge]::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 2147483000;
-  background: var(--g6-canvas, #111418);
-  pointer-events: none;
-  clip-path: circle(0px at var(--g6-bridge-x, 62px) var(--g6-bridge-y, 22px));
-  transition: clip-path var(--g6-bridge-cover-ms, 105ms) cubic-bezier(.4, 0, 1, .8);
-}
-html[data-g6-bridge="covered"]::after {
-  clip-path: circle(170vmax at var(--g6-bridge-x, 62px) var(--g6-bridge-y, 22px));
-}
-html[data-g6-bridge="uncovering"]::after {
-  transition-duration: var(--g6-bridge-reveal-ms, 155ms);
-  transition-timing-function: cubic-bezier(0, .25, .3, 1);
-}
+/* No fullscreen pseudo-element may be used to disguise navigation. */
 
 /* Before JS applies its arrival keyframes, show each block at the same
    small offset as its first frame. Never blank or fade the arriving page. */

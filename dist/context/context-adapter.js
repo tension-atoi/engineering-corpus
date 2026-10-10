@@ -1,4 +1,4 @@
-import { contextFacts, resolveContext, beginCrossDomainHandoff } from "./context-core.js";
+import { contextFacts, resolveContext } from "./context-core.js";
 const labels = {
   fr: {selection:"Sélection",link:"Lien",image:"Média",button:"Contrôle",heading:"Section",document:"Page",spatial:"Sujet spatial"},
   en: {selection:"Selection",link:"Link",image:"Media",button:"Control",heading:"Section",document:"Page",spatial:"Spatial subject"}
@@ -89,17 +89,5 @@ for(const kind of ["wheel","touchmove","resize","popstate","hashchange"]){
   window.addEventListener(kind,()=>close(),{passive:true});
 }
 
-// Native anchors are the URL authority. Only ordinary user clicks to the
-// exact peer GNU6 origin enter the existing geometric handoff; all other
-// destinations preserve browser semantics, including modifier keys.
-document.addEventListener("click", event => {
-  if (event.defaultPrevented || event.button !== 0 ||
-      event.metaKey || event.ctrlKey || event.altKey || event.shiftKey ||
-      !(event.target instanceof Element)) return;
-  const anchor = event.target.closest("a[href]");
-  if (!anchor || anchor.hasAttribute("download") ||
-      (anchor.target && anchor.target !== "_self")) return;
-  if (beginCrossDomainHandoff(
-    anchor.href, window.G6Motion, document.querySelector("[data-g6-site-nav] .g6-bar__cube")
-  )) event.preventDefault();
-});
+// Every unintegrated or cross-origin link remains a native link.
+ // No cross-document overlay or replacement animation is permitted.

@@ -10,6 +10,7 @@ from test_gpu_compute_kit import check as verify_cuda05h
 from test_gnu6_design import main as verify_design
 from test_spine import main as verify_spine
 from test_context import main as verify_context
+from test_no_veil import main as verify_no_veil
 from test_shell_export import main as verify_shell_export
 import sys
 errors, summary = check(Path(__file__).resolve().parents[1])
@@ -24,5 +25,6 @@ verify_cuda05h()
 verify_design()
 verify_spine()
 verify_context()
+verify_no_veil()
 verify_shell_export()
 print('CORPUS_CHECK_OK', ' '.join(f'{key}={value}' for key,value in summary.items()), 'scope=source_static_and_experiment_provenance')
