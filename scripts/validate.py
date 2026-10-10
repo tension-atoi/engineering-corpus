@@ -81,6 +81,7 @@ def check(root):
         expected.add(f'{lang}/studies/cuda-05d.html')
         expected.add(f'{lang}/studies/cuda-05e.html')
         expected.add(f'{lang}/studies/cuda-05f.html')
+        expected.add(f'{lang}/studies/cuda-05g.html')
         expected.add(f'{lang}/experiments.html')
         expected.add(f'{lang}/challenges.html')
         expected.update((f'{lang}/sdk.html',f'{lang}/api.html'))
@@ -106,7 +107,7 @@ def check(root):
         for tag,key,ref in page.refs:
             url=urlsplit(ref)
             if url.scheme or url.netloc:
-                require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com') or (rel.endswith('/guides/api-verification.html') and url.netloc=='github.com') or (rel.endswith('/challenges.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus'))), f'{rel} unexpected external reference {ref}')
+                require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com') or (rel.endswith('/guides/api-verification.html') and url.netloc=='github.com') or (rel.endswith('/challenges.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.endswith('/studies/cuda-05g.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus'))), f'{rel} unexpected external reference {ref}')
                 continue
             raw=unquote(url.path)
             target=(dist/raw.lstrip('/') if raw.startswith('/') else (dist/rel).parent/raw) if raw else dist/rel

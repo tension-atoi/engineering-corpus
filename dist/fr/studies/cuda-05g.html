@@ -1,13 +1,13 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
-    <meta name="description" content="Méthodes, preuves et autonomie"/><title>Répliquer. Réfuter. Faire progresser la preuve. · Corpus Méthodologique &amp; Hygiène Mental</title>
+    <meta name="description" content="Méthodes, preuves et autonomie"/><title>CUDA-05G — Reproduire et contester une frontière Linux réelle · Corpus Méthodologique &amp; Hygiène Mental</title>
     <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
-    <link rel="alternate" hreflang="en" href="/en/challenges.html"><link rel="alternate" hreflang="fr" href="/fr/challenges.html">
+    <link rel="alternate" hreflang="en" href="/en/studies/cuda-05g.html"><link rel="alternate" hreflang="fr" href="/fr/studies/cuda-05g.html">
     </head><body data-locale="fr" data-study-ids="[&quot;01-mandate&quot;, &quot;02-authority&quot;, &quot;03-contract&quot;, &quot;04-delivery&quot;, &quot;05-evidence&quot;, &quot;06-documentation&quot;, &quot;07-llm&quot;, &quot;08-hygiene&quot;, &quot;lab-change&quot;, &quot;lab-api&quot;, &quot;lab-workspace&quot;]">
     <a class="skip" href="#content">Aller au contenu</a>
     <header class="topbar"><a class="brand" href="/fr/index.html" aria-label="Corpus Méthodologique &amp; Hygiène Mental, Accueil"><span>gnu.in.labs <em>/</em> <strong>Corpus Méthodologique &amp; Hygiène Mental</strong></span></a>
-    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/challenges.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
+    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="/en/studies/cuda-05g.html" lang="en">English ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
     <div class="layout"><aside id="sidebar" class="sidebar"><div class="sidebar-head"><span class="eyebrow">Corpus / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="Fermer le menu">✕</button></div>
     <label class="search-label" for="chapterSearch">Filtrer les chapitres</label><input id="chapterSearch" type="search" placeholder="Filtrer les chapitres…" autocomplete="off" />
     <p data-search-status role="status" aria-live="polite"></p><nav aria-label="Corpus"><h2>Corpus <span>08</span></h2><a class="navlink " href="/fr/chapters/01-mandate.html" data-search="mandat &amp; découpage" aria-current="false"><span class="nav-number">01</span>Mandat &amp; découpage <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/02-authority.html" data-search="autorité &amp; agents" aria-current="false"><span class="nav-number">02</span>Autorité &amp; agents <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/03-contract.html" data-search="architecture &amp; contrats" aria-current="false"><span class="nav-number">03</span>Architecture &amp; contrats <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/04-delivery.html" data-search="tranches &amp; vérification" aria-current="false"><span class="nav-number">04</span>Tranches &amp; vérification <span class="nav-duration">12m</span></a><a class="navlink " href="/fr/chapters/05-evidence.html" data-search="preuves &amp; vérité publique" aria-current="false"><span class="nav-number">05</span>Preuves &amp; vérité publique <span class="nav-duration">16m</span></a><a class="navlink " href="/fr/chapters/06-documentation.html" data-search="documentation &amp; sdk" aria-current="false"><span class="nav-number">06</span>Documentation &amp; SDK <span class="nav-duration">14m</span></a><a class="navlink " href="/fr/chapters/07-llm.html" data-search="llm local &amp; copilot" aria-current="false"><span class="nav-number">07</span>LLM local &amp; Copilot <span class="nav-duration">15m</span></a><a class="navlink " href="/fr/chapters/08-hygiene.html" data-search="hygiène, release &amp; rollback" aria-current="false"><span class="nav-number">08</span>Hygiène, release &amp; rollback <span class="nav-duration">15m</span></a><h2>Ateliers <span>03</span></h2><a class="navlink " href="/fr/labs/01-change.html" data-search="atelier a — modification qualifiée" aria-current="false"><span class="nav-number">↗</span>Atelier A — Modification qualifiée</a><a class="navlink " href="/fr/labs/02-api.html" data-search="atelier b — api vérifiable" aria-current="false"><span class="nav-number">↗</span>Atelier B — API vérifiable</a><a class="navlink " href="/fr/labs/03-workspace.html" data-search="atelier c — workspace hygiene &amp; git topology" aria-current="false"><span class="nav-number">↗</span>Atelier C — Workspace Hygiene &amp; Git Topology</a>
@@ -16,25 +16,64 @@
     <a class="navlink" href="/fr/studies/cuda-05d.html" data-search="études evidence science expérimentale méthodologie"><span class="nav-number">◇</span>Étude · Identités Linux</a></nav>
     <div class="rail-bottom"><div class="progress-label"><span>Étudié localement</span><strong data-progress-text aria-live="polite">0 / 11</strong></div><progress class="meter" data-progress-meter max="11" value="0" aria-label="Progression d’étude"></progress><p data-storage-status role="status"></p><p>Sans compte, sans télémétrie.</p></div></aside><main id="content" class="main" tabindex="-1">
     <div class="chapter-meta"><span class="eyebrow"><a class="hub-return" href="/fr/hub.html">← Portail</a><span class="hub-separator"> / </span>MÉTHODOLOGIE</span><span class="meta-right"><span class="status">DRAFT</span></span></div>
-    <article class="prose"><h1 id="section-1">Répliquer. Réfuter. Faire progresser la preuve.</h1>
-<p>Une invitation aux scientifiques indépendants : nos résultats sont des <strong>hypothèses contestables</strong>, pas des vérités à approuver. Nous cherchons des reproductions, des contre-exemples, des méthodes alternatives et des résultats négatifs documentés.</p>
-<p><strong>Statut : brouillon scientifique ouvert aux critiques.</strong> <a href="https://github.com/tension-atoi/engineering-corpus">Le corpus GitHub</a> est public et ses Issues accueillent les critiques et contre-exemples authentifiés. Certains kits sont encore incomplets : nous les signalons explicitement. Gitea reste un miroir secondaire envisagé, <strong>pas</strong> la plateforme de soumission.</p>
-<h2 id="section-2">Trois défis scientifiques</h2>
-<h3 id="section-3">CUDA-05D — Identités et namespaces Linux</h3>
-<p>La question : un UID 0 <em>à l'intérieur</em> d'un namespace peut-il correspondre à un principal hôte différent selon le mapping ? Notre expérience ponctuelle ne démontrait <strong>pas</strong> cette distinction. Un contre-exemple valable doit montrer l'UID effectivement observé côté serveur avec <code>SO_PEERCRED</code>, et un témoin.</p>
-<p><a href="/fr/studies/cuda-05d.html">Étude et limites</a> · <a href="/evidence/cuda-05d-public-results.json">Données publiques limitées</a></p>
-<h3 id="section-4">CUDA-05E — Autorisation IPC et refus DAC</h3>
-<p>La question : un service réellement exécuté sous un autre UID hôte peut-il refuser à la fois un client connecté mais non autorisé, et un client bloqué avant la connexion par DAC ? Nous avons observé ce comportement dans un laboratoire Docker jetable. Nous invitons à rechercher les conditions qui le contredisent.</p>
-<p><strong>Nouveau : <a href="/fr/studies/cuda-05g.html">kit CUDA-05G de contre-expérience indépendante</a></strong>. Code et protocole publics; un seul essai local, réplication externe toujours en attente.</p>
-<p><a href="/challenges/protocols/CUDA-05E-PREREG.md">Protocole préenregistré</a> · <a href="/fr/studies/cuda-05e.html">Étude et limites</a> · <a href="/evidence/cuda-05e-public-results.json">Données publiques limitées</a></p>
-<h3 id="section-5">CUDA-05F — Superviseur Rust, GPU et résilience</h3>
-<p>La question : les garanties d'identité et de révocation tiennent-elles <em>ensemble</em> lorsque de vrais workers CUDA/Vulkan fonctionnent et échouent ? Dix gates opérationnels ont passé en laboratoire, mais trois acquisitions antérieures ont révélé des défaillances. Le code du runtime complet n'est <strong>pas</strong> encore ouvert à une reproduction indépendante.</p>
-<p><a href="/challenges/protocols/CUDA-05F-PREREG.md">Protocole préenregistré</a> · <a href="/fr/studies/cuda-05f.html">Étude et contre-preuves conservées</a> · <a href="/experiments/GPU-EVIDENCE-CONTRACT-v1.json">Contrat expérimental</a></p>
-<h2 id="section-6">Comment participer scientifiquement</h2>
-<p>Une contradiction recevable doit identifier le claim et sa version Git, décrire l'environnement et les contrôles, conserver la méthode et les observations brutes (y compris les erreurs), présenter le critère réfuté, et proposer un moyen raisonnable de réexécuter l'expérience. L'auteur original doit pouvoir répondre sans effacer ni réécrire le résultat initial.</p>
-<p>Le <a href="/challenges/CONTRIBUTING.md">contrat de contribution proposé</a> et le <a href="/challenges/registry.json">registre des défis</a> sont consultables. <strong><a href="https://github.com/tension-atoi/engineering-corpus/issues/new/choose">Soumettre une réplication ou une réfutation sur GitHub</a></strong> (compte GitHub requis). Les issues publiques accueillent les objections, mais la réplication de CUDA-05F reste limitée par les sources non publiées.</p>
-<h2 id="section-7">Notre engagement</h2>
-<p>Nous distinguerons toujours <strong>observation</strong>, <strong>réplication indépendante</strong>, <strong>réfutation</strong>, <strong>revue</strong> et <strong>autorisation de production</strong>. Une objection documentée doit demeurer adressable même si elle contredit nos résultats. Une empreinte SHA-256 ne rend pas des données privées accessibles, et aucun verdict local ne représente une vérité universelle.</p>
+    <article class="prose"><h1 id="section-1">CUDA-05G — Reproduire et contester une frontière Linux réelle</h1>
+<blockquote>
+<p><strong>Étude ouverte · essai local unique · reproduction externe en attente.</strong> Ce kit est une <strong>implémentation nouvelle et publiable</strong>, non une libération du runtime privé blob.in. Il teste uniquement le contrôle des identités Unix et des permissions DAC étudié en CUDA-05E.</p>
+</blockquote>
+<h2 id="section-2">L'hypothèse que vous pouvez mettre en défaut</h2>
+<p>Un serveur de socket Unix sous un véritable UID hôte distinct doit pouvoir autoriser un client prévu, rejeter <strong>après connexion</strong> un autre UID autorisé à accéder au socket, empêcher <strong>avant connexion</strong> un client sans permission DAC, puis continuer à servir le premier client. Une réussite n'est recevable que si le serveur enregistre lui-même les UID fournis par le noyau avec <code>SO_PEERCRED</code> et si l'UID hôte du service est contrôlé dans <code>/proc</code>.</p>
+<p><strong>Protocole figé avant l'essai :</strong> commit <code>396c36e7aef2271544bb98d025129c6de1a73547</code>, identifiant <code>CUDA-05G-P01</code>. Le code et le protocole sont couverts par la licence MIT du corpus.</p>
+<h2 id="section-3">Ce que nous avons effectivement obtenu</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Contrôle</th>
+<th>Observation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UID réel du service, différent du client</td>
+<td>PASS dans le laboratoire local</td>
+</tr>
+<tr>
+<td>Client autorisé initial</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>UID connecté mais non autorisé</td>
+<td>Refus observé par le service</td>
+</tr>
+<tr>
+<td>Client sans permission DAC</td>
+<td>Connexion refusée <strong>avant</strong> le service</td>
+</tr>
+<tr>
+<td>Client autorisé après refus</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Nettoyage et terminaison du serveur</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Falsifications du validateur</td>
+<td>2 incohérences rejetées</td>
+</tr>
+<tr>
+<td>Calcul CUDA/Vulkan et superviseur Rust CUDA-05F</td>
+<td><strong>NOT_RUN / BLOCKED</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Un <strong>seul essai complet</strong> a passé. Les deux tentatives précédentes ont été archivées en tant qu'échecs de précondition ou de dispositif expérimental : image Docker indisponible; chemin Unix dépassant la limite Linux et témoin DAC mal construit. Les amendements ont été commités avant les relances, plutôt que d'être effacés.</p>
+<h2 id="section-4">Reproduction externe : ouverte pour cette sous-hypothèse</h2>
+<p>Le kit contient du code source nouveau, les témoins positifs/négatifs, un orchestrateur hors réseau, un validateur indépendant de l'acquisition, son manifeste SHA-256 et les critères de contre-preuve.</p>
+<p><strong><a href="https://github.com/tension-atoi/engineering-corpus/tree/main/research/blob-in/CUDA-05G">Code, protocole et instructions sur GitHub</a></strong> · <a href="/evidence/cuda-05g-public-results.json">Résultats publics bornés</a> · <a href="https://github.com/tension-atoi/engineering-corpus/issues/new/choose">Soumettre une contre-preuve</a></p>
+<p>Un lecteur peut relancer l'essai sur <strong>son propre Linux avec Docker rootful</strong>, observer les événements privés, puis proposer un résultat divergent, négatif ou inconclusif. Il ne faut pas attaquer un système réel en production pour éprouver l'hypothèse.</p>
+<h2 id="section-5">Limites qu'aucune interface ne doit masquer</h2>
+<p>Le code indépendant et les données assainies sont publics, <strong>mais un chercheur externe n'a pas encore soumis de réplication</strong>. Un Docker rootful possède une autorité supérieure au service testé. Le pilote GPU, la parité CPU/CUDA/Vulkan, l'intégrité d'un fournisseur natif et les chemins de récupération CUDA-05F ne sont pas testés dans ce kit. Les données brutes originales restent privées; leur empreinte n'est pas un accès public à la preuve.</p>
+<p><strong>Conclusion :</strong> un artefact de falsification exploitable pour les garanties Linux IPC, pas une qualification indépendante du runtime GPU blob.in ni une autorisation de production.</p>
 </article>
     <div class="lesson-foot"><span>Version d’étude · non ratifiée</span></div>
     <footer><span>© 2026 gnu.in.labs · MIT</span><span>Aucune autorité accordée aux agents.</span><a href="/fr/governance.html">Règles de contribution →</a></footer>

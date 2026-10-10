@@ -417,6 +417,7 @@ def build():
     copy2(DOCS/'evidence'/'cuda-05d-manifest.json', DIST/'evidence'/'cuda-05d-manifest.json')
     copy2(DOCS/'evidence'/'cuda-05e-public-results.json', DIST/'evidence'/'cuda-05e-public-results.json')
     copy2(DOCS/'evidence'/'cuda-05f-public-results.json', DIST/'evidence'/'cuda-05f-public-results.json')
+    copy2(ROOT/'research'/'blob-in'/'CUDA-05G'/'PUBLIC-RESULTS.json', DIST/'evidence'/'cuda-05g-public-results.json')
     copy2(DOCS/'evidence'/'cuda-05f-manifest.json', DIST/'evidence'/'cuda-05f-manifest.json')
     (DIST/'experiments').mkdir(parents=True,exist_ok=True)
     copy2(DOCS/'experiments'/'registry.json', DIST/'experiments'/'registry.json')
@@ -452,6 +453,8 @@ def build():
         shell(locale,study_meta_e['title'],render_markdown(study_body_e),f'/{locale}/studies/cuda-05e.html',status=study_meta_e['status'])
         study_meta_f,study_body_f=unpack(DOCS/locale/'studies'/'cuda-05f.md')
         shell(locale,study_meta_f['title'],render_markdown(study_body_f),f'/{locale}/studies/cuda-05f.html',status=study_meta_f['status'])
+        study_meta_g,study_body_g=unpack(DOCS/locale/'studies'/'cuda-05g.md')
+        shell(locale,study_meta_g['title'],render_markdown(study_body_g),f'/{locale}/studies/cuda-05g.html',status=study_meta_g['status'])
         for path in [DOCS/locale/'index.md',*sorted((DOCS/locale/'chapters').glob('*.md')),*sorted((DOCS/locale/'labs').glob('*.md'))]:
             m,body=unpack(path)
             page_id=m['id']

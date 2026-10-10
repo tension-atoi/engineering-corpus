@@ -30,7 +30,17 @@
       },
       "id": "CUDA-05E",
       "protocol_path": "/challenges/protocols/CUDA-05E-PREREG.md",
-      "public_kit": "PARTIAL_PROTOCOL_ONLY",
+      "public_kit": "PARTIAL_ORIGINAL_WITH_OPEN_IPC_FIXTURE",
+      "replication_kit": {
+        "experiment_id": "CUDA-05G-P01",
+        "original_cuda05f_runtime_replicated": false,
+        "source_path": "/research/blob-in/CUDA-05G/README.md",
+        "status": "LOCAL_PASS_EXTERNAL_REPLICATION_PENDING",
+        "study_routes": {
+          "en": "/en/studies/cuda-05g.html",
+          "fr": "/fr/studies/cuda-05g.html"
+        }
+      },
       "required_artifacts": [
         "protocol_commit",
         "server_host_uid",
@@ -78,5 +88,5 @@
   "publication_status": "DRAFT_OPEN_FOR_REVIEW",
   "schema": "gnu6.public-challenges.v1",
   "scientific_review": "OPEN_TO_INDEPENDENT_CRITIQUE_IN_PRINCIPLE",
-  "version": "2026-10-09.public-candidate"
+  "version": "2026-10-09.cuda-05g-public-kit-draft"
 }

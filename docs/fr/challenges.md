@@ -21,6 +21,8 @@ La question : un UID 0 *à l'intérieur* d'un namespace peut-il correspondre à 
 
 La question : un service réellement exécuté sous un autre UID hôte peut-il refuser à la fois un client connecté mais non autorisé, et un client bloqué avant la connexion par DAC ? Nous avons observé ce comportement dans un laboratoire Docker jetable. Nous invitons à rechercher les conditions qui le contredisent.
 
+**Nouveau : [kit CUDA-05G de contre-expérience indépendante](/fr/studies/cuda-05g.html)**. Code et protocole publics; un seul essai local, réplication externe toujours en attente.
+
 [Protocole préenregistré](/challenges/protocols/CUDA-05E-PREREG.md) · [Étude et limites](/fr/studies/cuda-05e.html) · [Données publiques limitées](/evidence/cuda-05e-public-results.json)
 
 ### CUDA-05F — Superviseur Rust, GPU et résilience
