@@ -37,7 +37,7 @@
   const menu = document.querySelector('#toggleSidebar');
   const sidebar = document.querySelector('#sidebar');
   const close = document.querySelector('#closeSidebar');
-  const mobile = window.matchMedia('(max-width: 800px)');
+  const mobile = window.matchMedia('(max-width: 860px)');
   const setOpen = (open, restore = false) => {
     sidebar.classList.toggle('open', open);
     menu.setAttribute('aria-expanded', String(open));

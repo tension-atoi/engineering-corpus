@@ -10,6 +10,7 @@ import json
 import re
 import shutil
 from experiment_pages import render_experiment_registry
+from gnu6_shell import index_page, reading_page, specimen, state
 
 try:
     import yaml
@@ -60,62 +61,68 @@ def study_ids():
     return [x['id'] for x in CATALOG['chapters']]+[unpack(DOCS/'fr'/'labs'/f'{slug}.md')[0]['id'] for slug in CATALOG['labs']]
 
 
-def nav(locale,active):
+STUDIES=('cuda-05d','cuda-05e','cuda-05f','cuda-05g','cuda-05h')
+EDITION=HUB_CATALOG['edition']
+
+
+def rail(locale,active):
+    """Corpus navigation rail. Keeps #chapterSearch / data-search / progress hooks used by app.js."""
     base=f'/{locale}/'
-    lablabel='Ateliers' if locale=='fr' else 'Labs'
-    rootlabel='Corpus' if locale=='fr' else 'Corpus'
-    searchlabel='Filtrer les chapitres' if locale=='fr' else 'Filter chapters'
-    entries=[]
-    for x in CATALOG['chapters']:
+    searchlabel='Filtrer le corpus' if locale=='fr' else 'Filter the corpus'
+    def link(path,no,title,extra='',search=''):
+        cur=' aria-current="page"' if path==active else ''
+        return (f'<a href="{path}" data-search="{escape((search or str(title)).lower(),quote=True)}"{cur}>'
+                f'<span class="g6-rail__no"{"" if any(ch.isalnum() for ch in no) else " aria-hidden=\"true\""}>{no}</span><span>{escape(str(title))}</span>{extra}</a>')
+    chapters=[]
+    for i,x in enumerate(CATALOG['chapters'],1):
         meta,_=unpack(DOCS/locale/'chapters'/f"{x['id']}.md")
-        path=f"{base}chapters/{x['id']}.html"
-        css='active' if path==active else ''
-        entries.append(f'<a class="navlink {css}" href="{path}" data-search="{escape(str(meta["title"]).lower())}" aria-current="{"page" if css else "false"}"><span class="nav-number">{len(entries)+1:02d}</span>{escape(meta["title"])} <span class="nav-duration">{meta["duration"]}m</span></a>')
+        chapters.append(link(f"{base}chapters/{x['id']}.html",f'{i:02d}',meta['title'],f'<span class="g6-rail__time">{meta["duration"]}′</span>'))
     labs=[]
-    for slug in CATALOG['labs']:
+    for i,slug in enumerate(CATALOG['labs']):
         meta,_=unpack(DOCS/locale/'labs'/f'{slug}.md')
-        path=f'{base}labs/{slug}.html'
-        css='active' if path==active else ''
-        labs.append(f'<a class="navlink {css}" href="{path}" data-search="{escape(str(meta["title"]).lower())}" aria-current="{"page" if css else "false"}"><span class="nav-number">↗</span>{escape(meta["title"])}</a>')
-    return f'''<div class="sidebar-head"><span class="eyebrow">{rootlabel} / 0.1-draft</span><button id="closeSidebar" class="close-sidebar" type="button" aria-label="{'Fermer le menu' if locale=='fr' else 'Close menu'}">✕</button></div>
-    <label class="search-label" for="chapterSearch">{searchlabel}</label><input id="chapterSearch" type="search" placeholder="{searchlabel}…" autocomplete="off" />
-    <p data-search-status role="status" aria-live="polite"></p><nav aria-label="{rootlabel}"><h2>{rootlabel} <span>{len(CATALOG['chapters']):02d}</span></h2>{''.join(entries)}<h2>{lablabel} <span>{len(CATALOG['labs']):02d}</span></h2>{''.join(labs)}
-    <a class="navlink" href="{base}topologies.html" data-search="topologies diagrammes diagrams"><span class="nav-number">◇</span>Topologies</a>
-    <a class="navlink" href="{base}templates.html" data-search="templates modèles"><span class="nav-number">≡</span>{'Modèles' if locale=='fr' else 'Templates'}</a>
-    <a class="navlink" href="{base}studies/cuda-05d.html" data-search="études evidence science expérimentale méthodologie"><span class="nav-number">◇</span>{'Étude · Identités Linux' if locale=='fr' else 'Study · Linux identities'}</a></nav>
-    <div class="rail-bottom"><div class="progress-label"><span>{'Étudié localement' if locale=='fr' else 'Locally studied'}</span><strong data-progress-text aria-live="polite">0 / {len(study_ids())}</strong></div><progress class="meter" data-progress-meter max="{len(study_ids())}" value="0" aria-label="{'Progression d’étude' if locale=='fr' else 'Study progress'}"></progress><p data-storage-status role="status"></p><p>{'Sans compte, sans télémétrie.' if locale=='fr' else 'No account, no telemetry.'}</p></div>'''
+        labs.append(link(f'{base}labs/{slug}.html','ABC'[i],meta['title']))
+    studies=[]
+    for slug in STUDIES:
+        meta,_=unpack(DOCS/locale/'studies'/f'{slug}.md')
+        short=slug.upper().replace('CUDA-','')
+        studies.append(link(f'{base}studies/{slug}.html',short,meta['title'].split(' — ',1)[1] if ' — ' in meta['title'] else meta['title'],search=meta['title']+' '+slug))
+    res=[('challenges.html','Défis' if locale=='fr' else 'Challenges'),('topologies.html','Topologies'),
+         ('templates.html','Modèles' if locale=='fr' else 'Templates'),('references.html','Références' if locale=='fr' else 'References'),
+         ('governance.html','Gouvernance' if locale=='fr' else 'Governance')]
+    resources=[link(f'{base}{p}','·',n) for p,n in res]
+    home=link(f'{base}index.html','◦','Accueil du corpus' if locale=='fr' else 'Corpus home')
+    group=lambda title,items: f'<h2>{title} <span>{len(items):02d}</span></h2>'+''.join(items)
+    total=len(study_ids())
+    return (f'<div class="g6-rail__head"><span class="g6-label">Corpus <span aria-hidden="true">/</span> {escape(CATALOG["edition"])}</span>'
+            f'<button id="closeSidebar" class="g6-action g6-action--quiet g6-rail__close" type="button">{"Fermer" if locale=="fr" else "Close"}</button></div>'
+            f'<label class="g6-visually-hidden" for="chapterSearch">{searchlabel}</label><input id="chapterSearch" class="g6-rail__filter" type="search" placeholder="{searchlabel}…" autocomplete="off">'
+            f'<p class="g6-rail__status" data-search-status role="status" aria-live="polite"></p>'
+            f'<nav class="g6-rail" aria-label="Corpus">{home}'
+            +group('Chapitres' if locale=='fr' else 'Chapters',chapters)
+            +group('Ateliers' if locale=='fr' else 'Labs',labs)
+            +group('Études' if locale=='fr' else 'Studies',studies)
+            +group('Ressources' if locale=='fr' else 'Resources',resources)
+            +'</nav>'
+            f'<div class="g6-rail__progress"><div class="g6-rail__progress-line"><span>{"Étudié localement" if locale=="fr" else "Locally studied"}</span><strong data-progress-text aria-live="polite">0 / {total}</strong></div>'
+            f'<progress data-progress-meter max="{total}" value="0" aria-label="{"Progression d’étude" if locale=="fr" else "Study progress"}"></progress>'
+            f'<p data-storage-status role="status"></p><p>{"Sans compte, sans télémétrie." if locale=="fr" else "No account, no telemetry."}</p></div>')
 
 
-def shell(locale, title, inner, path, page_id='',mins=None,status='draft'):
-    opposite='en' if locale=='fr' else 'fr'
-    path_tail=path[len(f'/{locale}/'):]
-    en=f'/{opposite}/{path_tail}'
-    subtitle='Méthodes, preuves et autonomie' if locale=='fr' else 'Methods, evidence and autonomy'
-    home='Accueil' if locale=='fr' else 'Home'
+def shell(locale, title, inner, path, page_id='',mins=None,status='draft',section='corpus',kicker=None):
+    """Reading layout for corpus, labs, studies, challenges and reference pages."""
     study='Marquer comme étudié' if locale=='fr' else 'Mark as studied'
     live='Version d’étude · non ratifiée' if locale=='fr' else 'Study edition · not ratified'
-    rights='Aucune autorité accordée aux agents.' if locale=='fr' else 'No agent authority is granted.'
-    complete=f'<button type="button" class="study-button" data-progress-id="{escape(page_id)}" data-default-label="{study}">{study}</button>' if page_id and page_id != 'home' else ''
-    minsblock=f'<span class="time-tag">{mins} min</span>' if mins else ''
-    langname='English' if locale=='fr' else 'Français'
-    page=f'''<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark" /><meta name="referrer" content="no-referrer" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
-    <meta name="description" content="{escape(subtitle)}"/><title>{escape(title)} · {escape(CORPUS_NAME)}</title>
-    <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
-    <link rel="alternate" hreflang="{opposite}" href="{en}"><link rel="alternate" hreflang="{locale}" href="{path}">
-    </head><body data-locale="{locale}" data-study-ids="{escape(json.dumps(study_ids()),quote=True)}">
-    <a class="skip" href="#content">{'Aller au contenu' if locale=='fr' else 'Skip to content'}</a>
-    <header class="topbar"><a class="brand" href="/{locale}/index.html" aria-label="{escape(CORPUS_NAME)}, {home}"><span>gnu.in.labs <em>/</em> <strong>{escape(CORPUS_NAME)}</strong></span></a>
-    <div class="top-right"><span class="top-status">0.1 · DRAFT</span><a class="lang" href="{en}" lang="{opposite}">{langname} ↗</a><button id="toggleSidebar" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">☰</button></div></header>
-    <div class="layout"><aside id="sidebar" class="sidebar">{nav(locale,path)}</aside><main id="content" class="main" tabindex="-1">
-    <div class="chapter-meta"><span class="eyebrow"><a class="hub-return" href="/{locale}/hub.html">{'← Portail' if locale=='fr' else '← Portal'}</a><span class="hub-separator"> / </span>{'MÉTHODOLOGIE' if locale=='fr' else 'METHODOLOGY'}</span><span class="meta-right"><span class="status">{escape(status.upper())}</span>{minsblock}</span></div>
-    <article class="prose">{inner}</article>
-    <div class="lesson-foot">{complete}<span>{live}</span></div>
-    <footer><span>© 2026 gnu.in.labs · MIT</span><span>{rights}</span><a href="/{locale}/governance.html">{'Règles de contribution' if locale=='fr' else 'Contribution rules'} →</a></footer>
-    </main></div></body></html>'''
-    (DIST/path.lstrip('/')).parent.mkdir(parents=True,exist_ok=True)
-    (DIST/path.lstrip('/')).write_text(page,encoding='utf-8')
+    rights='Corpus sous licence MIT · aucune autorité accordée aux agents' if locale=='fr' else 'Corpus under MIT licence · no agent authority is granted'
+    complete=(f'<button type="button" class="g6-study" data-progress-id="{escape(page_id)}" data-default-label="{study}" aria-pressed="false">{study}</button>'
+              if page_id and page_id!='home' else '')
+    kicker=kicker or ('Méthodologie' if locale=='fr' else 'Methodology')
+    crumbs=f'<a href="/{locale}/hub.html">Docs</a> <span aria-hidden="true">/</span> {escape(kicker)}'
+    meta=state('attention',status.upper()) if status else ''
+    if mins: meta+=f'<span class="g6-num">{mins} min</span>'
+    foot=f'<div class="g6-doc__foot">{complete}<span>{live}</span></div>'
+    description=('Méthodes, preuves et autonomie' if locale=='fr' else 'Methods, evidence and autonomy')
+    reading_page(DIST,locale,path,title=f'{title} · {CORPUS_NAME}',description=description,section=section,rail=rail(locale,path),
+                 prose=inner,crumbs=crumbs,meta=meta,foot=foot,study_ids=study_ids(),edition=EDITION,footer_note=rights)
 
 
 def topology(locale):
@@ -130,7 +137,10 @@ def topology(locale):
         ('knowledge','Chaîne documentaire' if locale=='fr' else 'Documentation chain',
          'Code versionné → extraction → proposition → validation → revue humaine → édition statique.' if locale=='fr' else 'Versioned code → extraction → proposal → validation → human review → static edition.')]
     for f,l,description in labels:
-        content+=f'<section class="topology-block"><h2>{escape(l)}</h2><p>{escape(description)}</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="{escape(l)}"><img class="topology" src="/diagrams/{f}.svg" alt="{escape(description)}" loading="eager"></div><p><a href="/diagrams/{f}.svg">{"Ouvrir le diagramme" if locale=="fr" else "Open diagram"} ↗</a> · <a download href="/mermaid/{f}.mmd">{"Source Mermaid" if locale=="fr" else "Mermaid source"} ↓</a></p></section>'
+        # Inline the generated SVG so it follows the active light/dark roles; ids are pre-namespaced.
+        svgsrc=(ASSETS/'diagrams'/f'{f}.svg').read_text('utf-8')
+        content+=(f'<h2 id="{f}">{escape(l)}</h2><p>{escape(description)}</p><figure class="g6-figure"><div class="g6-figure__scroll" tabindex="0" role="region" aria-label="{escape(l)}">{svgsrc}</div>'
+                  f'<p class="g6-figure__links"><a href="/diagrams/{f}.svg">{"Ouvrir le diagramme" if locale=="fr" else "Open diagram"} ↗</a> · <a download href="/mermaid/{f}.mmd">{"Source Mermaid" if locale=="fr" else "Mermaid source"} ↓</a></p></figure>')
     return content
 
 
@@ -138,53 +148,64 @@ def template_index(locale):
     names=['MANDATE.md','CONTRACT.md','ADR.md','EVIDENCE.json','RELEASE.md','EXPERIMENT.md']
     title='Modèles opératoires' if locale=='fr' else 'Operational templates'
     sub='Points de départ à adapter : aucun template ne crée d’autorité.' if locale=='fr' else 'Adapt these starting points: templates grant no authority.'
-    links=''.join(f'<a class="template-card" href="/templates/{n}" download><span>↓</span><strong>{n}</strong><small>{"Télécharger" if locale=="fr" else "Download"}</small></a>' for n in names)
-    return f'<h1>{title}</h1><p class="lead">{sub}</p><div class="template-grid">{links}</div><p>{"Lisez les règles dans le README et adaptez les permissions projet par projet." if locale=="fr" else "Review the README and adapt permissions to each project."}</p>'
+    links=''.join(f'<li><a href="/templates/{n}" download><strong>{n}</strong><small>{"Télécharger" if locale=="fr" else "Download"} ↓</small></a></li>' for n in names)
+    return f'<h1>{title}</h1><p class="lead">{sub}</p><ul class="g6-files">{links}</ul><p>{"Lisez les règles dans le README et adaptez les permissions projet par projet." if locale=="fr" else "Review the README and adapt permissions to each project."}</p>'
 
 
-def home_cards(locale):
-    cards=[]
-    for x in CATALOG['chapters']:
+def corpus_ledger(locale):
+    rows=[]
+    for i,x in enumerate(CATALOG['chapters'],1):
         m,_=unpack(DOCS/locale/'chapters'/f"{x['id']}.md")
-        i=len(cards)+1
-        cards.append(f'<a class="chapter-card" href="/{locale}/chapters/{x["id"]}.html"><span class="card-no">{i:02d} / 08</span><strong>{escape(m["title"])}</strong><span class="card-bottom"><span>{m["duration"]} MIN</span><span aria-hidden="true">↗</span></span></a>')
-    label='Parcours d’étude' if locale=='fr' else 'Study curriculum'
-    return f'<section class="course-section"><div class="section-top"><h2>{label}</h2><span>8 × {'CHAPITRES' if locale=="fr" else "CHAPTERS"}</span></div><div class="chapter-grid">{"".join(cards)}</div></section>'
+        rows.append(f'<li class="g6-ledger__row"><div class="g6-ledger__item"><span class="g6-ledger__rail" aria-hidden="true"></span><span class="g6-ledger__index">{i:02d}</span>'
+                    f'<div class="g6-ledger__main"><span class="g6-ledger__title"><a href="/{locale}/chapters/{x["id"]}.html">{escape(m["title"])}</a></span><span class="g6-ledger__desc">{escape(m["method_id"])} · {escape(m["classification"])}</span></div>'
+                    f'<span class="g6-ledger__meta"><span class="g6-num">{m["duration"]} min</span></span><span class="g6-ledger__arrow" aria-hidden="true">→</span></div></li>')
+    labs=[]
+    for i,slug in enumerate(CATALOG['labs']):
+        m,_=unpack(DOCS/locale/'labs'/f'{slug}.md')
+        labs.append(f'<li class="g6-ledger__row"><div class="g6-ledger__item"><span class="g6-ledger__rail" aria-hidden="true"></span><span class="g6-ledger__index">{"ABC"[i]}</span>'
+                    f'<div class="g6-ledger__main"><span class="g6-ledger__title"><a href="/{locale}/labs/{slug}.html">{escape(m["title"])}</a></span><span class="g6-ledger__desc">{escape(m["method_id"])}</span></div>'
+                    f'<span class="g6-ledger__meta"><span class="g6-num">{m["duration"]} min</span></span><span class="g6-ledger__arrow" aria-hidden="true">→</span></div></li>')
+    head=lambda t,n: f'<div class="g6-section__head"><div><span class="g6-label">{n}</span><h2>{t}</h2></div></div>'
+    return (f'<section class="g6-section">{head("Parcours d’étude" if locale=="fr" else "Study curriculum", "8 × "+("CHAPITRES" if locale=="fr" else "CHAPTERS"))}<ol class="g6-ledger g6-ledger--compact g6-enter">{"".join(rows)}</ol></section>'
+            f'<section class="g6-section">{head("Ateliers exécutables" if locale=="fr" else "Runnable labs", str(len(labs))+" × "+("ATELIERS" if locale=="fr" else "LABS"))}<ol class="g6-ledger g6-ledger--compact">{"".join(labs)}</ol></section>')
 
 
 def home_hero(locale):
     if locale=='fr':
-        label='CORPUS OUVERT · BILINGUE · LOCAL-FIRST'
-        title=CORPUS_NAME
+        label='Corpus ouvert · bilingue · local-first'
         sub='Une méthode qui se démontre. Le premier parcours explore les pratiques d’ingénierie : contrats, frontières d’autorité, preuves, documentation et livraison. D’autres domaines et formats d’apprentissage pourront s’y ajouter.'
         start='Commencer le parcours'
         topology_lbl='Explorer les topologies'
         cards=['8 chapitres',f"{len(CATALOG['labs'])} ateliers",'6 modèles','0 service distant requis']
     else:
-        label='OPEN CORPUS · BILINGUAL · LOCAL-FIRST'
-        title=CORPUS_NAME
+        label='Open corpus · bilingual · local-first'
         sub='A methodology you can prove. The first learning path covers engineering practice: contracts, authority boundaries, evidence, documentation and delivery. Future editions may welcome other fields and learning formats.'
         start='Start the curriculum'
         topology_lbl='Explore topologies'
         cards=['8 chapters',f"{len(CATALOG['labs'])} labs",'6 templates','0 required remote services']
-    stat=''.join(f'<div><strong>{escape(a.split(" ")[0])}</strong><span>{escape(" ".join(a.split(" ")[1:]))}</span></div>' for a in cards)
-    return f'''<div class="hero"><span class="eyebrow">{label}</span><h1>{escape(title)}</h1><p>{escape(sub)}</p><div class="hero-actions"><a class="primary" href="/{locale}/chapters/01-mandate.html">{start} →</a><a class="outline" href="/{locale}/topologies.html">{topology_lbl} ↗</a></div><div class="stats">{stat}</div></div>'''
+    stat=''.join(f'<dt>{escape(" ".join(a.split(" ")[1:]))}</dt><dd class="g6-num">{escape(a.split(" ")[0])}</dd>' for a in cards)
+    return (f'<div class="g6-corpus-hero"><span class="g6-label">{label}</span><h1 class="g6-display">{escape(CORPUS_NAME)}</h1><p class="g6-lede">{escape(sub)}</p>'
+            f'<div class="g6-hero__actions"><a class="g6-action" href="/{locale}/chapters/01-mandate.html">{start} <span class="g6-action__arrow" aria-hidden="true">→</span></a>'
+            f'<a class="g6-goto" href="/{locale}/topologies.html">{topology_lbl} <span aria-hidden="true">↗</span></a></div><dl class="g6-stats">{stat}</dl></div>')
 
+
+def ledger_row(i,title,href,desc,status_kind,status_label,extra_class='',meta=''):
+    title_html=(f'<a href="{escape(href,quote=True)}">{escape(title)}</a>' if href else escape(title))
+    arrow='<span class="g6-ledger__arrow" aria-hidden="true">→</span>' if href else '<span aria-hidden="true"></span>'
+    return (f'<li class="g6-ledger__row {extra_class}"><div class="g6-ledger__item"><span class="g6-ledger__rail" aria-hidden="true"></span>'
+            f'<span class="g6-ledger__index">{i:02d}</span><div class="g6-ledger__main"><span class="g6-ledger__title">{title_html}</span>'
+            f'<span class="g6-ledger__desc">{desc}</span></div><span class="g6-ledger__meta">{state(status_kind,status_label)}{meta}</span>{arrow}</div></li>')
 
 
 def hub_page(locale):
     """Generate the real documentation entrypoint; no placeholder is a navigable dead end."""
-    opposite='en' if locale=='fr' else 'fr'
     fr=locale=='fr'
-    name='Documentation · gnu.in.labs'
     intro='Des hypothèses. Des méthodes. Des contre-preuves.' if fr else 'Hypotheses. Methods. Counterevidence.'
-    kicker='PORTAIL DOCUMENTAIRE / GNU.IN.LABS' if fr else 'DOCUMENTATION PORTAL / GNU.IN.LABS'
+    kicker='gnu.in.labs / Documentation'
     subtitle=('Une invitation à reproduire, contredire et améliorer nos expériences. Proposez une réplication ou un contre-exemple via GitHub Issues; les kits encore incomplets sont indiqués.'
               if fr else 'An invitation to reproduce, refute and improve our experiments. Submit a replication or counterexample through GitHub Issues; incomplete kits remain explicitly labeled.')
     primary='Examiner les défis scientifiques' if fr else 'Explore scientific challenges'
-    language='English' if fr else 'Français'
     indexlabel='Index documentaire' if fr else 'Documentation index'
-    availability='Disponibilité vérifiée dans cette édition' if fr else 'Availability in this edition'
     state_av='Disponible · édition de travail' if fr else 'Available · study edition'
     state_pl='En préparation · aucune référence publiée' if fr else 'Planned · no published reference'
     state_guide='Guide pédagogique · édition de travail' if fr else 'Teaching guide · draft edition'
@@ -202,52 +223,38 @@ def hub_page(locale):
                 if fr else 'The corpus remains the study curriculum. The SDK registry is empty; API documents an experimental Rust contract without an HTTP endpoint. One teaching guide is sourced. No corpus release tag is verified.')
     rows=[]
     for i,domain in enumerate(HUB_CATALOG['domains'],1):
-        state=domain['state']
-        if state not in statuses: raise ValueError(f'unsupported hub state {state}')
-        navigable=state!='planned'
-        title=domain['label'][locale]
-        desc=domain['description'][locale]
+        st=domain['state']
+        if st not in statuses: raise ValueError(f'unsupported hub state {st}')
+        navigable=st!='planned'
         route=domain.get('routes',{}).get(locale)
-        if navigable:
-            if not route: raise ValueError(f'navigable domain {domain["id"]} lacks {locale} route')
-            label=f'<a class="hub-domain-name" href="{escape(route,quote=True)}">{escape(title)} <span aria-hidden="true">↗</span></a>'
-        else:
-            if route: raise ValueError(f'planned domain {domain["id"]} has unexpected public route')
-            label=f'<span class="hub-domain-name">{escape(title)}</span>'
-        state_label=state_releases if domain['id']=='releases' else statuses[state]
-        rows.append(f'<li class="hub-domain hub-domain-{state}"><span class="hub-number">{i:02d}</span><div class="hub-domain-copy">{label}<p>{escape(desc)}</p></div><span class="hub-domain-status">{escape(state_label)}</span></li>')
-    cards=''.join(rows)
-    main=f'''<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
-<meta name="description" content="{escape(subtitle,quote=True)}"><title>{escape(name)}</title>
-<link rel="stylesheet" href="/style.css"><link rel="alternate" hreflang="{locale}" href="/{locale}/hub.html"><link rel="alternate" hreflang="{opposite}" href="/{opposite}/hub.html"></head>
-<body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a>
-<header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html" aria-label="gnu.in.labs — {escape(indexlabel)}"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
-<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a aria-current="page" href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a><a href="/{locale}/ecosystem.html">{'Écosystème' if fr else 'Ecosystem'}</a></nav>
-<a class="hub-language" href="/{opposite}/hub.html" lang="{opposite}">{language} ↗</a></header>
-<main class="hub-main" id="content" tabindex="-1">
-<div class="hub-hero"><div class="hub-intro"><span class="hub-kicker">{escape(kicker)}</span><h1>{escape(intro)}</h1><p class="hub-lede">{escape(subtitle)}</p>
-<a class="hub-primary" href="/{locale}/challenges.html">{primary}<span aria-hidden="true">↗</span></a></div>
-<aside class="hub-proof" aria-label="{escape(availability)}"><span class="hub-proof-label">01 / {len(HUB_CATALOG["domains"]):02d}</span><strong>Corpus Méthodologique &amp; Hygiène Mental</strong><p>{'8 chapitres · 3 ateliers · FR/EN' if fr else '8 chapters · 3 labs · FR/EN'}</p><span class="hub-proof-state">{escape(state_av)}</span></aside></div>
-<section class="hub-index" aria-labelledby="hub-index-title"><div class="hub-section-head"><div><span class="hub-kicker">{escape(indexlabel)}</span><h2 id="hub-index-title">{escape(library)}</h2></div><p>{escape(section_sub)}</p></div><ol class="hub-domains">{cards}</ol></section>
-<section class="hub-policy" aria-label="{'Provenance des contenus' if fr else 'Content provenance'}"><span class="hub-kicker">{'PROVENANCE / PUBLICATION' if fr else 'PROVENANCE / PUBLICATION'}</span><p>{escape(provenance)}</p></section>
-<footer class="hub-footer"><span>© 2026 gnu.in.labs</span><span>{'Corpus : édition de travail non ratifiée' if fr else 'Corpus: draft study edition, not ratified'}</span><a href="/{locale}/governance.html">{'Règles du corpus' if fr else 'Corpus governance'} ↗</a></footer>
-</main></body></html>'''
-    file=DIST/locale/'hub.html'
-    file.parent.mkdir(parents=True,exist_ok=True)
-    file.write_text(main,encoding='utf-8')
+        if navigable and not route: raise ValueError(f'navigable domain {domain["id"]} lacks {locale} route')
+        if not navigable and route: raise ValueError(f'planned domain {domain["id"]} has unexpected public route')
+        state_label=state_releases if domain['id']=='releases' else statuses[st]
+        rows.append(ledger_row(i,domain['label'][locale],route if navigable else None,escape(domain['description'][locale]),st,state_label,extra_class=f'hub-domain hub-domain-{st}'))
+    body=(f'<section class="g6-hero"><div class="g6-hero__copy"><span class="g6-label">{escape(kicker)}</span><h1 class="g6-display">{escape(intro)}</h1>'
+          f'<p class="g6-lede">{escape(subtitle)}</p><div class="g6-hero__actions"><a class="g6-action" href="/{locale}/challenges.html">{primary} <span class="g6-action__arrow" aria-hidden="true">↗</span></a>'
+          f'<a class="g6-goto" href="/{locale}/index.html">{"Ouvrir le corpus" if fr else "Open the corpus"} <span aria-hidden="true">→</span></a></div></div>'
+          f'<div class="g6-hero__aside">{specimen(locale,"gnuinlabs")}</div></section>'
+          f'<section class="g6-section" aria-labelledby="hub-index-title"><div class="g6-section__head"><div><span class="g6-label">01 <span aria-hidden="true">/</span> {escape(indexlabel)}</span><h2 id="hub-index-title">{escape(library)}</h2></div><p class="g6-section__note">{escape(section_sub)}</p></div>'
+          f'<ol class="g6-ledger g6-enter">{"".join(rows)}</ol></section>'
+          f'<section class="g6-notice" aria-label="{"Provenance des contenus" if fr else "Content provenance"}"><span class="g6-label">02 <span aria-hidden="true">/</span> Provenance</span><p>{escape(provenance)}</p></section>')
+    index_page(DIST,locale,f'/{locale}/hub.html',title='Documentation · gnu.in.labs',description=subtitle,section='hub',body=body,edition=EDITION)
+
+
+def registry_hero(locale,kicker,title,intro,status=None):
+    st=f'<p class="g6-registry-count"><span>{escape(status[0])}</span><strong class="g6-num">{escape(status[1])}</strong></p>' if status else ''
+    return (f'<section class="g6-hero g6-hero--compact"><div class="g6-hero__copy"><span class="g6-label">{escape(kicker)}</span>'
+            f'<h1 class="g6-display">{escape(title)}</h1><p class="g6-lede">{escape(intro)}</p>{st}</div></section>')
 
 
 def source_inventory_page(locale, kind):
     """Static, provenance-first index. A source-code contract is not an HTTP service."""
-    opposite='en' if locale=='fr' else 'fr'
     fr=locale=='fr'
     records=[x for x in SOURCE_REGISTRY['sources'] if x['kind']==kind and locale in x['locale']]
     if kind not in ('sdk','api'):
         raise ValueError(f'unsupported source kind {kind}')
     title=('Inventaire SDK' if fr else 'SDK inventory') if kind=='sdk' else ('Références API' if fr else 'API references')
-    kicker=('INVENTAIRE / SDK' if kind=='sdk' else 'SOURCES / API') + (' · EXPÉRIMENTAL' if kind=='api' else '')
+    kicker=('Inventaire / SDK' if kind=='sdk' else 'Sources / API · '+('expérimental' if fr else 'experimental'))
     intro=('Aucun SDK public qualifié pour distribution dans cette édition. Aucun lien d’installation ni commande ne sera inventé.' if fr else
            'No public SDK is qualified for distribution in this edition. No installation link or command will be invented.') if kind=='sdk' else (
            'Une interface de référence Rust, épinglée à sa source. Aucun endpoint HTTP ni contrat de production annoncé.' if fr else
@@ -258,71 +265,36 @@ def source_inventory_page(locale, kind):
             raise ValueError(f'unqualified source cannot be rendered: {record["id"]}')
         source_url=f"{record['source_repository']}/blob/{record['source_ref']}/{record['source_path']}"
         manifest_url=f"{record['source_repository']}/blob/{record['source_ref']}/{record['manifest_path']}"
-        label=('Source exacte' if fr else 'Pinned source')
+        label_=('Source exacte' if fr else 'Pinned source')
         manifest_label=('Manifeste du crate' if fr else 'Crate manifest')
-        row=f"""<article class="registry-entry" id="{escape(record['id'],quote=True)}">
-<div class="registry-entry-head"><span class="registry-kicker">RUST · {escape(record['lifecycle'].upper())}</span><span class="registry-version">v{escape(record['version'])} · publish=false</span></div>
+        rows.append(f"""<article class="g6-record" id="{escape(record['id'],quote=True)}">
+<div class="g6-record__head">{state('attention','RUST · '+record['lifecycle'].upper())}<span class="g6-label">v{escape(record['version'])} · publish=false</span></div>
 <h2>{escape(record['title'][locale])}</h2><p>{escape(record['description'][locale])}</p>
-<dl class="registry-facts">
+<dl class="g6-facts">
 <dt>{'Responsable' if fr else 'Owner'}</dt><dd>{escape(record['owner'])}</dd>
 <dt>{'Révision exacte' if fr else 'Exact revision'}</dt><dd><code>{escape(record['source_ref'])}</code></dd>
 <dt>{'Empreinte du fichier' if fr else 'Source file SHA-256'}</dt><dd><code>{escape(record['source_sha256'])}</code></dd>
 <dt>{'Vérification' if fr else 'Verified'}</dt><dd>{escape(record['last_verified'])} · {'fichier public existant' if fr else 'public source file exists'}</dd>
-<dt>{'Transport' if fr else 'Transport'}</dt><dd>{escape(record['interface'])} · {escape(record['transport'])}</dd>
-<dt>{'Distribution' if fr else 'Distribution'}</dt><dd>{escape(record['distribution'])}</dd></dl>
-<div class="registry-links"><a href="{escape(source_url,quote=True)}" rel="noopener noreferrer">{label} ↗</a><a href="{escape(manifest_url,quote=True)}" rel="noopener noreferrer">{manifest_label} ↗</a></div></article>"""
-        rows.append(row)
-    empty=('<div class="registry-empty"><strong>Aucune référence SDK publique qualifiée</strong><p>Le registre est volontairement vide. Les packages candidats devront d’abord établir une version, un artefact distribuable et une provenance publique.</p></div>' if fr else
-           '<div class="registry-empty"><strong>No qualified public SDK reference</strong><p>The registry is deliberately empty. Candidate packages first need a verifiable version, distributable artifact and public provenance.</p></div>')
+<dt>Transport</dt><dd>{escape(record['interface'])} · {escape(record['transport'])}</dd>
+<dt>Distribution</dt><dd>{escape(record['distribution'])}</dd></dl>
+<div class="g6-record__links"><a class="g6-action g6-action--quiet" href="{escape(source_url,quote=True)}" rel="noopener noreferrer">{label_} <span aria-hidden="true">↗</span></a><a class="g6-action g6-action--quiet" href="{escape(manifest_url,quote=True)}" rel="noopener noreferrer">{manifest_label} <span aria-hidden="true">↗</span></a></div></article>""")
+    empty=('<div class="g6-empty">'+state('empty','0 / SDK')+'<strong>Aucune référence SDK publique qualifiée</strong><p>Le registre est volontairement vide. Les packages candidats devront d’abord établir une version, un artefact distribuable et une provenance publique.</p></div>' if fr else
+           '<div class="g6-empty">'+state('empty','0 / SDK')+'<strong>No qualified public SDK reference</strong><p>The registry is deliberately empty. Candidate packages first need a verifiable version, distributable artifact and public provenance.</p></div>')
     content=''.join(rows) if rows else empty
     details=('État des références' if fr else 'Reference status')
     source_file='Voir le registre machine' if fr else 'Machine-readable registry'
-    language='English' if fr else 'Français'
     disclaimer=('Ce site référence du code public, il ne garantit ni stabilité, ni compatibilité, ni disponibilité de service. Les adaptateurs async et streaming restent hors du contrat montré.' if fr else
                 'This page references public source code; it does not guarantee stability, compatibility or service availability. Async and streaming adapters are outside this contract.')
-    page=f"""<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
-<meta name="description" content="{escape(intro,quote=True)}"><title>{escape(title)} · gnu.in.labs</title><link rel="stylesheet" href="/style.css">
-<link rel="alternate" hreflang="{locale}" href="/{locale}/{kind}.html"><link rel="alternate" hreflang="{opposite}" href="/{opposite}/{kind}.html"></head>
-<body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a>
-<header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html" aria-label="gnu.in.labs — docs"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
-<nav class="hub-global-nav" aria-label="{'Navigation principale' if fr else 'Primary navigation'}"><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a><a href="/{locale}/ecosystem.html">{'Écosystème' if fr else 'Ecosystem'}</a></nav>
-<a class="hub-language" href="/{opposite}/{kind}.html" lang="{opposite}">{language} ↗</a></header>
-<main class="hub-main registry-main" id="content" tabindex="-1">
-<a class="registry-back" href="/{locale}/hub.html">{'← Portail documentaire' if fr else '← Documentation portal'}</a>
-<header class="registry-hero"><span class="hub-kicker">{escape(kicker)}</span><h1>{escape(title)}</h1><p class="hub-lede">{escape(intro)}</p>
-<div class="registry-status"><span>{escape(details)}</span><strong>{len(records):02d} / {kind.upper()}</strong></div></header>
-<section class="registry-entries" aria-label="{escape(details)}">{content}</section>
-<section class="hub-policy"><span class="hub-kicker">SOURCE / PROVENANCE</span><p>{escape(disclaimer)} <a href="/registry/source-catalog.json">{source_file} ↗</a></p></section>
-<footer class="hub-footer"><span>© 2026 gnu.in.labs</span><span>DOCS-HUB-01C · {'Références expérimentales' if fr else 'Experimental references'}</span><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'} ↗</a></footer>
-</main></body></html>"""
-    (DIST/locale/f'{kind}.html').write_text(page,encoding='utf-8')
+    body=(registry_hero(locale,kicker,title,intro,(details,f'{len(records):02d} / {kind.upper()}'))
+          +f'<section class="g6-section" aria-label="{escape(details)}">{content}</section>'
+          +f'<section class="g6-notice"><span class="g6-label">Source <span aria-hidden="true">/</span> Provenance</span><p>{escape(disclaimer)} <a href="/registry/source-catalog.json">{source_file} ↗</a></p></section>')
+    index_page(DIST,locale,f'/{locale}/{kind}.html',title=f'{title} · gnu.in.labs',description=intro,section='references',body=body,edition=EDITION)
 
 
-
-
-def documentation_page(locale, page_id, title, intro, body, *, section):
+def documentation_page(locale, page_id, title, intro, body, *, section, nav='references'):
     """A static, CSP-locked documentation page without browser-side fetches."""
-    other='en' if locale=='fr' else 'fr'
-    back='← Portail documentaire' if locale=='fr' else '← Documentation portal'
-    langname='English' if locale=='fr' else 'Français'
-    markup=f"""<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'">
-<title>{escape(title)} · gnu.in.labs</title><meta name="description" content="{escape(intro,quote=True)}"><link rel="stylesheet" href="/style.css">
-<link rel="alternate" hreflang="{locale}" href="/{locale}/{page_id}"><link rel="alternate" hreflang="{other}" href="/{other}/{page_id}"></head>
-<body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if locale=='fr' else 'Skip to content'}</a>
-<header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a>
-<nav class="hub-global-nav" aria-label="{'Navigation principale' if locale=='fr' else 'Primary navigation'}"><a href="/{locale}/hub.html">{'Portail' if locale=='fr' else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a><a href="/{locale}/ecosystem.html">{'Écosystème' if locale=='fr' else 'Ecosystem'}</a></nav>
-<a class="hub-language" lang="{other}" href="/{other}/{page_id}">{langname} ↗</a></header>
-<main class="hub-main registry-main" id="content" tabindex="-1"><a class="registry-back" href="/{locale}/hub.html">{back}</a>
-<header class="registry-hero"><span class="hub-kicker">GNU.IN.LABS / {escape(section)}</span><h1>{escape(title)}</h1><p class="hub-lede">{escape(intro)}</p></header>
-{body}<footer class="hub-footer"><span>gnu.in.labs · DOCS-HUB-01D</span><a href="/{locale}/hub.html">{'Portail' if locale=='fr' else 'Portal'} ↗</a></footer>
-</main></body></html>"""
-    file=DIST/locale/page_id
-    file.parent.mkdir(parents=True,exist_ok=True)
-    file.write_text(markup,encoding='utf-8')
+    content=registry_hero(locale,f'gnu.in.labs / {section}',title,intro)+body
+    index_page(DIST,locale,f'/{locale}/{page_id}',title=f'{title} · gnu.in.labs',description=intro,section=nav,body=content,edition=EDITION)
 
 
 def guides_pages(locale):
@@ -334,15 +306,15 @@ def guides_pages(locale):
     title='Guides pratiques' if fr else 'Practical guides'
     intro=('Un guide pédagogique lié à un atelier réellement exécutable. Un exercice de documentation ne garantit pas une API produit.'
            if fr else 'One teaching guide tied to a runnable lab. A documentation exercise is not a product API guarantee.')
-    caption='ÉDITION DE TRAVAIL · NON RATIFIÉE' if fr else 'DRAFT STUDY EDITION · NOT RATIFIED'
+    caption='Édition de travail · non ratifiée' if fr else 'Draft study edition · not ratified'
     detail=guide['route'][locale]
     lab=guide['related_lab'][locale]
-    entry=f"""<section class="registry-entries" aria-label="{escape(title)}"><article class="registry-entry">
-<div class="registry-entry-head"><span class="registry-kicker">GUIDE / DRAFT</span><span class="registry-version">{escape(guide['last_verified'])}</span></div>
+    entry=f"""<section class="g6-section" aria-label="{escape(title)}"><article class="g6-record">
+<div class="g6-record__head">{state('attention','GUIDE / DRAFT')}<span class="g6-label">{escape(guide['last_verified'])}</span></div>
 <h2>{escape(guide['title'][locale])}</h2><p>{escape(guide['summary'][locale])}</p>
-<div class="registry-links"><a href="{escape(detail)}">{'Lire le guide' if fr else 'Read the guide'} ↗</a><a href="{escape(lab)}">{'Exécuter l’atelier B' if fr else 'Run Lab B'} ↗</a></div></article></section>
-<section class="hub-policy"><span class="hub-kicker">{caption}</span><p>{'Provenance, SHA et fichiers consultables' if fr else 'Inspectable provenance, SHA and files'} : <a href="/registry/guide-catalog.json">{'Registre des guides' if fr else 'Guide registry'} ↗</a>. {'Aucun SDK distribué ni service HTTP qualifié' if fr else 'No distributed SDK or qualified HTTP service'}.</p></section>"""
-    documentation_page(locale,'guides.html',title,intro,entry,section='GUIDES')
+<div class="g6-record__links"><a class="g6-action" href="{escape(detail)}">{'Lire le guide' if fr else 'Read the guide'} <span class="g6-action__arrow" aria-hidden="true">→</span></a><a class="g6-action g6-action--quiet" href="{escape(lab)}">{'Exécuter l’atelier B' if fr else 'Run Lab B'} <span aria-hidden="true">→</span></a></div></article></section>
+<section class="g6-notice"><span class="g6-label">{caption}</span><p>{'Provenance, SHA et fichiers consultables' if fr else 'Inspectable provenance, SHA and files'} : <a href="/registry/guide-catalog.json">{'Registre des guides' if fr else 'Guide registry'} ↗</a>. {'Aucun SDK distribué ni service HTTP qualifié' if fr else 'No distributed SDK or qualified HTTP service'}.</p></section>"""
+    documentation_page(locale,'guides.html',title,intro,entry,section='Guides')
     guide_id=guide['id']
     doc=DOCS/locale/'guides'/f'{guide_id}.md'
     if not doc.is_file():
@@ -357,12 +329,12 @@ def guides_pages(locale):
     refs=[]
     for path,digest in guide['source_paths'].items():
         href=f'{source}/blob/{sha}/{path}'
-        refs.append(f'<li><a href="{escape(href,quote=True)}" rel="noopener noreferrer">{escape(path)} ↗</a> <code>sha256:{escape(digest)}</code></li>')
-    evidence=(f'<section class="hub-policy"><span class="hub-kicker">SOURCE / PROVENANCE</span>'
+        refs.append(f'<dt><a href="{escape(href,quote=True)}" rel="noopener noreferrer">{escape(path)} ↗</a></dt><dd><code>sha256:{escape(digest)}</code></dd>')
+    evidence=(f'<section class="g6-notice"><span class="g6-label">Source <span aria-hidden="true">/</span> Provenance</span><div>'
               f'<p>{"Référence pédagogique épinglée au commit" if fr else "Teaching example pinned to commit"} <code>{sha}</code> · {escape(guide["lifecycle"].upper())}</p>'
-              f'<ul class="guide-source-list">{"".join(refs)}</ul><p><a href="/registry/guide-catalog.json">{"Registre machine" if fr else "Machine-readable registry"} ↗</a></p></section>')
-    prose=f'<article class="prose guide-prose">{rendered}</article>'+evidence
-    documentation_page(locale,f'guides/{guide_id}.html',guide['title'][locale],intro,prose,section='GUIDE / EXPÉRIENCE' if fr else 'GUIDE / EXERCISE')
+              f'<dl class="g6-facts">{"".join(refs)}</dl><p><a href="/registry/guide-catalog.json">{"Registre machine" if fr else "Machine-readable registry"} ↗</a></p></div></section>')
+    prose=f'<div class="g6-section"><article class="g6-prose">{rendered}</article></div>'+evidence
+    documentation_page(locale,f'guides/{guide_id}.html',guide['title'][locale],intro,prose,section='Guide / Expérience' if fr else 'Guide / Exercise')
 
 
 def releases_page(locale):
@@ -376,15 +348,14 @@ def releases_page(locale):
            if fr else 'No engineering-corpus release tag was observed on October 8, 2026. The corpus remains a draft study edition without an announced stable release.')
     caveat=('Ce contrôle ne concerne que le dépôt du corpus et ne décrit pas les versions des autres produits Gnosix.'
             if fr else 'This observation covers only the corpus repository, not versioning of other Gnosix products.')
-    body=f"""<section class="registry-entries" aria-label="{escape(title)}"><div class="registry-empty"><span class="registry-kicker">0 / TAGS</span>
+    body=f"""<section class="g6-section" aria-label="{escape(title)}"><div class="g6-empty">{state('empty','0 / TAGS')}
 <strong>{'Aucune release qualifiée' if fr else 'No qualified release'}</strong><p>{escape(empty)}</p><p>{escape(caveat)}</p></div></section>
-<section class="hub-policy"><span class="hub-kicker">SOURCE / VERIFICATION</span><p><code>{escape(RELEASE_REGISTRY['checked_ref'])}</code>
+<section class="g6-notice"><span class="g6-label">Source <span aria-hidden="true">/</span> {'Vérification' if fr else 'Verification'}</span><p><code>{escape(RELEASE_REGISTRY['checked_ref'])}</code>
 · {escape(RELEASE_REGISTRY['verification'])} · <a href="/registry/release-catalog.json">{'Registre machine' if fr else 'Machine-readable registry'} ↗</a></p></section>"""
-    documentation_page(locale,'releases.html',title,intro,body,section='VERSIONS' if fr else 'RELEASES')
+    documentation_page(locale,'releases.html',title,intro,body,section='Versions' if fr else 'Releases')
 
 
 def ecosystem_page(locale):
-    other='en' if locale=='fr' else 'fr'
     fr=locale=='fr'
     src={x['id']:x for x in ECOSYSTEM['sources']}
     items=[]
@@ -392,16 +363,20 @@ def ecosystem_page(locale):
         links=[]
         for ref in item['sources']:
             source=src[ref]
-            label=escape(source['name'])
-            route=escape(source['route'][locale],quote=True)
-            links.append(f'<a href="{route}">{label} ↗</a>')
-        evidence=' · '.join(links) if links else ('Aucune source publique qualifiée pour cette famille' if fr else 'No qualified public source in this family')
-        items.append(f'<li class="hub-domain"><span class="hub-number">{i:02d}</span><div class="hub-domain-copy"><strong class="hub-domain-name">{escape(item["label"][locale])}</strong><p>{escape(item["summary"][locale])}</p><p class="ecosystem-evidence">{evidence}</p></div></li>')
+            links.append(f'<a href="{escape(source["route"][locale],quote=True)}">{escape(source["name"])} ↗</a>')
+        if links:
+            evidence=' · '.join(links); kind,lbl='stable',('Source publique qualifiée' if fr else 'Qualified public source')
+        else:
+            evidence=''; kind,lbl='planned',('Aucune source publique qualifiée pour cette famille' if fr else 'No qualified public source in this family')
+        desc=escape(item['summary'][locale])+(f'<br><span class="ecosystem-evidence">{evidence}</span>' if evidence else '')
+        items.append(ledger_row(i,item['label'][locale],None,desc,kind,lbl,extra_class='g6-ledger__row--static'))
     title='Carte des domaines' if fr else 'Ecosystem map'
     intro=('Six familles pour explorer le programme. Cette carte est un index éditorial, pas une annonce de disponibilité des produits.' if fr else 'Six families to explore the program. This is an editorial index, not a claim that every product is available.')
     caveat=('Seuls deux dépôts publics sont référencés ici. Les travaux privés et les projets sans provenance publique qualifiée ne sont pas exposés par ce registre.' if fr else 'Only two public repositories are referenced here. Private work and projects without qualified public provenance are not exposed by this registry.')
-    content=f'''<!doctype html><html lang="{locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'"><title>{escape(title)} · gnu.in.labs</title><link rel="stylesheet" href="/style.css"></head><body class="hub-page"><a class="skip" href="#content">{'Aller au contenu' if fr else 'Skip to content'}</a><header class="hub-header"><a class="hub-logo" href="/{locale}/hub.html"><strong>gnu.in.labs</strong><span>/</span><span>docs</span></a><nav class="hub-global-nav" aria-label="{'Navigation' if fr else 'Navigation'}"><a href="/{locale}/hub.html">{'Portail' if fr else 'Portal'}</a><a href="/{locale}/index.html">Corpus</a><a href="/{locale}/ecosystem.html">{'Écosystème' if fr else 'Ecosystem'}</a></nav><a class="hub-language" lang="{other}" href="/{other}/ecosystem.html">{'English' if fr else 'Français'} ↗</a></header><main class="hub-main registry-main" id="content" tabindex="-1"><a class="registry-back" href="/{locale}/hub.html">{'← Portail' if fr else '← Portal'}</a><header class="registry-hero"><span class="hub-kicker">GNU.IN.LABS / {'CARTOGRAPHIE' if fr else 'ECOSYSTEM'}</span><h1>{escape(title)}</h1><p class="hub-lede">{escape(intro)}</p></header><section class="hub-index" aria-label="{escape(title)}"><ol class="hub-domains">{''.join(items)}</ol></section><section class="hub-policy"><span class="hub-kicker">SOURCES / AUTHORITY</span><p>{escape(caveat)}</p></section><footer class="hub-footer"><span>gnu.in.labs · DOCS-HUB-01D-0</span><a href="/ecosystem/catalog.json">{'Catalogue source' if fr else 'Source catalog'} ↗</a></footer></main></body></html>'''
-    (DIST/locale/'ecosystem.html').write_text(content,encoding='utf-8')
+    body=(registry_hero(locale,'gnu.in.labs / '+('Cartographie' if fr else 'Ecosystem'),title,intro)
+          +f'<section class="g6-section" aria-label="{escape(title)}"><ol class="g6-ledger">{"".join(items)}</ol></section>'
+          +f'<section class="g6-notice"><span class="g6-label">Sources <span aria-hidden="true">/</span> {"Autorité" if fr else "Authority"}</span><p>{escape(caveat)} <a href="/ecosystem/catalog.json">{"Catalogue source" if fr else "Source catalog"} ↗</a></p></section>')
+    index_page(DIST,locale,f'/{locale}/ecosystem.html',title=f'{title} · gnu.in.labs',description=intro,section='ecosystem',body=body,edition=EDITION)
 
 def build():
     if DIST.exists(): rmtree(DIST)
@@ -431,33 +406,33 @@ def build():
         (DIST/'challenges'/'protocols').mkdir(parents=True,exist_ok=True)
         copy2(DOCS/'challenges'/'protocols'/protocol, DIST/'challenges'/'protocols'/protocol)
     copy2(DOCS/'challenges'/'PROVENANCE.json', DIST/'challenges'/'PROVENANCE.json')
-    for file in ('style.css','app.js','favicon.svg','design-tokens.css'):
+    for file in ('style.css','app.js'):
         copy2(SITE/file,DIST/file)
+    copytree(SITE/'gnu6',DIST/'gnu6')
     copytree(ASSETS/'diagrams',DIST/'diagrams',ignore=shutil.ignore_patterns('*.py','__pycache__'))
     copytree(ROOT/'examples',DIST/'examples',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
-    copytree(SITE/'fonts',DIST/'fonts')
     copytree(DOCS/'diagrams',DIST/'mermaid')
     copytree(DOCS/'templates',DIST/'templates')
     for locale in CATALOG['locales']:
         hub_page(locale)
         ecosystem_page(locale)
         challenge_meta,challenge_body=unpack(DOCS/locale/'challenges.md')
-        shell(locale,challenge_meta['title'],render_markdown(challenge_body),f'/{locale}/challenges.html',status=challenge_meta['status'])
-        render_experiment_registry(DIST,EXPERIMENTS,locale)
+        shell(locale,challenge_meta['title'],render_markdown(challenge_body),f'/{locale}/challenges.html',status=challenge_meta['status'],section='challenges',kicker='Défis' if locale=='fr' else 'Challenges')
+        render_experiment_registry(DIST,EXPERIMENTS,locale,EDITION)
         source_inventory_page(locale,'sdk')
         source_inventory_page(locale,'api')
         guides_pages(locale)
         releases_page(locale)
         study_meta,study_body=unpack(DOCS/locale/'studies'/'cuda-05d.md')
-        shell(locale,study_meta['title'],render_markdown(study_body),f'/{locale}/studies/cuda-05d.html',status=study_meta['status'])
+        shell(locale,study_meta['title'],render_markdown(study_body),f'/{locale}/studies/cuda-05d.html',status=study_meta['status'],section='experiments',kicker='Études' if locale=='fr' else 'Studies')
         study_meta_e,study_body_e=unpack(DOCS/locale/'studies'/'cuda-05e.md')
-        shell(locale,study_meta_e['title'],render_markdown(study_body_e),f'/{locale}/studies/cuda-05e.html',status=study_meta_e['status'])
+        shell(locale,study_meta_e['title'],render_markdown(study_body_e),f'/{locale}/studies/cuda-05e.html',status=study_meta_e['status'],section='experiments',kicker='Études' if locale=='fr' else 'Studies')
         study_meta_f,study_body_f=unpack(DOCS/locale/'studies'/'cuda-05f.md')
-        shell(locale,study_meta_f['title'],render_markdown(study_body_f),f'/{locale}/studies/cuda-05f.html',status=study_meta_f['status'])
+        shell(locale,study_meta_f['title'],render_markdown(study_body_f),f'/{locale}/studies/cuda-05f.html',status=study_meta_f['status'],section='experiments',kicker='Études' if locale=='fr' else 'Studies')
         study_meta_g,study_body_g=unpack(DOCS/locale/'studies'/'cuda-05g.md')
-        shell(locale,study_meta_g['title'],render_markdown(study_body_g),f'/{locale}/studies/cuda-05g.html',status=study_meta_g['status'])
+        shell(locale,study_meta_g['title'],render_markdown(study_body_g),f'/{locale}/studies/cuda-05g.html',status=study_meta_g['status'],section='experiments',kicker='Études' if locale=='fr' else 'Studies')
         study_meta_h,study_body_h=unpack(DOCS/locale/'studies'/'cuda-05h.md')
-        shell(locale,study_meta_h['title'],render_markdown(study_body_h),f'/{locale}/studies/cuda-05h.html',status=study_meta_h['status'])
+        shell(locale,study_meta_h['title'],render_markdown(study_body_h),f'/{locale}/studies/cuda-05h.html',status=study_meta_h['status'],section='experiments',kicker='Études' if locale=='fr' else 'Studies')
         for path in [DOCS/locale/'index.md',*sorted((DOCS/locale/'chapters').glob('*.md')),*sorted((DOCS/locale/'labs').glob('*.md'))]:
             m,body=unpack(path)
             page_id=m['id']
@@ -469,7 +444,7 @@ def build():
                 inner=inner.replace('</h1>','</h1>'+card,1)
                 inner+='<h2>'+('Références' if locale=='fr' else 'References')+'</h2><ul>'+''.join(f'<li><a href="/{locale}/references.html#{ref}">{ref}</a></li>' for ref in m['references'])+'</ul>'
             if page_id=='home':
-                inner=home_hero(locale)+home_cards(locale)+f'<section class="home-note">{inner.replace("<h1","<h2").replace("</h1>","</h2>")}</section>'
+                inner=home_hero(locale)+corpus_ledger(locale)+f'<section class="g6-section home-note">{inner.replace("<h1","<h2").replace("</h1>","</h2>")}</section>'
             section='' if path.name=='index.md' else path.parent.name+'/'
             htmlpath=f'/{locale}/{section}{path.stem}.html'
             shell(locale,str(m.get('title',CORPUS_NAME)),inner,htmlpath,page_id,m.get('duration'),m.get('status','draft'))
@@ -479,7 +454,9 @@ def build():
         shell(locale,'Topologies',topology(locale),f'/{locale}/topologies.html')
         shell(locale,'Modèles' if locale=='fr' else 'Templates',template_index(locale),f'/{locale}/templates.html')
     (DIST/'index.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/fr/hub.html"><title>{escape(CORPUS_NAME)}</title></head><body><a href="/fr/hub.html">Portail français →</a></body></html>',encoding='utf-8')
-    (DIST/'404.html').write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>404 · {escape(CORPUS_NAME)}</title><link rel="stylesheet" href="/style.css"></head><body><main class="main"><h1>404 — Page introuvable / Page not found</h1><p>Cette route n’existe pas. This route does not exist.</p><p><a href="/fr/hub.html">Portail français</a> · <a href="/en/hub.html">English portal</a></p></main></body></html>',encoding='utf-8')
+    index_page(DIST,'fr','/404.html',title=f'404 · {CORPUS_NAME}',description='Page introuvable / Page not found',section='',edition=EDITION,
+               body=registry_hero('fr','HTTP 404','Page introuvable','Cette route n’existe pas. This route does not exist.')
+               +'<section class="g6-section"><p class="g6-hero__actions"><a class="g6-action" href="/fr/hub.html">Documentation (FR) <span class="g6-action__arrow" aria-hidden="true">→</span></a><a class="g6-action g6-action--quiet" href="/en/hub.html" lang="en">Documentation (EN) <span aria-hidden="true">→</span></a></p></section>')
     # Public static assets must be readable by an unprivileged Nginx worker,
     # even on a workstation whose umask is restrictive (e.g. 0077).
     DIST.chmod(0o755)

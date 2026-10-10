@@ -3,6 +3,7 @@
 from pathlib import Path
 from html.parser import HTMLParser
 import json,re,hashlib,subprocess
+from gnu6_shell import SYSTEM_LINKS
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
 CAT=json.loads((ROOT/'docs/hub.json').read_text('utf-8'))
@@ -55,7 +56,8 @@ for lang,other in [('fr','en'),('en','fr')]:
         assert '/registry/source-catalog.json' in refs.links
         if kind=='sdk':
             assert not any(r['kind']=='sdk' for r in SRC['sources'])
-            assert not any((x or '').startswith('https://') for x in refs.links)
+            # No invented install/distribution link; the shared GNU6 system bar (ADR-0001) is exempt by exact URL.
+            assert not any((x or '').startswith('https://') and x not in SYSTEM_LINKS for x in refs.links)
         else:
             source=f"{item['source_repository']}/blob/{item['source_ref']}/{item['source_path']}"
             assert source in refs.links

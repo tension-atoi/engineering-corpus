@@ -1,31 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 306" role="img" aria-labelledby="title desc"><title id="title">01 / Engineering lifecycle</title><desc id="desc">intent, contract, local implementation, verification, evidence, approval and separate release</desc>
-<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="none" stroke="#aaf184" stroke-width="1.3"/></marker></defs>
-<rect width="100%" height="100%" fill="#101714" rx="10"/><text x="30" y="41" fill="#b3f47c" font-family="monospace" font-weight="600" font-size="13" letter-spacing="2">01 / ENGINEERING LIFECYCLE</text>
-<line x1="176" y1="157" x2="186" y2="157" stroke="#aaf184" stroke-width="1.7" marker-end="url(#arrow)"/>
-<line x1="342" y1="157" x2="352" y2="157" stroke="#aaf184" stroke-width="1.7" marker-end="url(#arrow)"/>
-<line x1="508" y1="157" x2="518" y2="157" stroke="#aaf184" stroke-width="1.7" marker-end="url(#arrow)"/>
-<line x1="674" y1="157" x2="684" y2="157" stroke="#aaf184" stroke-width="1.7" marker-end="url(#arrow)"/>
-<line x1="840" y1="157" x2="850" y2="157" stroke="#aaf184" stroke-width="1.7" marker-end="url(#arrow)"/>
-<line x1="1006" y1="157" x2="1016" y2="157" stroke="#aaf184" stroke-width="1.7" marker-end="url(#arrow)"/>
-<rect x="30" y="96" width="146" height="122" fill="#1a231d" stroke="#aef587" stroke-width="1.2" rx="8"/>
-<text x="103.0" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">Mandate</text>
-<text x="103.0" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">scope</text>
-<rect x="196" y="96" width="146" height="122" fill="#1a231d" stroke="#89acff" stroke-width="1.2" rx="8"/>
-<text x="269.0" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">Contract</text>
-<text x="269.0" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">invariants</text>
-<rect x="362" y="96" width="146" height="122" fill="#1a231d" stroke="#aef587" stroke-width="1.2" rx="8"/>
-<text x="435.0" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">Slice</text>
-<text x="435.0" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">isolated work</text>
-<rect x="528" y="96" width="146" height="122" fill="#1a231d" stroke="#aef587" stroke-width="1.2" rx="8"/>
-<text x="601.0" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">Verify</text>
-<text x="601.0" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">local gates</text>
-<rect x="694" y="96" width="146" height="122" fill="#1a231d" stroke="#89acff" stroke-width="1.2" rx="8"/>
-<text x="767.0" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">Evidence</text>
-<text x="767.0" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">provenance</text>
-<rect x="860" y="96" width="146" height="122" fill="#1a231d" stroke="#ffc18b" stroke-width="1.2" rx="8"/>
-<text x="933.0" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">Review</text>
-<text x="933.0" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">decision</text>
-<rect x="1026" y="96" width="146" height="122" fill="#1a231d" stroke="#ffc18b" stroke-width="1.2" rx="8"/>
-<text x="1099.0" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#f0f7ed">Release</text>
-<text x="1099.0" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a9bcae">separate grant</text>
-<text x="30" y="291" fill="#789383" font-family="monospace" font-size="11">gnu.in.labs / Engineering Corpus · diagram v0.1 · editable source: docs/diagrams/lifecycle.mmd</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 306" role="img" aria-labelledby="lifecycle-title lifecycle-desc" class="g6-dia"><title id="lifecycle-title">01 / Engineering lifecycle</title><desc id="lifecycle-desc">intent, contract, local implementation, verification, evidence, approval and separate release</desc>
+<defs><marker id="lifecycle-arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path class="g6-dia-arrowhead" d="M0 0 L7 3.5 L0 7" fill="none" stroke="#A1A6AD" stroke-width="1.3"/></marker></defs>
+<rect class="g6-dia-bg" width="100%" height="100%" fill="#111418" rx="10"/><text class="g6-dia-kicker" x="30" y="41" fill="#A1A6AD" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="600" font-size="13" letter-spacing="2">01 / ENGINEERING LIFECYCLE</text>
+<line class="g6-dia-edge" x1="176" y1="157" x2="186" y2="157" stroke="#A1A6AD" stroke-width="1.6" marker-end="url(#lifecycle-arrow)"/>
+<line class="g6-dia-edge" x1="342" y1="157" x2="352" y2="157" stroke="#A1A6AD" stroke-width="1.6" marker-end="url(#lifecycle-arrow)"/>
+<line class="g6-dia-edge" x1="508" y1="157" x2="518" y2="157" stroke="#A1A6AD" stroke-width="1.6" marker-end="url(#lifecycle-arrow)"/>
+<line class="g6-dia-edge" x1="674" y1="157" x2="684" y2="157" stroke="#A1A6AD" stroke-width="1.6" marker-end="url(#lifecycle-arrow)"/>
+<line class="g6-dia-edge" x1="840" y1="157" x2="850" y2="157" stroke="#A1A6AD" stroke-width="1.6" marker-end="url(#lifecycle-arrow)"/>
+<line class="g6-dia-edge" x1="1006" y1="157" x2="1016" y2="157" stroke="#A1A6AD" stroke-width="1.6" marker-end="url(#lifecycle-arrow)"/>
+<rect class="g6-dia-node g6-dia-main" x="30" y="96" width="146" height="122" fill="#1A1D21" stroke="#8DA982" stroke-width="1.4" rx="6"/>
+<rect class="g6-dia-tab g6-dia-main" x="30" y="96" width="4" height="122" fill="#8DA982" rx="2"/>
+<text class="g6-dia-label" x="103.0" y="131" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="16" fill="#F7F3ED">Mandate</text>
+<text class="g6-dia-sub" x="103.0" y="200" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#A1A6AD">scope</text>
+<rect class="g6-dia-node g6-dia-alt" x="196" y="96" width="146" height="122" fill="#1A1D21" stroke="#87A0F4" stroke-width="1.4" rx="6"/>
+<rect class="g6-dia-tab g6-dia-alt" x="196" y="96" width="4" height="122" fill="#87A0F4" rx="2"/>
+<text class="g6-dia-label" x="269.0" y="131" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="16" fill="#F7F3ED">Contract</text>
+<text class="g6-dia-sub" x="269.0" y="200" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#A1A6AD">invariants</text>
+<rect class="g6-dia-node g6-dia-main" x="362" y="96" width="146" height="122" fill="#1A1D21" stroke="#8DA982" stroke-width="1.4" rx="6"/>
+<rect class="g6-dia-tab g6-dia-main" x="362" y="96" width="4" height="122" fill="#8DA982" rx="2"/>
+<text class="g6-dia-label" x="435.0" y="131" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="16" fill="#F7F3ED">Slice</text>
+<text class="g6-dia-sub" x="435.0" y="200" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#A1A6AD">isolated work</text>
+<rect class="g6-dia-node g6-dia-main" x="528" y="96" width="146" height="122" fill="#1A1D21" stroke="#8DA982" stroke-width="1.4" rx="6"/>
+<rect class="g6-dia-tab g6-dia-main" x="528" y="96" width="4" height="122" fill="#8DA982" rx="2"/>
+<text class="g6-dia-label" x="601.0" y="131" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="16" fill="#F7F3ED">Verify</text>
+<text class="g6-dia-sub" x="601.0" y="200" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#A1A6AD">local gates</text>
+<rect class="g6-dia-node g6-dia-alt" x="694" y="96" width="146" height="122" fill="#1A1D21" stroke="#87A0F4" stroke-width="1.4" rx="6"/>
+<rect class="g6-dia-tab g6-dia-alt" x="694" y="96" width="4" height="122" fill="#87A0F4" rx="2"/>
+<text class="g6-dia-label" x="767.0" y="131" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="16" fill="#F7F3ED">Evidence</text>
+<text class="g6-dia-sub" x="767.0" y="200" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#A1A6AD">provenance</text>
+<rect class="g6-dia-node g6-dia-gate" x="860" y="96" width="146" height="122" fill="#1A1D21" stroke="#FF8E40" stroke-width="1.4" rx="6"/>
+<rect class="g6-dia-tab g6-dia-gate" x="860" y="96" width="4" height="122" fill="#FF8E40" rx="2"/>
+<text class="g6-dia-label" x="933.0" y="131" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="16" fill="#F7F3ED">Review</text>
+<text class="g6-dia-sub" x="933.0" y="200" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#A1A6AD">decision</text>
+<rect class="g6-dia-node g6-dia-gate" x="1026" y="96" width="146" height="122" fill="#1A1D21" stroke="#FF8E40" stroke-width="1.4" rx="6"/>
+<rect class="g6-dia-tab g6-dia-gate" x="1026" y="96" width="4" height="122" fill="#FF8E40" rx="2"/>
+<text class="g6-dia-label" x="1099.0" y="131" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="16" fill="#F7F3ED">Release</text>
+<text class="g6-dia-sub" x="1099.0" y="200" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#A1A6AD">separate grant</text>
+<text class="g6-dia-sub" x="30" y="291" fill="#A1A6AD" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="11">gnu.in.labs / Engineering Corpus · diagram v0.2 · gnu6-design 1.0.0 · editable source: docs/diagrams/lifecycle.mmd</text></svg>

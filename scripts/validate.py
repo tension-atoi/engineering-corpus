@@ -6,6 +6,7 @@ import re
 import xml.etree.ElementTree as ET
 from urllib.parse import unquote, urlsplit
 import yaml
+from gnu6_shell import SYSTEM_LINKS
 
 
 class Page(HTMLParser):
@@ -108,6 +109,8 @@ def check(root):
         for tag,key,ref in page.refs:
             url=urlsplit(ref)
             if url.scheme or url.netloc:
+                if tag=='a' and key=='href' and ref in SYSTEM_LINKS:
+                    continue  # ADR-0001: exact GNU6 system-bar links, identical on every page
                 require(tag=='a' and key=='href' and url.scheme=='https' and (rel.endswith('/references.html') or (rel.endswith('/api.html') and url.netloc=='github.com') or (rel.endswith('/guides/api-verification.html') and url.netloc=='github.com') or (rel.endswith('/challenges.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.endswith('/studies/cuda-05g.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus')) or (rel.endswith('/studies/cuda-05h.html') and url.netloc=='github.com' and url.path.startswith('/tension-atoi/engineering-corpus'))), f'{rel} unexpected external reference {ref}')
                 continue
             raw=unquote(url.path)
