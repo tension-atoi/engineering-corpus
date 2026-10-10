@@ -167,16 +167,10 @@
 
     const api = {
       rig, tw, get pending() { return pending; }, cancel,
-      // Navigation begins immediately after the click acknowledgement; the
-      // opaque geometry bridge covers header AND body across document replacement.
-      depart(url, target, dir) {
+      // Native browser navigation; no asynchronous screen-cover stage.
+      depart(url) {
         M.noteNavigation();
-        const r = btn.getBoundingClientRect(), origin = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-        const go = () => M.handoff.go(url, { from: o.domain, t: cur, mode: M.chosen, chain: M.chain() });
-        if (M.bridge.active) { M.bridge.cover(origin).then(go); return; }
-        if (M.mode === "off") { go(); return; }
-        const { finished } = M.arc(o.blocks ? o.blocks() : [], { origin, dir, phase: "out" });
-        finished.then(go);
+        M.handoff.go(url, { from: o.domain, t: cur, mode: M.chosen, chain: M.chain() });
       },
       // navigation started by a link (Spine, palette): turn + type while retiring, then hop
       navigate(url, domain) {
@@ -191,11 +185,9 @@
     if (incoming) {
       const from = D.indexOf(incoming.from), fwd = mod3(cur - from) === 1, dir = fwd ? 1 : -1;
       const r = btn.getBoundingClientRect(), origin = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-      // The bridge remains opaque until the rig, title, navigation and content
-      // have all been mounted in this *new* document. No header/body first-paint snap.
-      const finished = M.bridge.arriving
-        ? M.bridge.reveal(origin)
-        : (M.arrival || M.arc(o.blocks ? o.blocks() : [], { origin, dir, phase: "in" })).finished;
+      const finished = (M.arrival || M.arc(o.blocks ? o.blocks() : [], {
+        origin, dir, phase: "in"
+      })).finished;
       document.documentElement.removeAttribute("data-g6-arriving");
       rig.goTo(cur); tw.write(o.hosts[o.domain]);
       finished.then(() => {

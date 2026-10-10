@@ -85,8 +85,8 @@ def main():
     import json
     lock = json.loads((SITE / "motion/global-nav.lock.json").read_text("utf-8"))
     assert lock["component"] == "gnu6-global-site-navigation"
-    assert lock["adapterVersion"] == "0.1.0"
-    assert lock["designSourceCommit"] == "32faf620fc5a67110838a983c14c73f604dd7937"
+    assert lock["adapterVersion"] == "0.2.0"
+    assert lock["designSourceCommit"] == "17ffabcd69def9d1f8f2e83dd1f211ef3087a189"
     assert lock["eligibleRealOrigins"] == ["gnu6.live", "docs.gnu6.live"]
     assert lock["displayedModes"] == ["full", "off"]
     assert "gnosix.gnu6.live" in lock["plannedIdentityNotNavigable"]

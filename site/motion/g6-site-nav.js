@@ -60,11 +60,6 @@
   const stopNavigation = () => {
     queued = false;
     operation++;
-    // Escape during the opaque bridge must never leave a permanent full-screen
-    // cover after its Promise is invalidated.
-    root.removeAttribute("data-g6-bridge");
-    root.style.removeProperty("--g6-bridge-x");
-    root.style.removeProperty("--g6-bridge-y");
     rig.goTo(currentT);
     writer.set(hosts[domain]);
     status.textContent = t("Navigation annulée.","Navigation cancelled.");
@@ -89,8 +84,6 @@
     const commit = () => {
       if (!queued || ticket !== operation) return;
       motion.noteNavigation();
-      const r=cube.getBoundingClientRect();
-      const origin={x:r.left+r.width/2,y:r.top+r.height/2};
       const go=()=>{
         if(ticket !== operation || !queued) return;
         const href = destination();
@@ -99,9 +92,7 @@
           from:domain,t:currentT,mode:motion.chosen,chain:motion.chain(),
         });
       };
-      if (motion.mode === "off") go();
-      else if (motion.bridge.active) motion.bridge.cover(origin).then(go);
-      else go();
+      go();
     };
     setTimeout(commit, 48);
   }
@@ -147,10 +138,6 @@
     writer.write(hosts[domain], {
       fromDomain:incoming.from,toDomain:domain,erase:38,type:46,
     });
-    if(motion.bridge.arriving) {
-      const r=cube.getBoundingClientRect();
-      motion.bridge.reveal({x:r.left+r.width/2,y:r.top+r.height/2});
-    }
   } else {
     rig.setT(currentT);
     writer.set(hosts[domain]);

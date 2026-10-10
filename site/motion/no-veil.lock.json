@@ -1,0 +1,13 @@
+{
+  "component": "gnu6-native-motion-no-veil",
+  "upstream": "gnu6-design",
+  "version": "1.1.2",
+  "source_commit": "17ffabcd69def9d1f8f2e83dd1f211ef3087a189",
+  "files": {
+    "g6-motion.js": "3593bbb1dab0925f89bd21d1949c82f97d8b505d543cf170e091fc60aef0b2ea",
+    "g6-motion.css": "0fec1447c92c5e7aa5159c59ab7d4d788f85588bc98f4aefcdd7b85a1aedadaf",
+    "g6-bar.js": "33cfc142f6c805b0d48bd1428688a2bbdccec7de03b16a48200e3ccb08ef2b40",
+    "g6-site-nav.js": "cc9b70bf20743a86a9c34f3a1c2f9818802e4643677e585a9b045ca2d4fd2b01",
+    "g6-site-nav.css": "84d4811a22defec1a47e818f3dd0eb6186a8192e00bb33b668886df98fb5a333"
+  }
+}

@@ -1,7 +1,6 @@
 /* GNU6 web motion runtime — MOTION-STANDARD.md (slice 1, RESEARCH).
  *
- * Load synchronously in <head>: it reads an incoming handoff before first paint so the arriving page never
- * shows its content in place before the arrival motion has positioned it.
+ * Load synchronously in <head> to read an incoming handoff before first paint.
  * No dependencies. No opacity anywhere (WM-01): every keyframe passed through Motion.animate is checked.
  */
 (() => {
@@ -21,8 +20,8 @@
   const Motion = {
     curves: { out: "cubic-bezier(.2,.7,.2,1)", inout: "cubic-bezier(.6,0,.3,1)", in: "cubic-bezier(.5,0,.9,.4)" },
     domains: DOMAINS,
-    // Cut-on-motion is the ratified cross-origin handoff; no full-page rotation.
-    // Ratified default: cut-the-curve. Wheel remains opt-in for research comparisons only.
+    // Top-level native navigation. Cut/wheel are bounded content motion profiles,
+    // never a full-page cover. Wheel remains research-only.
     get seam() { const v = root.dataset.g6Seam || new URLSearchParams(location.search).get("seam"); return v === "wheel" ? "wheel" : "cut"; },
     // The cube rotates by 120°, not the page. Content uses a bounded orbital
     // projection: short consistent travel with a slight curved parallax.
@@ -44,43 +43,7 @@
       } catch { /* prefetch is an optimisation only */ }
     },
 
-    // ── Cross-document geometric bridge: a matching, opaque canvas-colour
-    // radial shutter on either side of the unavoidable top-level navigation.
-    // It covers both the header and content while they are reconstructed, without
-    // sharing DOM, cookies or pixels between isolated origins.
-    bridge: {
-      get active() { return Motion.seam === "cut" && Motion.mode !== "off"; },
-      get arriving() { return Boolean(Motion.incoming && this.active); },
-      cover(point = { x: 22, y: 22 }) {
-        if (!this.active) return Promise.resolve();
-        root.style.setProperty("--g6-bridge-x", `${Math.round(point.x)}px`);
-        root.style.setProperty("--g6-bridge-y", `${Math.round(point.y)}px`);
-        root.dataset.g6Bridge = "covering";
-        // Force the initial clip geometry to become an actual CSS state.
-        getComputedStyle(root, "::after").clipPath;
-        const ms = Math.max(36, Math.round(105 * Motion.scale()));
-        root.style.setProperty("--g6-bridge-cover-ms", `${ms}ms`);
-        return new Promise((resolve) => {
-          requestAnimationFrame(() => {
-            root.dataset.g6Bridge = "covered";
-            setTimeout(resolve, ms + 10);
-          });
-        });
-      },
-      reveal(point = { x: 62, y: 22 }) {
-        if (!this.arriving || root.dataset.g6Bridge !== "covered") return Promise.resolve();
-        root.style.setProperty("--g6-bridge-x", `${Math.round(point.x)}px`);
-        root.style.setProperty("--g6-bridge-y", `${Math.round(point.y)}px`);
-        const ms = Math.max(54, Math.round(155 * Motion.scale()));
-        root.style.setProperty("--g6-bridge-reveal-ms", `${ms}ms`);
-        return new Promise((resolve) => {
-          requestAnimationFrame(() => {
-            root.dataset.g6Bridge = "uncovering";
-            setTimeout(() => { root.removeAttribute("data-g6-bridge"); resolve(); }, ms + 15);
-          });
-        });
-      },
-    },
+    // Native top-level navigation: no opaque screen cover or reveal phase.
 
     // ── WM-05 Animated / Off. Auto follows system reduced-motion preference.
     get chosen() { const c = local.get(KEY); return MODES.includes(c) ? c : "auto"; },
@@ -188,19 +151,16 @@
   if (incoming) {
     if (incoming.mode !== Motion.chosen && incoming.mode !== "auto") local.set(KEY, incoming.mode);
     Motion.noteNavigation(incoming.chain);
-    if (Motion.bridge.active) {
-      // The very first styled frame must match the departing covered canvas.
-      root.dataset.g6Bridge = "covered";
-    } else if (Motion.mode !== "off") {
+    if (Motion.mode !== "off") {
       const from = DOMAINS.indexOf(incoming.from), cur = DOMAINS.indexOf(root.dataset.g6Domain || root.dataset.domain);
       const dir = cur < 0 || ((cur - from + 3) % 3) === 1 ? 1 : -1;
-      root.style.setProperty("--g6-arrival-x", `${dir * Motion.travel()}px`);
+      root.style.setProperty("--g6-arrival-x", dir * Motion.travel() + "px");
       root.dataset.g6Arriving = "";
     }
   }
   Motion.incoming = incoming;
   Motion.domain = root.dataset.g6Domain || root.dataset.domain || null;
-  if (incoming && Motion.mode !== "off" && !Motion.bridge.active) {
+  if (incoming && Motion.mode !== "off") {
     // readyState "interactive" fires when parsing ends, before deferred scripts: no blank gap waiting for them
     const start = () => {
       if (Motion.arrival || document.readyState === "loading") return;
